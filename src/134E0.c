@@ -30,7 +30,7 @@ uint8_t func_80012944(int16_t x, int16_t y) {
 #pragma GLOBAL_ASM("asm/nonmatchings/134E0/func_800129C8.s")
 
 #ifdef NON_MATCHING
-uint8_t func_80012A24(uint32_t arg0, uint32_t arg1) {
+uint8_t func_80012A24(int16_t arg0, int16_t arg1) {
     if ((arg1 & 0xF) < (0xF - (arg0 & 0xF))) return 0xff;
     return 0;
 }

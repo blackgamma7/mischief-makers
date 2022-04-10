@@ -131,7 +131,6 @@ void func_80046434(void) {
 void func_8004664C(void){
     MODi(D_801782B4,0,0x10000);
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/46100/func_8004664C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/46100/func_8004667C.s")
 

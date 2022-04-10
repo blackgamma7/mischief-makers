@@ -175,18 +175,19 @@ void func_801AA590_782EF0(){
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA5B8_782F18.s")
-
+//Theo at the End of "Inner Struggle"
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA644_782FA4.s")
 
 void func_801AB354_783CB4(uint16_t index){
     MODi(gActors[142].pos.x,thisActor.pos.x-16,2);
     MODi(gActors[142].pos.y,thisActor.pos.y+32,2);
 }
-
+//Marina blushing at the end of "inner Struggle"
 void func_801AB3E0_783D40(uint16_t index){
     MODi(thisActor.rgba.r,63,1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AB440_783DA0.s")
 
+//Marina at the end of "inner Struggle"
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AB4CC_783E2C.s")

@@ -30,4 +30,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80083810.s")
 
+#ifdef NON_MATCHING
+void func_80083878(int16_t x, int16_t y){
+    if(y<3) func_80083140(x,y);
+    else func_80083488(x,y-3);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80083878.s")
+#endif

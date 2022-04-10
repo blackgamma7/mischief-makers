@@ -121,7 +121,7 @@ void DebugText_Tick(void){
     Sprite_Init(&G);
     Sprite_SetTransparent(0);
     Sprite_SetColor(gDebugBorW._lo,gDebugBorW._lo,gDebugBorW._lo,0xFF);
-    Sprite_SetScale(0.0,1.0);
+    Sprite_SetScale(1.0,1.0);
     Sprite_SetTransparent(1);
     T=DebugText_TransformArray;
     do{

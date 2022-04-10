@@ -34,7 +34,7 @@ segments:
       - [0x134E0, c]
       - [0x13850, c,gameover] 
       - [0x156F0, c]
-      - [0x17A70, c]
+      - [0x17A70, c,gameStates] #includes Actors tick and menus 
       - [0x1E7A0, c,ActorInit]
       - [0x1F1E0, c]
       - [0x22290, c,Letterbox]
@@ -241,7 +241,7 @@ segments:
       - [0xC88D0,.data,134E0] #a function table
       - [0xC8910,bin,gameover]
       - [0xC8B20,bin,156F0]
-      - [0xC8BE0,bin,17A70]
+      - [0xC8BE0,bin,gameStates]
       - [0xCCA20,data,Lifebar] #16-bit color references
       - [0xCCB40,bin]
 
@@ -277,7 +277,7 @@ segments:
       #- [0xEB7B0, .data,libc/xstdio]
       #- [0xEB7E0, .data,logger/ultralog]
       #.rodata
-      - [0xEB7E8, .rodata, boot] # end at 0xEB824
+      - [0xEB7F0, .rodata, boot] # end at 0xEB824
       - [0xEB830, rodata]
       #- [0xEB830, rodata,music] # includes sfx/bgm/instrument names.
       - [0xEBB10, .rodata, GameSave]
@@ -285,8 +285,8 @@ segments:
       - [0xEBBE0, .rodata, 11820]
       - [0xEBC00, rodata]
       #- [0xEBC00, .rodata, gameover] #generates wrong offset
-      - [0xEBC50, .rodata, 17A70]
-      - [0xEBD00, rodata, 17A70]
+      - [0xEBC50, .rodata, gameStates]
+      - [0xEBD00, rodata, gameStates]
       - [0xEC190, bin]
       - [0xEC5C0, rodata, Scenes] # start for the jtbl at 0xEC6AC
       - [0xEC6C0, bin]

@@ -1,12 +1,12 @@
 #include "common.h"
 
-void ActorTick_15(uint32_t x) {}
-void ActorTick_16(uint32_t x) {}
+void ActorTick_15(uint16_t x) {}
+void ActorTick_16(uint16_t x) {}
 void func_8008C4B0(uint32_t x, uint32_t y, uint32_t z) {}
-void func_8008C4C0(uint32_t x) {}
-void func_8008C4C8(uint32_t x) {}
-void func_8008C4D0(uint32_t x) {}
-void func_8008C4D8(uint32_t x) {}
+void func_8008C4C0(uint16_t x) {}
+void func_8008C4C8(uint16_t x) {}
+void func_8008C4D0(uint16_t x) {}
+void func_8008C4D8(uint16_t x) {}
 
 void func_8008C4E0(uint16_t index) {
     thisActor.rgba.b = 0;

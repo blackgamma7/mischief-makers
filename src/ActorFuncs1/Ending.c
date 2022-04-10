@@ -586,7 +586,7 @@ void func_8019F21C_7064AC(uint16_t index){ //marina becomes human
       sVar3 = func_8005DEFC();
       if ((sVar3 == 0) && (D_801AA070_711300 == 0)) {
         func_801A9044_7102D4();
-        if (_DAT_801ac398 < 0x35) {
+        if (D_01ac398 < 0x35) {
           thisActor.actorState = 0x1520;
           D_801AA078_711308 = 0x3c;
           func_80192A80_6F9D10();
@@ -786,8 +786,8 @@ int16_t uVar2;
       gPlayerManager.unk_0x20 = 0;
       gPlayerManager.unk_0x24 = 0;
       func_801A0350_7075E0(index,0x38,0x730,300,8,0x180,0x3410);
-      _DAT_801ac39a = 0x430;
-      _DAT_801ac39c = 300;
+      D_01ac39a = 0x430;
+      D_01ac39c = 300;
       gActors[56].unk_0x170 = 0xa0;
       gActors[56].unk_0x16C._w = 1;
       func_80192A08_6F9C98(0x3c);
@@ -955,7 +955,7 @@ int16_t uVar2;
         if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
           thisActor.actorState++;
           func_800267FC(SCENE_UNK03);
-          _DAT_801ac374 = 1;
+          D_01ac374 = 1;
           func_80193900_6FAB90(1,0x50,-16);
           return;
         }

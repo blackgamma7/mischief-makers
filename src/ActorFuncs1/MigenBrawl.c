@@ -10,6 +10,42 @@
 #define ACTORTYPE_MIGENJRFIREBALL 0x609
 #define ACTORTYPE_MIGENGEM 0x60B //the green gem that heals migen Jr.
 
+/*
+void* gActorFuncTable_80192000[]={
+  func_80194F8C_680AAC,
+  func_80192C4C_67E76C,
+  func_8019809C_683BBC,
+  func_80197F98_683AB8, //NOOP
+  func_801992AC_684DCC,
+  func_80198ED8_6849F8, //NOOP
+  func_8019893C_68445C,
+  func_8019A604_686124,
+  func_8019A3B8_685ED8,
+  func_80192FE4_67EB04,
+  func_80199F5C_685A7C,
+  func_80199DA8_6858C8,
+  func_80199F54_685A74, //NOOP
+  &D_8019B1DC_686CFC,
+  &D_8019B200_686D20,
+  &D_8019BF20_687A40,
+  &D_8019C010_687B30,
+  &D_8019C054_6AA054,
+  &D_8019C830_688350,
+  &D_8019C884_6883A4,
+  &D_8019C8D8_6883F8,
+  &D_8019D6E0_689200,
+  func_80197EFC_683A1C,
+  func_80197F58_683A78,
+  func_8019A6AC_6861CC,
+  func_8019A888_6863A8,
+  func_8019AB04_686624,
+  func_8019AD40_686860,
+  func_8019AEE4_686A04,
+  NULL,
+  NULL,
+  NULL
+};*/
+
 //.bss
 int16_t D_8019E570,D_8019E572,D_8019E574; //red gems in face,blue gems in ground,fireball catch gems (16th is green.)
 int32_t D_8019E578,D_8019E57C; //both written, never read.
@@ -264,12 +300,12 @@ void func_80194F8C_680AAC(uint16_t index){
       goto lab_80195034_caseD_1004;
     case 0x1005:
       if (--thisActor.unk_0x150 == 0) {
-        DAT_800be6d8 = 0x80;
+        D_800BE6D8 = 0x80;
         gActors[94].flag = 0;
         gActors[95].flag = 0;
         gActors[96].flag = 0;
       }
-      MODi(DAT_800d2934,-0x2c,2);
+      MODi(D_800D2934,-0x2c,2);
       gScreenPosTargetY._hi+= 2;
       if (0x23b < gScreenPosCurrentY._hi) {
         thisActor.actorState++;
@@ -300,7 +336,7 @@ void func_80194F8C_680AAC(uint16_t index){
         return;
       }
       thisActor.flag = 0;
-      DAT_800d28e8 = 0xd;
+      D_800d28e8 = 0xd;
       MigenJrActor.flag3 = 0;
       gActors[49].flag3 = 0;
       gActors[55].flag3 = 0;
@@ -747,8 +783,8 @@ lab_80195064_caseD_421:
       thisActor.actorState++;
       thisActor.unk_0x150 = 0x3c;
       SFX_ActorPanX(0x93,0x3f);
-      DAT_800be6cc = 0xffffff40;
-      DAT_800be6d8 = 0xffffff40;
+      D_800be6cc = 0xffffff40;
+      D_800be6d8 = 0xffffff40;
       func_8019487C_68039C(index,0);
     }
     break;
@@ -795,7 +831,7 @@ lab_80195064_caseD_421:
   case 0x17:
     if (--thisActor.unk_0x150 < 0) {
       thisActor.actorState++;
-      ActorSpawn_JPNSpeechBox(0x62,&D_8019b0c8,-0x18,0x10,0x32);
+      ActorSpawn_JPNSpeechBox(0x62,&D_8019b0c8,-0x18,0x10,0x32); //migen sr. responds
       thisActor.unk_0x150 = 0x50;
     }
     func_80193F9C_67FABC(index);
@@ -873,7 +909,7 @@ lab_80195064_caseD_421:
       D_800be5f4 = 0;
       thisActor.field52_0x110 = 120.0;
       SFX_Play_3(SFX_THEO_YAY1,0xa0);
-      DAT_800d28e8 = 0xb;
+      D_800d28e8 = 0xb;
     }
     break;
   case 0x28:
@@ -887,7 +923,7 @@ lab_80195064_caseD_421:
   case 0x29:
     func_80193CC4_67F7E4(index,0);
     func_80193F9C_67FABC(index);
-    if ((DAT_800d28fc & 2) == 0) {
+    if ((D_800d28fc & 2) == 0) {
       thisActor.actorState = 0x30;
       thisActor.field52_0x110 = 120.0;
     }
@@ -1190,7 +1226,7 @@ lab_80196b3c:
     thisActor.unk_0x110-=1.0;
     if (thisActor.field52_0x110 == 117.0) {
       thisActor.actorState++;
-      DAT_800be6e4 = 0;
+      D_800be6e4 = 0;
       func_80193ED8_67F9F8(3);
       func_80192100_67DC20(index); //noop
       D_800be5f4 = 0x10;
@@ -1200,7 +1236,7 @@ lab_80196b3c:
     thisActor.unk_0x110-=1.0;
     if (thisActor.field52_0x110 < 0.0) {
       thisActor.actorState = 0x30;
-      DAT_800be6e4 = 1;
+      D_800be6e4 = 1;
       thisActor.field52_0x110 = 120.0;
       func_80193E6C_67F98C(3);
       func_80193F9C_67FABC(index);
@@ -1321,7 +1357,7 @@ lab_80196b3c:
       func_80193DF0_67F910(index,0x1f);
       gPlayerActor.flag3|= 0x10000;
       gPlayerActor.speedY._w = 0x20000;
-      DAT_800d294c = 2;
+      D_800d294c = 2;
       thisActor.actorState = 0x40;
       if (gActors[66].unk_0x180 == 0) {
         gPlayerActor.speedX._w = 0x30000;
@@ -1411,7 +1447,7 @@ lab_80196b3c:
       gPlayerActor.speedY._w = 0x10000;
       thisActor.field52_0x110 = 8.0;
       gActors[55].flag &= ~0x1200;
-      DAT_800d294c = 2;
+      D_800d294c = 2;
     }
     break;
   case 0x90:
@@ -1666,7 +1702,7 @@ lab_80195034_caseD_1004:
   SFX_ActorPanX(dash,0);
   thisActor.unk_0x150 = 10;
   gActors[97].flag = 0x2002;
-  DAT_800be6e8 = 1;
+  D_800be6e8 = 1;
   ACTORINIT(100,ACTORTYPE_MIGENTHEO);
   MigenJrActor.flag3 = 0;
   gActors[49].flag3 = 0;

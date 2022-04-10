@@ -34,9 +34,9 @@ int32_t func_800283BC(uint32_t SFX, uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800283BC.s")
 #endif
 
-#ifndef VER_JPN
-void func_800284B0(uint16_t x) {}
-#endif
+
+void ActorTick_29(uint16_t x) {}
+
 
 #ifdef NON_MATCHING
 uint16_t Actor_GetInactiveInRange(uint16_t x, uint16_t y) {
@@ -1095,7 +1095,7 @@ void func_80031DDC(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033428.s")
 
-void func_8003358C(uint16_t index){
+void ActorTick_7(uint16_t index){
     if(thisActor.rgba.a<(int32_t)thisActor.unk_0x18C._w) thisActor.flag=0;
     else thisActor.rgba.a-=thisActor.unk_0x18C._w;
 }

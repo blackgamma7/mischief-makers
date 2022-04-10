@@ -89,42 +89,32 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042E28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042E84.s")
-
-#ifdef NON_MATCHING
-void func_80042F2C(int32_t arg0, int32_t arg1, int32_t arg2) {
-    int32_t s0;
-    int32_t s1;
-    int32_t s2;
-
-    s0 = arg0 << 0x10;
-    s1 = arg1 << 0x10;
-    s2 = arg2 << 0x10;
-    s0 = s0 >> 0x10;
-    s1 = s1 >> 0x10;
-    s2 = s2 >> 0x10;
-
-    func_80043234();
-    func_8002B82C(&D_800DE348, &D_800DE348, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DE508, &D_800DE508, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DE6C8, &D_800DE6C8, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DE888, &D_800DE888, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DEA48, &D_800DEA48, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DEF88, &D_800DEF88, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DEC08, &D_800DEC08, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DEDC8, &D_800DEDC8, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DF308, &D_800DF308, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DF4C8, &D_800DF4C8, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DF688, &D_800DF688, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DF148, &D_800DF148, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DDA88, &D_800DDA88, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DDE08, &D_800DDE08, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DDC48, &D_800DDC48, 0xDF, (int16_t)s0, s1, s2);
-    func_8002B82C(&D_800DDFC8, &D_800DDFC8, 0xDF, (int16_t)s0, s1, s2);
+void func_80042E84(s16 x0,s16 y0,s16 z0,s16 x1,s16 y1,s16 z1,s16 x2,s16 y2,s16 z2){
+  func_8002B82C(0x803da200,0x80380000,0xff,x0,y0,z0);
+  func_8002B82C(0x803da400,0x80380200,0xff,x1,y1,z1);
+  func_8002B82C(0x803da600,0x80380400,0xff,x2,y2,z2);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042F2C.s")
-#endif
+
+void func_80042F2C(int16_t arg0, int16_t arg1, int16_t arg2) {
+    func_80043234();
+    func_8002B82C(&D_800DE348, &D_800DE348, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DE508, &D_800DE508, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DE6C8, &D_800DE6C8, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DE888, &D_800DE888, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DEA48, &D_800DEA48, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DEF88, &D_800DEF88, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DEC08, &D_800DEC08, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DEDC8, &D_800DEDC8, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DF308, &D_800DF308, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DF4C8, &D_800DF4C8, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DF688, &D_800DF688, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DF148, &D_800DF148, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DDA88, &D_800DDA88, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DDE08, &D_800DDE08, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DDC48, &D_800DDC48, 0xDF, arg0,arg1,arg2);
+    func_8002B82C(&D_800DDFC8, &D_800DDFC8, 0xDF, arg0,arg1,arg2);
+}
+
 
 void func_8004320C(void) {
     D_800D2968 = -1;

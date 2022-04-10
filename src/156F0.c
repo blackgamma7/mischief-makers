@@ -1,7 +1,7 @@
 #include "common.h"
 
 //update positions of actors.
-void Actors_ApplyVelocity(void){
+void Actors_PositionTick(void){
     uint16_t index;
     if(D_800BE6F8) D_800BE6F8--;
     if(D_800BE670){

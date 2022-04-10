@@ -164,7 +164,7 @@ void GamePlay_Tick_Active(void) {
 
     func_800253B0(); // background
     func_8001F88C(); // unknown, does something with actors
-    Actors_ApplyVelocity(); // physics
+    Actors_PositionTick(); // physics
     func_80016CB4(); // collision
     ActorMarina_ScreenScroll(); // camera
     func_80016D94(); // offsets objects from the camera so that they are in the correct relative position

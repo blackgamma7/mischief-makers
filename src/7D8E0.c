@@ -145,4 +145,4 @@ uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,flo
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F37C.s")
 //actor tick for japan-only speech bubbles
-#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007F560.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/ActorTick_JPNSpeechBox.s")

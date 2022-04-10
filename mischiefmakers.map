@@ -2036,7 +2036,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800146f8                L800146F8_152F8
  build/src/156F0.c.o(.text)
  .text          0x0000000080014af0     0x2380 build/src/156F0.c.o
-                0x0000000080014af0                Actors_ApplyVelocity
+                0x0000000080014af0                Actors_PositionTick
                 0x0000000080014c44                func_80014C44
                 0x0000000080014f14                func_80014F14
                 0x0000000080014fd0                func_80014FD0
@@ -2408,7 +2408,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800282f0                func_800282F0
                 0x0000000080028380                func_80028380
                 0x00000000800283bc                func_800283BC
-                0x00000000800284b0                func_800284B0
+                0x00000000800284b0                ActorTick_29
                 0x00000000800284b8                Actor_GetInactiveInRange
                 0x0000000080028528                Actor_GetInactiveInRange_144_192
                 0x000000008002854c                func_8002854C

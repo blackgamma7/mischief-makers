@@ -233,8 +233,8 @@ extern uint16_t gNameEntryRow3ENG[18]; // one is still readable, but the other s
 extern uint16_t gNameEntryRow4ENG[18];
 extern UNK_TYPE D_800C71A0;
 extern u16 D_800C7E14[16]; //"G......AME......OV...E...R"
-extern char*D_800C81E4[22]; //used by stage select in building menu.
-extern UNK_TYPE D_800C823C;
+extern const char*D_800C81E4[22]; //used by stage select in building menu.
+extern uint16_t D_800C823C[];
 extern uint16_t gStageScenes[64]; //holds the scene indecies for each stage.
 extern uint16_t D_800C83F8[64];
 extern uint16_t gTimesToBeat[64];
@@ -343,6 +343,8 @@ extern uint16_t D_800D3888[24];
 extern int16_t D_800D38B8[140][2];//coords for "scene transition" portaits.
 extern int16_t D_800D3AE8[70]; //indecies for "scene transition" portaits.
 extern int16_t D_800D3B74;
+extern uint16_t* D_800D8088[8]; //japan-only text for actor 0x56
+extern uint16_t D_800D80A8[8]; //SFX Arrays for same actor
 extern uint16_t D_800D81AC[];
 extern int16_t D_800D84E8[];
 extern UNK_TYPE D_800D8588;
@@ -440,7 +442,7 @@ extern UNK_TYPE D_800DE268;
 extern UNK_TYPE D_800DE2A0;
 extern UNK_TYPE D_800DE2D8;
 extern UNK_TYPE D_800DE310;
-extern UNK_TYPE D_800DE348;
+extern int16_t D_800DE348[];
 extern int16_t D_800DE396;
 extern UNK_TYPE D_800DE508;
 extern UNK_TYPE D_800DE540;
@@ -505,7 +507,15 @@ extern uint16_t* D_800E31EC[54];
 extern UNK_TYPE D_800E334C;
 extern UNK_TYPE D_800E3584;
 extern Gfx D_800E38B0[];
-extern Gfx D_800E3930[];
+extern Gfx D_800E3930[9];
+extern Gfx D_800E3978[4];
+extern Gfx D_800E3998[5];
+extern Gfx D_800E39C0[14];
+extern Gfx D_800E3A30[4];
+extern Gfx D_800E3A50[7];
+extern Gfx D_800E3A88[5];
+extern Gfx D_800E3AC8[10];
+extern Gfx D_800E3B60[13];
 extern float D_800E90E8[64];
 extern UNK_TYPE D_800E9850;
 extern uint16_t D_800E9654[];
@@ -581,10 +591,10 @@ extern uint32_t D_80137420;
 extern uint16_t D_80137480; 
 extern void* D_801376A0;
 extern void* D_801376A4;
-extern uint8_t D_801376A8[4];
-extern uint8_t D_801376AC[4];
-extern uint8_t D_801376B0[4];
-extern uint8_t D_801376B4[4];
+extern uint8_t D_801376A8[4]; //G_SETEVENTCOLOR RED
+extern uint8_t D_801376AC[4]; //G_SETEVENTCOLOR GREEN
+extern uint8_t D_801376B0[4]; //G_SETEVENTCOLOR BLUE
+extern uint8_t D_801376B4[4]; //G_SETEVENTCOLOR ALPHA
 extern uint8_t D_801376B8[4];
 extern uint8_t D_801376BC[4];
 extern UNK_POINTER D_801376DC;
