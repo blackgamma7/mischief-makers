@@ -6,7 +6,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_801921DC_71370C.s")
 
+#ifdef NON_MATCHING
+float func_80192430_713960(float f){
+  float x= 262144.0;
+  if (f < 0.0) f = -f;
+  if (f <= 262144.0) x = f;
+  return (x / 65536.0) / 9.0;
+}
+#else
+extern float func_80192430_713960(float f);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192430_713960.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192478_7139A8.s")
 

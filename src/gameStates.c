@@ -63,7 +63,7 @@ ActorFunc gActorFuncTable[]={
   /*0x3A*/  func_8005EE24,
   /*0x3B*/  func_80040564,
   /*0x3C*/  func_800601FC,
-  /*0x3D*/  func_80030964,
+  /*0x3D*/  func_80030964, //"child" of Gem actor, adds flag2|=0x100
   /*0x3E*/  func_8003AC30,
   /*0x3F*/  func_8003B8CC, //clanball?
   /*0x40*/  func_8003BE3C,

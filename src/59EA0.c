@@ -1,6 +1,26 @@
 #include "common.h"
-
+#ifdef NON_MATCHING
+uint16_t func_800592A0(uint16_t other, int32_t* pos){
+    uint16_t index;
+    Actor* otherp;
+    if(other<16) index=Actor_GetInactiveInRange(0x10,0x2d);
+    else index=Actor_GetInactiveInRange(0x90,0xc0);
+    if(index){
+        ACTORINIT(index,9);
+        otherp=&gActors[other];
+        thisActor.flag2|=otherp->flag2&0x160;
+        thisActor.flag|=otherp->flag&0x28|0x8000;
+        thisActor.rgba.a=0xFE;
+        thisActor.pos.x_w=pos[0]<<16;
+        thisActor.pos.y_w=pos[1]<<16;
+        thisActor.pos.z_w=pos[2]<<16;
+        thisActor.unk_0x130=-1.0;
+    }
+    return index;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_800592A0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_800593DC.s")
 

@@ -27,7 +27,7 @@ void func_80025E6C(void){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs3.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/romcopy_actorFuncs4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs5.s")
 

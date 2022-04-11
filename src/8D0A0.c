@@ -127,22 +127,16 @@ void func_8008DEBC(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/func_8008E1A0.s")
 //Version of Marina when she hits the boulder in "Rolling Rock"
-#ifdef NON_MATCHING
 void ActorSpawn_MarinaOhNo(uint16_t index, uint16_t unk){
-    s32 n;
     D_800BE5F4._w=4;
     if(index==0)index=16; //don't overwrite player actor
     ACTORINIT(index,ACTORTYPE_MARINAOHNO);
     thisActor.flag=2;
     thisActor.pos.x=gPlayerActor.pos.x;
     thisActor.pos.y=gPlayerActor.pos.y;
-    n=gPlayerActor.vel.x_w;
-    if(gPlayerActor.vel.x_w<0) n=gPlayerActor.vel.x_w+1;
-    thisActor.vel.x_w=n>>1;
+    thisActor.vel.x_w=gPlayerActor.vel.x_w/2;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/8D0A0/ActorSpawn_MarinaOhNo.s")
-#endif
+
 #ifdef NON_MATCHING
 void ActorTick_MarinaOhNo(uint16_t index){
     Actor* actor= &thisActor;

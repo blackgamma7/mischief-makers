@@ -508,7 +508,7 @@ void InitScene(void){
   RomCopy_ActorFuncs(gCurrentScene);
   RomCopy_ActorFuncs2(gCurrentScene);
   RomCopy_ActorFuncs3(gCurrentScene);
-  romcopy_actorFuncs4(gCurrentScene);
+  RomCopy_ActorFuncs4(gCurrentScene);
   RomCopy_ActorFuncs5(gCurrentScene);
   func_80026584(gCurrentScene);
   func_800265FC(gCurrentScene);

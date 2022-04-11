@@ -2360,7 +2360,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080025ec4                RomCopy_ActorFuncs
                 0x0000000080025f70                RomCopy_ActorFuncs2
                 0x000000008002601c                RomCopy_ActorFuncs3
-                0x00000000800260c8                romcopy_actorFuncs4
+                0x00000000800260c8                RomCopy_ActorFuncs4
                 0x0000000080026174                RomCopy_ActorFuncs5
                 0x0000000080026220                func_80026220
                 0x0000000080026428                func_80026428
