@@ -20,7 +20,7 @@ void func_8019B240_7546E0(uint16_t index){
     if(thisActor.pos.x<gPlayerActor.pos.x) MODi(thisActor.vel.x_w,0x10000,0x1000);
     else MODi(thisActor.vel.x_w,-0x10000,0x1000);
     if(thisActor.vel.x_w>1) thisActor.flag&=~0x20;
-    else thisActor.flag|=0x20;
+    else thisActor.flag|=ACTOR_FLAG_FLIPPED;
     if(50-(Rand()%15)>thisActor.pos.y) MODi(thisActor.vel.y_w,0x10000,0x1000);
     else MODi(thisActor.vel.y_w,-0x10000,0x1000);
     gActors[113].pos.x=thisActor.pos.x;

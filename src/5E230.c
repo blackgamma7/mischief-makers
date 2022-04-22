@@ -2,13 +2,13 @@
 
 //should push stack before loading pointer, this does vice versa. why.
 #ifdef NON_MATCHING
-void func_8005D630(uint16_t x){gActorFuncTable_8019B000[3].twoArg(x,0);}
+void func_8005D630(uint16_t x){gActorFuncTable_Overlay2[3].twoArg(x,0);}
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D630.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005D664(uint16_t x,uint16_t y){
-    gActorFuncTable_8019B000[4].twoArg(x,y);
+    gActorFuncTable_Overlay2[4].twoArg(x,y);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005D664.s")
@@ -49,49 +49,49 @@ void func_8005D664(uint16_t x,uint16_t y){
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA20.s")
 #ifdef NON_MATCHING
 void func_8005DA5C(uint16_t x){
-    gActorFuncTable_80192000[25].twoArg(x,0);
+    gActorFuncTable_Overlay1[25].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA5C.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DA98(uint16_t x){
-    gActorFuncTable_801A6800[17].twoArg(x,0);
+    gActorFuncTable_Overlay3[17].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DA98.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DACC(uint16_t x){
-    gActorFuncTable_801A6800[18].twoArg(x,0);
+    gActorFuncTable_Overlay3[18].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DACC.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DB00(uint16_t x){
-    gActorFuncTable_801A6800[19].twoArg(x,0);
+    gActorFuncTable_Overlay3[19].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB00.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DB34(uint16_t x){
-    gActorFuncTable_801A6800[20].twoArg(x,0);
+    gActorFuncTable_Overlay3[20].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB34.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DB68(uint16_t x){
-    gActorFuncTable_801A6800[21].twoArg(x,0);
+    gActorFuncTable_Overlay3[21].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB68.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DB9C(uint16_t x){
-    gActorFuncTable_801A6800[22].twoArg(x,0);
+    gActorFuncTable_Overlay3[22].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DB9C.s")
@@ -99,84 +99,84 @@ void func_8005DB9C(uint16_t x){
 
 #ifdef NON_MATCHING
 void func_8005DBD0(uint16_t x){
-    gActorFuncTable_801A6800[23].twoArg(x,0);
+    gActorFuncTable_Overlay3[23].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DBD0.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DC04(uint16_t x){
-    gActorFuncTable_801A6800[24].twoArg(x,0);
+    gActorFuncTable_Overlay3[24].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC04.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DC38(uint16_t x){
-    gActorFuncTable_801A6800[25].twoArg(0,0);
+    gActorFuncTable_Overlay3[25].twoArg(0,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC38.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DC64(uint16_t x){
-    gActorFuncTable_801A6800[26].twoArg(x,0);
+    gActorFuncTable_Overlay3[26].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC64.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DC98(uint16_t x){
-    gActorFuncTable_801A6800[27].twoArg(x,0);
+    gActorFuncTable_Overlay3[27].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DC98.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DCCC(uint16_t x){
-    gActorFuncTable_801A6800[28].twoArg(x,0);
+    gActorFuncTable_Overlay3[28].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DCCC.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DD00(uint16_t x){
-    gActorFuncTable_801A6800[29].twoArg(x,0);
+    gActorFuncTable_Overlay3[29].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD00.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DD34(uint16_t x){
-    gActorFuncTable_801A6800[30].twoArg(x,0);
+    gActorFuncTable_Overlay3[30].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD34.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DD68(uint16_t x){
-    gActorFuncTable_801A6800[31].twoArg(x,0);
+    gActorFuncTable_Overlay3[31].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD68.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DDC8(){
-    gActorFuncTable_801A6800[32].twoArg(0,0);
+    gActorFuncTable_Overlay3[32].twoArg(0,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DD9C.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DDC8(uint16_t x){
-    gActorFuncTable_801A6800[8].twoArg(x,0);
+    gActorFuncTable_Overlay3[8].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDC8.s")
 #endif
 #ifdef NON_MATCHING
 void func_8005DDFC(uint16_t x){
-    gActorFuncTable_801A6800[10].twoArg(x,0);
+    gActorFuncTable_Overlay3[10].twoArg(x,0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/5E230/func_8005DDFC.s")

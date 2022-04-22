@@ -41,11 +41,10 @@ void ActorTick_29(uint16_t x) {}
 #ifdef NON_MATCHING
 uint16_t Actor_GetInactiveInRange(uint16_t x, uint16_t y) {
 
-    while (1) {
-        if (y <= x) return 0;
+    while(y > x){
         if (gActors[x++].flag & 2 == 0) return x;
     }
-    
+    return 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/Actor_GetInactiveInRange.s")
@@ -126,7 +125,7 @@ void func_80028980(uint16_t index, int16_t arg1, uint32_t SFX) {
         SFX_ActorPanX(SFX, index);
 }
 
-int32_t ABS_800289cc(int32_t x) {
+int32_t ABS_800289cc(int32_t x) { //redundant function - thus listing the address.
     if (x < 0)
         return -x;
     return x;
@@ -419,11 +418,9 @@ int32_t func_8002A900(uint16_t A, uint16_t B){
 #ifdef NON_MATCHING
 int32_t func_8002A990(uint16_t A, uint16_t B){
     int32_t x,y;
-    x=gActors[A].hitboxBY0+gActors[A].hitboxBY1;
-    if(x<0)x++;
-    y=gActors[B].hitboxBY0+gActors[B].hitboxBY1;
-    if(y<0)y++;
-    return ((x>>1)+gActors[B].pos.y+(y>>1))-gActors[A].pos.y;
+    x=gActors[A].hitboxBY0+gActors[A].hitboxBY1/2;
+    y=gActors[B].hitboxBY0+gActors[B].hitboxBY1/2;
+    return (x+gActors[B].pos.y+y)-gActors[A].pos.y;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002A990.s")
@@ -739,7 +736,7 @@ void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
     ACTORINIT(index,0x2602);
     temp = D_800EB904;
     thisActor.flag2 = 9;
-    thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK2;
+    thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY;
     thisActor.graphic = 0x24A;
     thisActor.unk_0xCE = 5;
     thisActor.unk_0xDF = 0;
@@ -960,7 +957,7 @@ uint16_t func_80030F94(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
     uint16_t index = i & 0x7fff;
     if(index){
         ACTORINIT(index,9);
-        thisActor.flag = 3;
+        thisActor.flag = ACTOR_FLAG_ENABLED;
         if(i&0x8000){
           thisActor.pos.x_w = x;
           thisActor.pos.y_w = y;
@@ -987,7 +984,7 @@ uint16_t func_800310A4(uint16_t i, uint16_t c, uint32_t x, uint32_t y, uint32_t 
     uint16_t index = i & 0x7fff; 
     if(index){
         ACTORINIT(index,9);
-        thisActor.flag = 3;
+        thisActor.flag = ACTOR_FLAG_ENABLED;
         if(i&0x8000){
           thisActor.pos.x_w = x;
           thisActor.pos.y_w = y;
@@ -1046,7 +1043,7 @@ uint16_t func_80031CAC(uint16_t arg0, int32_t x, int32_t y, int32_t z) {
     uint16_t index = Actor_GetInactiveInRange_144_192();
     if (index) {
         ACTORINIT(index,0x34);
-        thisActor.flag = 3;
+        thisActor.flag = ACTOR_FLAG_ENABLED;
         thisActor.graphic = arg0;
         thisActor.pos.x_w = x;
         thisActor.pos.y_w = y;
@@ -1132,7 +1129,7 @@ void func_80033DE4(uint16_t index){
     if(--thisActor.unk_0x154._w == 0) thisActor.flag=0;
     thisActor.vel.x_w+=thisActor.unk_0x158._w;
     thisActor.vel.y_w+=thisActor.unk_0x15C;
-    thisActor.unk_0x150._w = func_8002B5A0(thisActor.unk_0x150._lo,thisActor.unk_0x168._h[1],thisActor.unk_0x164._lo,thisActor.unk_0x160._lo);
+    thisActor.unk_0x150._w = func_8002B5A0(thisActor.unk_0x150._h[1],thisActor.unk_0x168._h[1],thisActor.unk_0x164._lo,thisActor.unk_0x160._lo);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033E7C.s")
@@ -1142,8 +1139,8 @@ void func_80033DE4(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80034644.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003480C.s")
-
-/* How do I const floats?
+#ifdef NON_MATCHING
+// How do I const floats?
 void func_800348E4(uint16_t index){
     MODi(thisActor.rgba.a,0,2);
     MODi(thisActor.scaleX,-0.01f,thisActor.unk_0x114);
@@ -1151,8 +1148,10 @@ void func_800348E4(uint16_t index){
     if((thisActor.rgba.a==0)||(thisActor.scaleX<0.0)||(thisActor.scaleY<0.0)){
         thisActor.flag=0;
     }
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800348E4.s")
+#endif
 //are these 3 unused?
 void func_800349C0(uint16_t index,uint16_t x){
     if(thisActor.actorLink==0)thisActor.unk_0xD4=x;
@@ -1384,7 +1383,7 @@ uint16_t func_8003D5A0(uint16_t a,uint16_t p,int32_t x,int32_t y,int32_t z){
 #ifdef NON_MATCHING
 u32 func_8003D628(u16 x){
     ACTORINIT(0xc0,0x6B);
-    gActors[0xC0].flag = 2;
+    gActors[0xC0].flag = ACTOR_FLAG_ACTIVE;
     gActors[0xC0].unk_0x110=180.0f;
     gActors[0xC0].unk_0x188._w=x;
     func_8005CA34(8,60);
@@ -1430,17 +1429,11 @@ uint16_t func_8003D68C(u16 flag2,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003E52C.s")
 //crosshair functions.
-//RegAlloc
-#ifdef NON_MATCHING
 void Crosshair_CopyCoords(uint16_t index){
-    uint16_t parent=thisActor.unk_0x150._lo;
-    thisActor.pos.x_w = gActors[parent].pos.x_w;
-    thisActor.pos.y_w = gActors[parent].pos.y_w;
-    thisActor.pos.z_w = gActors[parent].pos.z_w + 0x200000;
+    thisActor.pos.x_w = gActors[thisActor.unk_0x150._hu[1]].pos.x_w;
+    thisActor.pos.y_w = gActors[thisActor.unk_0x150._hu[1]].pos.y_w;
+    thisActor.pos.z_w = gActors[thisActor.unk_0x150._hu[1]].pos.z_w + 0x200000;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/Crosshair_CopyCoords.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_Crosshair.s")
 
@@ -1667,11 +1660,29 @@ void func_80042360(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800423A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800427E0.s")
+void func_800427E0(uint16_t index){
+    uint16_t other = thisActor.unk_0x154._hu[1];
+    if(gActors[other].actorType==12){
+        gActors[other].pos.x=thisActor.pos.x;
+        gActors[other].pos.y=thisActor.pos.y;
+        gActors[other].pos.z=thisActor.pos.z;
+        return;
+    }
+    thisActor.actorState++;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80042864.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800429A4.s")
+void func_800429A4(uint16_t index){
+    thisActor.actorState++;
+    thisActor.flag2=0;
+    thisActor.flag=3;
+    thisActor.graphic=0x1CE;
+    thisActor.rgba.r=128;
+    thisActor.unk_0x110=30;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80042A0C.s")
 
@@ -1683,17 +1694,37 @@ void func_80042AEC(uint16_t index) {
 
 #ifdef NON_MATCHING
 void func_80042B2C(uint16_t index) {
-    if (0.0 <= thisActor.unk_0x110) {
-        thisActor.actorState += -2;
-    }
-    else {
-        thisActor.flag = 0;
-    }
+    if (0.0 <= thisActor.unk_0x110) thisActor.actorState -=2;
+    else thisActor.flag = 0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80042B2C.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80042B94.s")
 
+void (*D_800D28B0[8])(uint16_t)={
+    func_800429A4,func_80042360,func_80042A0C,func_80042AEC,func_80042B2C,
+    NULL,NULL,NULL
+};
+
+void func_80042B94(uint16_t index){
+    D_800D28B0[thisActor.actorState](index);
+    thisActor.flag3&=~0x200600;
+}
+//stack issue?
+#ifdef NON_MATCHING
+void func_80042C10(uint16_t index){
+  if ((thisActor.flag3 & 0x200) == 0) thisActor.flag3&=~0x200600;
+  else if (thisActor.actorLink == 0) {
+    if (thisActor.unk_0x150._w == 0) func_8002ED34(index,thisActor.speedX._lo,thisActor.speedY._lo,0);
+    thisActor.actorLink = 0;
+    thisActor.flag3|= 0x200;
+  }
+  else {
+    thisActor.flag = 0;
+    thisActor.actorType = 0;
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80042C10.s")
+#endif

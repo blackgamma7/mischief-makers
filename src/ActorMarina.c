@@ -470,7 +470,7 @@ void func_8004EAE4(uint16_t index) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004EAE4.s")
 #endif
-//gPlayerActor.actorState 60
+//gPlayerActor.actorState 3Ch -  Debug move
 void func_8004EC60(uint16_t index) {
     Actor* actor;
     uint32_t temp_v1;
@@ -486,7 +486,7 @@ void func_8004EC60(uint16_t index) {
     }
 
     if ((temp_v1 & 1)) {
-        thisActor.vel.x_w = 0xFFF80000;
+        thisActor.vel.x_w = -0x80000;
     }
 
     if ((temp_v1 & 0x20)) {
@@ -494,7 +494,7 @@ void func_8004EC60(uint16_t index) {
     }
 
     if ((temp_v1 & 0x10)) {
-        thisActor.vel.y_w = 0xFFF80000;
+        thisActor.vel.y_w = -0x80000;
     }
 
     gPlayerManager.DebugPosX = gPlayerPosXMirror._w;
@@ -613,7 +613,7 @@ void ActorTick_Marina(uint16_t index) {
         thisActor.unk_0x12C._bu[2] = 0;
 
         //(((thisActor.unkD0 & 0xFF) * 4) + 0x800D0000)->unk3DB0(index);
-        gActorFuncTable_800D3DB0[thisActor.actorState](index);
+        gActorFuncTable_Marina[thisActor.actorState](index);
 
         func_80048BB0(index);
 

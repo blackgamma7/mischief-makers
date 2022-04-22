@@ -101,7 +101,7 @@ void func_8019CAF8_7446A8(uint16_t index){
         gActors[index+1].unk_0x130=1.0f;
     }
     else{
-        thisActor.flag|=0x20;
+        thisActor.flag|=ACTOR_FLAG_FLIPPED;
         thisActor.unk_0x138=1.0f;
         gActors[index+1].unk_0x130=-1.0f;    
     }

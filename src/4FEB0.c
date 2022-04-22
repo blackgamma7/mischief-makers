@@ -4,7 +4,7 @@
 uint32_t func_8004F2B0(uint16_t index){
     if(D_801370CE&gButton_B){
         thisActor.flag&=~0X4040;
-        thisActor.unk_0x140=func_80048C28(0);
+        thisActor.unk_0x140._b[0]=func_80048C28(0);
         if(D_801373D8&~0x80) return 2;
         return 1;
     }
@@ -15,8 +15,20 @@ uint32_t func_8004F2B0(uint16_t index){
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F35C.s")
-
+#ifdef NON_MATCHING
+void func_8004F514(uint16_t index,uint16_t other){
+  thisActor.flag&=~0x2000000;
+  if(other!=0xFFFF){
+      if(gActors[other].flag&2) gActors[other].flag3&=~0x200;
+      if(index==0){
+          thisActor.unk_0x140._bu[1]=30;
+          thisActor.unk_0x140._hu[1]=thisActor.actorLink;
+      }
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004F514.s")
+#endif
 //regalloc. redo branching?
 #ifdef NON_MATCHING
 void func_8004F5B0(uint16_t index){

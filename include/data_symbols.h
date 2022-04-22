@@ -68,7 +68,7 @@ extern int32_t gActorInitFlags[125];
 extern uint16_t gAttractModeIndex;
 extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
-extern ActorFunc gActorFuncTable_800D3DB0[]; // TODO: Investigate
+extern ActorFunc gActorFuncTable_Marina[]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_800D7F00[74]; // TODO: Investigate
 extern int16_t D_800E24EC[10];
 extern int16_t D_800E2500[10];
@@ -103,10 +103,10 @@ extern uint16_t gRedGems;
 extern uint16_t gCurrentStage;
 extern uint16_t gStageTime; // pauses for cutscene, loading
 extern uint16_t gStageTimeReal;
-extern ActorFunc_u gActorFuncTable_80192000[64]; // proceeded by 0xBF00 bytes for DMA'd code/data
-extern ActorFunc_u gActorFuncTable_8019B000[64]; // proceeded by 0xB700 bytes for DMA'd code/data
-extern ActorFunc_u gActorFuncTable_801A6800[64]; // proceeded by 0x9F00 bytes for DMA'd code/data
-extern ActorFunc gActorFuncTable_801B0800[64]; // proceeded by 0x8F00 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_Overlay1[64]; // proceeded by 0xBF00 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_Overlay2[64]; // proceeded by 0xB700 bytes for DMA'd code/data
+extern ActorFunc_u gActorFuncTable_Overlay3[64]; // proceeded by 0x9F00 bytes for DMA'd code/data
+extern ActorFunc gActorFuncTable_Overlay4[64]; // proceeded by 0x8F00 bytes for DMA'd code/data
 extern uint8_t gSpriteData_YellowGem[];
 extern uint8_t gSpriteData_RedGem[];
 extern uint8_t gSpriteData_BlueGem[];

@@ -13940,10 +13940,10 @@ LOAD build/assets/trailer.bin.o
                 0x000000008018a4a8                __osSiAccessQueue = 0x8018a4a8
                 0x000000008018a4c0                __osEepPifRam = 0x8018a4c0
                 0x00000000800e5ac0                gActorFuncTable_800E5AC0 = 0x800e5ac0
-                0x0000000080192000                gActorFuncTable_80192000 = 0x80192000
-                0x000000008019b000                gActorFuncTable_8019B000 = 0x8019b000
-                0x00000000801a6800                gActorFuncTable_801A6800 = 0x801a6800
-                0x00000000801b0800                gActorFuncTable_801B0800 = 0x801b0800
+                0x0000000080192000                gActorFuncTable_Overlay1 = 0x80192000
+                0x000000008019b000                gActorFuncTable_Overlay2 = 0x8019b000
+                0x00000000801a6800                gActorFuncTable_Overlay3 = 0x801a6800
+                0x00000000801b0800                gActorFuncTable_Overlay4 = 0x801b0800
                 0x000000008011dd70                gInputHistoryPress = 0x8011dd70
                 0x00000000800be5d8                gPlayerPosXMirror = 0x800be5d8
                 0x00000000800be5dc                gPlayerPosYMirror = 0x800be5dc

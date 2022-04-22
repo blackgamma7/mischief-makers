@@ -9,12 +9,12 @@ void func_80081D20(uint16_t i){
   func_80081478(index,D_800E2600,1);
   func_80081790(index,&D_800E334C);
   func_800819A8(index,D_800E2600);
-  gActors[index+1].flag|=1;
-  gActors[index+5].flag|=1;
-  gActors[index+7].flag|=1;
-  gActors[index+9].flag|=1;
-  gActors[index+11].flag|=1;
-  gActors[index+13].flag|=1;
+  gActors[index+1].flag|=ACTOR_FLAG_DRAW;
+  gActors[index+5].flag|=ACTOR_FLAG_DRAW;
+  gActors[index+7].flag|=ACTOR_FLAG_DRAW;
+  gActors[index+9].flag|=ACTOR_FLAG_DRAW;
+  gActors[index+11].flag|=ACTOR_FLAG_DRAW;
+  gActors[index+13].flag|=ACTOR_FLAG_DRAW;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/82920/func_80081D20.s")

@@ -6,24 +6,24 @@
 enum {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1 << 1), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
-    ACTOR_FLAG_UNK2 = (1 << 2),
+    ACTOR_FLAG_ONSCREEN_ONLY = (1 << 2), //deactivate if off-camera?
     ACTOR_FLAG_UNK3 = (1 << 3),
     ACTOR_FLAG_UNK4 = (1 << 4),
     ACTOR_FLAG_FLIPPED = (1 << 5), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
                                    // scale, in this context?)
     ACTOR_FLAG_UNK6 = (1 << 6),
-    ACTOR_FLAG_UNK7 = (1 << 7),
-    ACTOR_FLAG_UNK8 = (1 << 8),
-    ACTOR_FLAG_UNK9 = (1 << 9),
-    ACTOR_FLAG_UNK10 = (1 << 10),
+    ACTOR_FLAG_UNK7 = (1 << 7),  //7-12 seem to deal with collision checks.
+    ACTOR_FLAG_UNK8 = (1 << 8),  //and whether or not the hitboxA or B fields
+    ACTOR_FLAG_UNK9 = (1 << 9),  //are used for damage/physics
+    ACTOR_FLAG_UNK10 = (1 << 10), 
     ACTOR_FLAG_UNK11 = (1 << 11),
     ACTOR_FLAG_UNK12 = (1 << 12),
     ACTOR_FLAG_UNK13 = (1 << 13),
     ACTOR_FLAG_UNK14 = (1 << 14),
-    ACTOR_FLAG_UNK15 = (1 << 15),
+    ACTOR_FLAG_UNK15 = (1 << 15), //something with damage (instakill if set?)
     ACTOR_FLAG_UNK16 = (1 << 16),
     ACTOR_FLAG_UNK17 = (1 << 17),
-    ACTOR_FLAG_UNK18 = (1 << 18),
+    ACTOR_FLAG_UNK18 = (1 << 18), //3d platfom actor?
     ACTOR_FLAG_UNK19 = (1 << 19),
     ACTOR_FLAG_UNK20 = (1 << 20),
     ACTOR_FLAG_UNK21 = (1 << 21),
@@ -108,7 +108,7 @@ typedef struct {
     /* 0x080 */ int32_t flag;
     /* 0x084 */ uint16_t graphic;
     /* 0x086 */ uint16_t unk_0x86; //align.
-    /* 0x088 */ Vec3i_union pos;
+    /* 0x088 */ Vec3i_union pos; //fixed point, relative to screen center
     /* 0x094 */ uint16_t flag2;
     /* 0x096 */ uint16_t unk_0x96; //align.
     /* 0x098 */ int32_t flag3;
@@ -177,8 +177,8 @@ typedef struct {
     /* 0x144 */ float unk_0x144;
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
-    /* 0x150 */ s2_w unk_0x150;
-    /* 0x154 */ s2_w unk_0x154;
+    /* 0x150 */ word_u unk_0x150;
+    /* 0x154 */ word_u unk_0x154;
     /* 0x158 */ s2_w unk_0x158;
     /* 0x15C */ int32_t unk_0x15C;
     /* 0x160 */ s2_w unk_0x160;

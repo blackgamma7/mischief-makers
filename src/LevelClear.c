@@ -60,7 +60,7 @@ void func_800971A0(uint16_t index) {
 void func_800972DC(void) {
     ACTORINIT(80,0X75);
     gActors[80].flag2 = 0x900;
-    gActors[80].flag = 3;
+    gActors[80].flag = ACTOR_FLAG_ENABLED;
     gActors[80].graphic = 0x2d0;
     gActors[80].scaleX = 20.0;
     gActors[80].scaleY = 20.0;

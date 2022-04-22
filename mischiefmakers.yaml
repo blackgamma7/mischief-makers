@@ -750,6 +750,20 @@ segments:
     subsegments:
       - [0x76FDD0, c,ActorFuncs3/World3]
       - [0x774520, bin,ActorFuncs3/World3]
+      #- [0x774BC0, .rodata,ActorFuncs3/World3]
+  - type: code
+    start: 0x774DA0
+    vram: 0x801A6800
+    overlay: true
+    subsegments:
+      - [0x774DA0, bin]
+  - type: code
+    start: 0x774DB0
+    vram: 0x801A6900
+    overlay: true
+    subsegments:
+      - [0x774DB0, c,ActorFuncs3/Unused]
+      - [0x775430, .rodata,ActorFuncs3/Unused]
   - type: code
     start: 0x775460
     vram: 0x801A6800

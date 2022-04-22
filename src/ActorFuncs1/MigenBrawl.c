@@ -11,7 +11,7 @@
 #define ACTORTYPE_MIGENGEM 0x60B //the green gem that heals migen Jr.
 
 /*
-void* gActorFuncTable_80192000[]={
+void* gActorFuncTable_Overlay1[]={
   func_80194F8C_680AAC,
   func_80192C4C_67E76C,
   func_8019809C_683BBC,
@@ -1881,7 +1881,7 @@ void func_80199DA8_6858C8(uint16_t index){
     case 0:
     thisActor.actorState++;
     thisActor.flag2 = 0x201;
-    thisActor.flag = 3;
+    thisActor.flag = ACTOR_FLAG_ENABLED;
     thisActor.graphicTime = 1;
     thisActor.graphicList = &D_800E164C;
     thisActor.unk_0x18C._p = &gSpriteData_GreenGem;

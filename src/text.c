@@ -114,7 +114,7 @@ uint16_t Text_PrintAlphaAt(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint16
     while(C!=ALPHA_NULL){
         if(C){
             Text_SpawnAt(index, pos_x, pos_y, pos_z);
-            thisActor.flag|=8;
+            thisActor.flag|=ACTOR_FLAG_UNK3;
             gActors[index++].graphic = ALPHAINDEX(*TXT);
 #ifdef VER_JPN
         }
@@ -134,7 +134,7 @@ uint16_t Text_PrintAlphaAtColor(uint16_t index,uint16_t *TXT,uint16_t pos_x,uint
     while(C!=ALPHA_NULL){
         if(C){
             Text_SpawnAt(index, pos_x, pos_y, pos_z);
-            thisActor.flag|=8;
+            thisActor.flag|=ACTOR_FLAG_UNK3;
             thisActor.graphic = ALPHAINDEX(*TXT);
                 if ((r | g | b)) {
                     thisActor.rgba.r = r;
@@ -165,7 +165,7 @@ uint16_t Text_PrintAlphaAt3(uint16_t index, uint16_t* TXT, uint16_t pos_x, uint1
     while(C!=ALPHA_NULL){
         if(C){
             Text_SpawnAt(index, pos_x, pos_y, pos_z);
-            thisActor.flag|=8;
+            thisActor.flag|=ACTOR_FLAG_UNK3;
             thisActor.graphic = ALPHAINDEX(*TXT);
         }
         else thisActor.flag=0;

@@ -10,11 +10,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A7240_770710.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A735C_77082C.s")
+void func_801A735C_77082C(uint16_t x){
+    func_80078418(x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A7384_770854.s")
+void func_801A7384_770854(uint16_t x){
+    func_80078418(x);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A73AC_77087C.s")
+void func_801A73AC_77087C(uint16_t x){
+    func_80078418(x);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A73D4_7708A4.s")
 
@@ -45,7 +52,7 @@ void func_801A8384_771854(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A838C_77185C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A85E0_771AB0.s")
-
+//surfing missle
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A88C8_771D98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A8FE4_7724B4.s")

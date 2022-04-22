@@ -62,7 +62,7 @@ float D_801B73B4_7B32D4[]={2.0,0.0,-21.0,180.0,0.0,0.0,0.0,3.0,1.0,1.0,448.0,1.0
 #ifdef NON_MATCHING
 void func_801B1BC4_7ADAE4(uint16_t x){
     ACTORINIT(63,0x1A08);
-    gActors[63].flag|=8;
+    gActors[63].flag|=ACTOR_FLAG_UNK3;
     gActors[63].pos.x=gActors[63].pos.y=0;
     gActors[63].unk_0x178._p=D_801B73B4_7B32D4;
 }

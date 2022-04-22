@@ -176,6 +176,12 @@ void mainproc(int32_t arg0) {
 
 void Thread_IdleProc(void* arg0) {
     osCreateViManager(OS_PRIORITY_VIMGR);
+#ifdef VER_JPN
+    osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
+    Framebuffer_Clear();
+    gOSViMode = osViModeTable[OS_VI_NTSC_LAN1];
+    gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
+#else
     if (osTvType == OS_TV_MPAL) {
         osViSetMode(&osViModeTable[OS_VI_MPAL_LAN1]);
         Framebuffer_Clear();
@@ -188,7 +194,7 @@ void Thread_IdleProc(void* arg0) {
         gOSViMode = osViModeTable[OS_VI_NTSC_LAN1];
         gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
     }
-
+#endif
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &D_8012A678, 8);
     osCreateThread(&rmonThread, 0, rmonMain, NULL, &D_80129670, OS_PRIORITY_RMON);
     osStartThread(&rmonThread);
@@ -211,10 +217,10 @@ void func_80000A84(uint16_t buffer_index) {
 
     // that's right, these were hardcoded
     if (buffer_index) {
-        framebuffer = 0x801DA800; // framebuffer = gFramebuffer0;
+        framebuffer = 0x801DA800; // framebuffer = gFramebuffer1;
     }
     else {
-        framebuffer = 0x803DA800; // framebuffer = gFramebuffer1;
+        framebuffer = 0x803DA800; // framebuffer = gFramebuffer0;
     }
 
     gSPSegment(gDListHead++, 0, 0);

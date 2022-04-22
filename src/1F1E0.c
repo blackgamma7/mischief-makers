@@ -8,7 +8,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
 
-
+//these 3 adjust velocity (or accel?) based on knockback effect.
 void func_8001E808(int16_t arg0, int16_t arg1) {}
 
 #ifdef NON_MATCHING

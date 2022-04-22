@@ -309,10 +309,30 @@ uint16_t func_80069C54(uint16_t index){ //regAlloc?
 void func_80069CDC(uint16_t x){
 func_80069C54(x);
 }
-
+#ifdef NON_MATCHING
+uint32_t func_80069D04(uint16_t index){
+    Actor* actorp;
+    func_80069B94(index);
+    actorp=&thisActor;
+    if(actorp->flag3&0x40){
+        actorp->flag|=0x20000;
+        actorp->actorState++;
+        actorp->flag&=~0x10000;
+        actorp->flag3&=~0x20;
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069D04.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069DA8.s")
+void func_80069DA8(uint16_t index){
+    Actor* actorp;
+    func_80069BF4(index);
+    actorp=&thisActor;
+    if(actorp->vel.y_w>-0x68000)actorp->vel.y_w-=0x4400;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80069E18.s")
 

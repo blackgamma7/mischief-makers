@@ -59,7 +59,7 @@ void func_801B2828_79A668(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B37B0_79B5F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B3A14_79B854.s")
-
+//3d platforms?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B3AF8_79B938.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World2/func_801B3EB4_79BCF4.s")

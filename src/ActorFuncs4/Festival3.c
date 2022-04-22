@@ -6,7 +6,7 @@
 #ifdef NON_MATCHING
 void func_801B0BA0_7B4280(uint16_t x){
   ACTORINIT(50,0x1A08);
-  gActors[50].flag|=8;
+  gActors[50].flag|=ACTOR_FLAG_UNK3;
   gActors[50].pos.x=0;
   gActors[50].pos.y=0;
   gActors[50].unk_0x178._w=0x801b43cc; //some float array

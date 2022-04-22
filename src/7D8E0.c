@@ -7,7 +7,7 @@
 /*
 void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,uint16_t j,uint32_t q){
     ACTORINIT(index,0x28);
-    thisActor.flag|=10;
+    thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
     thisActor.pos.x=x;
     thisActor.pos.y=y;
     thisActor.unk_0x150._w=i;
@@ -19,7 +19,7 @@ void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,u
 
 void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
     ACTORINIT(index,0x28);
-    thisActor.flag|=10;
+    thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
     thisActor.pos.x=x;
     thisActor.pos.y=y;
     thisActor.unk_0x150._w=i;

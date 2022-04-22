@@ -276,7 +276,7 @@ void func_801932D0_6FA560(uint16_t other,uint16_t index,uint16_t type,uint16_t g
   thisActor.pos.x_w = 0;
   thisActor.pos.y_w = 0;
   thisActor.pos.z_w = 0;
-  thisActor.flag = 2;
+  thisActor.flag = ACTOR_FLAG_ACTIVE;
   thisActor.graphic = graphic;
   thisActor.pos.x = x;
   thisActor.pos.y = y;
@@ -327,7 +327,7 @@ extern void func_801936D0_6FA960(uint16_t x,uint16_t index,int16_t z);
 
 void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c05);
-  thisActor.flag = 2;
+  thisActor.flag = ACTOR_FLAG_ACTIVE;
   thisActor.graphic = graphic;
   thisActor.pos.x_w = x;
   thisActor.pos.y_w = y;
@@ -337,7 +337,7 @@ void func_80193778_6FAA08(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 
 void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t x,int32_t y,int32_t z){
   ACTORINIT(index,0x2c06);
-  thisActor.flag = 2;
+  thisActor.flag = ACTOR_FLAG_ACTIVE;
   thisActor.graphic = graphic;
   thisActor.pos.x_w = x;
   thisActor.pos.y_w = y;

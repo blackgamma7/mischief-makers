@@ -20,7 +20,7 @@ void func_80025E6C(void){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E6C.s")
 #endif
-//RomCopies gActorFuncTable_80192000 based on u32[4] lookup.
+//RomCopies gActorFuncTable_Overlay1 based on u32[4] lookup.
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_ActorFuncs2.s")

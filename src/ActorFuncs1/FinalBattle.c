@@ -340,15 +340,15 @@ void func_8019DBEC_6C88BC(uint16_t index){
 void func_8019DC88_6C8958(){
     gActors[122].flag2=0x111;
     gActors[123].flag2=0x111;
-    gActors[122].flag|=1;
-    gActors[123].flag|=1;
+    gActors[122].flag|=ACTOR_FLAG_DRAW;
+    gActors[123].flag|=ACTOR_FLAG_DRAW;
 }
 
 void func_8019DCB8_6C8988(){
     gActors[122].flag2=0;
     gActors[123].flag2=0;
-    gActors[122].flag&=~1;
-    gActors[123].flag&=~1;
+    gActors[122].flag&=~ACTOR_FLAG_DRAW;
+    gActors[123].flag&=~ACTOR_FLAG_DRAW;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019DCE8_6C89B8.s")
