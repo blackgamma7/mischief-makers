@@ -291,6 +291,8 @@ segments:
       - [0xEC190, bin]
       - [0xEC5C0, rodata, Scenes] # start for the jtbl at 0xEC6AC
       - [0xEC6C0, bin]
+      #- [0xEC6C0, .rodata,textbox]
+      - [0xECCF0, bin]
       - [0xEDC70, .rodata, DebugText] # strings
       - [0xEDCC0, bin, Debugtext] #doubles (why not part of rodata?)
       - [0xEDCE0, bin]
@@ -377,11 +379,11 @@ segments:
   #more romcopied bits. looks to be compressed data
   - [0x4A1FC0,bin]
   #Textbox dialouge
-  - [0x4AE330,bin,textbox/1_Demo] #default in lookup
-  - [0x4AE440,bin,textbox/3_Demo]
-  - [0x4AEAF0,bin,textbox/4_Demo]
-  - [0x4AF190,bin,textbox/5_Demo]
-  - [0x4AF6B0,bin,textbox/5_DemoFinal]
+  - [0x4AE330,bin,textbox/1_00_Demo] #default in lookup
+  - [0x4AE440,bin,textbox/3_00_Demo]
+  - [0x4AEAF0,bin,textbox/4_00_Demo]
+  - [0x4AF190,bin,textbox/5_00_Demo]
+  - [0x4AF6B0,bin,textbox/5_06A_DemoFinal]
   - [0x4AFBC0,bin,textbox/5_09_Ending]
   - [0x4B0310,bin,textbox/5_09A_Ending]
   - [0x4B09E0,bin,textbox/1_01_MeetMarina]
@@ -389,7 +391,7 @@ segments:
   - [0x4B17F0,bin,textbox/1_03_ClanballLand]
   - [0x4B1A70,bin,textbox/1_09_WesternWorld]
   - [0x4B1B50,bin,textbox/1_04_SpikeLand]
-  - [0x4B1B50,bin,textbox/1_07_WorminUp]
+  - [0x4B1DA0,bin,textbox/1_07_WorminUp]
   - [0x4B2560,bin,textbox/1_08_CrisisNepton]
   - [0x4B2820,bin,textbox/1_06_BlockmanRises]
   - [0x4B3920,bin,textbox/1_02_MeetCalina]
@@ -406,7 +408,7 @@ segments:
   - [0x4B6DF0,bin,textbox/4_03_7ClancerKids]
   - [0x4B79F0,bin,textbox/4_08_AstersTryke]
   - [0x4B7AB0,bin,textbox/4_10_AstersMaze]
-  - [0x4B7AB0,bin,textbox/4_07_GhostCatcher]
+  - [0x4B7F20,bin,textbox/4_07_GhostCatcher]
   - [0x4B81B0,bin,textbox/4_06_Tarus]
   - [0x4B8530,bin,textbox/4_11_SasquatchBeta]
   - [0x4B8780,bin,textbox/5_05_Trapped]
