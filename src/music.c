@@ -42,7 +42,7 @@ uint8_t i;
   gBgmInited = 1;
   gBGM_pALCPlayer = &BGM_ALCPlayer;
   D_8016E2E0 = &D_8016E1E8;
-  bssStart = 0;
+  gBgmState = 0;
   for(i=0;i<4;i++){
     gSFXPlayersp[i] = gSFXPlayers[i];
     D_8016E6C8[i] = D_8016E2E8[i];
@@ -360,7 +360,7 @@ void BGM_SFX_Stop(void) {
 
 void BGM_Stop(void) {
     alSeqpStop((ALSeqPlayer*)gBGM_pALCPlayer);
-    bssStart = 0;
+    gBgmState = 0;
 }
 
 void SFX_StopAll(void) {

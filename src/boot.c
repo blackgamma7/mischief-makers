@@ -176,7 +176,8 @@ void mainproc(int32_t arg0) {
 
 void Thread_IdleProc(void* arg0) {
     osCreateViManager(OS_PRIORITY_VIMGR);
-#ifdef VER_JPN
+#if defined(VER_JPN) || defined(VER_US0)
+    //main difference between US1.0 and 1.1
     osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     Framebuffer_Clear();
     gOSViMode = osViModeTable[OS_VI_NTSC_LAN1];

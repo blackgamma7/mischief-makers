@@ -156,7 +156,7 @@ void func_801A99CC_7691DC(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801AE0E4_76D8F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801AE110_76D920.s")
-
+//Blockman behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801AE1B4_76D9C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801AEB78_76E388.s")

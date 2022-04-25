@@ -13834,7 +13834,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008018a750                __osRdb_IP6_CurSend = 0x8018a750
                 0x000000008018b780                __osLogDoneMsgQ = 0x8018b780
                 0x000000008018b798                __osLogMsgBuf = 0x8018b798
-                0x00000000800ef4d0                bssStart = 0x800ef4d0
+                0x00000000800ef4d0                gBgmState = 0x800ef4d0
                 0x00000000800ef510                gActors = 0x800ef510
                 0x00000000800be4f4                gGameSubState = 0x800be4f4
                 0x00000000800be5a8                gEyeX = 0x800be5a8

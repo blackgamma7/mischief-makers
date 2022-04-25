@@ -172,7 +172,7 @@ void GamePlay_Tick_Active(void) {
     func_8001107C(); // foreground layer of background?
 
     if (D_800CA230 == 0) {
-        ActorTick_Marina(0);    // spawns/updates the player
+        ActorTick_Marina(0);    // updates the player
         func_8008C528(0x41); // unknown
     }
 

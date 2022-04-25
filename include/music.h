@@ -6,6 +6,12 @@
 #include "inttypes.h"
 #include <ultra64.h>
 
+#ifdef VER_JPN
+#define ALHEAPSIZE 0x35700
+#else
+#define ALHEAPSIZE 0x35C00
+#endif
+
 extern ALCSPlayer gSFXPlayers[4];
 extern ALCSPlayer* gSFXPlayersp[4];
 extern void* gAIBuffers[3];
@@ -15,7 +21,7 @@ extern ALSynConfig gSynConfig;
 extern ALBank* Sound_ALBankps[4];
 extern OSMesgQueue Sound_DMAmesgQA;
 extern OSMesgQueue D_801377D0;
-extern uint8_t bssStart; // also deals with sound state.
+extern uint8_t gBgmState; // 0x80: starting 0x01: playing
 extern int16_t gBgmVolume;
 extern uint8_t gSFX_ChannelStates[];
 extern int16_t gSFX_Volumes[];
@@ -29,7 +35,7 @@ extern OSTask* Sound_osTaskps[2];
 extern Acmd* Sound_Acmdps[2];
 extern uint16_t D_80137D90;
 extern uint32_t D_80137DA0; // current BGM playtime? Attact mode starts when this is >0x1140
-extern uint8_t gALHeapBase[220160];
+extern uint8_t gALHeapBase[ALHEAPSIZE];
 extern ALLink D_8016D9CC;
 extern ALLink D_8016D9B8;
 extern UNK_TYPE D_8016DEB8;
@@ -60,7 +66,7 @@ extern uint8_t* D_800C0A54[33]; //contains instrument data for each song
 extern uint8_t gBGMVolsFxs[33][18]; // Music track data {vol>>8,unknown>>0xc,instrumentFXMix[16]}
 extern char* D_800C1694[294];   // could help add to SFX.h
 extern uint8_t D_800C2280[223]; // looks like it's ID's for ALInstrument
-extern char* gSFX_Labels[224];    // may be wrong.
+extern char* gSfxSampleLabels[224];
 extern uint16_t D_800C26DC[293];
 extern uint8_t gSFX_2ByteArray[294][2]; // table of volume and length(?) of SFX.
 extern int32_t Sound_AI_LEN_Rsh2; //AI_LEN >>2

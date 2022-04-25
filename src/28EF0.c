@@ -1277,13 +1277,32 @@ void func_8003667C(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038600.s")
 
+#ifdef NON_MATCHING
+void func_80038704(uint16_t x){
+    func_800384FC(x,0x4000,0x400,-(RNG(3)),RNG(3));
+    func_80038600(x,0x4000,0x400,RNG(1),RNG(1));
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038704.s")
+#endif
 
+#ifdef NON_MATCHING
+void func_80038794(uint16_t index){ //uses rodata.
+    if(gSceneFrames%20) MODf(thisActor,unk_0x148,.9,.02);
+    else MODf(thisActor,unk_0x148,1.1,.02);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038794.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038868.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038C94.s")
+void func_80038C94(uint16_t index){
+    thisActor.unk_0x190=NULL;
+    thisActor.unk_0x180._w=thisActor.pos.x+gScreenPosCurrentX._hi;
+    thisActor.unk_0x184._w=thisActor.pos.y+gScreenPosCurrentY._hi;
+    if(thisActor.flag3<<15<0) SFX_ActorPanX(0x6e,index);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038D1C.s")
 
@@ -1579,7 +1598,8 @@ int32_t func_80040A64(void) {
     else if (TeranFlag > 0) return func_800409E0(gPlayerActorIndex);
 }
 
-
+//start of Warp Gate/Star actor functions
+//Init func - actor does not have "spawn" and is loaded from overlay code.
 void func_80040AB4(uint16_t index) {
     thisActor.flag2 = 0x205;
     thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK12;
@@ -1644,8 +1664,9 @@ int32_t func_80042290(uint16_t index) {
 }
 
 void ActorTick_4(uint16_t index) {}
-
-void func_80042310(int32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {}
+//used by the worm once.
+void func_80042310(uint16_t arg0, int32_t arg1, int16_t arg2, uint32_t arg3) {}
+//unused
 void func_80042324(int32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {}
 
 void func_80042338(uint16_t index) {}

@@ -26,7 +26,7 @@ segments:
       - [0x01050, c, boot]
       - [0x023D0, c, music]
       - [0x04F80, c, sprite]
-      - [0x05510, c,decodeA] #may be decompression/decryption func
+      - [0x05510, c,decodeA]
       - [0x05A70, c, GameSave]
       - [0x0A540, c,render]
       - [0x11820, c]
@@ -53,6 +53,7 @@ segments:
       - [0x59EA0, c]
       - [0x5D120, c]
       - [0x5E230, c]
+      - [0x5EA30, c,Textbox]
       - [0x60CF0, c]
       - [0x61B80, c]
       - [0x66250, c]
@@ -67,7 +68,7 @@ segments:
       - [0x8D0A0, c]
       - [0x8F080, c]
       - [0x97770, c,LevelClear] # Level clear sequence
-      - [0x99750, c] # A single function which decompresses (?) Marina's sprite data to some address?
+      - [0x99750, c] # A single function which decompresses (?) Marina's sprite data
       #libultra
       - [0x999f0, asm, io/viblack]
       - [0x99A70, asm, io/viswapbuf]
@@ -360,9 +361,10 @@ segments:
   - [0x214B40,bin] # loaded by func_80025E6C to 0x80296000. Used in intro sequence somehow.
   - [0x248F40,bin]
   - [0x3fab30,bin] # loaded by func_800197A0
+  - [0x406880,bin] # loaded by func_8002729c.
   - [0x40AC70,bin] # blank.
-  - [0x40AC80,bin] # start of data refernced in table below (marina graphics?) (TODO: split all the entries.)
-  - [0x4A0910,bin] # ROM adresses load 2 at a time by MarinaGraphics_Load (-0x04BF5380)
+  - [0x40AC80,bin] # start of marina graphics refernced in table below (TODO: split all the entries.)
+  - [0x4A0918,bin] # ROM adresses load 2 at a time by MarinaGraphics_Load (-0x04BF5380)
   #actor properties for Intermission scenes
   - [0x4A15A0,bin]
   - [0x4A15B0,bin]
@@ -374,7 +376,47 @@ segments:
   - [0x4A1FBC,bin] 
   #more romcopied bits. looks to be compressed data
   - [0x4A1FC0,bin]
-  - [0x4B9990,bin] #AlSoundBankFile
+  #Textbox dialouge
+  - [0x4AE330,bin,textbox/1_Demo] #default in lookup
+  - [0x4AE440,bin,textbox/3_Demo]
+  - [0x4AEAF0,bin,textbox/4_Demo]
+  - [0x4AF190,bin,textbox/5_Demo]
+  - [0x4AF6B0,bin,textbox/5_DemoFinal]
+  - [0x4AFBC0,bin,textbox/5_09_Ending]
+  - [0x4B0310,bin,textbox/5_09A_Ending]
+  - [0x4B09E0,bin,textbox/1_01_MeetMarina]
+  - [0x4B14A0,bin,textbox/1_04_3ClancerKids]
+  - [0x4B17F0,bin,textbox/1_03_ClanballLand]
+  - [0x4B1A70,bin,textbox/1_09_WesternWorld]
+  - [0x4B1B50,bin,textbox/1_04_SpikeLand]
+  - [0x4B1B50,bin,textbox/1_07_WorminUp]
+  - [0x4B2560,bin,textbox/1_08_CrisisNepton]
+  - [0x4B2820,bin,textbox/1_06_BlockmanRises]
+  - [0x4B3920,bin,textbox/1_02_MeetCalina]
+  - [0x4B3B00,bin,textbox/2_09_MagmaRafts]
+  - [0x4B3C60,bin,textbox/2_11_MigenBrawl]
+  - [0x4B4180,bin,textbox/3_11_Catastrophe]
+  - [0x4B4700,bin,textbox/3_07_Lunar]
+  - [0x4B4A70,bin,textbox/3_09_TheDayBefore]
+  - [0x4B5390,bin,textbox/3_01_ClanpotShake]
+  - [0x4B5880,bin,textbox/3_10_TheDayOf]
+  - [0x4B61B0,bin,textbox/3_12_CerberusAlpha]
+  - [0x4B6400,bin,textbox/4_04_RescueAct1]
+  - [0x4B6B80,bin,textbox/4_05_RescueAct2]
+  - [0x4B6DF0,bin,textbox/4_03_7ClancerKids]
+  - [0x4B79F0,bin,textbox/4_08_AstersTryke]
+  - [0x4B7AB0,bin,textbox/4_10_AstersMaze]
+  - [0x4B7AB0,bin,textbox/4_07_GhostCatcher]
+  - [0x4B81B0,bin,textbox/4_06_Tarus]
+  - [0x4B8530,bin,textbox/4_11_SasquatchBeta]
+  - [0x4B8780,bin,textbox/5_05_Trapped]
+  - [0x4B8A00,bin,textbox/5_04_Merco]
+  - [0x4B8DD0,bin,textbox/5_07_InnerStruggle]
+  - [0x4B92D0,bin,textbox/5_06_PhoenixGamma]
+  - [0x4B94C0,bin,textbox/5_08_FinalBattle]
+  - [0x4B9980,bin,textbox/blank] #space between.
+
+  - [0x4B9990,bin,ALBankFile]
   - [0x4CB120,bin]
 #call lists and code segments loaded per scene by RomCopy_Funcs
   - type: code 

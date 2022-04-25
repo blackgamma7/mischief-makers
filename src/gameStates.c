@@ -2,7 +2,7 @@
 #include "GameSave.h"
 
 ActorFunc gActorFuncTable[]={
-  /*0x00*/  ActorTick_0, //NOOP
+  /*0x00*/  ActorTick_0, //NOOP - used by graphic-only actors.
   /*0x01*/  ActorTick_1, //Moves its hitboxA for a time set by unk_0x110
   /*0x02*/  ActorTick_2, //passes to NOOP
   /*0x03*/  ActorTick_3, //NOOP
@@ -790,8 +790,23 @@ void TitleScreen_Tick(void) {
 
             gActors[49].flag = 0;
             gActors[50].flag = 0;
-
+#ifdef VER_JPN
+            //Spawn the subtitle
+            ACTORINIT(52,0);
+            gActors[52].flag2|= 0x200;
+            gActors[52].pos.y= 0x4a;
+            gActors[52].pos.x= 0x120;
+            gGameSubState++;
+            gActors[52].flag|= 0x30000000;
+            gActors[52].hitboxBX0 = 0xd0;
+            gActors[52].hitboxBX1 = 1;
+            gActors[52].hitboxBY0 = 8;
+            gActors[52].hitboxBY1 = 6;
+            gActors[52].unk_0x17C._p = 0x80348c30;
+            gActors[52].unk_0x180 = 0x8034b338;
+#else
             gGameSubState += 1;
+#endif            
             break;
         }
         case 25: {
@@ -800,6 +815,9 @@ void TitleScreen_Tick(void) {
             if (gActors[51].rgba.a == 7) {
                 gActors[51].flag = 0;
                 gActors[51].unk_0x154._w = 0x10040;
+#ifdef VER_JPN
+                SFX_Play_1(0x48); //subtitle go "woosh"
+#endif                
                 gGameSubState += 1;
             }
             else {
@@ -837,7 +855,7 @@ void TitleScreen_Tick(void) {
                 if (gActors[7].rgba.b) gGameSubState = 0x30;
                 else gGameSubState = 0x20;
             }
-            //start attract mode when BGM timer finishes
+            //start attract mode when BGM timer finishes or B is pressed
             if ((D_80137DA0 >= 0x1141 || (gButtonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
                 gActors[51].flag2 |= 0x10;

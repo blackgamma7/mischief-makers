@@ -6,7 +6,7 @@ ASM_DIRS  = $(ASM_DIR) $(ASM_DIR)/os $(ASM_DIR)/io $(ASM_DIR)/audio $(ASM_DIR)/r
 			$(ASM_DIR)/data $(ASM_DIR)/data/os $(ASM_DIR)/data/io $(ASM_DIR)/data/audio $(ASM_DIR)/data/rmon $(ASM_DIR)/data/libc $(ASM_DIR)/data/host $(ASM_DIR)/data/logger $(ASM_DIR)/data/gu $(ASM_DIR)/data/sp\
 			$(ASM_DIR) $(ASM_DIR)/ActorFuncs1 $(ASM_DIR)/ActorFuncs2 $(ASM_DIR)/ActorFuncs3 $(ASM_DIR)/ActorFuncs4 $(ASM_DIR)/ActorFuncs5
 BIN_DIR	  = assets
-BIN_DIRS  = $(BIN_DIR) $(BIN_DIR)/ActorFuncs1 $(BIN_DIR)/ActorFuncs2 $(BIN_DIR)/ActorFuncs3 $(BIN_DIR)/ActorFuncs4 $(BIN_DIR)/ActorFuncs5
+BIN_DIRS  = $(BIN_DIR) $(BIN_DIR)/ActorFuncs1 $(BIN_DIR)/ActorFuncs2 $(BIN_DIR)/ActorFuncs3 $(BIN_DIR)/ActorFuncs4 $(BIN_DIR)/ActorFuncs5 $(BIN_DIR)/textbox
 SRC_DIR   = src
 SRC_DIRS  = $(SRC_DIR) $(SRC_DIR)/ActorFuncs1 $(SRC_DIR)/ActorFuncs2 $(SRC_DIR)/ActorFuncs3 $(SRC_DIR)/ActorFuncs4 $(SRC_DIR)/ActorFuncs5
 SRC_DIRS_ULTRA =$(SRC_DIR)/os $(SRC_DIR)/io $(SRC_DIR)/audio $(SRC_DIR)/rmon $(SRC_DIR)/libc $(SRC_DIR)/host $(SRC_DIR)/logger $(SRC_DIR)/gu $(SRC_DIR)/sp $(SRC_DIR)/eeprom $(SRC_DIR)/pi $(SRC_DIR)/ai $(SRC_DIR)/error $(SRC_DIR)/si $(SRC_DIR)/rsp\
