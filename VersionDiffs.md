@@ -1,26 +1,28 @@
-# version Differences
+# Version Differences
 
 ## Japan
+some of these can be found by searching `VER_JPN`
 - Goes by the Title "Yuke! Yuke! Trouble Makers!"
-- Characters and stages have different names
+- Characters and stages have different names (TODO: chart differences)
 - japanese voice clips
 - No Nintendo Logo on splashcreens
-- intro sequence has 3d title card with spinning characters
+- intro sequence has 3d title card with spinning characters at the end.
 - subtitle moves across title screen with sound
 - no mention of Nintendo in title screen
 - Name entry features Katakana and Hiragana characters, along with english letters
-- Textboxes can appear over several characters' heads at certain moments (can be found under ActorSpawn_JPNSpeechBox)
- - the first Clancer in "Enter Marina" calls to you
- - The attendees of "Clanball Land" talk to you
- - The children and father in "3 Clancer Kids" talk to you.
- - Marina will describe the change to a weapon after shaking it
- - the Clancers in various other stages (i.e.:"Hot Rush","Tightrope Ride","Rolling Rock") also speak
- - Migen and "son" have an exchange
- - Migen Jr. calls his attacks
- - the frog boss will taunt you after summoning the thunder god.
- - Marina will shout at Theo after tossing him in "Inner Struggle"
+- Textboxes can appear over several characters' heads at certain moments (can be found under `ActorSpawn_JPNSpeechBox`)
+  - the first Clancer in "Enter Marina" calls to you
+  - The attendees of "Clanball Land" talk to you
+  - The children and father in "3 Clancer Kids" talk to you.
+  - Marina will describe the change to a weapon after shaking it
+  - the Clancers in various other stages (i.e.:"Hot Rush","Tightrope Ride","Rolling Rock") also speak
+  - Migen and son have an exchange at the beginning of their fight
+  - Migen Jr. calls his attacks
+  - the frog boss will taunt you after summoning the thunder god.
+  - Marina will shout at Theo after tossing him in "Inner Struggle"
 - The festival platfrom sports japanese text
 - ALheap has 0x35700 bytes allocated vs 0x35C00
+- Since text is monospaced, code for calculating kerning is ommited.
 
 ## US 1.1 vs 1.0
 - Has libleo (64DD) code, albeit unused.
