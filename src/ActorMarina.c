@@ -12,7 +12,7 @@ uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
     }
     else {
         ret = 1;
-        if (thisActor.flag & 0x20) {
+        IFFACINGLEFT(index) {
             ret = 0x81;
         }
     }
@@ -245,25 +245,25 @@ void func_8004B0A0(uint16_t index) {
 }
 
 void ActorMarina_Walk(uint16_t index) {
-    int32_t phi_a1;
+    int32_t vel;
     Actor* actor;
 
     actor = &thisActor;
     actor->unk_0x12C._hu[0] = 7;
 
-    phi_a1 = ActorMarina_VelByScale(1);
-    if ((actor->flag & ACTOR_FLAG_FLIPPED) != 0) {
-        phi_a1 = -phi_a1;
+    vel = ActorMarina_VelByScale(1);
+    if (actor->flag & ACTOR_FLAG_FLIPPED) {
+        vel = -vel;
     }
 
-    MODi(actor->vel.x_w, phi_a1, ABS(phi_a1) / 8);
+    MODi(actor->vel.x_w, vel, ABS(vel) / 8);
     func_8005D370(index, ACTORTYPE_GRAPHICONLY);
 
     if (actor->unk_0x170._b[0] == 0 && (actor->unk_0x170._b[1] == 2 || actor->unk_0x170._b[1] == 8)) {
         SFX_Play_1(0x53U);
     }
 
-    if (((D_801373D8 & 3) == 0) || ((D_801373D8 & 0x80) != 0)) {
+    if (((D_801373D8 & 3) == 0) || (D_801373D8 & 0x80)) {
         actor->actorState = 3;
     }
 }
@@ -298,7 +298,7 @@ void ActorMarina_Dash(uint16_t index) { //regalloc, stack. 99.48% matching
                 thisActor.vel.x_w = ActorMarina_VelByScale(0xA);
             }
             thisActor.actorState_b[0] = 2U;
-            if (thisActor.flag & 0x20) {
+            IFFACINGLEFT(index) {
                 thisActor.actorState_b[0] |= 0x80;
             }
         }
@@ -306,7 +306,7 @@ void ActorMarina_Dash(uint16_t index) { //regalloc, stack. 99.48% matching
             thisActor.vel.x_w = -((D_801373EE / 100) * ActorMarina_VelByScale(5) + ActorMarina_VelByScale(9));
             if (thisActor.vel.x_w < -ActorMarina_VelByScale(0xA)) {thisActor.vel.x_w = -ActorMarina_VelByScale(0xA);}
             thisActor.actorState_b[0] = 1U;
-            if ((thisActor.flag & 0x20) == 0) {
+            IFFACINGRIGHT(index) {
                 thisActor.actorState_b[0]|= 0x80;
             }
         }
@@ -316,7 +316,7 @@ void ActorMarina_Dash(uint16_t index) { //regalloc, stack. 99.48% matching
         thisActor.hitboxAY0 = thisActor.hitboxBY0 - 2;
         thisActor.hitboxAY1 = thisActor.hitboxBY1 + 8;
         if ((thisActor.actorState_b[0] & 0x80) == 0) {
-            if ((thisActor.flag & 0x20) == 0) {
+            IFFACINGRIGHT(index) {
                 thisActor.hitboxAX0 = 0;
                 thisActor.hitboxAX1 = thisActor.hitboxBX1 + 1;
             } else {
@@ -325,7 +325,7 @@ void ActorMarina_Dash(uint16_t index) { //regalloc, stack. 99.48% matching
             }
             thisActor.unk_0x170._w = 0x47;
         } else {
-            if ((thisActor.flag & 0x20) == 0) {
+            IFFACINGRIGHT(index) {
                 thisActor.hitboxAX1 = 0;
                 thisActor.hitboxAX0 = (thisActor.hitboxBX0 - 1);
             } else {

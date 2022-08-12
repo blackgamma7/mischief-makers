@@ -40,14 +40,14 @@ void func_801A6CB0_7758A0(void) {
 #ifdef NON_MATCHING
 void func_801A7620_776210(uint16_t index) {
 
-    if ((thisActor.flag & ACTOR_FLAG_FLIPPED && ((gButtonHold & gButton_DRight))) 
-     || (thisActor.flag & ACTOR_FLAG_FLIPPED == 0 && ((gButtonHold & gButton_DLeft)))) {
+    if ((FACINGLEFT(index) && (gButtonHold & gButton_DRight)) 
+     || (FACINGRIGHT(index) && (gButtonHold & gButton_DLeft))) {
         thisActor.flag ^= ACTOR_FLAG_FLIPPED;
     }
 
     thisActor.unk_0x148 = thisActor.scaleX * 1.0f;
 
-    if (thisActor.flag & ACTOR_FLAG_FLIPPED) {
+    IFFACINGLEFT(index) {
         thisActor.unk_0x148 = -thisActor.unk_0x148;
     }
 }
@@ -59,7 +59,7 @@ void func_801A7620_776210(uint16_t index) {
 // Differences are regalloc, and some instruction order
 void func_801A76DC_7762CC(uint16_t index) {
     if ((gButtonHold & gButton_DRight) != 0 || (gButtonHold & gButton_DLeft) != 0) {
-        if ((thisActor.flag & ACTOR_FLAG_FLIPPED) != 0) {
+        IFFACINGLEFT(index) {
             // Is this an oversight?
             if (gButtonHold & gButton_DRight != 0) {}
             thisActor.actorState = 0x60;
@@ -135,7 +135,7 @@ void func_801A79BC_7765AC(uint16_t index) {
             thisActor.actorState = 0x90;
         }
 
-        if ((thisActor.flag & ACTOR_FLAG_FLIPPED) && ((gButtonHold & gButton_DLeft) == 0)) {
+        if (FACINGLEFT(index) && ((gButtonHold & gButton_DLeft) == 0)) {
             thisActor.actorState = 0x70;
         }
         else if ((gButtonHold & gButton_DRight)==0) { //this one branch at the end mismatches.

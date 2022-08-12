@@ -1,23 +1,26 @@
 #include "common.h"
 
+#define LERPI(a,b,t) a = func_8019C984_744534(a,b,t)
+#define LERPF(a,b,t) a = func_8019C948_7444F8(a,b,t)
+
 // 801A20E0 seems to be the .bss for this script.
 extern s16 D_801A20E0; //sting timer
 extern s16 D_801A20E2;
 extern int32_t D_801A20E8[2]; //target coords.
 extern uint16_t D_801A20F0,D_801A20F2; //player coords
 extern uint16_t D_801A20F4,D_801A20F6; //shake counts - Head and stinger
-#define ACTORTYPE_DRONEBEE 0xc02 //the little bees it summons.
-
+#define ACTORTYPE_BEESHAKE 0xc02 //the little bees it summons when shook
+#define ACTORTYPE_BEERING 0xc03 //the little bees it summons in a ring.
 
 
 void func_8019B100_742CB0(uint16_t x){
     ACTORINIT(48,ACTORTYPE_GRAPHICONLY);
     gActors[48].flag2 = 0xa01;
-    gActors[48].flag=0xB;
+    gActors[48].flag=ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     gActors[48].graphic = 0x2d0;
     gActors[48].pos.x = 0;
     gActors[48].pos.y = 0;
-    gActors[48].pos.z = 0xfff0;
+    gActors[48].pos.z = -0x10;
     gActors[48].unk_0x188._p = NULL;
     gActors[48].palletteP = &gPalletteBlack;
     gActors[48].rgba.a = 0x80;
@@ -195,7 +198,7 @@ extern uint32_t func_8019D414_744FC4(uint16_t index, int16_t x);
 void func_8019D4C0_745070(uint16_t index){
     uint16_t droneIndex=Actor_GetInactive(0x70,0x80);
     if(droneIndex){
-        ACTORINIT(droneIndex,ACTORTYPE_DRONEBEE);
+        ACTORINIT(droneIndex,ACTORTYPE_BEESHAKE);
         gActors[droneIndex].pos.x_w=gActors[index+5].pos.x_w;
         gActors[droneIndex].pos.y_w=gActors[index+5].pos.y_w;
         gActors[droneIndex].pos.z=gActors[index+5].pos.z+-1;
@@ -280,7 +283,7 @@ void func_8019DA80_745630(uint16_t index){
     uint16_t i,j;
     for(i=0;i<8;i++){
         j=i+0x70;
-        ACTORINIT(j,ACTORTYPE_DRONEBEE+1);
+        ACTORINIT(j,ACTORTYPE_BEERING);
         gActors[j].pos.x_w=thisActor.pos.x_w;
         gActors[j].pos.y_w=thisActor.pos.y_w;
         gActors[j].pos.z=thisActor.pos.z-1;

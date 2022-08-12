@@ -117,7 +117,7 @@ int32_t func_800463F0(void){
 #endif
 
 void func_80046434(void) {
-    if (gPlayerActor.flag & 0x20) {
+    IFFACINGLEFT(0) {
         MODi(D_801782B0, -0x300000, 0x80000);
     }
     else {

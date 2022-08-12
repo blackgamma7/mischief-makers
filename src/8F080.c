@@ -116,6 +116,7 @@ uint32_t func_8008F094(uint16_t index,uint16_t dmg){
 #pragma GLOBAL_ASM("asm/nonmatchings/8F080/func_80092FD4.s")
 #ifdef NON_MATCHING
 uint32_t func_800930AC(uint16_t x){
+    //should push/pop RA. like several other funcs...
     uint32_t ret =func_80092FD4(x);
     if(ret) ret = func_8005DFC8(0);
     return ret;

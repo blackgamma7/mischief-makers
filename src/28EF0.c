@@ -338,7 +338,7 @@ int32_t func_8002A090(int32_t a, int32_t b) {
 }
 
 void func_8002A0C4(uint16_t index, int32_t x) {
-    if (thisActor.flag & 0x20) {
+    IFFACINGLEFT(index) {
         thisActor.vel.x_w = -x;
     }
     else {
@@ -442,7 +442,7 @@ void Actor_HitboxBSet(uint16_t index, int16_t x) {
 }
 
 void Actor_HitboxAXSet(uint16_t index, int16_t x, int16_t y) {
-    if (thisActor.flag & 0x20) {
+    IFFACINGLEFT(index) {
         thisActor.hitboxAX1 = -x;
         thisActor.hitboxAX0 = -y;
     }
@@ -453,7 +453,7 @@ void Actor_HitboxAXSet(uint16_t index, int16_t x, int16_t y) {
 }
 
 void func_8002ACFC(uint16_t index, int16_t x, int16_t y) {
-    if (thisActor.flag & 0x20) {
+    IFFACINGLEFT(index) {
         thisActor.hitboxBX1 = -x;
         thisActor.hitboxBX0 = -y;
     }

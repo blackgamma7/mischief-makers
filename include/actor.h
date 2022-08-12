@@ -268,6 +268,10 @@ typedef union{
         gActors[i].graphicList=g;\
         gActors[i].graphicTime=1
 #define thisActor gActors[index]
-#define IF_FLIPPED(i) if(gActors[i].flag&ACTOR_FLAG_FLIPPED) 
+//common enough for macro.
+#define FACINGLEFT(i) gActors[i].flag&ACTOR_FLAG_FLIPPED
+#define FACINGRIGHT(i) (gActors[i].flag&ACTOR_FLAG_FLIPPED)==0
+#define IFFACINGLEFT(i) if(FACINGLEFT(i)) 
+#define IFFACINGRIGHT(i) if(FACINGRIGHT(i)) 
 
 #endif

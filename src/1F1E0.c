@@ -4,22 +4,49 @@
 #include "music.h"
 #include "common.h"
 
+#ifdef NON_MATCHING
+int32_t Knockback_NegSinDmg(uint16_t index0,uint16_t index1,int32_t x){
+  int theta;
+  float dmg;
+  
+  dmg = sqrtf(gActors[index0].healthDelta);
+  
+  theta = func_800294E0(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
+                       gActors[index0].pos.y_w - gActors[index1].pos.y_w );
+  //mismatch here
+  return (float)(NEGSIN(theta) * dmg * x * 2.0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_NegSinDmg.s")
-
+#endif
+#ifdef NON_MATCHING
+int32_t Knockback_SinDmg(uint16_t index0,uint16_t index1,int32_t x){
+  int theta;
+  float dmg;
+  
+  dmg = sqrtf(gActors[index0].healthDelta);
+  
+  theta = func_800294E0(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
+                       gActors[index0].pos.y_w - gActors[index1].pos.y_w );
+  //mismatch here again
+  return (float)(SIN(theta) * dmg * x * 2.0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_SinDmg.s")
+#endif
 
-//these 3 adjust velocity (or accel?) based on knockback effect.
-void Knockback_Noop(int16_t arg0, int16_t arg1) {}
+void Knockback_Noop(uint16_t arg0, uint16_t arg1) {}
 
 #ifdef NON_MATCHING
-void Knockback_Arc(int16_t index0, int16_t index1) {
-    if ((gActors[index0].vel.x_w == 0) && (gActors[index0].vel.y_w == 0)) {
-        gActors[index1].speedX._w = Knockback_NegSinDmg(index0, index1, 0x2000);
-        gActors[index1].speedY._w = Knockback_SinDmg(index0, index1, 0x2000);
-    }
-    else {
+void Knockback_Arc(uint16_t index0, uint16_t index1) {
+    //branching for first condition inaccurate.
+    if ((gActors[index0].vel.x_w) && (gActors[index0].vel.y_w)) {
         gActors[index1].speedX._w = gActors[index0].vel.x_w;
         gActors[index1].speedY._w = gActors[index0].vel.y_w;
+    }
+    else {
+        gActors[index1].speedX._w = Knockback_NegSinDmg(index0, index1, 0x2000);
+        gActors[index1].speedY._w = Knockback_SinDmg(index0, index1, 0x2000);
     }
 }
 #else
@@ -27,7 +54,7 @@ void Knockback_Arc(int16_t index0, int16_t index1) {
 #endif
 
 void Knockback_Linear(uint16_t index0, uint16_t index1) {
-    if ((gActors[index0].flag & ACTOR_FLAG_FLIPPED) == 0) {
+    IFFACINGRIGHT(index0) {
         gActors[index1].speedX._w = gActors[index0].speedX._w;
     }
     else {

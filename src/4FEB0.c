@@ -116,7 +116,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                     if (thisActor.vel.x_w < ActorMarina_VelByScale(0x1C)) {
                         thisActor.vel.x_w = ActorMarina_VelByScale(0x1C);
                     }
-                    if ((thisActor.flag & 0x20) == 0) {
+                    IFFACINGRIGHT(index) {
                         if (thisActor.unk_0x140 != 0) {
                             thisActor.hitboxAX1 = (thisActor.hitboxAX1 + gActors[temp_t9].hitboxBX1) - gActors[temp_t9].hitboxBX0;
                         }
@@ -131,7 +131,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                         thisActor.vel.x_w = -ActorMarina_VelByScale(0x1C);
                     }
                     phi_a3 = 0x4F;
-                    if ((thisActor.flag & 0x20) == 0) {
+                    IFFACINGRIGHT(index) {
                         phi_a3 = 0x52;
                     } else if (thisActor.unk_0x140 != 0) {
                         thisActor.hitboxAX0 = (thisActor.hitboxAX0 + gActors[temp_t9].hitboxBX0) - gActors[temp_t9].hitboxBX1;

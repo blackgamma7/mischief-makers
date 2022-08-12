@@ -74,7 +74,7 @@ void func_8019C0A0_732E00(uint16_t index){
 
 void func_8019C6B4_733414(uint16_t index){
   if ((thisActor.actorState & 0x8000) == 0) {
-    if (thisActor.flag & 0x20) {
+    IFFACINGLEFT(index) {
       gActors[index + 1].unk_0x130 = -1.0;
       thisActor.unk_0x138 = 1.0;
     }

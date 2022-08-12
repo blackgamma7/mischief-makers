@@ -1,4 +1,5 @@
-#include "common.h"
+#include "festival.h"
+#include "GameSave.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B0900_7AC820.s")
 
@@ -10,9 +11,26 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B0ECC_7ACDEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B0EF0_7ACE10.s")
 
+void func_801B0EF0_7ACE10(uint16_t x){
+  gFestivalStructs[1].unk_0x12=0;
+  gFestivalStructs[1].unk_0x10=0;
+}
+
+#ifdef NON_MATCHING
+uint16_t func_801B0F08_7ACE28(uint16_t x){
+ uint16_t index=Actor_GetInactive(0x60,0x70);
+ if(index){
+   ACTORINIT(index,0x1A07);
+   thisActor.flag2=0x801;
+   thisActor.flag=ACTOR_FLAG_ACTIVE|ACTOR_FLAG_UNK3;
+ }
+ return index;
+}
+#else
+extern uint16_t func_801B0F08_7ACE28(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B0F08_7ACE28.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B0F8C_7ACEAC.s")
 
@@ -40,22 +58,37 @@
 void func_801B195C_7AD87C(uint16_t x){
     gActors[111].palletteP=&D_800D9AE4;
 }
-#ifdef NON_MATCHING
+
 void func_801B1974_7AD894(uint16_t i){
     uint16_t index;
-    int32_t x=gActors[i].unk_0x15C;
-    if(x==0){index=0x6B;}
-    else if(x==1){index=0x6D;}
-    else if(x==2){index=0x6A;}
-    else if(x==3){index=0x6C;}
+    switch(gActors[i].unk_0x15C){
+      case 0:
+      index=0x6B;break;
+      case 1:
+      index=0x6D;break;
+      case 2:
+      index=0x6A;break;
+      case 3:
+      index=0x6C;break;
+    }
     thisActor.palletteP=&D_800D9AE4;
 }
-#else
-extern void func_801B1974_7AD894(uint16_t i);
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1974_7AD894.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1A18_7AD938.s")
+void func_801B1A18_7AD938(uint16_t i){
+    uint16_t index;
+    switch(gActors[i].unk_0x15C){
+      case 0:
+      index=0x6B;break;
+      case 1:
+      index=0x6D;break;
+      case 2:
+      index=0x6A;break;
+      case 3:
+      index=0x6C;break;
+    }
+    if (gSceneFrames & 0x10) thisActor.palletteP=&D_800D9B54;
+    else thisActor.palletteP=NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1ADC_7AD9FC.s")
 float D_801B73B4_7B32D4[]={2.0,0.0,-21.0,180.0,0.0,0.0,0.0,3.0,1.0,1.0,448.0,1.0,1.0,1.0,60.0,0.0};
@@ -179,10 +212,19 @@ void func_801B4600_7B0520(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4DF8_7B0D18.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4E94_7B0DB4.s")
-
+#ifdef NON_MATCHING
+void func_801B4EFC_7B0E1C(uint16_t x){
+  gFestivalStructs[0].unk_0x04 = 1;
+  gFestivalStructs[1].unk_0x04 = 2;
+}
+#else
+extern void func_801B4EFC_7B0E1C(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4EFC_7B0E1C.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4F1C_7B0E3C.s")
+void func_801B4F1C_7B0E3C(uint16_t x){
+gFestivalTimeToBeat = gFestivalRecords[gFestivalCurrentEvent];
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4F44_7B0E64.s")
 

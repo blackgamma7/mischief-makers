@@ -420,7 +420,7 @@ void func_8006C5A4(uint16_t index) {
         func_80066964(index, ((actor->unk_0xD8 & 0x7000) / 0x1000));
         func_80066A10(index);
 
-        if ((actor->flag & ACTOR_FLAG_FLIPPED) != 0) {
+        if (actor->flag & ACTOR_FLAG_FLIPPED) {
             actor->unk_0x148 = -actor->scaleX;
         }
         else {
@@ -814,7 +814,7 @@ void func_800791D4(uint16_t index){
 void func_80079760(u16 index) {
     s32 x;
     func_80078F54(index);
-    if (thisActor.flag & 0x20) x = 0x2000000;
+    IFFACINGLEFT(index) x = 0x2000000;
     else x = 0;
     thisActor.unk_0x168._w = func_800298D0(x, thisActor.unk_0x168._w, 0x180000);
     MODi(thisActor.vel.x_w, 0, thisActor.unk_0x158._w + 0x80);
