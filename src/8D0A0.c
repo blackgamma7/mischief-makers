@@ -145,7 +145,7 @@ void ActorTick_MarinaOhNo(uint16_t index){
     if(actor->actorState==16){
         D_800BE5F4._w=4;
         actor->actorState=0x30;
-        actor->unk_0x18C=D_800D46A8;
+        actor->palletteP=D_800D46A8;
         actor->vel.y_w=0x20000;
         actor->unk_0x118=1.0;
     }

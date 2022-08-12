@@ -48,7 +48,7 @@ extern func_801B13C8_7B9278(uint16_t);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World4/func_801B19A8_7B9858.s")
 /*
 void func_801B1A90_7B9940(uint16_t x,uint16_t y){
-    uint16_t index=Actor_GetInactiveInRange(0x90,0xc0);
+    uint16_t index=Actor_GetInactive(0x90,0xc0);
     if(index){
         ACTORINIT(index,9999);
         thisActor.pos.x=x-gScreenPosCurrentX._hi;

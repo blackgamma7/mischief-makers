@@ -13,7 +13,7 @@ void func_80009BE0(void) {}
 //solves for perspective or orthographic view (depending on gDebugBitfeild)... amoung many other things.
 #pragma GLOBAL_ASM("asm/nonmatchings/render/Gfx_DrawActors.s")
 //draws static gems?
-#pragma GLOBAL_ASM("asm/nonmatchings/render/func_8000DD6C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/render/Gx_DrawClanBlocks.s")
 //draws the transition portrait tiles
 #pragma GLOBAL_ASM("asm/nonmatchings/render/Gfx_DrawPortraits.s")
 //Draws the health guage

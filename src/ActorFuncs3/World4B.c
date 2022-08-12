@@ -5,23 +5,23 @@ extern uint16_t* D_801ABEA4_784804[36]; //Leo Cloud words. Bad,Good,Bad,Good,Ect
 void func_801A6900_77F260(uint16_t x){}
 
 void func_801A6908_77F268(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x301;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.pos.x=0;
     thisActor.pos.y=0;
     thisActor.pos.z=0x80;
     thisActor.graphic=0xE6;
     thisActor.rgba.a=0x40;
-    thisActor.unk_0x18C._p=&D_801AC0DC_784A3C;
+    thisActor.palletteP=&D_801AC0DC_784A3C;
     thisActor.scaleX=12.0;
     thisActor.scaleY=12.0;
 }
 
 void func_801A69B0_77F310(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x100;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.graphic=0x2004;
     thisActor.rgba.a=0xF8;
     Actor_Shade(index,255);
@@ -77,7 +77,7 @@ extern void func_801A7838_780198(uint16_t index, uint16_t gemflag);
 void func_801A83D8_780D38(uint16_t index){
     if(thisActor.actorState==0){
         thisActor.actorState=1;
-        thisActor.flag=3;
+        thisActor.flag=ACTOR_FLAG_ENABLED;
         thisActor.graphic=0x7004;
         thisActor.vel.y_w=0x10000;
         thisActor.rgba.a=0;
@@ -106,7 +106,7 @@ void func_801A866C_780FCC(uint16_t x){
     gActors[143].actorState=1;
     gActors[143].flag2=0xB11;
     gActors[143].flag=0xb;
-    gActors[143].unk_0x18C._p=&D_800D8588;
+    gActors[143].palletteP=&gPalletteWhite;
     gActors[143].rgba.a=255;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
@@ -117,7 +117,7 @@ void func_801A86D4_781034(uint16_t x){
     gActors[143].actorState=2;
     gActors[143].flag2=0xB11;
     gActors[143].flag=0xb;
-    gActors[143].unk_0x18C._p=&D_800D8588;
+    gActors[143].palletteP=&gPalletteWhite;
     gActors[143].rgba.a=0;
     gActors[143].unk_0x150._w=0;
     gActors[143].unk_0x154._w=x;
@@ -155,7 +155,7 @@ extern void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4B/func_801AA2E4_782C44.s")
 
 void func_801AA3A4_782D04(uint16_t index){
-    ACTORINIT(index,0x1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x1817;
     thisActor.graphic=0x262;
     thisActor.pos.x=0;

@@ -45,11 +45,11 @@ void MarinaGraphics_Decrypt(void) {
             if (((D_800BE6A4 & 0x7FFF) + gCurrentFramebufferIndex) != 1) {
             }
             else {
-                func_80098B50(0x801C4400, 0x8027BEE8, 0x1000);
+                DecodeGraphics(0x801C4400, 0x8027BEE8, 0x1000);
             }
         }
         else {
-            func_80098B50(0x801C4400, 0x8027AEE8, 0x1000);
+            DecodeGraphics(0x801C4400, 0x8027AEE8, 0x1000);
             if (!D_800BE6A4) {}
         }
         D_800BE6A4 &= 0x7FFF;

@@ -22,7 +22,7 @@ float FABS(float x){
     return x;
 }
 #ifdef NON_MATCHING
-uint32_t func_8005C708(uint32_t x){
+uint32_t RandModulo(uint32_t x){
     int32_t ret;
     uint8_t r = Rand();
     ret=r;
@@ -30,7 +30,7 @@ uint32_t func_8005C708(uint32_t x){
     return ret;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C708.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5D120/RandModulo.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C774.s")
@@ -55,16 +55,20 @@ uint8_t func_8005D1B0(uint16_t index){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005D1E8.s")
-uint16_t func_8005D338(uint16_t index){
+uint16_t ActorMarina_Getfield172h(uint16_t index){
     return thisActor.unk_0x170._hu[1]&0x1FFF;
 }
-/*uint32_t func_8005D370(uint16_t index, int32_t x){
-    uint16_t b=func_8005D338(index);
+#ifdef NON_MATCHING
+uint32_t func_8005D370(uint16_t index, int32_t x){
+    uint16_t b=ActorMarina_Getfield172h(index);
     uint16_t a=x;
     if(x!=b) thisActor.unk_0x170._w = a;
     return a!=b;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005D370.s")
+#endif
+
 void func_8005D3D8(uint16_t index){
     thisActor.unk_0x170._hu[1]&=0x1fff;
 }

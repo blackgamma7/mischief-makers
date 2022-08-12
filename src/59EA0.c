@@ -3,8 +3,8 @@
 uint16_t func_800592A0(uint16_t other, int32_t* pos){
     uint16_t index;
     Actor* otherp;
-    if(other<16) index=Actor_GetInactiveInRange(0x10,0x2d);
-    else index=Actor_GetInactiveInRange(0x90,0xc0);
+    if(other<16) index=Actor_GetInactive(0x10,0x2d);
+    else index=Actor_GetInactive(0x90,0xc0);
     if(index){
         ACTORINIT(index,9);
         otherp=&gActors[other];
@@ -68,10 +68,32 @@ void func_8005ACA8(uint16_t index){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005BFA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C098.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C0CC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C250.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/func_8005C3C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/ActorMarina_SetField180h.s")
+//an unused version of the afterimage, generates 3 that follow Marina for more frames, not blue.
+#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/ActorSpawn_MarinaAfterImages.s")
+#ifdef NON_MATCHING
+uint16_t ActorSpawn_MarinaAfterImage(uint16_t other){
+  Actor* parent;
+  uint16_t index = Actor_GetInactive(0x10,0x2d);
+  if (index) {
+    ACTORINIT(index,ACTORTYPE_MARINAAFTERIMAGE);
+    parent= &gActors[other];
+    thisActor.flag2 |= parent->flag2 & 0x160 | 0x800;
+    thisActor.flag |= parent->flag & (ACTOR_FLAG_UNK3|ACTOR_FLAG_FLIPPED) | (ACTOR_FLAG_UNK19|ACTOR_FLAG_UNK27);
+    thisActor.graphic = (D_800BE6A4 + gCurrentFramebufferIndex) * 2 + 2;
+    thisActor.pos.x_w = parent->pos.x;
+    thisActor.pos.y_w = parent->pos.y;
+    thisActor.pos.z_w = parent->pos.z + -0x18000;
+    thisActor.unk_0x150._w = 0xf;
+    thisActor.flag2 |= 0x10;
+    thisActor.rgba.r = 0x7f;
+    thisActor.rgba.g = 0x7f;
+    thisActor.unk_0x14C = other;
+    thisActor.actorState = 1;
+  }
+  return index;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/ActorSpawn_MarinaAfterImage.s")
+#endif
+#pragma GLOBAL_ASM("asm/nonmatchings/59EA0/ActorTick_MarinaAfterImage.s")

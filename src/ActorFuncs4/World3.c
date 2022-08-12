@@ -1,5 +1,7 @@
 #include "common.h"
 
+uint32_t D_801B6350; //"day before" jumprope arch
+
 void func_801B0900_7A1410(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B090C_7A141C.s")
@@ -73,11 +75,11 @@ void func_801B0900_7A1410(uint16_t x,uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4A40_7A5550.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4B3C_7A564C.s")
-
+//spawn the jump rope
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4B64_7A5674.s")
 
 void func_801B4CD0_7A57E0(uint16_t x){}
-
+//"Day befroe" jump rope
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4CD8_7A57E8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B4F78_7A5A88.s")
@@ -95,7 +97,7 @@ void func_801B4CD0_7A57E0(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B5628_7A6138.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B56E0_7A61F0.s")
-
+//"Day before" sprint trainers
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B57C8_7A62D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B5D04_7A6814.s")

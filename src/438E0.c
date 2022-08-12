@@ -164,16 +164,16 @@ void func_80043918(void) {
     D_800D28FC = 0;
     D_800D28F4 = 1;
     D_800D28E8 = 0;
-    D_800D2938 = 0;
+    gExitAnimationProgress = 0;
     D_800BE668 = 0x32;
     func_8002653C();
     func_80043234();
     func_8004320C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_8004398C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/loadSceneActor.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043A68.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/438E0/LoadOverlayActors.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043C10.s")
 #ifdef NON_MATCHING
@@ -195,7 +195,7 @@ void func_80043D30(uint16_t* x) {
     if (D_800D2908 == 0) {
         func_80043D04(x);
     }
-    func_80043A68(x);
+    LoadOverlayActors(x);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043D6C.s")

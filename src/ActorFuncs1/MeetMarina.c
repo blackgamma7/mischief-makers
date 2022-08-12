@@ -3,7 +3,7 @@
 #ifdef NON_MATCHING
 void func_80192100_6D1C00(uint16_t index){
     thisActor.flag2|=0x11;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
     func_8008105C(index,D_800E4698,D_800E45D0);
     thisActor.unk_0x178._p = D_800A574C;
     func_80081478(index,D_800E4698,0);

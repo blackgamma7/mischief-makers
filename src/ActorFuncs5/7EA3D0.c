@@ -11,11 +11,11 @@ void func_801B9900_7EA3D0(void){
   if (D_800D28E8 == 0) {
       D_800D28FC|=4;
       HealthBar.alpha = 0x40;
-      D_800BE544 = 0x8000;
+      gCameraScrollFlags = 0x8000;
       if (D_800D2908 == 0) {
         D_800D28E8++;
         func_80046148(D_801B9BC0_7EA690,0);
-        func_80043A68(D_801B9C18_7EA6E8);
+        LoadOverlayActors(D_801B9C18_7EA6E8);
         gLetterboxMode = 0;
       }
       else {
@@ -39,8 +39,8 @@ void func_801B9900_7EA3D0(void){
   else if ((D_800D28E8 != 0x101) && (D_800D28E8 == 0x1000)) {
       func_80028744();
       D_800D28E8++;
-      func_80045FA4(D_801B9BC0_7EA690,0);
-      func_80043A68(D_801B9BD0_7EA6A0);
+      InitPlayerPosition(D_801B9BC0_7EA690,0);
+      LoadOverlayActors(D_801B9BD0_7EA6A0);
       D_800BE5F4 = 7;
       gPlayerManager.unk_0x78|= 1;
       D_800BE4EC = 1;
@@ -53,8 +53,8 @@ void func_801B9900_7EA3D0(void){
   }
   else if (D_800D28E8 == 0x2000) {
     D_800D28E8 = 0x1001;
-    func_80045FA4(D_801B9BC0_7EA690,0);
-    func_80043A68(D_801B9BD0_7EA6A0);
+    InitPlayerPosition(D_801B9BC0_7EA690,0);
+    LoadOverlayActors(D_801B9BD0_7EA6A0);
     D_800BE5F4._w = 7;
     gPlayerManager.unk_0x78|=1;
   }

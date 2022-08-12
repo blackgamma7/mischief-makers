@@ -160,7 +160,7 @@ void func_801A7AB8_7766A8(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A7E04_7769F4.s")
 #ifdef NON_MATCHING
 void func_801A8008_776BF8(uint16_t other){
-    uint16_t index=Actor_GetInactiveInRange(8,16);
+    uint16_t index=Actor_GetInactive(8,16);
     Actor* actorp;
     if(index){
         ACTORINIT(index,0x1D04);
@@ -170,7 +170,7 @@ void func_801A8008_776BF8(uint16_t other){
         thisActor.pos.z=actorp->pos.z+16;
         thisActor.flag2=0xA01;
         thisActor.flag=0xA;
-        thisActor.unk_0x18C._p=&D_800D8668;
+        thisActor.palletteP=&D_800D8668;
         thisActor.unk_0x150._w=0x100000;
         thisActor.scaleX=0.8; //.rodata
         thisActor.scaleY=0.8;
@@ -199,13 +199,13 @@ void func_801A8108_776CF8(uint16_t index){
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A81E4_776DD4.s")
-
+//Player Teran Behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A870C_7772FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A9478_778068.s")
 
 void func_801A9534_778124(uint16_t index){
-    if(D_800E3584&0XC0000) thisActor.actorState=0x70;
+    if(gViptoActorFlags&0XC0000) thisActor.actorState=0x70;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A9584_778174.s")
@@ -236,6 +236,7 @@ void func_801AA224_778E14(uint16_t index0, uint16_t index1) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AA224_778E14.s")
 #endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AA310_778F00.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AA778_779368.s")
@@ -380,7 +381,7 @@ void func_801AE3E8_77CFD8(uint16_t index){
 void func_801AF6AC_77E29C(uint16_t x){}
 
 func_801AF6B4_77E2A4(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x1817;
     thisActor.graphic=0x262;
     thisActor.pos.x=0;

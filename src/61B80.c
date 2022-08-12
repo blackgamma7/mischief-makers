@@ -107,9 +107,9 @@ void func_800615BC(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_800648C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064AA0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorSpawn_StageClear.s")
 //"stage clear" fanfare behavior ?
-#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064B60.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorTick_StageClear.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064CB4.s")
 

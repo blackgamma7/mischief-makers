@@ -20,7 +20,7 @@ void Reset_InitB(void){ //~96%matching
   gGamePaused = 0;
   D_80137D90 = 0;
   D_800CBF40 = 0;
-  D_800CA230 = 0;
+  gIsPlayerInactive = 0;
   D_800BE4EC = 0;
   D_800BE670 = 0;
   D_800BE66C = 0;
@@ -37,8 +37,8 @@ void Reset_InitB(void){ //~96%matching
   gHPDisplayed = gPlayerActor.health;
   BGM_Stop();
   SFX_StopAll();
-  func_800230B8();
-  func_8002312C();
+  ClearActorsAndGems();
+  ClearPortraits();
   func_80023168();
   func_80010A10();
   func_8008310C();
@@ -51,10 +51,10 @@ void Reset_InitB(void){ //~96%matching
   func_80028260(2,1,0,0,0);
   func_80028260(2,2,0,0,0);
   for(i = 0;i < 4;i++) { //regAlloc
-    D_801376BC[i]=1;
-    D_801376A8[i]=0xFF;
-    D_801376AC[i]=0xFF;
-    D_801376B0[i]=0xFF;
+    gEnvColorsOpaque[i]=1;
+    gEnvColorsRed[i]=0xFF;
+    gEnvColorsGreen[i]=0xFF;
+    gEnvColorsBlue[i]=0xFF;
   }
 }
 #else
@@ -68,8 +68,8 @@ void start_game(void) {
         }
     }
     else {
-        func_800230B8();
-        func_8002312C();
+        ClearActorsAndGems();
+        ClearPortraits();
         func_80023168();
 
         gGameSubState++;
@@ -104,7 +104,7 @@ void start_game(void) {
     gGameSubState = 0;
     return;
 }
-void func_800230B8(void){
+void ClearActorsAndGems(void){
     uint16_t i;
     for(i=0;i<ACTOR_COUNT2;i++){
         gActors[i].flag=0;
@@ -115,7 +115,7 @@ void func_800230B8(void){
     }
 }
 
-void func_8002312C(void){
+void ClearPortraits(void){
     uint16_t i;
     for(i=0;i<66;i++){
         gPortraits[i].Active=0;
@@ -135,12 +135,12 @@ void GamePlay_Load(void) {
     int32_t phi_v0_2;
 
     for (index = 0; index < 4; index++) {
-        D_801376BC[index] = 1;
-        D_801376B8[index] = 1;
-        D_801376A8[index] = 0;
-        D_801376AC[index]=0;
-        D_801376B0[index]=0;
-        D_801376B4[index]=255;
+        gEnvColorsOpaque[index] = 1;
+        gEnvColorsBlend[index] = 1;
+        gEnvColorsRed[index] = 0;
+        gEnvColorsGreen[index]=0;
+        gEnvColorsBlue[index]=0;
+        gEnvColorsAlpha[index]=255;
     }
 
     gPortraitTint = 0xFF;
@@ -154,9 +154,9 @@ void GamePlay_Load(void) {
 
     
     gPlayerManager->unk_0x078 = 0;
-    D_800D5820 = 0;
+    gSpeaker_ActorLink = 0;
     D_800BE5F4._w = 0;
-    D_800CA230 = 0;
+    gIsPlayerInactive = 0;
     D_80137D90 = 0;
     D_800BE6FC = 0;
     D_800BE58C = 0;
@@ -193,7 +193,7 @@ void GamePlay_Load(void) {
     gGamePaused = temp_t8_3;
     func_80042D84(0);
     func_80010A10();
-    func_800230B8();
+    ClearActorsAndGems();
     func_80023168();
     ActorSpawn_Marina();
     D_800BE5D4 = 1;
@@ -210,7 +210,7 @@ void GamePlay_Load(void) {
     GamePlay_Tick();
     func_80047CCC();
     func_80047C98();
-    func_8001DC60();
+    SceneActorSpawn_Init();
     gYellowGemBitfeildTemp = gYellowGemBitfeild;
     gGameState = GAMESTATE_GAMEPLAY;
     gGameSubState = 0;

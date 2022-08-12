@@ -1,6 +1,6 @@
 #include "common.h"
 //funcs related to the dialouge/textbox system
-#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005DE30.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/Textbox_Init.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005DEFC.s")
 
@@ -23,13 +23,13 @@ void func_8005E09C(int32_t i,int16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005E0B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005E1CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/ActorSpeaker_SquishBubble.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005E260.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005E56C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/ActorTick_Speaker.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005E8F8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/ActorTick_TextboxBG.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005EC20.s")
 
@@ -37,4 +37,4 @@ void func_8005E09C(int32_t i,int16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005F088.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/func_8005F6D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/Textbox/Textbox_Tick.s")

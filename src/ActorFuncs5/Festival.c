@@ -1,4 +1,4 @@
-#include "common.h"
+#include "festival.h"
 
 void func_801B9900_7DAB00(void) {}
 

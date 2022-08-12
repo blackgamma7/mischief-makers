@@ -4,18 +4,18 @@
 #include "music.h"
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E5E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_NegSinDmg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E6F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_SinDmg.s")
 
 //these 3 adjust velocity (or accel?) based on knockback effect.
-void func_8001E808(int16_t arg0, int16_t arg1) {}
+void Knockback_Noop(int16_t arg0, int16_t arg1) {}
 
 #ifdef NON_MATCHING
-void func_8001E814(int16_t index0, int16_t index1) {
+void Knockback_Arc(int16_t index0, int16_t index1) {
     if ((gActors[index0].vel.x_w == 0) && (gActors[index0].vel.y_w == 0)) {
-        gActors[index1].speedX._w = func_8001E5E0(index0, index1, 0x2000);
-        gActors[index1].speedY._w = func_8001E6F4(index0, index1, 0x2000);
+        gActors[index1].speedX._w = Knockback_NegSinDmg(index0, index1, 0x2000);
+        gActors[index1].speedY._w = Knockback_SinDmg(index0, index1, 0x2000);
     }
     else {
         gActors[index1].speedX._w = gActors[index0].vel.x_w;
@@ -23,10 +23,10 @@ void func_8001E814(int16_t index0, int16_t index1) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E814.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_Arc.s")
 #endif
 
-void func_8001E8E4(uint16_t index0, uint16_t index1) {
+void Knockback_Linear(uint16_t index0, uint16_t index1) {
     if ((gActors[index0].flag & ACTOR_FLAG_FLIPPED) == 0) {
         gActors[index1].speedX._w = gActors[index0].speedX._w;
     }
@@ -38,7 +38,7 @@ void func_8001E8E4(uint16_t index0, uint16_t index1) {
 
 #ifdef NON_MATCHING
 // Differences are regalloc
-void func_8001E964(uint16_t index0, uint16_t index1) {
+void Knockback_Linear2(uint16_t index0, uint16_t index1) {
     Actor* actor0 = &gActors[index0];
     Actor* actor1 = &gActors[index1];
 
@@ -51,10 +51,10 @@ void func_8001E964(uint16_t index0, uint16_t index1) {
     actor0->speedY._w = actor1->speedY._w;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E964.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_Linear2.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001E9DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_RandomArc.s")
 
 void func_8001EADC(uint16_t index0, uint16_t index1) {
     Actor* actor = &gActors[index1];
@@ -68,7 +68,7 @@ void func_8001EADC(uint16_t index0, uint16_t index1) {
         actor->unk_0xDD = actor->unk_0xDB;
     }
     else {
-        func_8001E9DC(index0, index1);
+        Knockback_RandomArc(index0, index1);
     }
 }
 
@@ -76,13 +76,13 @@ void func_8001EADC(uint16_t index0, uint16_t index1) {
 /* This function is related to hit / knockback effects?
  * Differences are regalloc, behaviorally the same
  */
-void func_8001EB8C(uint16_t index0, uint16_t index1) {
+void Knockback_Get(uint16_t index0, uint16_t index1) {
     gActors[index1].unk_0xDC = gActors[index0].unk_0xDA;
     gActors[index1].unk_0xDD = gActors[index0].unk_0xDB;
-    D_800CA1C0[gActors[index0].unk_0xDB](index0, index1);
+    gKnockbackFuncTable[gActors[index0].unk_0xDB](index0, index1);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EB8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_Get.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001EC1C.s")
@@ -112,10 +112,10 @@ void func_8001FF50(void) {
 void func_8001FFA0(void) {}
 
 void func_8001FFA8(void) {
-    D_800CA230 = 0;
-    D_800BE704 = D_801781C8;
-    D_800BE708 = D_801781CA;
-    D_800BE544 = D_801781CC;
+    gIsPlayerInactive = 0;
+    gCameraScrollThrottleX = D_801781C8;
+    gCameraScrollThrottleY = D_801781CA;
+    gCameraScrollFlags = D_801781CC;
     D_800D2920 = D_801781CE;
     D_800D2924 = D_801781D0;
     D_800D2918 = D_801781D2;
@@ -165,25 +165,25 @@ void GamePlay_Tick_Active(void) {
     func_800253B0(); // background
     func_8001F88C(); // unknown, does something with actors
     Actors_PositionTick(); // physics
-    func_80016CB4(); // collision
+    Actors_PhysicsTick(); // collision
     ActorMarina_ScreenScroll(); // camera
     func_80016D94(); // offsets objects from the camera so that they are in the correct relative position
     func_8001EC1C(); // interaction with objects
     func_8001107C(); // foreground layer of background?
 
-    if (D_800CA230 == 0) {
+    if (gIsPlayerInactive == 0) {
         ActorTick_Marina(0);    // updates the player
         func_8008C528(0x41); // unknown
     }
 
     func_8001FF30(); // sets a value in the player
-    func_8001DE30(); // unknown, does something with camera
+    SceneActorSpawn_Tick(); // unknown, does something with camera
     func_8008CA90(); // unknown, does something with actors
     Actors_Tick(); // actors
-    func_80014C44(); // clamp to world bounds?
+    func_80014C44(); // clamp to world bounds? also saves position/graphic history for unimplimented afterimages' state.
     func_8005C8A4(); // camera quake
     func_8001FF50(); // update actor flags
-    func_8005F6D4(); // text
+    Textbox_Tick(); // text
     LifeBar_Tick(); // ui (blinking, health bar)
 
     if (gGameState == GAMESTATE_GAMEPLAY) {
@@ -246,9 +246,9 @@ void PauseGame_Unpause(void) {
     gGamePaused = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8002092C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/PauseGame_SpawnBars.s")
 
-void func_80020A54(void) {
+void PauseGame_ResetBars(void) {
     uint16_t index;
 
     for (index = 200; index < 204; index++) {
@@ -348,7 +348,7 @@ void AttractMode_Tick(void) {
         gGameSubState = 1;
         HealthFace.Active = 0;
         HealthBar.Active = 0;
-        func_8002092C();
+        PauseGame_SpawnBars();
         D_80103944 = 0;
         D_801037AA = 0;
         D_80103616 = 0;

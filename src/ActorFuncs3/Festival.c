@@ -1,4 +1,4 @@
-#include "common.h"
+#include "festival.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801A6900_78CBF0.s")
 
@@ -90,14 +90,23 @@ void func_801A96D4_78F9C4(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AA208_7904F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AA2A4_790594.s")
-
-uint8_t D_80178292;
+void func_801AA2A4_790594(uint16_t index){
+if(thisActor.func_0x190) thisActor.func_0x190(index);
+}
 
 void func_801AA2FC_7905EC(uint16_t x, uint16_t y){
     D_80178292 = 0;
     }
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AA310_790600.s")
+
+void func_801AA310_790600(uint32_t x,uint32_t y){
+uint16_t i;
+for(i=0;i<10;i++) {gFestivalEventsBools[i]=0;}
+  gFestivalEventsComplete = 0;
+  gFestivalPointsWhite = 0;
+  gFestivalPointsRed = 0;
+  gLetterboxMode = 1;
+}
+
 
 void func_801AA368_790658(void) {}
 void func_801AA370_790660(void) {}
@@ -133,8 +142,24 @@ void func_801AAFC4_7912B4(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AB7A0_791A90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ABA40_791D30.s")
-
+//resets festival competitor data
+#ifdef NON_MATCHING
+void func_801ABAE4_791DD4(uint16_t x){
+  uint16_t i;
+  if(gFestivalCompetitors>0){
+   for(i=0;i<gFestivalCompetitors;i++){
+    gFestivalStructs[i].playerNumber=i;
+    gFestivalStructs[i].actorIndex=0;
+    gFestivalStructs[i].unk_0x04=0;
+    gFestivalStructs[i].unk_0x06=0;
+    gFestivalStructs[i].unk_0x12=0;
+    gFestivalStructs[i].unk_0x10=0;
+   }
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ABAE4_791DD4.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ABB44_791E34.s")
 
@@ -147,16 +172,56 @@ void func_801AAFC4_7912B4(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ABDA8_792098.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ABE24_792114.s")
-
+//returns true if not race
+#ifdef NON_MATCHING
+uint32_t func_801AC0F8_7923E8(){
+  switch(gFestivalCurrentEvent) { //table loaded in wrong register
+  case 0:
+  case 1:
+  case 2:
+  case 5:
+  case 7:
+    return 0;
+  case 3:
+  case 4:
+  case 6:
+  case 8:
+    return 1;
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC0F8_7923E8.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC13C_79242C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC250_792540.s")
-
+extern float D_801AFA24_795D14[27];
+#ifdef NON_MATCHING
+void func_801AC360_792650(uint16_t x){
+  ///should push/pop RA. dunno why yet.
+  ACTORINIT(58,0x1A08);
+  gActors[58].flag |= ACTOR_FLAG_UNK3;
+  gActors[58].pos.x=0, gActors[58].pos.y = 0;
+  gActors[58].unk_0x178._p = &D_801AFA24_795D14; //an array of floats.
+}
+#else
+extern void func_801AC360_792650(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC360_792650.s")
-
+#endif
+#ifdef NON_MATCHING
+void func_801AC3C0_7926B0(uint16_t index, uint16_t x){
+  ACTORINIT(index,0x1A07);
+  thisActor.flag2=0x800;
+  thisActor.flag=ACTOR_FLAG_ACTIVE|ACTOR_FLAG_UNK3;
+  thisActor.pos.z = 0x80;
+  thisActor.unk_0x164._w = 0x40;
+  thisActor.unk_0x150._w = x;
+}
+#else
+extern void func_801AC3C0_7926B0(uint16_t index, uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC3C0_7926B0.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AC448_792738.s")
 
@@ -173,7 +238,7 @@ void func_801AAFC4_7912B4(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ACD80_793070.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ACEE8_7931D8.s")
-
+//award gems.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801ACF40_793230.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD0AC_79339C.s")
@@ -258,7 +323,9 @@ void func_801AD4F4_7937E4(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD4F4_7937E4.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD628_793918.s")
+void func_801AD628_793918(uint16_t x){
+  if(gIsFestivalTimeBeat) func_801AD4F4_7937E4(65);
+}
 //check the scores at the end.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/Festival/func_801AD658_793948.s")
 

@@ -121,7 +121,7 @@ void func_80192490_6F9720(uint16_t index) { //decomp.me says yes, compiler says 
     thisActor.pos.x = 0;
     thisActor.pos.y = 0;
     thisActor.unk_0x188._p = NULL;
-    thisActor.unk_0x18C._p = D_800D85A8;
+    thisActor.palletteP = gPalletteBlack;
     thisActor.scaleX = 19.0;
     thisActor.scaleY = 13.0;
 }
@@ -418,9 +418,9 @@ void func_8019383C_6FAACC(uint16_t other,uint16_t index,uint16_t graphic,int32_t
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197B44_6FEDD4.s")
 
 uint16_t func_80197D60_6FEFF0(void){
-  uint16_t ret= Actor_GetInactiveInRange(0x40,0x90);
+  uint16_t ret= Actor_GetInactive(0x40,0x90);
   if(ret)return ret;
-  return Actor_GetInactiveInRange(0x90,0xc0);
+  return Actor_GetInactive(0x90,0xc0);
 }
 //processes string for credits sequence
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80197DA0_6FF030.s")
@@ -954,7 +954,7 @@ int16_t uVar2;
       if (D_801AA070_711300 == 0) {
         if (((int)(gActors[0].flag << 6) < 0) && (gActors[0].field32_0xd6 == 0x38)) {
           thisActor.actorState++;
-          func_800267FC(SCENE_UNK03);
+          RomCopy_Dialouge(SCENE_UNK03);
           D_01ac374 = 1;
           func_80193900_6FAB90(1,0x50,-16);
           return;

@@ -4,10 +4,9 @@
 
 
 void func_80192100_6BCDD0(uint16_t index){
-    thisActor.actorType=0x21;
-    Actor_Spawn(index);
+    ACTORINIT(index,0x21);
     thisActor.flag2=0x118;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
 }
 
 
@@ -276,7 +275,7 @@ void func_8019D970_6C8640(uint16_t x){
     gActors[193].actorState=1;
     gActors[193].flag2=0xb11;
     gActors[193].flag=11;
-    gActors[193].unk_0x18C._p=&D_800D8588;
+    gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=255;
     gActors[193].unk_0x150._w=0;
     gActors[193].unk_0x154._w=x;
@@ -287,7 +286,7 @@ void func_8019D9D8_6C86A8(uint16_t x){
     gActors[193].actorState=2;
     gActors[193].flag2=0xb11;
     gActors[193].flag=11;
-    gActors[193].unk_0x18C._p=&D_800D8588;
+    gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
     gActors[193].unk_0x150._w=0;
     gActors[193].unk_0x154._w=x;
@@ -298,7 +297,7 @@ void func_8019DA3C_6C870C(uint16_t x, uint16_t y){
     gActors[193].actorState=3;
     gActors[193].flag2=0xb11;
     gActors[193].flag=11;
-    gActors[193].unk_0x18C._p=&D_800D8588;
+    gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
     gActors[193].unk_0x150._w=0;
     gActors[193].unk_0x154._w=y;
@@ -325,7 +324,7 @@ extern void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4
 #endif
 
 void func_8019DBEC_6C88BC(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x111;
     thisActor.flag=11;
     thisActor.pos.x=0;
@@ -354,9 +353,9 @@ void func_8019DCB8_6C8988(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019DCE8_6C89B8.s")
 
 void func_8019DF44_6C8C14(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x108;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
 }
 void func_8019DFB0_6C8C80(uint16_t x){
     func_8019DF44_6C8C14(118);
@@ -388,14 +387,14 @@ void func_8019E004_6C8CD4(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019E8B0_6C9580.s")
 
 void func_8019EB80_6C9850(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2=0x8100;
-    thisActor.flag=3;
+    thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.pos.z=0xA0;
     thisActor.graphicTime=1;
     thisActor.rgba.a=0;
 }
-//compiler refuses to aknowledge adresses for actorp->unk_0xE8 for these 3.
+//compiler refuses to aknowledge adresses for actorp->graphicTime for these 3.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019EC00_6C98D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_8019EC70_6C9940.s")

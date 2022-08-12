@@ -51,17 +51,17 @@ void CameraInit_MagmaRafts(void) {
 void CameraTick_MagmaRafts(void) {
     CameraTick_World2();
     if ((gDebugBitfeild & 0xA400) == 0) { //this freezes the camera otherwise
-        D_800BE544 = 0x8000;
+        gCameraScrollFlags = 0x8000;
         gScreenPosTargetX._w = (gPlayerPosXMirror._w + 0x200000);
         gScreenPosTargetY._w = gPlayerPosYMirror._w;
-        D_800BE704 = 1;
+        gCameraScrollThrottleX = 1;
     }
 }
 
 void CameraInit_scene02(void){
     HealthBar.Active=0;
     HealthFace.Active=0;
-    D_800CA230=1;
+    gIsPlayerInactive=1;
 }
 
 void CameraTick_scene02(void) {}
@@ -70,7 +70,7 @@ void CameraInit_Scene03(void){
     D_800BE584=0;
     HealthBar.Active=0;
     HealthFace.Active=0;
-    D_800CA230=1;
+    gIsPlayerInactive=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_scene03.s")
@@ -80,7 +80,7 @@ void CameraInit_Scene04(void){
     D_800BE584=-12;
     HealthBar.Active=0;
     HealthFace.Active=0;
-    D_800CA230=1;
+    gIsPlayerInactive=1;
 }
 
 void CameraTick_Scene04(void) {}
@@ -93,7 +93,7 @@ void cameraInit_MigenBrawl(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/Scenes/cameraTick_MigenBrawl.s")
 
 void CameraInit_Scene07(void) {
-    D_800BE544 = 0x30;
+    gCameraScrollFlags = 0x30;
     D_800BE57C = 2;
     D_800BE584 = -0xC;
 }
@@ -111,7 +111,7 @@ void func_80023D98(void) {
 void func_80023DB4(void) {}
 
 void func_80023DBC(void) {
-    D_800BE544 = 0x30;
+    gCameraScrollFlags = 0x30;
     D_800BE57C = 2;
     D_800BE584 = -0xC;
     D_800BE674 = 1;
@@ -157,7 +157,7 @@ void CameraInit_SnowstormMaze(void) {
 //2 of the Mt. Snow levels
 void func_80023EDC(void){
         if ((gDebugBitfeild & 0xA400) == 0) {
-        D_800BE544 = 0x8000;
+        gCameraScrollFlags = 0x8000;
         if(gPlayerActor.flag&0x20)gScreenPosTargetX._w = gPlayerPosXMirror._w - 0x300000;
         else gScreenPosTargetX._w = gPlayerPosXMirror._w +0x300000;
         gScreenPosTargetY._w = gPlayerPosYMirror._w+0x280000;
@@ -166,10 +166,10 @@ void func_80023EDC(void){
 
 void func_80023F5C(void){
     if ((gDebugBitfeild & 0xA400) == 0) {
-        D_800BE544 = 0x8000;
+        gCameraScrollFlags = 0x8000;
         gScreenPosTargetX._w = gPlayerPosXMirror._w;
         if((gPlayerActor.actorLink==0x31)&&(gActors[48].actorType == 0x907)&&(gActors[50].unk_0x180._w & 0x8000)){
-            D_800BE544 = 0x8000;
+            gCameraScrollFlags = 0x8000;
             gScreenPosTargetY._w = gActors[48].pos.y_w+gScreenPosCurrentY._w + 0x180000;
             }
         else gScreenPosTargetY._w = gPlayerPosYMirror._w+0x280000;    
@@ -178,7 +178,7 @@ void func_80023F5C(void){
 
 void CameraTick_ClanballLift(void){
     if ((gDebugBitfeild & 0xA400) == 0) {
-        D_800BE544 = 0x8000;
+        gCameraScrollFlags = 0x8000;
         if(D_800D28E8<3)gScreenPosTargetY._w = (gPlayerPosYMirror._w + 0x280000);
         else gScreenPosTargetY._w = gPlayerPosYMirror._w;
         gScreenPosTargetX._w = gPlayerPosXMirror._w;
@@ -191,7 +191,7 @@ void CameraInit_SeasickClimb(void) {
     D_800BE70C = 3;
     D_800BE6A8 = 2;
     // fake match? This doesn't seem very human
-    D_800BE708 = *((int32_t*)&temp_v0);
+    gCameraScrollThrottleY = *((int32_t*)&temp_v0);
     D_800BE710 = *((int32_t*)&temp_v0);
     D_800BE71C = 0x1000000;
     D_800BE720 = 0;
@@ -253,8 +253,8 @@ void CameraTick_AthleticGames(){
 
 void CameraInit_Beastector(void) {
     D_800BE588 = 2;
-    D_800BE704 = 1;
-    D_800BE708 = 1;
+    gCameraScrollThrottleX = 1;
+    gCameraScrollThrottleY = 1;
     gLetterboxMode = 1U;
     Camera_RotateReset();
 }
@@ -262,9 +262,9 @@ void CameraInit_Beastector(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_Beastector.s")
 
 void CameraInit_CounterAttack(void) {
-    D_800BE544 = 0x8000;
-    D_800BE704 = 1;
-    D_800BE708 = 1;
+    gCameraScrollFlags = 0x8000;
+    gCameraScrollThrottleX = 1;
+    gCameraScrollThrottleY = 1;
     D_800BE588 = 3;
     D_800CC428 = 0;
 }
@@ -283,9 +283,9 @@ void CameraTick_ClanceWar2(){
 }
 
 void CameraInit_BeesTheOne(void) {
-    D_800BE544 = 0x8000;
-    D_800BE704 = 1;
-    D_800BE708 = 1;
+    gCameraScrollFlags = 0x8000;
+    gCameraScrollThrottleX = 1;
+    gCameraScrollThrottleY = 1;
     D_800BE588 = 3;
 }
 
@@ -351,8 +351,8 @@ void CameraInit_World4B(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/Scenes/CameraTick_AstersTryke.s")
 
 void CameraInit_PhoenixGamma(void) {
-    D_800BE704 = 1;
-    D_800BE708 = 1;
+    gCameraScrollThrottleX = 1;
+    gCameraScrollThrottleY = 1;
     gLetterboxMode = 2;
     Camera_RotateReset();
 }
@@ -510,12 +510,12 @@ void InitScene(void){
   RomCopy_ActorFuncs3(gCurrentScene);
   RomCopy_ActorFuncs4(gCurrentScene);
   RomCopy_ActorFuncs5(gCurrentScene);
-  func_80026584(gCurrentScene);
+  RomCopy_Actors(gCurrentScene);
   func_800265FC(gCurrentScene);
   func_8002670C(gCurrentScene);
   func_80026784(gCurrentScene);
-  func_800267FC(gCurrentScene);
-  func_8005DE30();
+  RomCopy_Dialouge(gCurrentScene);
+  Textbox_Init();
   func_8002653C();
   if (((gCurrentScene == SCENE_ASTERSTRYKE) || (gCurrentScene == SCENE_TAURUS)) ||
      ((0x2d < gCurrentScene && (gCurrentScene < SCENE_3CLANCERKIDS)))) {

@@ -114,7 +114,7 @@ void func_80192920_6D2FA0(uint16_t x){
 
 void func_80192A98_6D3118(uint16_t x){
   Actor_ZeroFlagRange(0x31,0x8f);
-  D_800CA230 = 0;
+  gIsPlayerInactive = 0;
   D_800BE5F4._w = 4;
 }
 
@@ -426,7 +426,7 @@ l__80197430:
     if (thisActor.unk_0x114-- <= 0.0) {
       thisActor.actorState_b[0]++;
       thisActor.flag2 |= 0x200;
-      thisActor.unk_0x18C = 0x80199930;
+      thisActor.palletteP = 0x80199930;
       thisActor.unk_0x154 = 0;
       thisActor.unk_0x114 = 180.0;
     }

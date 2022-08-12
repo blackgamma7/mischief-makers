@@ -48,7 +48,7 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
     actor = &thisActor;
     actor->flag2 |= 0x200;
     actor->flag |= ACTOR_FLAG_UNK3;
-    actor->unk_0x18C._p = arg5;
+    actor->palletteP = arg5;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/text/Text_PrintASCII.s") 

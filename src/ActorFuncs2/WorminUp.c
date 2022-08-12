@@ -22,7 +22,7 @@ void func_8019BAC0_73DA50(uint16_t x,uint16_t y){}
 void func_8019BACC_73DA5C(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/WorminUp/func_8019BAD4_73DA64.s")
-
+//spawns the worm and its segments
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/WorminUp/func_8019BC64_73DBF4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/WorminUp/func_8019BE98_73DE28.s")

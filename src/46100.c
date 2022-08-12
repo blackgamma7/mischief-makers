@@ -41,7 +41,7 @@ int32_t func_80045F08(int32_t arg0) {
 }
 
 #ifdef NON_MATCHING
-uint16_t* func_80045F14(uint16_t* arg0) {
+uint16_t* InitCameraPosition(uint16_t* arg0) {
     gScreenPosTargetX._hi = arg0[0];
     gScreenPosTargetY._hi = arg0[1];
     gScreenPosCurrentX._hi = gScreenPosTargetX._w;
@@ -55,13 +55,13 @@ uint16_t* func_80045F14(uint16_t* arg0) {
     return arg0+6;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/46100/func_80045F14.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/46100/InitCameraPosition.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/46100/func_80045FA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/46100/InitPlayerPosition.s")
 
 void func_80046148(void) {
-    func_80045FA4();
+    InitPlayerPosition();
     gPlayerActorp->flag &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4._w = 4;
 }
@@ -69,13 +69,13 @@ void func_80046148(void) {
 void func_80046188(int32_t arg0, int32_t arg1) {
     D_800D28E8++;
     func_80028744();
-    func_80045FA4(arg0, 0);
+    InitPlayerPosition(arg0, 0);
     func_80028380();
-    D_800BE544 = 0x8000;
+    gCameraScrollFlags = 0x8000;
     D_800BE6E4 = 0;
     D_800BE6E8 = 0;
     D_800BE6EC = 0;
-    func_80043A68(arg1);
+    LoadOverlayActors(arg1);
     func_80046A9C();
     SFX_StopAll();
     BGM_Stop();
@@ -143,7 +143,7 @@ void func_8004664C(void){
 void func_80046A30(void) {
     uint16_t index;
 
-    func_800286C8();
+    Portraits_Reset();
 
     for (index = ACTOR_COUNT1; index < (ACTOR_COUNT1 + 7); index++) {
         if ((thisActor.flag & ACTOR_FLAG_UNK19)) {
@@ -162,7 +162,7 @@ int32_t Cutscene_Skip(void) {
     if (gButtonPress & gButton_ZTrig) {
         D_800D28F0 = D_800D28E4;
         D_800D28E4 = 0x63;
-        D_800D2938 = 0;
+        gExitAnimationProgress = 0;
         return 1;
     }
 
@@ -170,7 +170,7 @@ int32_t Cutscene_Skip(void) {
 }
 
 //scene tranistion out
-#pragma GLOBAL_ASM("asm/nonmatchings/46100/func_80046EBC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/46100/ExitAnimation.s")
 
 void func_800472D4(void) {
     D_800D28E8++;
@@ -247,8 +247,8 @@ void func_80047958(void) {
 void func_80047994() {
     D_800BE4EC = 1;
     if (transition_expandingSqares()) {
-        D_800D2938 = 0;
-        func_80020A54();
+        gExitAnimationProgress = 0;
+        PauseGame_ResetBars();
         func_80028744();
         func_8005DFC8(0);
         D_800D16C4 = 0;
@@ -277,8 +277,8 @@ void func_80047A54(void) {
     D_800D28E4++;
     D_800D2928 = 0;
     D_800D28FC = D_800D28FC & ~8 | 4;
-    D_800BE544 = 0x8000;
-    D_800D2938 = 0;
+    gCameraScrollFlags = 0x8000;
+    gExitAnimationProgress = 0;
     D_800D2908 = 0;
     D_800D2900 = 0;
 }
@@ -294,7 +294,7 @@ void func_80047A54(void) {
 
 void func_80047C98(void) {
     if ((D_800D28FC & 0x80) == 0) {
-        func_800451E4(&D_800D2978);
+        StaticGem_Tick(&D_800D2978);
     }
 }
 

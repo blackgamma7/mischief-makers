@@ -38,7 +38,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B1850_7AD770.s")
 void func_801B195C_7AD87C(uint16_t x){
-    gActors[111].unk_0x18C._p=&D_800D9AE4;
+    gActors[111].palletteP=&D_800D9AE4;
 }
 #ifdef NON_MATCHING
 void func_801B1974_7AD894(uint16_t i){
@@ -48,7 +48,7 @@ void func_801B1974_7AD894(uint16_t i){
     else if(x==1){index=0x6D;}
     else if(x==2){index=0x6A;}
     else if(x==3){index=0x6C;}
-    thisActor.unk_0x18C._p=&D_800D9AE4;
+    thisActor.palletteP=&D_800D9AE4;
 }
 #else
 extern void func_801B1974_7AD894(uint16_t i);

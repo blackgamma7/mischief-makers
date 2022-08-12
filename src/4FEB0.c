@@ -47,19 +47,19 @@ void func_8004F5B0(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FC68.s")
 //main shake function?
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8004FDF8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_ShakeShake.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800500B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_DefaultHolding.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005060C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_LandHolding.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005074C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_WalkHolding.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800508F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800509C0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_DashHolding.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80050F3C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_SlideDashHolding.s")
 
 #ifdef NON_MATCHING
 void func_80051324(u16 index) { //like, ~95% correct.
@@ -145,7 +145,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                 break;
             }
             if (thisActor.unk_0x140 == 0) thisActor.unk_0x170._w++;
-            func_8005C098(index, 1);
+            ActorMarina_SetField180h(index, 1);
             temp_v0_4 = gPlayerManager.unk_0x10;
             thisActor.flag &= ~0xC30000;
             thisActor.unk_0x17C._w = 0;
@@ -165,7 +165,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
             MODi(thisActor.vel.y_w, -0x60000, thisActor.unk_0x158._w);
             if (ABS(thisActor.vel.x_w)>ActorMarina_VelByScale(0x1C)) MODi(thisActor.vel.x_w, 0, 0x2000);
             MODi(thisActor.unk_0x158._w, ActorMarina_VelByScale(0x13), ActorMarina_VelByScale(0x13) / 16);
-            if ((func_8005D338(index) != 0x28) && (func_8005D338(index) != 0x29) && (func_8005D418(index) != 0)) {
+            if ((ActorMarina_Getfield172h(index) != 0x28) && (ActorMarina_Getfield172h(index) != 0x29) && (func_8005D418(index) != 0)) {
                 if (thisActor.unk_0x140 == 0) {
                     thisActor.unk_0x170._w = 0x29;
                 } else thisActor.unk_0x170._w = 0x28;
@@ -222,7 +222,7 @@ block_63:
                 thisActor.actorState_b[1] = 0x1A;
             }
 block_74:
-            if ((func_8005D338(index) != 0x28) && (func_8005D338(index) != 0x29) && (thisActor.unk_0x170._b[0] == 0)) {
+            if ((ActorMarina_Getfield172h(index) != 0x28) && (ActorMarina_Getfield172h(index) != 0x29) && (thisActor.unk_0x170._b[0] == 0)) {
                 if ((thisActor.unk_0x170._b[1] == 0) || (thisActor.unk_0x170._b[1] == 3) || (thisActor.unk_0x170._b[1] == 5)) {
                     D_801370D2 = 0;
                     func_8005C250(index);
@@ -238,7 +238,7 @@ block_74:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80052004.s")
 
-void func_80052780(uint16_t x,uint16_t y){}
+void ActorMarina_GrabNoop(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005278C.s")
 
@@ -278,7 +278,7 @@ void func_80052780(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80054FD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80055188.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_Grab.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800551F8.s")
 
@@ -287,7 +287,7 @@ void func_80052780(uint16_t x,uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005544C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800554AC.s")
-void func_8005552C(uint16_t x,uint16_t y){}
+void ActorMarina_GrabNoop2(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80055538.s")
 
@@ -305,7 +305,7 @@ void func_8005552C(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80056CCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80056F54.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/ActorMarina_Throw.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005701C.s")
 

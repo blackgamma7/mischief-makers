@@ -1,4 +1,4 @@
-#include "common.h"
+#include "festival.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0900_7A6E80.s")
 
@@ -27,7 +27,7 @@ void func_801B0DA0_7A7320(uint16_t x){
     D_800D28F0=50;
     D_800D28E4=98;
 }
-
+//spawn the events competitors
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B0DC8_7A7348.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B10A8_7A7628.s")
@@ -37,7 +37,7 @@ void func_801B0DA0_7A7320(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B12F0_7A7870.s")
 #ifdef NON_MATCHING
 void func_801B13F8_7A7978(uint16_t x){
-    ACTORINIT(105,0x1D);
+    ACTORINIT(105,ACTORTYPE_GRAPHICONLY);
     gActors[105].flag2 = 0x851;
     gActors[105].flag = 0xb;
     gActors[105].graphic = 0x2d0;    
@@ -84,7 +84,7 @@ void func_801B13F8_7A7978(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B2738_7A8CB8.s")
 
 void func_801B2854_7A8DD4(uint16_t x){
-    gActors[110].unk_0x18C._p=&D_800D9AE4;
+    gActors[110].palletteP=&D_800D9AE4;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival/func_801B286C_7A8DEC.s")

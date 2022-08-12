@@ -121,7 +121,7 @@ void func_80197B84_7190B4(uint16_t index){
     if(thisActor.actorState==0){
         thisActor.actorState++;
         thisActor.flag2=0x100;
-        thisActor.flag=3;
+        thisActor.flag=ACTOR_FLAG_ENABLED;
         thisActor.graphic=0x168;
         Actor_Shade(index,127);
         thisActor.rgba.a=0xA0;

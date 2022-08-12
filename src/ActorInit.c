@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_8001DBA0(uint16_t* arg0, uint16_t index) {
+void SceneActorSpawn(uint16_t* arg0, uint16_t index) {
     thisActor.actorType = arg0[5];
     Actor_Spawn(index);
     thisActor.pos.x = arg0[1] - gScreenPosCurrentX._hi;
@@ -9,9 +9,9 @@ void func_8001DBA0(uint16_t* arg0, uint16_t index) {
     thisActor.unk_0xD8 = arg0[4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/func_8001DC60.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/SceneActorSpawn_Init.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/func_8001DE30.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorInit/SceneActorSpawn_Tick.s")
 //above seem to deal with intermission actor lists.
 #ifdef NON_MATCHING
 // https://decomp.me/scratch/QZfDW
@@ -53,7 +53,7 @@ void Actor_Spawn(uint16_t index) {
         thisActor.health = 10;
         thisActor.attackDmg = 10;
         thisActor.flag = ACTOR_FLAG_ENABLED;
-        thisActor.graphicList = &D_800E1380;
+        thisActor.graphicList = &gGraphicListDefault;
     }
 
     thisActor.scaleX = 1.0;
@@ -94,7 +94,7 @@ void Actor_Spawn(uint16_t index) {
 
     // OK
     thisActor.unk_0x190 = NULL;
-    thisActor.unk_0x18C._p = NULL;
+    thisActor.palletteP = NULL;
     thisActor.unk_0x188._w = 0;
     thisActor.unk_0x184._w = 0;
     thisActor.unk_0x180._w = 0;

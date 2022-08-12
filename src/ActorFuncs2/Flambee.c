@@ -11,7 +11,7 @@ extern uint16_t D_801A20F4,D_801A20F6; //shake counts - Head and stinger
 
 
 void func_8019B100_742CB0(uint16_t x){
-    ACTORINIT(48,0X1D);
+    ACTORINIT(48,ACTORTYPE_GRAPHICONLY);
     gActors[48].flag2 = 0xa01;
     gActors[48].flag=0xB;
     gActors[48].graphic = 0x2d0;
@@ -19,7 +19,7 @@ void func_8019B100_742CB0(uint16_t x){
     gActors[48].pos.y = 0;
     gActors[48].pos.z = 0xfff0;
     gActors[48].unk_0x188._p = NULL;
-    gActors[48].unk_0x18C._p = &D_800D85A8;
+    gActors[48].palletteP = &gPalletteBlack;
     gActors[48].rgba.a = 0x80;
     gActors[48].scaleX = 19.0;
     gActors[48].scaleY = 13.0;
@@ -193,7 +193,7 @@ extern uint32_t func_8019D414_744FC4(uint16_t index, int16_t x);
 #ifdef NON_MATCHING
 //spawn drone bee on head shake
 void func_8019D4C0_745070(uint16_t index){
-    uint16_t droneIndex=Actor_GetInactiveInRange(0x70,0x80);
+    uint16_t droneIndex=Actor_GetInactive(0x70,0x80);
     if(droneIndex){
         ACTORINIT(droneIndex,ACTORTYPE_DRONEBEE);
         gActors[droneIndex].pos.x_w=gActors[index+5].pos.x_w;

@@ -159,7 +159,7 @@ uint32_t func_80068B80(uint32_t x){return 0;}
 
 /*
 uint32_t func_80068B8C(uint16_t i, uint16_t x){
-    if(D_800E3584 << 0xf <0){
+    if(gViptoActorFlags << 0xf <0){
        gActors[i].actorState=x;
        return 1;
     }
@@ -168,7 +168,7 @@ uint32_t func_80068B8C(uint16_t i, uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80068B8C.s")
 
 uint32_t func_80068BE8(uint16_t i, uint16_t x){
-    if(D_800E3584 & 0x30000){
+    if(gViptoActorFlags & 0x30000){
        gActors[i].actorState=x;
        return 1;
     }
@@ -177,7 +177,7 @@ uint32_t func_80068BE8(uint16_t i, uint16_t x){
 
 
 uint32_t func_80068C48(uint16_t i, uint16_t x){
-    if(D_800E3584 & 0xC0000){
+    if(gViptoActorFlags & 0xC0000){
        gActors[i].actorState=x;
        return 1;
     }
@@ -187,7 +187,7 @@ uint32_t func_80068C48(uint16_t i, uint16_t x){
 
 /*
 uint32_t func_80068CA8(uint16_t i, uint16_t x){
-    if((gActors[i].unk_0x150._w << 0xe < 0)&&(D_800E3584 << 0xf <0)){
+    if((gActors[i].unk_0x150._w << 0xe < 0)&&(gViptoActorFlags << 0xf <0)){
        gActors[i].actorState=x;
        return 1;
     }
@@ -197,7 +197,7 @@ uint32_t func_80068CA8(uint16_t i, uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_80068CA8.s")
 
 uint32_t func_80068D18(uint16_t i, uint16_t x){
-    if((gActors[i].unk_0x150._w << 0xe < 0)&&(D_800E3584 & 0x30000)){
+    if((gActors[i].unk_0x150._w << 0xe < 0)&&(gViptoActorFlags & 0x30000)){
        gActors[i].actorState=x;
        return 1;
     }
@@ -207,7 +207,7 @@ uint32_t func_80068D18(uint16_t i, uint16_t x){
 
 
 uint32_t func_80068D88(uint16_t i, uint16_t x){
-    if((gActors[i].unk_0x150._w << 0xe < 0)&&(D_800E3584 & 0xC0000)){
+    if((gActors[i].unk_0x150._w << 0xe < 0)&&(gViptoActorFlags & 0xC0000)){
        gActors[i].actorState=x;
        return 1;
     }
@@ -693,8 +693,8 @@ void ActorTick_2(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800740C8.s")
 
 uint16_t func_800742B8(uint16_t x){
-    if(x&1) return Actor_GetInactiveInRange(1,16);
-    else return Actor_GetInactiveInRange(0x70,0x7A);
+    if(x&1) return Actor_GetInactive(1,16);
+    else return Actor_GetInactive(0x70,0x7A);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/66250/func_800742FC.s")

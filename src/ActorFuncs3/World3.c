@@ -64,7 +64,7 @@ void func_801A8384_771854(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A951C_7729EC.s")
 
 void func_801A9604_772AD4(uint16_t x) {
-    func_8002A404(x, 0x8000);
+    Actor_ModVelX(x, 0x8000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A9630_772B00.s")
@@ -100,7 +100,7 @@ uint32_t func_801A97D8_772CA8(uint16_t x, uint16_t y){return 0;}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801AAC54_774124.s")
 
 uint16_t func_801AACFC_7741CC(void) {
-    return Actor_GetInactiveInRange(0x70, 0x88);
+    return Actor_GetInactive(0x70, 0x88);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801AAD20_7741F0.s")
 

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "festival.h"
 
 #ifdef NON_MATCHING
 void func_8019B100_753880(uint16_t index){
@@ -23,8 +23,8 @@ void func_8019B208_753988(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Festival/func_8019B468_753BE8.s")
 #ifdef NON_MATCHING
 void func_8019B60C_753D8C(uint16_t index){
-    DebugText_PrintShortHexWhite((uint16_t)(D_800E3584>>0x10),thisActor.pos.x,0);
-    if(D_800E3584&0xc0000) thisActor.flag^=0x20;
+    DebugText_PrintShortHexWhite((uint16_t)(gViptoActorFlags>>0x10),thisActor.pos.x,0);
+    if(gViptoActorFlags&0xc0000) thisActor.flag^=0x20;
     else thisActor.actorState=0x20;
 }
 #else
@@ -32,8 +32,8 @@ void func_8019B60C_753D8C(uint16_t index){
 #endif
 #ifdef NON_MATCHING
 void func_8019B6A8_753E28(uint16_t index){
-    DebugText_PrintShortHexWhite(D_800E3584>>0x10,thisActor.pos.x,0);
-    if(D_800E3584&0xc0000) thisActor.actorState=16;
+    DebugText_PrintShortHexWhite(gViptoActorFlags>>0x10,thisActor.pos.x,0);
+    if(gViptoActorFlags&0xc0000) thisActor.actorState=16;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Festival/func_8019B6A8_753E28.s")

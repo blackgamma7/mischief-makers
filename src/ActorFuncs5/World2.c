@@ -11,12 +11,11 @@ void func_801B99AC_7CE13C(int16_t x,int16_t y){
   D_800BE5F4._w = 10;
 }
 void func_801B9A0C_7CE19C(uint16_t x){
-  D_800D2938=0;
+  gExitAnimationProgress=0;
   D_800D28E8 = x;
   D_800D28F0 = D_800D28E4;
   D_800D28E4 = 0x61;
 }
-//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World2/func_801B9A0C_7CE19C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World2/func_801B9A40_7CE1D0.s")
 

@@ -3,7 +3,7 @@
 
 #ifdef NON_MATCHING
 //inital values for common game globals.
-D_800BE4D0=0;
+g3DHitboxCount1=0;
 D_800BE4D4=0;
 D_800BE4D8=0;
 D_800BE4DC=0;
@@ -36,9 +36,9 @@ D_800BE538=0;
 //It does WRITE the joysick input, but never reads it.
 gJoyX=0;
 gJoyY=0;
-D_800BE544=0;
-D_800BE548=0x1000000;
-D_800BE54C=0x1000000;
+gCameraScrollFlags=0;
+gCameraScrollMaxSpeedX=0x1000000;
+gCameraScrollMaxSpeedY=0x1000000;
 //probably the wrong descriptor for these vals, but good enough for now.
 gScreenPosTargetX._w=0;
 gScreenPosTargetY._w=0;
@@ -121,12 +121,12 @@ D_800BE6E0=0;
 D_800BE6E4=0;
 D_800BE6E8=0;
 D_800BE6EC=0;
-D_800BE6F0=255;
+gPortraitTint=255;
 D_800BE6F8=0;
 D_800BE6FC=0;
 gCurrentFramebufferIndex=0;
-D_800BE704=16; //used for camera x scroll somehow.
-D_800BE708=4; //above, but Y axis
+gCameraScrollThrottleX=16; //used for camera x scroll somehow.
+gCameraScrollThrottleY=4; //above, but Y axis
 D_800BE70C=0; //switch for ucode in Gfx_DrawActors
 D_800BE710=0; //bool for Static gem render func.
 D_800BE714=0; //flag for loading marina's graphics?

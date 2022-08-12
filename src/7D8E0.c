@@ -4,7 +4,7 @@
 //parses ints to base 10 equivalent
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CCE0.s")
 
-/*
+#ifdef NON_MATCHING
 void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,uint16_t j,uint32_t q){
     ACTORINIT(index,0x28);
     thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
@@ -14,9 +14,10 @@ void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,u
     thisActor.unk_0x154._w=arg1;
     thisActor.unk_0x15C=q;
     thisActor.unk_0x14C=j;
-}*/
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CD68.s")
-
+#endif
 void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
     ACTORINIT(index,0x28);
     thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
@@ -33,7 +34,7 @@ void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
 //0x8007CECC in JPN
 uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,int16_t z){
     #ifdef VER_JPN
-    uint16_t index= Actor_GetInactiveInRange(140,144);
+    uint16_t index= Actor_GetInactive(140,144);
     if(index){
         ACTORINIT(index,ACTORTYPE_TEXTBUBBLE);
         thisActor.flag2=0x901;
@@ -57,7 +58,7 @@ uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,in
     return 0;
     #endif
 }
-
+//US(?) Version of above. used by the Sprint coach in "the Day Before"
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D0F4.s")
 
 uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,void* r){
@@ -65,8 +66,8 @@ uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,voi
     if(index){
         thisActor.flag2|= 0x200;
         thisActor.flag2&= ~0x0100;
-        if(r) thisActor.unk_0x18C._p=r;
-        else thisActor.unk_0x18C._p=&D_800D9AE4;
+        if(r) thisActor.palletteP=r;
+        else thisActor.palletteP=&D_800D9AE4;
     }
     return index;
 }
@@ -74,13 +75,13 @@ uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,voi
 #ifdef NON_MATCHING
 uint16_t func_8007D290(uint16_t i){
     Actor* actorp;
-    uint16_t index = Actor_GetInactiveInRange_144_192();
+    uint16_t index = Actor_GetInactive_144_192();
     if(index){
         ACTORINIT(index,0x34);
         actorp=&gActors[i];
         if(actorp->unk_0x18C) thisActor.flag2=0xA00;
         else thisActor.flag2=0x800;
-        thisActor.flag=3;
+        thisActor.flag=ACTOR_FLAG_ENABLED;
         thisActor.pos.z_w=actorp->pos.z_w+1;
         thisActor.unk_0x18C=actorp->unk_0x18C;
         if(index<i) thisActor.unk_0x148=0.0;
@@ -118,11 +119,11 @@ void func_8007D520(uint16_t index){
 //regalloc?
 #ifdef NON_MATCHING
 uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,float scaley){
-    uint16_t index = Actor_GetInactiveInRange_144_192();
+    uint16_t index = Actor_GetInactive_144_192();
     if(index){
         ACTORINIT(index,0x34);
         thisActor.flag2=i&0xDFFF;
-        thisActor.flag=3;
+        thisActor.flag=ACTOR_FLAG_ENABLED;
         thisActor.graphic=0x2D0;
         thisActor.rgba.a=0xC0;
         thisActor.pos.x_w=x;

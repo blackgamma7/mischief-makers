@@ -135,7 +135,7 @@ void func_80193600_67F120(uint16_t index){
     func_8002ACFC(index,-14,20);
     thisActor.hitboxAY0=18;
     thisActor.hitboxAY1=-8;
-    func_8002AC7C(index,-12,10);
+    Actor_HitboxAXSet(index,-12,10);
 }
 
 void func_80193694_67F1B4(uint16_t index){
@@ -144,11 +144,11 @@ void func_80193694_67F1B4(uint16_t index){
     func_8002ACFC(index,-4,26);
     thisActor.hitboxAY0=12;
     thisActor.hitboxAY1=-12;
-    func_8002AC7C(index,-16,6);
+    Actor_HitboxAXSet(index,-16,6);
 }
 
 void func_80193728_67F248(uint16_t index){
-    ACTORINIT(index,0X1D);
+    ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
     thisActor.flag2|=1;
 }
 
@@ -203,8 +203,8 @@ void func_80193F70_67FA90(uint16_t x,uint16_t c){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194B10_680630.s")
 
 void func_80194B68_680688(){
-    D_801376BC[0]=1;
-    D_801376BC[2]=1;
+    gEnvColorsOpaque[0]=1;
+    gEnvColorsOpaque[2]=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80194B80_6806A0.s")
@@ -1846,7 +1846,7 @@ void func_80197F98_683AB8(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198708_684228.s")
 
 uint16_t func_8019882C_68434C(void) {
-    return Actor_GetInactiveInRange(0x67, 0x68);
+    return Actor_GetInactive(0x67, 0x68);
 }
 //migen Sr. energy ball spawn
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198850_684370.s")
@@ -1884,7 +1884,7 @@ void func_80199DA8_6858C8(uint16_t index){
     thisActor.flag = ACTOR_FLAG_ENABLED;
     thisActor.graphicTime = 1;
     thisActor.graphicList = &D_800E164C;
-    thisActor.unk_0x18C._p = &gSpriteData_GreenGem;
+    thisActor.palletteP = &gSpriteData_GreenGem;
     thisActor.scaleX = 4.0;
     Actor_Shade(index,0x7f);
     SFX_ActorPanX(SFX_GEM_APPEAR,index);

@@ -269,7 +269,7 @@ void func_80088A54(uint16_t index){
 
 void func_800891EC(u16 index) {
     Actor* actorp;
-    uint16_t other = func_8003123C(&D_800E1380, thisActor.pos.x, thisActor.pos.y + 0xC, thisActor.pos.z + 1);
+    uint16_t other = func_8003123C(&gGraphicListDefault, thisActor.pos.x, thisActor.pos.y + 0xC, thisActor.pos.z + 1);
     if (other) {
         actorp = &gActors[other];
         actorp->graphic = 0x16E;

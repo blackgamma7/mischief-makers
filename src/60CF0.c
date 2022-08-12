@@ -1,12 +1,12 @@
 #include "common.h"
 #ifdef NON_MATCHING
 uint16_t func_800600F0(uint16_t i){
-    uint16_t index=Actor_GetInactiveInRange(1,0x10);
+    uint16_t index=Actor_GetInactive(1,0x10);
     if(index){
         ACTORINIT(index,0x3C);
         thisActor.flag2|=0x309;
         thisActor.graphic=0x168;
-        thisActor.unk_0x18C._p=D_8022D568;
+        thisActor.palletteP=D_8022D568;
         thisActor.pos.x_w=gActors[i].pos.x_w;
         thisActor.pos.y_w=gActors[i].pos.y_w;
         thisActor.unk_0xCE=7;

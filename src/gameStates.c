@@ -48,18 +48,18 @@ ActorFunc gActorFuncTable[]={
   /*0x2B*/  func_8008C4C8, //NOOP
   /*0x2C*/  func_80033B54,
   /*0x2D*/  func_800348E4,
-  /*0x2E*/  func_8005C3C8,
+  /*0x2E*/  ActorTick_MarinaAfterImage,
   /*0x2F*/  func_80060DB8,
   /*0x30*/  func_80061E98,
   /*0x31*/  func_80062174,
-  /*0x32*/  func_800418A8,
+  /*0x32*/  ActorTick_WarpStar,
   /*0x33*/  func_8006098C,
   /*0x34*/  func_80031DDC,
   /*0x35*/  ActorTick_JPNSpeechBox,
   /*0x36*/  func_800320F8,
   /*0x37*/  func_80032900,
   /*0x38*/  func_8003F360,
-  /*0x39*/  func_8005E8F8,
+  /*0x39*/  ActorTick_TextboxBG,
   /*0x3A*/  func_8005EE24,
   /*0x3B*/  func_80040564,
   /*0x3C*/  func_800601FC,
@@ -95,7 +95,7 @@ ActorFunc gActorFuncTable[]={
   /*0x5A*/  func_8008C304,
   /*0x5B*/  func_800737C4,
   /*0x5C*/  func_8008BC5C,
-  /*0x5D*/  func_8005E56C,
+  /*0x5D*/  ActorTick_Speaker,
   /*0x5E*/  func_8002D488,
   /*0x5F*/  func_80077C18, //clanblob?
   /*0x60*/  func_800740C8,
@@ -109,7 +109,7 @@ ActorFunc gActorFuncTable[]={
   /*0x68*/  func_8003667C,
   /*0x69*/  func_8007B60C,
   /*0x6A*/  func_80076BF4,
-  /*0x6B*/  func_8003DBD0, //"go to the next area"
+  /*0x6B*/  ActorTick_AreaClear, //"go to the next area"
   /*0x6C*/  func_80094FE4,
   /*0x6D*/  ActorTick_CalinaChange,
   /*0x6E*/  ActorTick_CalinaDialouge,
@@ -118,7 +118,7 @@ ActorFunc gActorFuncTable[]={
   /*0x71*/  ActorTick_Crosshair,
   /*0x72*/  func_8008E1A0,
   /*0x73*/  func_8003E230,
-  /*0x74*/  func_80064B60, //Stage clear
+  /*0x74*/  ActorTick_StageClear, //Stage clear
   /*0x75*/  ActorTick_LevelClear,
   /*0x76*/  func_80064CB4,
   /*0x77*/  func_80065178,
@@ -662,7 +662,7 @@ void Title_Copyright(void) {
 
 // cp1 stuff is producing a flipped pair of instructions
 #ifdef NON_MATCHING
-void func_80017FE8(uint16_t index) {
+void ActorSpawn_TitleWhiteFade(uint16_t index) {
     Actor* actor;
 
     thisActor.actorType = 0;
@@ -682,12 +682,12 @@ void func_80017FE8(uint16_t index) {
     actor->scaleY = 12.0f;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_80017FE8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/ActorSpawn_TitleWhiteFade.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_8001809C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/Title_MoveSubtitle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_800180FC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/gameStates/Title_SubtitleCopyright.s")
 
 #ifdef NON_MATCHING
 void TitleScreen_Tick(void) {
@@ -703,8 +703,8 @@ void TitleScreen_Tick(void) {
         // OK
         case 16: {
             gSPDisplayList(gDListHead++, &D_800C8EF0);
-            func_800230B8();
-            func_80017FE8(0x33);
+            ClearActorsAndGems();
+            ActorSpawn_TitleWhiteFade(0x33);
             gCurrentScene = SCENE_TITLE;
             gGameSubState += 1;
         }
@@ -828,7 +828,7 @@ void TitleScreen_Tick(void) {
         }
         case 26: {
             gActors[51].unk_0x154._w--;
-            func_8001809C();
+            Title_MoveSubtitle();
 
             if (gActors[51].unk_0x154._w == 0x10000) {
                 SFX_Play_1(SFX_MARINA_TITLE);
@@ -871,7 +871,7 @@ void TitleScreen_Tick(void) {
         }
         // OK (besides regalloc)
         case 27: {
-            func_8001809C();
+            Title_MoveSubtitle();
             Title_Copyright();
 
             if (gActors[51].rgba.a == 0xFF) {
@@ -886,7 +886,7 @@ void TitleScreen_Tick(void) {
         }
         // OK (besides regalloc)
         case 32: {
-            func_800180FC();
+            Title_SubtitleCopyright();
             if (D_80137D90 == 3) {
                 D_80137D90 = 0;
                 D_80178164 = 0x20U;
@@ -896,7 +896,7 @@ void TitleScreen_Tick(void) {
         }
         // OK (besides regalloc)
         case 33: {
-            func_800180FC();
+            Title_SubtitleCopyright();
             if (D_80178164-- == 0) {
                 gGameState = 0xB;
                 gGameSubState = 0;
@@ -905,7 +905,7 @@ void TitleScreen_Tick(void) {
         }
         // OK (besides regalloc)
         case 48: {
-            func_800180FC();
+            Title_SubtitleCopyright();
             if (D_80137D90 == 3) {
                 D_80137D90 = 0;
                 D_80178164 = 0x20U;
@@ -915,9 +915,9 @@ void TitleScreen_Tick(void) {
         }
         // OK (besides regalloc)
         case 49: {
-            func_800180FC();
+            Title_SubtitleCopyright();
             if (D_80178164-- == 0) {
-                func_800230B8();
+                ClearActorsAndGems();
                 gActors[16].flag = ACTOR_FLAG_ENABLED;
                 gActors[17].flag = ACTOR_FLAG_ENABLED;
                 gGameState = GAMESTATE_DEBUG_SOUNDTEST;
@@ -1297,7 +1297,7 @@ void GameSave_Update(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/GameSave_Update.s")
 #endif
 
-void func_8001B3D0(void) {
+void GameSave_UpdateNoTimes(void) {
     uint16_t uVar1;
     uint32_t uVar2;
 
@@ -1356,7 +1356,7 @@ void func_8001C834(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_8001CFDC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_8001D040.s")
-
+//returns the graphic index of the rank letter.
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/Calculate_TimeRecordTotal.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/PrintRecordEntry.s")

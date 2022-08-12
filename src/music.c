@@ -48,7 +48,7 @@ uint8_t i;
     D_8016E6C8[i] = D_8016E2E8[i];
     gSFX_ChannelStates[i] = 0;
   }
-  alHeapInit(&gALHeap,gALHeapBase,0x35c00);
+  alHeapInit(&gALHeap,gALHeapBase,ALHEAPSIZE);
   Sound_Acmdps[0] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x3800);
   Sound_Acmdps[1] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x3800);
   Sound_osTaskps[0] =alHeapDBAlloc(NULL,0,&gALHeap,1,0x40);
@@ -56,22 +56,22 @@ uint8_t i;
   gAIBuffers[0] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
   gAIBuffers[1] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
   gAIBuffers[2] = alHeapDBAlloc(NULL,0,&gALHeap,1,0xa00);
-  D_8016E714 = 0x11790;
+  gSoundDMAlength = 0x11790;
   Sound_AlBankFilep = alHeapDBAlloc(NULL,0,&gALHeap,1,0x11790);
-  Sound_DMA(0x4b9990,Sound_AlBankFilep,D_8016E714);
-  D_8016E714 = 4;
-  PTR_8016e6f4 = alHeapDBAlloc(NULL,0,&gALHeap,1,4);
-  Sound_DMA(0x6413b0,PTR_8016e6f4,D_8016E714);
-  D_8016E714 = PTR_8016e6f4->seqCount * 8 + 4;
-  PTR_8016e6f4 = alHeapDBAlloc(NULL,0,&gALHeap,1,D_8016E714);
-  Sound_DMA(0x6413b0,PTR_8016e6f4,D_8016E714);
-  alSeqFileNew(PTR_8016e6f4,(u8 *)0x6413b0);
+  Sound_DMA(0x4b9990,Sound_AlBankFilep,gSoundDMAlength);
+  gSoundDMAlength = 4;
+  gALSeqFile = alHeapDBAlloc(NULL,0,&gALHeap,1,4);
+  Sound_DMA(0x6413b0,gALSeqFile,gSoundDMAlength);
+  gSoundDMAlength = gALSeqFile->seqCount * 8 + 4;
+  gALSeqFile = alHeapDBAlloc(NULL,0,&gALHeap,1,gSoundDMAlength);
+  Sound_DMA(0x6413b0,gALSeqFile,gSoundDMAlength);
+  alSeqFileNew(gALSeqFile,(u8 *)0x6413b0);
   ALGlobals_ALsynConfig.outputrate = osAiSetFrequency(0x5622);
-  D_8016E70C = ((float)ALGlobals_ALsynConfig.outputrate * 1.0) / 60.0;
-  D_8016E71C = D_8016E70C;
-  if (D_8016E71C < D_8016E70C) D_8016E71C++;
-  if (D_8016E71C & 0xf) D_8016E71C = (D_8016E71C & 0xfffffff0U) + 0x10;
-  INT_8016e720 = D_8016E71C + -0x10;
+  gSound_OutputRateF = ((float)ALGlobals_ALsynConfig.outputrate * 1.0) / 60.0;
+  gSound_OutputRateI = gSound_OutputRateF;
+  if (gSound_OutputRateI < gSound_OutputRateF) gSound_OutputRateI++;
+  if (gSound_OutputRateI & 0xf) gSound_OutputRateI = (gSound_OutputRateI & 0xfffffff0U) + 0x10;
+  INT_8016e720 = gSound_OutputRateI + -0x10;
   ALGlobals_ALsynConfig.maxVVoices = 0x14;
   ALGlobals_ALsynConfig.maxPVoices = 0x14;
   ALGlobals_ALsynConfig.maxUpdates = 0x90;
@@ -121,8 +121,8 @@ void Sound_NextBuffer(void) {
     uint8_t index;
 
     osRecvMesg(&D_801377D0, 0, 1);
-    D_8016E718 = (D_800C3838 - 1) % 3;
-    osAiSetNextBuffer(gAIBuffers[D_8016E718], D_800C383C[D_8016E718] << 2);
+    gSound_currentBuffer = (D_800C3838 - 1) % 3;
+    osAiSetNextBuffer(gAIBuffers[gSound_currentBuffer], D_800C383C[gSound_currentBuffer] << 2);
     for (index = 0; index < D_800C3830; index++) {
         if (D_800C3830 > 0) {
             for (index = 0; index < D_800C3830; index++) {
@@ -308,7 +308,7 @@ int32_t SFX_ActorPanX2(uint32_t SFX_ID, uint16_t i) {
     }
 }
 //used for gem collision func.
-int32_t func_80003828(uint32_t SFX_ID, uint16_t i){
+int32_t SFX_GemX(uint32_t SFX_ID, uint16_t i){
     int8_t val_a;
     int16_t val_b;
 
@@ -342,7 +342,7 @@ int32_t func_800038C8(uint32_t SFX_ID, uint16_t index, uint16_t arg2) {
     }
 }
 
-void func_80003980(uint32_t arg0, uint16_t arg1) {
+void SFX_ActorPanCont(uint32_t arg0, uint16_t arg1) {
     SFX_Play_0(arg0, -1, -1, 0xC1, arg1, 0);
 }
 

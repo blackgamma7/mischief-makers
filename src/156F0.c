@@ -80,17 +80,17 @@ void func_800153A8(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80015B28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_800160EC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/156F0/Actor_PhysicsTick.s")
 
 #ifdef NON_MATCHING
 // functionally matched, major regalloc differences, and pointer dereference for actor creates extra instructions
-void func_80016CB4(void) {
+void Actors_PhysicsTick(void) {
     uint16_t index;
 
     if ((gPlayerManager.unk_0x78 & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
             if ((thisActor.flag & ACTOR_FLAG_ACTIVE)) {
-                func_800160EC(index);
+                Actor_PhysicsTick(index);
                 thisActor.flag3 &= ~0x80000;
             }
         }
@@ -99,7 +99,7 @@ void func_80016CB4(void) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/156F0/func_80016CB4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/156F0/Actors_PhysicsTick.s")
 #endif
 
 void func_80016D94(){

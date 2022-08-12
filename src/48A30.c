@@ -4,8 +4,8 @@ void func_80047E30(uint16_t x){}
 #ifdef NON_MATCHING
 void func_80047E38(uint16_t x){
     uint16_t mask;
-    D_801370CC= gPlayerManager.unk_0x20._lo;
-    D_801370CC= gPlayerManager.unk_0x24._lo;
+    gMarinaButtonHold= gPlayerManager.unk_0x20._lo;
+    gMarinaButtonHold= gPlayerManager.unk_0x24._lo;
     mask=gButton_DLeft + gButton_DRight + gButton_DUp + gButton_DDown + gButton_B + gButton_A;
     gInputHistoryHold[0]= gPlayerManager.unk_0x20._lo & mask;
     gInputHistoryPress[0]= gPlayerManager.unk_0x24._lo & mask;

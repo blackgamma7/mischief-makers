@@ -4,9 +4,9 @@
 uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
     uint16_t ret;
 
-    if ((D_801370CC & gButton_DLeft) == 0) {
+    if ((gMarinaButtonHold & gButton_DLeft) == 0) {
         ret = 0;
-        if ((D_801370CC & gButton_DRight) && (ret = 2, thisActor.flag & 0x20)) {
+        if ((gMarinaButtonHold & gButton_DRight) && (ret = 2, thisActor.flag & 0x20)) {
             ret = 0x82;
         }
     }
@@ -17,11 +17,11 @@ uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
         }
     }
 
-    if (D_801370CC & gButton_DDown) {
+    if (gMarinaButtonHold & gButton_DDown) {
         ret |= 0x10;
     }
 
-    if (D_801370CC & gButton_DUp) {
+    if (gMarinaButtonHold & gButton_DUp) {
         ret |= 0x20;
     }
 
@@ -66,7 +66,7 @@ int32_t func_80048CE4() {
     return 3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_80048D30.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_SetReachHitbox.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_80048EDC.s")
 
@@ -172,7 +172,7 @@ int32_t func_80049A04(uint16_t index) {
     short new_var;
     uint32_t temp_a0;
 
-    temp_a0 = D_800D4184[func_8005D338(index)];
+    temp_a0 = D_800D4184[ActorMarina_Getfield172h(index)];
     if (temp_a0 == 0) {
         return 0;
     }
@@ -187,14 +187,14 @@ void func_8004A8E0(uint16_t index) {
     thisActor.unk_0x12C._bu[2] = 0xFF;
 }
 
-void func_8004A918(uint16_t index) {
+void ActorMarina_State01h(uint16_t index) {
     Actor* actor = &thisActor;
 
     actor->unk_0x12C._bu[2] |= 0x41;
     actor->flag = actor->unk_0x150._w;
 }
 //gPlayerActor.actorState 0
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004A960.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_Init.s")
 
 void func_8004AA64(uint16_t index) {
     thisActor.unk_0x12C._bu[2] |= 0x41;
@@ -219,7 +219,7 @@ void func_8004AA64(uint16_t index) {
     thisActor.actorState = 3;
 }
 //deals with marina's idle state
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004AB3C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_Default.s")
 
 void func_8004B0A0(uint16_t index) {
     Actor* actor = &thisActor;
@@ -244,7 +244,7 @@ void func_8004B0A0(uint16_t index) {
     }
 }
 
-void func_8004B18C(uint16_t index) {
+void ActorMarina_Walk(uint16_t index) {
     int32_t phi_a1;
     Actor* actor;
 
@@ -257,7 +257,7 @@ void func_8004B18C(uint16_t index) {
     }
 
     MODi(actor->vel.x_w, phi_a1, ABS(phi_a1) / 8);
-    func_8005D370(index, 0x1D);
+    func_8005D370(index, ACTORTYPE_GRAPHICONLY);
 
     if (actor->unk_0x170._b[0] == 0 && (actor->unk_0x170._b[1] == 2 || actor->unk_0x170._b[1] == 8)) {
         SFX_Play_1(0x53U);
@@ -284,7 +284,7 @@ void func_8004B290(uint16_t index) {
     }
 }
 #ifdef NON_MATCHING
-void func_8004B344(uint16_t index) { //regalloc, stack. 99.48% matching
+void ActorMarina_Dash(uint16_t index) { //regalloc, stack. 99.48% matching
     s32 sp38[6];
     s32 temp_v1;
     s16 phi_a0;
@@ -334,7 +334,7 @@ void func_8004B344(uint16_t index) { //regalloc, stack. 99.48% matching
             }
             thisActor.unk_0x170._w = 0x4A;
         }
-        func_8005C098(index, 1);
+        ActorMarina_SetField180h(index, 1);
         thisActor.unk_0x17C = 0;
         thisActor.unk_0x17C._b[1] = 2;
         thisActor.unk_0x182 = (s8) D_801373F0;
@@ -392,24 +392,24 @@ block_40:
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004B344.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_Dash.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004B878.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_SpinJump.s")
 //marina's Down-A dash
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004BB08.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_SlideDash.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004BEF8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_Roll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004C5FC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_AirDash.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004CE1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004D140.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_DashJump.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004D6CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004D7BC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_Reach.s")
 //gPlayerActor.actorState 32
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004DA6C.s")
 //gPlayerActor.actorState 33
@@ -419,11 +419,11 @@ void func_8004E1D4(int32_t arg0) {}
 //gPlayerActor.actorState 45
 void func_8004E1DC(int32_t arg0) {}
 //gPlayerActor.actorState 55
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004E1E4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_TPAppear.s")
 //gPlayerActor.actorState 56
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004E4E0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_TPVanish.s")
 //animation test? set gplayeractor.actorState_b[1] to 0x3A
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004E6FC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_DebugGraphicLists.s")
 //gPlayerActor.actorState 59
 #ifdef NON_MATCHING
 // Needs reordering
@@ -471,7 +471,7 @@ void func_8004EAE4(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004EAE4.s")
 #endif
 //gPlayerActor.actorState 3Ch -  Debug move
-void func_8004EC60(uint16_t index) {
+void ActorMarina_DebugMove(uint16_t index) {
     Actor* actor;
     uint32_t temp_v1;
 
@@ -509,7 +509,7 @@ void ActorTick_Marina(uint16_t index) {
 
     if ((gPlayerManager.unk_0x78 & 8) == 0) {
         if (thisActor.actorState == 0) {
-            func_8004A960(index);
+            ActorMarina_Init(index);
         }
 
         D_800BE5E4 = 0;
@@ -525,12 +525,12 @@ void ActorTick_Marina(uint16_t index) {
             thisActor.unk_0x12C._bu[3]++;
         }
 
-        D_801370CC = gButtonHold;
+        gMarinaButtonHold = gButtonHold;
         D_801370CE = gButtonPress;
 
         if (D_800BE5F4._w != 0) {
             if (D_800BE5F4._w&0xFF == 2) {
-                func_800485AC(index, &D_801370CE, &D_801370CC);
+                func_800485AC(index, &D_801370CE, &gMarinaButtonHold);
             }
             else {
                 phi_v0 = gInputHistoryHold;
@@ -550,14 +550,14 @@ void ActorTick_Marina(uint16_t index) {
                 } while (((uint32_t)&phi_v1[3]) != (uint32_t)&gInputHistoryPress[64]);
 
                 D_801370CE = 0;
-                D_801370CC = 0;
+                gMarinaButtonHold = 0;
 
                 thisActor.unk_0x12C._bu[3] = 0;
 
                 gPlayerManager.unk_0x12 = 0x64;
                 gPlayerManager.unk_0x13 = 0;
 
-                func_800485AC(index, &D_801370CE, &D_801370CC);
+                func_800485AC(index, &D_801370CE, &gMarinaButtonHold);
             }
         }
 
@@ -620,7 +620,7 @@ void ActorTick_Marina(uint16_t index) {
         if (thisActor.flag & ACTOR_FLAG_ATTACHED) {
             gPlayerManager.unk_0x70 = thisActor.actorLink;
 
-            if (func_8005D338(index) < 0x66) {
+            if (ActorMarina_Getfield172h(index) < 0x66) {
                 gActors[thisActor.actorLink].unk_0x108 += func_80049A04(index); // return size
             }
 

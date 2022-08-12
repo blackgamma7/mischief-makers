@@ -5,7 +5,7 @@
 void func_80025E00(void){
     D_801376DC=&D_80200400;
     RomCopy_A(0x1E6900,&D_80267CD0,0X2E240);
-    D_801376E0=&D_80200400+func_80004910(&D_80267CD0,&D_80200400);
+    D_801376E0=&D_80200400+DecompressA(&D_80267CD0,&D_80200400);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E00.s")
@@ -49,7 +49,7 @@ int32_t func_8002653C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_8002653C.s")
 #endif
 //seems to load data for intermission scenes.
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026584.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_Actors.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_800265FC.s")
 
@@ -59,7 +59,7 @@ int32_t func_8002653C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026784.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_800267FC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_Dialouge.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80026874.s")
 

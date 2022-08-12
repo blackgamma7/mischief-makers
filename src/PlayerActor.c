@@ -22,7 +22,7 @@ void ActorSpawn_Player(void) {
         gInputHistoryHold[index] = 0;
     }
 
-    func_8004A960(0);
+    ActorMarina_Init(0);
 }
 
 void ActorSpawn_Marina(void) {
@@ -70,16 +70,16 @@ void ActorMarina_ScreenYLock(void) {
 void ActorMarina_ScreenXScroll(void){ //~90% matching
   s32 cap; //s2_w
   
-  if (D_800BE544 == 0) func_80046498();
-  else if (D_800BE544 != 0x8000) {
-    gScreenPosTargetX._w = (gActors[D_800BE544].pos.x_w+gScreenPosCurrentX._w+ gPlayerPosXMirror._w)/2;
+  if (gCameraScrollFlags == 0) func_80046498();
+  else if (gCameraScrollFlags != 0x8000) {
+    gScreenPosTargetX._w = (gActors[gCameraScrollFlags].pos.x_w+gScreenPosCurrentX._w+ gPlayerPosXMirror._w)/2;
     if (gScreenPosTargetX._w > gPlayerPosXMirror._w + 0x300000) gScreenPosTargetX._w = gPlayerPosXMirror._w + 0x300000;
     if (gScreenPosTargetX._w < gPlayerPosXMirror._w - 0x300000) gScreenPosTargetX._w = gPlayerPosXMirror._w - 0x300000;
   }
   D_800BE61C = 0;
-  cap = ABS((gScreenPosTargetX._w - gScreenPosCurrentX._w) / D_800BE704);
+  cap = ABS((gScreenPosTargetX._w - gScreenPosCurrentX._w) / gCameraScrollThrottleX);
   if (cap < 0x10000) cap = 0x10000;
-  if (D_800BE548 < cap) cap = D_800BE548;
+  if (gCameraScrollMaxSpeedX < cap) cap = gCameraScrollMaxSpeedX;
   gScreenPosCurrentX._hi = ModInRange_i(gScreenPosCurrentX._hi,gScreenPosTargetX._hi,cap);//half of cap should be loaded here.
   if (gScreenPosCurrentX._hi < D_800BE568._hi + 0x90) gScreenPosCurrentX._hi = D_800BE568._hi + 0x90;
   if (gScreenPosCurrentX._hi < D_800BE56C._hi - 0x90) gScreenPosCurrentX._hi = D_800BE56C._hi - 0x90;

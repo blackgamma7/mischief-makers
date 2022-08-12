@@ -25,7 +25,7 @@ extern float gEyeY;
 extern float gEyeZ;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
-extern uint16_t D_800BE4D0;
+extern uint16_t g3DHitboxCount1;
 extern uint16_t D_800BE4D4;
 extern uint16_t D_800BE4D8;
 extern uint16_t gButtonHold;
@@ -113,13 +113,13 @@ extern uint8_t gSpriteData_BlueGem[];
 extern uint32_t gPlayTime;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
-extern uint16_t D_800BE4D0;
+extern uint16_t g3DHitboxCount1;
 extern uint16_t D_800BE4D4;
 extern uint16_t gSceneFrames; //pair of frame counters. get modulo'd a lot for animations
 extern uint16_t gSceneFramesReal; //like gStageTime and gStageTimeReal, the latter doesn't pause
 extern int16_t D_800BE4EC;
 extern uint16_t D_800BE538;
-extern uint16_t D_800BE544;
+extern uint16_t gCameraScrollFlags;
 extern s2_w gScreenPosTargetX; // these few seem to be screen position related
 extern s2_w gScreenPosTargetY;
 extern s2_w gScreenPosCurrentX;
@@ -133,7 +133,7 @@ extern int16_t D_800BE57C;
 extern int16_t D_800BE580;
 extern int16_t D_800BE584;
 extern int16_t D_800BE588;
-extern int16_t D_800BE58C;
+extern int16_t D_800BE58C; //flag for BG layer rendering? set for "merco" and "trapped"
 extern uint16_t D_800BE590;
 extern uint16_t D_800BE594;
 extern int32_t D_800BE59C;
@@ -158,7 +158,7 @@ extern int16_t gHPDisplayed;
 extern int16_t D_800BE668;
 extern uint16_t D_800BE66C;
 extern uint16_t D_800BE670;
-extern uint16_t D_800BE674;
+extern uint16_t D_800BE674; //only set during "snowstorm Maze" and "Lunar". determines rendering order.
 extern uint16_t D_800BE678;
 extern uint16_t D_800BE6A4;
 extern int16_t D_800BE6A8;
@@ -191,8 +191,8 @@ extern uint8_t D_800BE6EC;
 extern uint8_t gPortraitTint;
 extern uint16_t D_800BE6F8;
 extern int16_t D_800BE6FC;
-extern uint16_t D_800BE704;
-extern uint16_t D_800BE708;
+extern uint16_t gCameraScrollThrottleX;
+extern uint16_t gCameraScrollThrottleY;
 extern uint8_t D_800BE70C;
 extern int8_t D_800BE710;
 extern uint16_t D_800BE714;
@@ -262,7 +262,7 @@ extern int16_t D_800C9694[5];
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
 extern uint32_t D_800C9FCC[];
-extern uint16_t D_800CA230;
+extern uint16_t gIsPlayerInactive;
 extern uint16_t gAttractModeTimer;
 extern uint16_t gAttractModeInputHoldIndex;
 extern uint16_t gAttractModeInputHold;
@@ -327,7 +327,7 @@ extern uint16_t D_800D2920;
 extern uint16_t D_800D2924;
 extern int32_t D_800D2928;
 extern int32_t D_800D292C;
-extern int32_t D_800D2938;
+extern int32_t gExitAnimationProgress;
 extern uint16_t D_800D294C;
 extern uint16_t gPlayerActorIndex;
 extern uint16_t TeranFlag;
@@ -347,8 +347,8 @@ extern uint16_t* D_800D8088[8]; //japan-only text for actor 0x56
 extern uint16_t D_800D80A8[8]; //SFX Arrays for same actor
 extern uint16_t D_800D81AC[];
 extern int16_t D_800D84E8[];
-extern UNK_TYPE D_800D8588;
-extern UNK_TYPE D_800D85A8;
+extern uint16_t gPalletteWhite[16]; //RGBA5551 pallette for white screens.
+extern UNK_TYPE gPalletteBlack;
 extern uint16_t D_800D37A4;
 extern void(*D_800D37BC[51])(void); //static gem funcs
 extern UNK_TYPE D_800D4000;
@@ -363,7 +363,7 @@ extern uint32_t D_800D4184[82]; // pointer array?
 extern uint16_t D_800D46A8[18];
 extern int32_t D_800D5794[32]; //table for Marina's movement speeds.
 extern int32_t D_800D57E0;
-extern uint16_t D_800D5820;
+extern uint16_t gSpeaker_ActorLink;
 extern uint16_t D_800D5824;
 extern UNK_TYPE D_800D8668;
 extern UNK_TYPE D_800D8750;
@@ -381,6 +381,8 @@ extern UNK_TYPE D_800D8D68;
 extern UNK_TYPE D_800D8DE0;
 extern UNK_TYPE D_800D9B7C;
 extern UNK_TYPE D_800D9AE4;
+extern UNK_TYPE D_800D9284;
+extern UNK_TYPE D_800D9474;
 extern int16_t D_800D9BC4;
 extern UNK_TYPE D_800D9C7C;
 extern int16_t D_800D9CC4;
@@ -486,7 +488,7 @@ extern int16_t D_800E0248[];
 extern int16_t D_800E02A2;
 extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
-extern UNK_TYPE D_800E1380;
+extern UNK_TYPE gGraphicListDefault;
 extern UNK_TYPE D_800E154C;
 extern uint16_t D_800E164C[18];
 extern uint16_t D_800E1700[];
@@ -496,7 +498,7 @@ extern uint16_t D_800E223C[];
 extern uint16_t D_800E2250[];
 extern uint16_t D_800E2274[];
 extern UNK_TYPE D_800E1DEC;
-extern UNK_TYPE gIcon_YellowGem;
+extern UNK_TYPE gGraphicList_800E13DC;
 extern UNK_TYPE D_800E1C00;
 extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
@@ -505,7 +507,7 @@ extern int32_t VipToPlayerY;
 extern uint16_t gVIPActor;
 extern uint16_t* D_800E31EC[54];
 extern UNK_TYPE D_800E334C;
-extern UNK_TYPE D_800E3584;
+extern UNK_TYPE gViptoActorFlags;
 extern Gfx D_800E38B0[];
 extern Gfx D_800E3930[9];
 extern Gfx D_800E3978[4];
@@ -544,11 +546,11 @@ extern Portrait gPortraits[66]; // last 2 are data for marina's healthbar and he
 extern StaticGem gStaticGems[64]; // seems to be the sprite objects (not the collision,) of level objects
 extern u64 D_8011D970[128]; //gGFXTaskp->dram_stack
 extern u64 D_8011DDF0[436]; //gGFXTaskp->yeild_data_ptr
-extern uint16_t D_8011D3D0[144];
+extern uint16_t g3DHitbox1BX0[144];
 extern uint16_t D_8011D4F0[144];
-extern uint16_t D_8011D610[144];
+extern uint16_t g3DHitbox1BY0[144];
 extern uint16_t D_8011D730[144];
-extern uint16_t D_8011D850[144];
+extern uint16_t g3DHitbox1BY1[144];
 extern uint16_t gInputHistoryHold[64];
 extern uint32_t D_80126670; // initial thread stack head
 extern UNK_TYPE D_80128670;
@@ -579,7 +581,7 @@ extern OSMesgQueue gContMesgq;
 extern uint32_t gPlayerControllerIndex;
 extern uint16_t gButtonCur;
 extern uint32_t gPlayTime;
-extern uint16_t D_801370CC;
+extern uint16_t gMarinaButtonHold;
 extern uint16_t D_801370CE;
 extern uint16_t D_801373D8;
 extern playerManager gPlayerManager;
@@ -591,12 +593,12 @@ extern uint32_t D_80137420;
 extern uint16_t D_80137480; 
 extern void* D_801376A0;
 extern void* D_801376A4;
-extern uint8_t D_801376A8[4]; //G_SETEVENTCOLOR RED
-extern uint8_t D_801376AC[4]; //G_SETEVENTCOLOR GREEN
-extern uint8_t D_801376B0[4]; //G_SETEVENTCOLOR BLUE
-extern uint8_t D_801376B4[4]; //G_SETEVENTCOLOR ALPHA
-extern uint8_t D_801376B8[4];
-extern uint8_t D_801376BC[4];
+extern uint8_t gEnvColorsRed[4]; //G_SETEVENTCOLOR RED
+extern uint8_t gEnvColorsGreen[4]; //G_SETEVENTCOLOR GREEN
+extern uint8_t gEnvColorsBlue[4]; //G_SETEVENTCOLOR BLUE
+extern uint8_t gEnvColorsAlpha[4]; //G_SETEVENTCOLOR ALPHA
+extern uint8_t gEnvColorsBlend[4];
+extern uint8_t gEnvColorsOpaque[4];
 extern UNK_POINTER D_801376DC;
 extern int32_t D_801376E0;
 extern void* D_801376E4;
@@ -671,7 +673,7 @@ extern uint16_t gFestivalPointsWhite;
 extern uint8_t gFestivalEventsBools[10];
 extern int32_t D_801782B0;
 extern int32_t D_801782B4;
-extern uint16_t D_801782C0;
+extern uint16_t gStaticGemIndex;
 extern int16_t D_801783F4;
 extern int16_t D_801783F6;
 extern int16_t D_801783F8[16];

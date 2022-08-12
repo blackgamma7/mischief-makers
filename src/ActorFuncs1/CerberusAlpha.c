@@ -44,7 +44,7 @@ void func_801922A0_68A2A0(uint16_t x){
     gActors[193].pos.x=128;
     gActors[193].scaleX=20.0;
     gActors[193].scaleY=20.0;
-    gActors[193].unk_0x18C._p=&D_800D8588;
+    gActors[193].palletteP=&gPalletteWhite;
 
 }
 #else
@@ -103,7 +103,7 @@ void func_801932FC_68B2FC(){
   gActors[72].flag2=0x319;
   
   gActors[72].graphic=0x164;
-  gActors[72].unk_0x18C._p=D_800D8588;
+  gActors[72].palletteP=gPalletteWhite;
   gActors[72].rgba.a=0xC0;
   gActors[72].unk_0x114=576.0;
 }
@@ -408,7 +408,7 @@ void func_80199F50_691F50(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_8019BC70_693C70.s")
 
 void func_8019BCE0_693CE0(void){
-  D_800BE544 = 0x8000;
+  gCameraScrollFlags = 0x8000;
   gScreenPosCurrentX._hi = gScreenPosTargetX._hi = 0x400;
   func_80028380();
   Actor_ZeroFlag_48_144();
@@ -416,7 +416,7 @@ void func_8019BCE0_693CE0(void){
   Actor_ZeroFlagRange(0x10,0x30);
   Actor_ZeroFlagRange(0x94,0xc0);
   Actor_ZeroFlag_192_199();
-  func_800286C8();
+  Portraits_Reset();
   }
 
 

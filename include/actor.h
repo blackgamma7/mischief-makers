@@ -7,11 +7,11 @@ enum {
     ACTOR_FLAG_DRAW = (1 << 0),   // if this bit is unset, the actor does not get drawn (however, it can still be active)
     ACTOR_FLAG_ACTIVE = (1 << 1), // if this bit is unset, the relative slot on the actor stack is considered to be free (the actor is inactive)
     ACTOR_FLAG_ONSCREEN_ONLY = (1 << 2), //deactivate if off-camera?
-    ACTOR_FLAG_UNK3 = (1 << 3),
+    ACTOR_FLAG_UNK3 = (1 << 3), //don't move with screen?
     ACTOR_FLAG_UNK4 = (1 << 4),
     ACTOR_FLAG_FLIPPED = (1 << 5), // if this bit is set, the actor will face left, as seen in func_8006C5A4, it sets unk_0x148 (which is probably x scale) to -unk_0xB4 (which is probably initial x
                                    // scale, in this context?)
-    ACTOR_FLAG_UNK6 = (1 << 6),
+    ACTOR_FLAG_UNK6 = (1 << 6),  //seems related to actor linking?
     ACTOR_FLAG_UNK7 = (1 << 7),  //7-12 seem to deal with collision checks.
     ACTOR_FLAG_UNK8 = (1 << 8),  //and whether or not the hitboxA or B fields
     ACTOR_FLAG_UNK9 = (1 << 9),  //are used for damage/physics
@@ -27,15 +27,15 @@ enum {
     ACTOR_FLAG_UNK19 = (1 << 19),
     ACTOR_FLAG_UNK20 = (1 << 20),
     ACTOR_FLAG_UNK21 = (1 << 21),
-    ACTOR_FLAG_UNK22 = (1 << 22),
-    ACTOR_FLAG_UNK23 = (1 << 23),
-    ACTOR_FLAG_UNK24 = (1 << 24),
+    ACTOR_FLAG_UNK22 = (1 << 22), //something with physics?
+    ACTOR_FLAG_UNK23 = (1 << 23), //something with physics?
+    ACTOR_FLAG_UNK24 = (1 << 24), //unused?
     ACTOR_FLAG_ATTACHED = (1 << 25),      // might be holding, or held. This bit is on for Marina when she is holding an actor (see ActorTick_Marina)
     ACTOR_FLAG_ALWAYS_UPDATE = (1 << 26), // if this bit is set, the actor will always update, despite the state of D_800BE670
-    ACTOR_FLAG_UNK27 = (1 << 27),
-    ACTOR_FLAG_UNK28 = (1 << 28),
-    ACTOR_FLAG_UNK29 = (1 << 29),
-    ACTOR_FLAG_UNK30 = (1 << 30),
+    ACTOR_FLAG_UNK27 = (1 << 27), //set but not checked?
+    ACTOR_FLAG_UNK28 = (1 << 28), //set but not checked?
+    ACTOR_FLAG_UNK29 = (1 << 29), //set but not checked?
+    ACTOR_FLAG_UNK30 = (1 << 30), //set but not checked?
     ACTOR_FLAG_UNK31 = (1 << 31)
 };
 
@@ -108,7 +108,7 @@ typedef struct {
     /* 0x080 */ int32_t flag;
     /* 0x084 */ uint16_t graphic;
     /* 0x086 */ uint16_t unk_0x86; //align.
-    /* 0x088 */ Vec3i_union pos; //fixed point, relative to screen center
+    /* 0x088 */ vec3Fixed pos; //fixed point, relative to screen center
     /* 0x094 */ uint16_t flag2;
     /* 0x096 */ uint16_t unk_0x96; //align.
     /* 0x098 */ int32_t flag3;
@@ -155,11 +155,11 @@ typedef struct {
     /* 0x0E4 */ int16_t attackDmg;
     /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
     /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
-    /* 0x0EC */ Vec3i_union vel; //position delta
+    /* 0x0EC */ vec3Fixed vel; //position delta
     /* 0x0F8 */ s2_w speedX; //actual velocity?
     /* 0x0FC */ s2_w speedY; 
     /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used(speed z?)
-    /* 0x104 */ Vec3i_union pos2; //origin? teleport?
+    /* 0x104 */ vec3Fixed pos2; //origin? teleport?
     /* 0x110 */ float unk_0x110;
     /* 0x114 */ float unk_0x114; 
     /* 0x118 */ float unk_0x118; 
@@ -192,8 +192,14 @@ typedef struct {
     /* 0x180 */ word_u unk_0x180; 
     /* 0x184 */ word_u unk_0x184; 
     /* 0x188 */ word_u unk_0x188;
-    /* 0x18C */ word_u unk_0x18C;
+    union{
+        /* 0x18C */ word_u unk_0x18C; //sometimes a GP feild
+        /* 0x18C */ uint16_t* palletteP; //..but more often a RGBA5551 pallette pointer.
+    };
+    union{
     /* 0x190 */ void* unk_0x190;
+    /* 0x190 */ ActorFunc func_0x190;
+    };
     /* 0x194 */ uint8_t unk_0x194[4]; //align?
 } Actor; /* sizeof = 0x198 */
 
@@ -212,7 +218,7 @@ typedef void (*ActorFunc_2Arg)(uint16_t, uint16_t);
 
 extern Actor gActors[0xD0];
 extern ActorFunc gActorFuncTable[];
-extern ActorFunc_2Arg D_800CA1C0[];
+extern ActorFunc_2Arg gKnockbackFuncTable[];
 typedef union{
     ActorFunc oneArg;
     ActorFunc_2Arg twoArg;
@@ -221,14 +227,20 @@ typedef union{
 //todo: populate with all confirmed actor types
 //note: The following actor types have NOOPS as ticks, and may be unused:
 //0x0A, 0x0F-0x14, 0x17, 0x19-0x1B, 0x1D, 0x1E, 0x25, 0x2B, 0x41, 0x47, 0x53
+#define ACTORTYPE_ZERO 0X00
 #define ACTORTYPE_GEM 0X08
 #define ACTORTYPE_MARINA 0X16
+#define ACTORTYPE_GRAPHICONLY 0X1D
 #define ACTORTYPE_PORTRAIT 0X27
-#define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, construtor is dummied out.
+#define ACTORTYPE_MARINAAFTERIMAGE 0x2e
+#define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, used by the coach in "the day before".
 #define ACTORTYPE_CLANBOMB 0X45
 #define ACTORTYPE_DIGGINGSPOT 0X57
 #define ACTORTYPE_MARINAOHNO 0X70
 #define ACTORTYPE_CROSSHAIR 0X71
+#define ACTORTYPE_AREACLEAR 0X74
+#define ACTORTYPE_STAGECLEAR 0X74
+#define ACTORTYPE_LEVELCLEAR 0X75
 #define ACTORTYPE_CLANPOT 0X79
 #define ACTORTYPE_MSHINT 0X7A
 #define ACTORTYPE_REDGEMRING 0X7B
@@ -248,5 +260,14 @@ typedef union{
 #define ACTOR_COUNT0  0x90
 #define ACTOR_COUNT1  0xC0
 #define ACTOR_COUNT2  0xD0
+
+#define ACTORINIT(i,t)\
+        gActors[i].actorType=t;\
+        Actor_Spawn(i)
+#define GLISTINIT(i,g)\
+        gActors[i].graphicList=g;\
+        gActors[i].graphicTime=1
+#define thisActor gActors[index]
+#define IF_FLIPPED(i) if(gActors[i].flag&ACTOR_FLAG_FLIPPED) 
 
 #endif

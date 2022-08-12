@@ -66,7 +66,7 @@ typedef struct {
         /* 0x04 */ int16_t y;
         /* 0x04 */ int32_t y_w;
     };
-} Vec2i_union; /* sizeof = 0x08 */
+} vec2Fixed; /* sizeof = 0x08 */
 
 typedef union {
     struct {
@@ -82,7 +82,7 @@ typedef union {
         /* 0x08 */ int16_t z;
         /* 0x0A */ int16_t z_1;
     };
-} Vec3i_union; /* sizeof = 0x0C */
+} vec3Fixed; /* sizeof = 0x0C */
 
 typedef union {
     struct {
@@ -128,7 +128,7 @@ typedef struct {
     /* 0x00 */ Mtx translateMtxs[2]; //one for each FB
     /* 0x80 */ uint16_t Active;
     /* 0x82 */ uint16_t unk_0x82; //may be align
-    /* 0x84 */ Vec2i_union pos;
+    /* 0x84 */ vec2Fixed pos;
     /* 0x8C */ void* texture;
 } StaticGem; /* sizeof 0x90 */
 

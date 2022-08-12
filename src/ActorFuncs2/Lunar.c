@@ -51,7 +51,7 @@ void func_8019BAC4_723414(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Lunar/func_8019F788_7270D8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Lunar/func_8019F9F8_727348.s")
-
+//snowy haze
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Lunar/func_8019FAB8_727408.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Lunar/func_8019FEDC_72782C.s")

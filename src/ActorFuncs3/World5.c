@@ -88,7 +88,7 @@ void func_801A8C4C_78781C(uint16_t index0,uint16_t index1){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801A8CC4_787894.s")
 
 uint16_t func_801A91C0_787D90(uint16_t x){
-    uint16_t index=Actor_GetInactiveInRange(0x48,0x4b);
+    uint16_t index=Actor_GetInactive(0x48,0x4b);
     if(index){
         ACTORINIT(index,0x1f05);
         thisActor.flag=2;
@@ -133,7 +133,7 @@ void func_801A9ED8_788AA8(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801A9F10_788AE0.s")
 
 func_801AA024_788BF4(uint16_t x){
-    func_8002A404(x,0x8000);
+    Actor_ModVelX(x,0x8000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World5/func_801AA050_788C20.s")

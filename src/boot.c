@@ -449,18 +449,18 @@ void func_8000147C(void) {
     func_80082F10();
     Gfx_DrawActors(&D_80171B30);
 
-    if (D_800BE674 != 0) {
-        func_80082CFC();
-        func_8000DD6C();
+    if (D_800BE674) { //"snowstorm Maze" and "Lunar"
+        Gfx_DrawForeground();
+        Gx_DrawClanBlocks();
         Gfx_DrawActors(&D_80171D30);
-        func_80082E04();
+        Gfx_DrawEnvLayer();
     }
     else {
-        func_80082E04();
+        Gfx_DrawEnvLayer();
         Gfx_DrawActors(&D_80171C30);
-        func_80082CFC();
+        Gfx_DrawForeground();
         Gfx_DrawActors(&D_80171D30);
-        func_8000DD6C();
+        Gx_DrawClanBlocks();
     }
 
     if (D_8013747C != 0) {

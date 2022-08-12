@@ -4,9 +4,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80082820.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80082CFC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/82F80/Gfx_DrawForeground.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80082E04.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/82F80/Gfx_DrawEnvLayer.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/82F80/func_80082F10.s")
 

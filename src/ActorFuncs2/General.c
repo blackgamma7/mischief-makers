@@ -37,7 +37,7 @@ void func_8019B300_732060(uint16_t index, uint16_t index1){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019B68C_7323EC.s")
 
 void func_8019B738_732498(uint16_t index){
-    func_8002A404(index,0x2000);
+    Actor_ModVelX(index,0x2000);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019B764_7324C4.s")
@@ -149,7 +149,7 @@ void func_8019EFBC_735D1C(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019F204_735F64.s")
 
 void func_8019F2A4_736004(uint16_t index){
-    func_8002A404(index,0x3000);
+    Actor_ModVelX(index,0x3000);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019F2D0_736030.s")
 
