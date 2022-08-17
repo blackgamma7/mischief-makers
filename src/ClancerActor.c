@@ -6,6 +6,7 @@ void func_80065650(uint16_t index) {
         func_800339BC((thisActor.pos.x_w - ((Rand() & 0x1F) * 0xA000)) + 0xA0000, (thisActor.pos.y_w - ((Rand() & 0x1F) * 0xC000)) + 0x120000, thisActor.pos.z_w, 0);
     }
 }
+
 void func_80065724(uint16_t index){
     func_80033E7C(index,thisActor.pos.x,thisActor.pos.y+6,thisActor.pos.z+1,0x6000,0x80000,3);
 }
@@ -375,8 +376,17 @@ void func_80069EC4(uint16_t index, float f) {
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006B310.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006B448.s")
-
+#ifdef NON_MATCHING
+void func_8006B518(uint16_t index){
+  if((thisActor.unk_0x11C>=0.0)&&(--thisActor.unk_0x11C==0.0)){
+      thisActor.flag|=thisActor.unk_0x160._w;
+      thisActor.vel.x_w=thisActor.unk_0x158._w;
+      thisActor.vel.y_w=thisActor.unk_0x15C;
+  }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006B518.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006B5B0.s")
 
@@ -386,13 +396,27 @@ void func_80069EC4(uint16_t index, float f) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006B9EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006BA80.s")
+void func_8006BA80(uint16_t x, uint16_t index){
+  thisActor.actorType = 0x2601;
+  thisActor.vel.y_w = 0x40000;
+  func_8002A57C(index,0x2000,gActors[gVIPActor].pos.x_w,0x30000);
+
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006BAFC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006BB8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006BC90.s")
+void func_8006BC90(uint16_t other, uint16_t index){
+  thisActor.actorLink = other;
+  thisActor.flag3 |= 0x200;
+  thisActor.pos2.x_w = gActors[other].pos.x_w;
+  thisActor.pos2.y_w = gActors[other].pos.y_w + 0x60000;
+  thisActor.pos2.z_w = gActors[other].pos.z_w + -8;
+
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8006BD08.s")
 
@@ -884,13 +908,23 @@ void func_800798EC(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A4B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A6A8.s")
+void func_8007A6A8(uint16_t index){
+  MODi(thisActor.vel.x_w,0,0x4000);
+  MODi(thisActor.vel.y_w,0,0x4000);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A720.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A7C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A84C.s")
+void func_8007A84C(uint16_t index){
+  Actor* actorp;
+  func_8007A7C4(index);
+  actorp=&thisActor;
+  actorp->graphicList=D_800D81F8;
+  actorp->graphicTime=1;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/clancerActor/func_8007A8B0.s")
 

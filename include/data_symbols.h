@@ -346,6 +346,7 @@ extern int16_t D_800D3B74;
 extern uint16_t* D_800D8088[8]; //japan-only text for actor 0x56
 extern uint16_t D_800D80A8[8]; //SFX Arrays for same actor
 extern uint16_t D_800D81AC[];
+extern uint16_t D_800D81F8[];
 extern int16_t D_800D84E8[];
 extern uint16_t gPalletteWhite[16]; //RGBA5551 pallette for white screens.
 extern UNK_TYPE gPalletteBlack;
