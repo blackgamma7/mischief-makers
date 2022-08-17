@@ -260,8 +260,8 @@ l__80197430:
     thisActor.rgba.a = func_80192698_6D2D18(thisActor.rgba.a,0xff,&thisActor.unk_0x114);
     if (thisActor.unk_0x114-- <= 0.0) {
       thisActor.actorState_b[0]++;
-      thisActor.pos.x = 0xfffd;
-      thisActor.pos.y = 0xffc4;
+      thisActor.pos.x = -3;
+      thisActor.pos.y = -0x4c;
       thisActor.rgba.a = 0xff;
     }
     break;

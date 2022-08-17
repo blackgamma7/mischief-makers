@@ -4,7 +4,7 @@
 #define JumpDelay unk_0x164._w
 
 #define ACTORTYPE_TERANPLAYER 0X1D02
-
+#define ACTORTYPE_TERANCOUNT 0X1D04
 //loaded during Teran's rescue stages
 void func_801A6900_7754F0(int32_t arg0) {}
 /*
@@ -21,6 +21,7 @@ void func_801A6908_7754F8(uint16_t index, uint8_t arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A6908_7754F8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A69CC_7755BC.s")
+
 void func_801A6CB0_7758A0(void) {
     uint8_t a = ModInRange_i(gActors[50].rgba.a, 0xFF, 1);
     uint64_t rgb = (0xFF - a) / 2; // why does this match??
@@ -156,14 +157,14 @@ void func_801A7AB8_7766A8(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A7B20_776710.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A7C34_776824.s")
-
+//Teran counting his jumps. Tick, then spawn.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801A7E04_7769F4.s")
 #ifdef NON_MATCHING
 void func_801A8008_776BF8(uint16_t other){
     uint16_t index=Actor_GetInactive(8,16);
     Actor* actorp;
     if(index){
-        ACTORINIT(index,0x1D04);
+        ACTORINIT(index,ACTORTYPE_TERANCOUNT);
         actorp=&gActors[other];
         thisActor.graphic=0x13c;
         thisActor.pos.x=actorp->pos.x;
@@ -274,15 +275,12 @@ uint32_t func_801AAA3C_77962C(uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801AB9D8_77A5C8.s")
 
-//EXPLOSIONS!? skips a stack push.
-#ifdef NON_MATCHING
+
+
 void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2){
-    func_8003DF78(f1,x,f1,f2);
+    func_8003DF78(0,x,f1,f2);
 }
-#else
-extern void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2);
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABAC8_77A6B8.s")
-#endif
+
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABB00_77A6F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABCD4_77A8C4.s")
@@ -386,7 +384,7 @@ func_801AF6B4_77E2A4(uint16_t index){
     thisActor.graphic=0x262;
     thisActor.pos.x=0;
     thisActor.pos.y=0;
-    thisActor.pos.z=0xFE00;
+    thisActor.pos.z=-0x200;
     thisActor.rgba.r=0x80;
     thisActor.scaleX=8.0;
     thisActor.rotateX=45.0;

@@ -63,7 +63,7 @@ void func_80084924(uint16_t index){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084924.s")
 #endif
-
+//flower "tick"
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084974.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084D18.s")

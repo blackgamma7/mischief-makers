@@ -53,7 +53,7 @@ void func_801B1A90_7B9940(uint16_t x,uint16_t y){
         ACTORINIT(index,9999);
         thisActor.pos.x=x-gScreenPosCurrentX._hi;
         thisActor.pos.y=y-gScreenPosCurrentY._hi;
-        thisActor.pos.z=0xFFFF;
+        thisActor.pos.z=-1;
     }
 }*/
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World4/func_801B1A90_7B9940.s")

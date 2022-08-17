@@ -186,7 +186,7 @@ void func_80029134(uint16_t index) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800291AC.s")
-
+//seems to be for calculating theta given x/y coords.
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800294E0.s")
 
 uint32_t func_800295D8(int32_t A, int32_t B) {
@@ -791,7 +791,7 @@ uint16_t Gem_ActorSpawn(uint16_t index,uint16_t flags, uint16_t x){
         gActors[gemIndex].pos.x=thisActor.pos.x;
         gActors[gemIndex].pos.y=thisActor.pos.y;
         if(flags&GEMFLAG_BOUNCE) gActors[gemIndex].vel.y_w=0x40000;
-        if(flags&GEMFLAG_UNK) gActors[gemIndex].unk_0x150._w=120;
+        if(flags&GEMFLAG_FINITE) gActors[gemIndex].unk_0x150._w=120;
         SFX_ActorPanX(SFX_GEM_APPEAR,index);
     }
     return gemIndex;
@@ -806,7 +806,7 @@ uint16_t YellowGem_NoHit(uint16_t index){
     uint16_t gemIndex=0;
     if((-1<gNoHit)&&(YellowGem_GetFlag(gCurrentStage)==0)){
         func_8003FE4C(1.0,gPlayerActor.pos.x,gPlayerActor.pos.y+0x30,2);
-        gemIndex=Gem_ActorSpawn(index,GEMFLAG_YELLOW|GEMFLAG_BOUNCE|GEMFLAG_UNK,0);
+        gemIndex=Gem_ActorSpawn(index,GEMFLAG_YELLOW|GEMFLAG_BOUNCE|GEMFLAG_FINITE,0);
         if(gemIndex){
             gActors[gemIndex].actorType=0x3D;
             gActors[gemIndex].pos.x=gPlayerActor.pos.x;
@@ -1062,16 +1062,14 @@ void func_80031D58(uint16_t arg0, uint16_t index) {
 }
 
 #ifdef NON_MATCHING
-void func_80031DDC(uint16_t index) {
-    Actor* actor = &thisActor;
-
-    if (actor->unk_0x148 == 0.0) {
-        actor->flag = 0;
-    }
-    actor->unk_0x148 -= 1.0;
+void ActorTick_34h(uint16_t index) {
+    if (thisActor.unk_0x148 == 0.0) {
+        thisActor.flag = 0;
+}
+    thisActor.unk_0x148 -= 1.0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80031DDC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorTick_34h.s")
 #endif
 //29 args. used by "cerberus Alpha"
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80031E38.s")
@@ -1089,17 +1087,17 @@ void func_80031DDC(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033204.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800333A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033428.s")
+//actor type 7: copies an actor's transform, graphic, flags, and uses 0x18C as a fade delta.
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_7.s")
 
 void ActorTick_7(uint16_t index){
     if(thisActor.rgba.a<(int32_t)thisActor.unk_0x18C._w) thisActor.flag=0;
     else thisActor.rgba.a-=thisActor.unk_0x18C._w;
 }
+//spawns Actor Type 6: dizzy stars. called in func_8006f5d4
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_DizzyStar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800335E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800336B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorTick_DizzyStar.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800337F4.s")
 
@@ -1122,10 +1120,10 @@ void func_800339AC(int16_t arg0, int16_t arg1, int16_t arg2) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800339BC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033B54.s")
+//Spawn Actor Type 0x05. unused?
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_Type5.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033CB0.s")
-
-void func_80033DE4(uint16_t index){
+void ActorTick_Type5(uint16_t index){
     if(--thisActor.unk_0x154._w == 0) thisActor.flag=0;
     thisActor.vel.x_w+=thisActor.unk_0x158._w;
     thisActor.vel.y_w+=thisActor.unk_0x15C;
@@ -1229,7 +1227,7 @@ uint32_t func_800358CC(uint16_t i , uint16_t x){return 0;}
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80035978.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80035A20.s")
-
+//prints a number. used also by Teran Counting jumps.
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80035C44.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80035D34.s")
@@ -1405,7 +1403,7 @@ u32 ActorSpawn_AreaClear(u16 x){
     gActors[0xC0].flag = ACTOR_FLAG_ACTIVE;
     gActors[0xC0].unk_0x110=180.0f;
     gActors[0xC0].unk_0x188._w=x;
-    func_8005CA34(8,60);
+    CameraShake(8,60);
     return 0xC0;
 }
 #else

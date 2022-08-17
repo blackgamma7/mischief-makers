@@ -14,7 +14,7 @@ int32_t Knockback_NegSinDmg(uint16_t index0,uint16_t index1,int32_t x){
   theta = func_800294E0(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
                        gActors[index0].pos.y_w - gActors[index1].pos.y_w );
   //mismatch here
-  return (float)(NEGSIN(theta) * dmg * x * 2.0);
+  return (gCosineLookup[theta + 0x100 & 0x200] * dmg * (float)x * 2.0);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/Knockback_NegSinDmg.s")
@@ -208,7 +208,7 @@ void GamePlay_Tick_Active(void) {
     func_8008CA90(); // unknown, does something with actors
     Actors_Tick(); // actors
     func_80014C44(); // clamp to world bounds? also saves position/graphic history for unimplimented afterimages' state.
-    func_8005C8A4(); // camera quake
+    CameraShake_Tick(); // camera quake
     func_8001FF50(); // update actor flags
     Textbox_Tick(); // text
     LifeBar_Tick(); // ui (blinking, health bar)

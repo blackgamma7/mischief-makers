@@ -46,8 +46,8 @@ gScreenPosCurrentX._w=0;
 gScreenPosCurrentY._w=0;
 gScreenPosNextX._w=0;
 gScreenPosNextY._w=0;
-D_800BE59C=0;
-D_800BE5A0=0;
+gCamShakeMag=0;
+gCamShakeMagDelta=0;
 gRNGseed=0;
 //feed into guLookAt
 gEyeX=0.0;

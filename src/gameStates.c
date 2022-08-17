@@ -7,8 +7,8 @@ ActorFunc gActorFuncTable[]={
   /*0x02*/  ActorTick_2, //passes to NOOP
   /*0x03*/  ActorTick_3, //NOOP
   /*0x04*/  ActorTick_4, //NOOP
-  /*0x05*/  func_80033DE4,
-  /*0x06*/  func_800336B8,
+  /*0x05*/  ActorTick_Type5,
+  /*0x06*/  ActorTick_DizzyStar,
   /*0x07*/  ActorTick_7, //turns transparent by a rate set by unk_0x18C
   /*0x08*/  ActorTick_Gem,
   /*0x09*/  func_8003141C,
@@ -54,7 +54,7 @@ ActorFunc gActorFuncTable[]={
   /*0x31*/  func_80062174,
   /*0x32*/  ActorTick_WarpStar,
   /*0x33*/  func_8006098C,
-  /*0x34*/  func_80031DDC,
+  /*0x34*/  ActorTick_34h,
   /*0x35*/  ActorTick_JPNSpeechBox,
   /*0x36*/  func_800320F8,
   /*0x37*/  func_80032900,
@@ -120,7 +120,7 @@ ActorFunc gActorFuncTable[]={
   /*0x73*/  func_8003E230,
   /*0x74*/  ActorTick_StageClear, //Stage clear
   /*0x75*/  ActorTick_LevelClear,
-  /*0x76*/  func_80064CB4,
+  /*0x76*/  ActorTick_ItemSpawn,
   /*0x77*/  func_80065178,
   /*0x78*/  func_8003766C,
   /*0x79*/  func_80035E90, //Clanpot?

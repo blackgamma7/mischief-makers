@@ -2,6 +2,7 @@
 #define ALPHABET_H
 
 // game uses a unique alphabet for the text that is 16 bits.
+#define ALPHAINDEX(x) x*2+0x2d2 //get the letter's graphic index.
 
 #define ALPHA_SPACE 0x0000
 

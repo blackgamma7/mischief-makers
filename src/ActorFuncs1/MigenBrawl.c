@@ -649,13 +649,13 @@ lab_80195064_caseD_421:
         else {
           SFX_ActorPanX(0x61,0x4d);
         }
-        func_8005ca34(-8,0x19);
+        CameraShake(-8,0x19);
         uVar10 = 0x31;
         //spawn blue gems
         if (0 < D_8019E572) {
           D_8019E572--;
           for(iVar9=0;iVa9!=0;iVar9++) {
-            uVar11 = Gem_ActorSpawn(0x50,GEMFLAG_BLUE|GEMFLAG_BOUNCE|GEMFLAG_UNK,0);
+            uVar11 = Gem_ActorSpawn(0x50,GEMFLAG_BLUE|GEMFLAG_BOUNCE|GEMFLAG_FINITE,0);
             if (uVar11) {
               if (iVar9 == 1) {
                 gActors[uVar11].vel.x_w = -0x28000;
@@ -769,7 +769,7 @@ lab_80195064_caseD_421:
     thisActor.unk_0x154++;
     if (thisActor.unk_0x158 != 0) thisActor.unk_0x158--;
     if ((thisActor.unk_0x154 & 1)) {
-      func_8005ca34(2,2);
+      CameraShake(2,2);
     }
     if ((thisActor.unk_0x154 & 0x40) == 0) {
       MODi(thisActor.unk_0x150,-0x4000,0x1000); 
@@ -850,7 +850,7 @@ lab_80195064_caseD_421:
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0e4,0,0x10,0x34);
       SFX_Play_1(Roar deep);
-      func_8005ca34(-8,0x1e);
+      CameraShake(-8,0x1e);
       func_80193DF0_67F910(index,0x16);
       thisActor.unk_0x150 = 0x41;
     }
@@ -1092,7 +1092,7 @@ lab_80196b3c:
     }
     func_801929C0_67E4E0(index);
     if ((gSceneFrames & 1) != 0) {
-      func_8005ca34(2,2);
+      CameraShake(2,2);
     }
     if (gActors[79].unk_0x180 != 0) {
       MigenJrActor.flag3 = 0;
@@ -1125,7 +1125,7 @@ lab_80196b3c:
       SFX_ActorPanX(0x43,0x4d);
       func_801928A8_67E3C8(index);
       func_80192E68_67E988(index,0);
-      func_8005ca34(-8,10);
+      CameraShake(-8,10);
     }
     if (((gActors[77].unk_0x16C & 1)) &&(0.0 <= --thisActor.field52_0x110)) {
       thisActor.actorState = 0x4d;
@@ -1152,7 +1152,7 @@ lab_80196b3c:
       SFX_ActorPanX(0x43,0x4d);
       func_801928A8_67E3C8(index);
       func_80192E68_67E988(index,1);
-      func_8005ca34(-8,10);
+      CameraShake(-8,10);
     }
     if (gActors[77].field55_0x11c < 0.0) {
       if (thisActor.actorState == 0x51) {
@@ -1198,7 +1198,7 @@ lab_80196b3c:
         SFX_ActorPanX(0x98,0x31);
       }
       if (((uint)gActors[49].unk_0x16C & 1)) {
-        func_8005ca34(-8,0x1e);
+        CameraShake(-8,0x1e);
         gActors[55].flag &= ~0x1200;
         SFX_ActorPanX(0x45,0x4d);
       }
@@ -1425,7 +1425,7 @@ lab_80196b3c:
       }
       else {
         SFX_ActorPanX(0x45,0x31);
-        func_8005CA34(-8,8);
+        CameraShake(-8,8);
         gActors[55].flag &= ~0x1200;
         thisActor.unk_0x110-=1.0;
         if (0.0 <= thisActor.field52_0x110) {
@@ -1727,7 +1727,7 @@ lab_80195064_caseD_419:
     gActors[63].rgba.G = 0x80;
     gActors[63].rgba.B = 0x80;
     SFX_ActorPanX(0x2d,0x4d);
-    func_8005CA34(-5,0x1e);
+    CameraShake(-5,0x1e);
     thisActor.unk_0x114 = 1.0;
     thisActor.field52_0x110 = 26.0;
     gActors[65].unk_0x180 |= 1;
@@ -1796,7 +1796,7 @@ lab_80197830:
   if ((thisActor.field52_0x110 == 0.0) && (0 < D_8019E570)) {
     D_8019E570--;
     for(iVar9=0;iVar9!=3;iVar9++) {
-      uVar11 = Gem_ActorSpawn(0x50,GEMFLAG_BOUNCE|GEMFLAG_UNK,0);
+      uVar11 = Gem_ActorSpawn(0x50,GEMFLAG_BOUNCE|GEMFLAG_FINITE,0);
       if (uVar11) {
         if (iVar9 == 1) { //space the gems out
           gActors[uVar11].vel.x_w = -0x28000;

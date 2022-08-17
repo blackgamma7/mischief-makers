@@ -41,7 +41,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[66].pos.x = 0;
   gActors[66].pos.y = 0xffd8;
   gActors[66].pos.z = 9;
-  gActors[66].unk_0x188._w = 0xffffffc0;
+  gActors[66].unk_0x188._w = -0x40;
   gActors[67].actorType = ACTORTYPE_GRAPHICONLY;
   gActors[66].scaleX = 15.0;
   gActors[66].scaleY = 2.0;
@@ -53,11 +53,11 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[67].rgba.a = 0x60;
   gActors[67].pos.x = 0;
   gActors[67].pos.y = 0x20;
-  gActors[67].pos.z = 0xf800;
+  gActors[67].pos.z = -0x800;
   gActors[67].rgba.r = 0x7f;
   gActors[67].rgba.g = 0x4f;
   gActors[67].rgba.b = 0xf;
-  gActors[67].unk_0x188._w = 0xffffff80;
+  gActors[67].unk_0x188._w = -0x80;
   gActors[67].palletteP = 0x800D9474;
   gActors[68].actorType = ACTORTYPE_GRAPHICONLY;
   gActors[67].scaleX = 8.0;
@@ -71,7 +71,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[68].pos.x = 0;
   gActors[68].pos.y = 0;
   gActors[68].pos.z = 0x30;
-  gActors[68].unk_0x188._w = 0xffffff60;
+  gActors[68].unk_0x188._w = -0xA0;
   gActors[69].actorType = ACTORTYPE_GRAPHICONLY;
   Actor_Spawn(69);
   gActors[69].flag2 = 0x801;
@@ -82,7 +82,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[69].pos.x = 0;
   gActors[69].pos.y = 0xffe8;
   gActors[69].pos.z = 0x30;
-  gActors[69].unk_0x188._w = 0xffffff60;
+  gActors[69].unk_0x188._w = -0xA0;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/LevelClear/LevelClear_SpawnPlanetBG.s")

@@ -7,8 +7,37 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A6D14_7701E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A7004_7704D4.s")
-
+#ifdef NON_MATCHING
+//one of the gunships in "clnce war"
+void func_801A7240_770710(uint16_t index){
+    Actor* actorp;
+    
+    func_80078418(index);
+    actorp=&thisActor;
+    switch(actorp->actorState){
+        case 0:
+         actorp->actorState=0x20;
+         break;
+        case 0x21:
+        {
+          if ((gViptoActorFlags & 0x30000)&&((func_80029B00(0x80,0x80,-0x80)) && ((gSceneFrames & 0xf) == 0)))
+            actorp->unk_0x150._w |= 0x8000;
+          if (gSceneFrames & 0x100)
+            actorp->unk_0x184._w = actorp->unk_0x174 - 0x50;
+          else
+            actorp->unk_0x184._w = actorp->unk_0x174 + 0x50;
+          break;
+        }
+        case 0x20:
+         break;
+    }
+    actorp->flag3&=~0x200600;
+}
+#else
+extern void func_801A7240_770710(uint16_t index);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A7240_770710.s")
+#endif
+
 
 void func_801A735C_77082C(uint16_t x){
     func_80078418(x);

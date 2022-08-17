@@ -56,11 +56,11 @@ segments:
       - [0x5EA30, c,Textbox]
       - [0x60CF0, c]
       - [0x61B80, c]
-      - [0x66250, c]
+      - [0x66250, c, ClancerActor]
       - [0x7D8E0, c]
       - [0x805E0, c]
       - [0x80D90, c]
-      - [0x82920, c]
+      - [0x82920, c] #actor 42's script
       - [0x82DB0, c,MarinaGraphics]
       - [0x82F80, c] # likey deals with text defined in Alphabet.h
       - [0x844E0, c, DebugText]
@@ -343,7 +343,7 @@ segments:
     overlay: true
     subsegments:
       - [0xF00D0,c,noop] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
-  # romcopied and decompressed in func_8026220, same as noop.c
+  # romcopied and decompressed in func_80026220, same as noop.c
   - [0xF0100,bin] 
   - [0xF01C0,bin]
   - [0x1017D0,bin]
@@ -376,7 +376,8 @@ segments:
   - [0x4A1F84,bin]
   - [0x4A1FB8,bin] #default - no actors
   - [0x4A1FBC,bin] 
-  #more romcopied bits. looks to be compressed data
+  #more romcopied bits. looks to be compressed data.
+  #used as offset in listing  for proceding assets
   - [0x4A1FC0,bin]
   #Textbox dialouge
   - [0x4AE330,bin,textbox/1_00_Demo] #default in lookup

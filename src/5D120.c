@@ -33,19 +33,27 @@ uint32_t RandModulo(uint32_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/RandModulo.s")
 #endif
 
+#ifdef NON_MATCHING
+uint16_t func_8005C774(int32_t x){
+ if(x==0) return D_800BE668;
+ if(x>=100) return D_800BE668+1;
+return (D_800BE668+1)/(100.0/(float)x);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C774.s")
+#endif
 
 uint8_t func_8005C870(uint8_t x){
     if((x&0x30)==0x30)return x & 0xC0;
     return x;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005C8A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5D120/CameraShake_Tick.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005CA34.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5D120/CameraShake.s")
 
-int16_t func_8005CA98(){
-    return D_800BE590;
+int16_t CameraShake_GetTime(){
+    return gCamShakeTime;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5D120/func_8005CAA8.s")

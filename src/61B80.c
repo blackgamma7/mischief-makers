@@ -110,8 +110,8 @@ void func_800615BC(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorSpawn_StageClear.s")
 //"stage clear" fanfare behavior ?
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorTick_StageClear.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064CB4.s")
+//actor "parented" to next index. spawns item when "parent" is killed. (i.e. Yellow Gem in "Meet Marina")
+#pragma GLOBAL_ASM("asm/nonmatchings/61B80/ActorTick_ItemSpawn.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/61B80/func_80064EB4.s")
 

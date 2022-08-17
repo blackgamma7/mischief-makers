@@ -47,7 +47,7 @@ void func_801B0900_7A1410(uint16_t x,uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B36C0_7A41D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B3804_7A4314.s")
-
+//titular snowstorm in "Snowstorm maze"
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B3948_7A4458.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World3/func_801B3AE0_7A45F0.s")

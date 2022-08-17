@@ -30,8 +30,8 @@ void Reset_InitB(void){ //~96%matching
   gDebugBitfeild = 4;
   gDebugthrottle = 1;
   gRNGSeed = 0x1234;
-  D_800BE594 = 0;
-  D_800BE590 = 0;
+  gCamShakeV = 0;
+  gCamShakeTime = 0;
   D_800BE678 = 0;
   gPortraitTint = 0xFF;
   gHPDisplayed = gPlayerActor.health;
@@ -182,8 +182,8 @@ void GamePlay_Load(void) {
     gPlayerActorp->pos.x = gPlayerPosXMirror._w;
     D_800BE6A4 = (uint16_t)gPlayerPosXMirror._w;
     temp_t8_3 = D_800BE6A4;
-    D_800BE590 = temp_t8_3;
-    D_800BE594 = temp_t8_3;
+    gCamShakeTime = temp_t8_3;
+    gCamShakeV = temp_t8_3;
     gStageTimeReal = temp_t8_3;
     gSceneFrames = temp_t8_3;
     gSceneFramesReal = temp_t8_3;

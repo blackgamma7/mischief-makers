@@ -69,7 +69,7 @@ extern uint16_t gAttractModeIndex;
 extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
 extern ActorFunc gActorFuncTable_Marina[]; // TODO: Investigate
-extern ActorFunc gActorFuncTable_800D7F00[74]; // TODO: Investigate
+extern ActorFunc gActorFuncTable_Clancer[74]; // TODO: Investigate
 extern int16_t D_800E24EC[10];
 extern int16_t D_800E2500[10];
 extern int16_t D_800E2514[10];
@@ -134,10 +134,10 @@ extern int16_t D_800BE580;
 extern int16_t D_800BE584;
 extern int16_t D_800BE588;
 extern int16_t D_800BE58C; //flag for BG layer rendering? set for "merco" and "trapped"
-extern uint16_t D_800BE590;
-extern uint16_t D_800BE594;
-extern int32_t D_800BE59C;
-extern int32_t D_800BE5A0;
+extern uint16_t gCamShakeTime;
+extern uint16_t gCamShakeV;
+extern int32_t gCamShakeMag;
+extern int32_t gCamShakeMagDelta;
 extern uint16_t gRNGSeed;
 extern uint16_t gCurrentScene; //determines DMA's, bgm and camera behavior.
 extern uint16_t D_800BE5D4;
@@ -155,7 +155,7 @@ extern uint16_t gScreenXLock;
 extern uint16_t gScreenYLock;
 extern int16_t D_800BE638;
 extern int16_t gHPDisplayed;
-extern int16_t D_800BE668;
+extern uint16_t D_800BE668;
 extern uint16_t D_800BE66C;
 extern uint16_t D_800BE670;
 extern uint16_t D_800BE674; //only set during "snowstorm Maze" and "Lunar". determines rendering order.

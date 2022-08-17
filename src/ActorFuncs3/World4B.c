@@ -26,7 +26,7 @@ void func_801A69B0_77F310(uint16_t index){
     thisActor.rgba.a=0xF8;
     Actor_Shade(index,255);
     thisActor.pos.x=0;
-    thisActor.pos.y=0xFFB0;
+    thisActor.pos.y=-0x50;
     thisActor.pos.z=0x30;
 }
 

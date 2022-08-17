@@ -228,12 +228,15 @@ typedef union{
 //note: The following actor types have NOOPS as ticks, and may be unused:
 //0x0A, 0x0F-0x14, 0x17, 0x19-0x1B, 0x1D, 0x1E, 0x25, 0x2B, 0x41, 0x47, 0x53
 #define ACTORTYPE_ZERO 0X00
+#define ACTORTYPE_DIZZYSTAR 0X06
 #define ACTORTYPE_GEM 0X08
 #define ACTORTYPE_MARINA 0X16
+#define ACTORTYPE_CLANPOT 0X18
 #define ACTORTYPE_GRAPHICONLY 0X1D
 #define ACTORTYPE_PORTRAIT 0X27
 #define ACTORTYPE_MARINAAFTERIMAGE 0x2e
 #define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, used by the coach in "the day before".
+#define ACTORTYPE_FLOWER 0X43
 #define ACTORTYPE_CLANBOMB 0X45
 #define ACTORTYPE_DIGGINGSPOT 0X57
 #define ACTORTYPE_MARINAOHNO 0X70
@@ -241,7 +244,7 @@ typedef union{
 #define ACTORTYPE_AREACLEAR 0X74
 #define ACTORTYPE_STAGECLEAR 0X74
 #define ACTORTYPE_LEVELCLEAR 0X75
-#define ACTORTYPE_CLANPOT 0X79
+#define ACTORTYPE_CLANPOTMENU 0X79
 #define ACTORTYPE_MSHINT 0X7A
 #define ACTORTYPE_REDGEMRING 0X7B
 
@@ -251,7 +254,7 @@ typedef union{
 #define GEMFLAG_YELLOW 2
 #define GEMFLAG_GREEN 3
 #define GEMFLAG_BOUNCE 0X10
-#define GEMFLAG_UNK 0X20
+#define GEMFLAG_FINITE 0X20
 
 
 #define gPlayerActorp (gActors)

@@ -1,8 +1,8 @@
 #include "actor.h"
 
 
-#include "inttypes.h"
-#include <ultra64.h>
+
+uint16_t gMarinaGraphicRead;
 
 #ifdef NON_MATCHING
 void MarinaGraphics_Load(void) {

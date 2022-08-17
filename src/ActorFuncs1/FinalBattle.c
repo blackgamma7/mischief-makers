@@ -405,9 +405,9 @@ void func_8019ECEC_6C99BC(uint16_t index){
     func_8019EB80_6C9850(index);
     actorp= &thisActor;
     actorp->flag|=0x20;
-    actorp->pos.y=0xFFD0;
+    actorp->pos.y=-0x30;
     actorp->pos.x=0x60;
-    actorp->vel.x_w=0xFFFC0000;
+    actorp->vel.x_w=-0x40000;
     actorp->vel.y_w=0x30000;
     actorp->graphicList=&D_801A68CC_6D159C;
 }

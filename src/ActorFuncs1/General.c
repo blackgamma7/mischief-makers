@@ -1,5 +1,6 @@
 #include "common.h"
 
+//this seems to pick out graphics for mecha segments (arms, legs, ect.)
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192100_713630.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192168_713698.s")

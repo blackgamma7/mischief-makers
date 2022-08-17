@@ -655,7 +655,7 @@ void ActorTick_Marina(uint16_t index) {
         }
 
         gPlayerManager.unk_0x64 = thisActor.flag3;
-        thisActor.flag3 &= 0xFFDFF9FF;
+        thisActor.flag3 &= ~0x200600;
         gPlayerManager.unk_0x7C++;
 
         thisActor.scaleX = D_800EF630 * thisActor.unk_0x124;
