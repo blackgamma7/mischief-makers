@@ -765,7 +765,7 @@ extern void func_8019F21C_7064AC(uint16_t index);
 //Can you stop Teran?
 uint32_t func_801A4F68_70C1F8(void) {
     uint16_t rank = Calculate_TimeRecordTotal();
-    if ((rank == ALPHAINDEX(ALPHA_UPPER_S)) || (rank == ALPHAINDEX(ALPHA_UPPER_A))) return 1;
+    if ((rank == ALPHAINDEX(ALPHA_KERNED_UPPER_S)) || (rank == ALPHAINDEX(ALPHA_KERNED_UPPER_A))) return 1;
     return 0;
 }
 #ifdef NON_MATCHING

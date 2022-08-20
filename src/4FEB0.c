@@ -64,11 +64,11 @@ void func_8004F5B0(uint16_t index){
 #ifdef NON_MATCHING
 void func_80051324(u16 index) { //like, ~95% correct.
     s8 temp_v0_4;
-    u16 temp_t9;
+    u16 other;
     s16 phi_a0;
     s32 phi_a3;
 
-    temp_t9 = thisActor.actorLink;
+    other = thisActor.actorLink;
     func_8004F7D8(index);
     if (func_800491B8(index, 0, -0xE)) {
         thisActor.actorState = 6;
@@ -118,7 +118,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                     }
                     IFFACINGRIGHT(index) {
                         if (thisActor.unk_0x140 != 0) {
-                            thisActor.hitboxAX1 = (thisActor.hitboxAX1 + gActors[temp_t9].hitboxBX1) - gActors[temp_t9].hitboxBX0;
+                            thisActor.hitboxAX1 = (thisActor.hitboxAX1 + gActors[other].hitboxBX1) - gActors[other].hitboxBX0;
                         }
                         thisActor.unk_0x170._w = 0x4F;
                     } else {
@@ -134,7 +134,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
                     IFFACINGRIGHT(index) {
                         phi_a3 = 0x52;
                     } else if (thisActor.unk_0x140 != 0) {
-                        thisActor.hitboxAX0 = (thisActor.hitboxAX0 + gActors[temp_t9].hitboxBX0) - gActors[temp_t9].hitboxBX1;
+                        thisActor.hitboxAX0 = (thisActor.hitboxAX0 + gActors[other].hitboxBX0) - gActors[other].hitboxBX1;
                     }
                     thisActor.unk_0x170._w = phi_a3;
                 }

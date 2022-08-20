@@ -30,12 +30,12 @@ void Text_SpawnLetter(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t po
     }
 }
 
-void Text_SpawnIcon(uint16_t index, void* arg1, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
+void Text_SpawnIcon(uint16_t index, void* g, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     Actor* actor;
 
     Text_SpawnAt(index, pos_x, pos_y, pos_z);
     actor = &thisActor;
-    actor->graphicList = arg1;
+    actor->graphicList = g;
     actor->graphicTime = 1;
 }
 //takes 16-bit color vales, returns 32-bit?
@@ -81,12 +81,12 @@ uint16_t Text_Print3Digits(uint16_t index, uint16_t N, uint16_t pos_x, uint16_t 
 //all text in Japanese is monospaced(?)
 #ifndef VER_JPN
 #ifdef NON_MATCHING
-uint16_t Text_GetWidth(uint16_t* arg0) {
-    if (ALPHA_LOWER_A > *arg0)
+uint8_t Text_GetWidth(uint16_t* arg0) {
+    if (ALPHA_KERNED_LOWER_A > *arg0)
         return 6;
-    if (*arg0 == 0xC000)
+    if (*arg0 == ALPHA_BOLD_SPACE)
         return 7;
-    return D_800D16AA[*arg0];//wrong lookup. need to find the real address.
+    return D_800D17C8[*arg0-ALPHA_KERNED_LOWER_A];
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/text/Text_GetWidth.s")
