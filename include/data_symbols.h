@@ -26,7 +26,6 @@ extern float gEyeZ;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t g3DHitboxCount1;
-extern uint16_t D_800BE4D4;
 extern uint16_t D_800BE4D8;
 extern uint16_t gButtonHold;
 extern uint16_t gButtonPress;
@@ -114,11 +113,11 @@ extern uint32_t gPlayTime;
 extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t g3DHitboxCount1;
-extern uint16_t D_800BE4D4;
+extern uint16_t g3DHitboxCount2;
 extern uint16_t gSceneFrames; //pair of frame counters. get modulo'd a lot for animations
 extern uint16_t gSceneFramesReal; //like gStageTime and gStageTimeReal, the latter doesn't pause
-extern int16_t D_800BE4EC;
-extern uint16_t D_800BE538;
+extern uint16_t D_800BE4EC;
+extern uint16_t gButtonMask;
 extern uint16_t gCameraScrollFlags;
 extern s2_w gScreenPosTargetX; // these few seem to be screen position related
 extern s2_w gScreenPosTargetY;
@@ -126,16 +125,17 @@ extern s2_w gScreenPosCurrentX;
 extern s2_w gScreenPosCurrentY;
 extern s2_w gScreenPosNextX;
 extern s2_w gScreenPosNextY;
-extern int16_t D_800BE568;
+extern s2_w D_800BE568;
 extern s2_w D_800BE56C;
 extern int16_t D_800BE578;
 extern int16_t D_800BE57C;
 extern int16_t D_800BE580;
 extern int16_t D_800BE584;
-extern int16_t D_800BE588;
-extern int16_t D_800BE58C; //flag for BG layer rendering? set for "merco" and "trapped"
-extern uint16_t gCamShakeTime;
-extern uint16_t gCamShakeV;
+extern uint16_t D_800BE588;
+extern uint16_t D_800BE58C; //flag for BG layer rendering? set for "merco" and "trapped"
+extern int16_t gCamShakeTime;
+extern int16_t gCamShakeV;
+extern uint16_t gCamShakeType;
 extern int32_t gCamShakeMag;
 extern int32_t gCamShakeMagDelta;
 extern uint16_t gRNGSeed;
@@ -145,23 +145,23 @@ extern int16_t D_800BE5E0;
 extern int16_t D_800BE5E4;
 extern int16_t D_800BE5F0;
 extern word_u D_800BE5F4; 
-extern int16_t D_800BE5F8;
+extern uint16_t D_800BE5F8;
 extern uint16_t D_800BE5FC;
-extern UNK_TYPE D_800BE610; //these 4 are zero'd, but unused
-extern UNK_TYPE D_800BE614;
-extern UNK_TYPE D_800BE618;
-extern UNK_TYPE D_800BE620;
+extern uint32_t D_800BE610; //these 4 are zero'd, but unused
+extern uint32_t D_800BE614;
+extern uint32_t D_800BE618;
+extern uint32_t D_800BE620;
 extern uint16_t gScreenXLock;
 extern uint16_t gScreenYLock;
-extern int16_t D_800BE638;
-extern int16_t gHPDisplayed;
+extern uint16_t  D_800BE638;
+extern uint16_t  gHPDisplayed;
 extern uint16_t D_800BE668;
 extern uint16_t D_800BE66C;
 extern uint16_t D_800BE670;
 extern uint16_t D_800BE674; //only set during "snowstorm Maze" and "Lunar". determines rendering order.
 extern uint16_t D_800BE678;
 extern uint16_t D_800BE6A4;
-extern int16_t D_800BE6A8;
+extern uint16_t D_800BE6A8;
 /* a set of flags with the following properties for each bit (hi-to-lo):
  * 0 unknown (func_8001FF28 is just jr ra)
  * 1 Draw SFX Channel data
@@ -177,12 +177,12 @@ extern int16_t D_800BE6A8;
  * B unknown
  * C unknown
  * D Ortho / perspective view
- * E L and R change gameplay speed (60 / gDebugthrottle fps)
+ * E L and R change gameplay speed (60 / gDebugThrottle fps)
  * F unknown (func_8002167C is just jr ra)
  */
 extern uint16_t gDebugBitfeild;
 extern float D_800BE6B0;    // 90.0f, never used.
-extern uint16_t gDebugthrottle; 
+extern uint16_t gDebugThrottle; 
 extern b2_s gDebugBorW;
 extern int32_t D_800BE6C0;
 extern uint8_t D_800BE6E4;
@@ -190,11 +190,11 @@ extern uint8_t D_800BE6E8;
 extern uint8_t D_800BE6EC;
 extern uint8_t gPortraitTint;
 extern uint16_t D_800BE6F8;
-extern int16_t D_800BE6FC;
+extern uint16_t D_800BE6FC;
 extern uint16_t gCameraScrollThrottleX;
 extern uint16_t gCameraScrollThrottleY;
 extern uint8_t D_800BE70C;
-extern int8_t D_800BE710;
+extern uint8_t D_800BE710;
 extern uint16_t D_800BE714;
 extern int32_t D_800BE71C;
 extern int32_t D_800BE720;
@@ -202,7 +202,7 @@ extern int32_t D_800BE724;
 extern int32_t D_800BE728;
 extern int32_t gCameraRot;
 extern int32_t gCameraRotDelta;
-extern s2_w D_800BE73C;
+extern int32_t D_800BE73C;
 
 extern UNK_TYPE D_800C3908;
 extern Sprite gSprite;

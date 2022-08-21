@@ -28,7 +28,7 @@ void Reset_InitB(void){ //~96%matching
   D_8013747C = 0;
   D_800BE6FC = 0;
   gDebugBitfeild = 4;
-  gDebugthrottle = 1;
+  gDebugThrottle = 1;
   gRNGSeed = 0x1234;
   gCamShakeV = 0;
   gCamShakeTime = 0;
@@ -172,7 +172,7 @@ void GamePlay_Load(void) {
     D_800BE618 = temp_t6_2;
     D_800BE614 = temp_t6_2;
     D_800BE610 = temp_t6_2;
-    D_800BE73C._w = temp_t6_2;
+    D_800BE73C = temp_t6_2;
     D_800BE5F0 = (int16_t)temp_t6_2;
     gPlayerVelYMirror = (int32_t)D_800BE5F0;
     gPlayerVelXMirror = (int32_t)gPlayerVelYMirror;

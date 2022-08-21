@@ -186,7 +186,7 @@ void func_80029134(uint16_t index) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800291AC.s")
-//seems to be for calculating theta given x/y coords.
+//seems to be for calculating theta given x/y coords. (atan2?)
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800294E0.s")
 
 uint32_t func_800295D8(int32_t A, int32_t B) {

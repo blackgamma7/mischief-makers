@@ -1,8 +1,12 @@
 #include "common.h"
 
+/*SceneActorSpawn takes an u16 array of
+{index, posx,posy, feild0x110,feild0xd8,type}
+likely not a struct - end punctuated by 0xffff
+
+*/
 void SceneActorSpawn(uint16_t* arg0, uint16_t index) {
-    thisActor.actorType = arg0[5];
-    Actor_Spawn(index);
+    ACTORINIT(index,arg0[5]);
     thisActor.pos.x = arg0[1] - gScreenPosCurrentX._hi;
     thisActor.pos.y = arg0[2] - gScreenPosCurrentY._hi;
     thisActor.unk_0x110 = arg0[3];

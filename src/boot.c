@@ -334,9 +334,9 @@ void Input_Update(void) {
     else
         gButtonCur = 0U;
 
-    gButtonPress = (gButtonCur ^ D_800BE538) & gButtonCur;
+    gButtonPress = (gButtonCur ^ gButtonMask) & gButtonCur;
     gButtonHold = gButtonCur;
-    D_800BE538 = gButtonCur;
+    gButtonMask = gButtonCur;
 }
 #ifdef NON_MATCHING
 int32_t Input_GetFirstController(void) {

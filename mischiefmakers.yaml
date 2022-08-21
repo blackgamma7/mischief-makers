@@ -230,8 +230,8 @@ segments:
       #.data (note: sections commented out below have been problematic.)
       - [0xBD8D0, .data,cosineTable]
       - [0xBE8D0, .data,floatTable]      
-      - [0xBF0D0, bin] # general globals
-      - [0xBF350, bin] # BGM/instrument name lists
+      - [0xBF0D0, .data,globals] # general globals
+      - [0xBF340, bin] # BGM/instrument name lists
       #- [0xBF5E4, bin] # BGM instrument settings
       #- [0xC192C, bin] # SFX names? might be for base sounds. also seqp_bank indecies.
       #- [0xC32DC, bin] # more music.c data
@@ -419,7 +419,7 @@ segments:
   - [0x4B94C0,bin,textbox/5_08_FinalBattle]
   - [0x4B9980,bin,textbox/blank] #space between.
 
-  - [0x4B9990,bin,ALBankFile]
+  - [0x4B9990,bin,SoundBank]
   - [0x4CB120,bin]
 #call lists and code segments loaded per scene by RomCopy_Funcs
   - type: code 

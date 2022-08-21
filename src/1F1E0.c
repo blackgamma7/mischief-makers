@@ -168,18 +168,18 @@ void GamePlay_Tick_Active(void) {
 
     if ((gDebugBitfeild & 2)) { //debug game speed throttle
         if ((gButtonPress & gButton_LTrig)) {
-            if (gDebugthrottle != 1) {
-                gDebugthrottle--;
+            if (gDebugThrottle != 1) {
+                gDebugThrottle--;
                 gThrottleInput[0] = 0;
             }
         }
 
-        if (((gButtonPress & gButton_RTrig)) && (gDebugthrottle != 50)) {
-            gDebugthrottle++;
+        if (((gButtonPress & gButton_RTrig)) && (gDebugThrottle != 50)) {
+            gDebugThrottle++;
             gThrottleInput[0] = 0;
         }
 
-        if ((gSceneFramesReal % gDebugthrottle) == 0) {
+        if ((gSceneFramesReal % gDebugThrottle) == 0) {
             gButtonPress |= gThrottleInput[0];
             gThrottleInput[0] = 0;
         }

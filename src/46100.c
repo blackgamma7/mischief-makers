@@ -101,7 +101,7 @@ void func_80046274(int32_t arg0, int32_t arg1) {}
 
 void func_800463C0(void) {
     func_800462F0();
-    D_800BE568 = gScreenPosCurrentX._hi - 0x90;
+    D_800BE568._hi = gScreenPosCurrentX._hi - 0x90;
 }
 
 #ifdef NON_MATCHING

@@ -136,13 +136,13 @@ void CameraTick_World3B(void) {}
 void CameraInit_TheDayBefore(void) {}
 
 void CameraTick_TheDayBefore(){
-    D_800BE73C._w = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
+    D_800BE73C = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
 }
 
 void CameraInit_Scene34(void) {}
 
 void CameraTick_Scene34(void) {
-    D_800BE73C._w = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
+    D_800BE73C = (gScreenPosCurrentX._hi - gScreenPosNextX._hi) << 0x10;
 }
 
 void CameraInit_World3(void) {
@@ -247,7 +247,7 @@ void func_800245F0(void) {}
 void func_800245F8(void) {}
 
 void CameraTick_AthleticGames(){
-    D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)<<0x10;
+    D_800BE73C=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)<<0x10;
 }
 
 
@@ -278,7 +278,7 @@ void CameraInit_ClanceWar2(void) {
 }
 
 void CameraTick_ClanceWar2(){
-    D_800BE73C._w=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)*0x10000;
+    D_800BE73C=(gScreenPosCurrentX._hi-gScreenPosNextX._hi)*0x10000;
     func_8002488C();
 }
 

@@ -1,7 +1,33 @@
 #include "common.h"
 //"final battle" actor funcs
 # define BossActor gActors[49]
+//.bss
+uint16_t D_801A6F20;
+uint16_t D_801A6F22; //set, but never read
+uint16_t D_801A6F24;
+int16_t D_801A6F26;
+int16_t D_801A6F28; //delay between attacks
+s2_w D_801A6F2C;
+uint32_t D_801A6F30; //sometimes temp storage for bosses's actorState
+uint32_t D_801A6F34; //unused(?), but implied by spacing
+uint32_t D_801A6F38;
 
+uint16_t D_801A6F3C; //camera Type
+float D_801A6F40; //sets camera eye
+float D_801A6F44; //gEyeY-4
+float D_801A6F48;
+float D_801A6F4C;
+float D_801A6F50;
+float D_801A6F54;
+
+int8_t D_801A6F58;
+uint8_t D_801A6F59;
+int16_t D_801A6F5A;
+int16_t D_801A6F5C;
+int16_t D_801A6F5E;
+uint16_t D_801A6F60;
+uint16_t D_801A6F62;
+uint16_t D_801A6F64;
 
 void func_80192100_6BCDD0(uint16_t index){
     ACTORINIT(index,0x21);
@@ -180,7 +206,7 @@ void func_80197100_6C1DD0(uint16_t x){}
 uint32_t func_80197108_6C1DD8(){return 50;}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80197110_6C1DE0.s")
-
+//calulates camera
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_801971A0_6C1E70.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/FinalBattle/func_80197968_6C2638.s")
