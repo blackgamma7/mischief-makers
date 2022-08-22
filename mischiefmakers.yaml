@@ -516,9 +516,9 @@ segments:
     vram: 0x80192100
     overlay: true
     subsegments:
-      - [0x6D2780, c,ActorFuncs1/intro]
-      - [0x6D9460,bin,ActorFuncs1/intro]
-      #- [0x6D9B00,.rodata,ActorFuncs1/intro]
+      - [0x6D2780, c,ActorFuncs1/Intro]
+      - [0x6D9460,bin,ActorFuncs1/Intro]
+      #- [0x6D9B00,.rodata,ActorFuncs1/Intro]
   - type: code
     start: 0x6D9FB0
     vram: 0x80192000
