@@ -146,18 +146,18 @@ void func_80192520_6F97B0(uint16_t index) {
 
 void func_801925A4_6F9834(uint16_t index, uint16_t x){
     thisActor.actorState=2;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 
 void func_801925EC_6F987C(uint16_t index, uint16_t x){
     thisActor.actorState=4;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 
 void func_80192634_6F98C4(uint16_t index, uint8_t a){
     thisActor.actorState=1;
     thisActor.rgba.a=a;
-    thisActor.unk_0x154._w= thisActor.rgba.a*0x10000;
+    thisActor.gp1._w= thisActor.rgba.a*0x10000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192684_6F9914.s")
@@ -199,29 +199,29 @@ uint32_t func_801927F4_6F9A84(){
 void func_801929C8_6F9C58(uint16_t x){
     uint16_t index=51;
     thisActor.actorState=2;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 void func_801929E8_6F9C78(uint16_t x){
   uint16_t index=51;
     thisActor.actorState=4;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 void func_80192A08_6F9C98(uint16_t x){
   uint16_t index=51;
     thisActor.actorState=4;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 void func_80192A28_6F9CB8(uint16_t x){
   uint16_t index=51;
     thisActor.actorState=2;
-    thisActor.unk_0x150._w=x;
+    thisActor.gp0._w=x;
 }
 
 void func_80192A48_6F9CD8(uint8_t a){
   uint16_t index=51;
     thisActor.actorState=1;
     thisActor.rgba.a=a;
-    thisActor.unk_0x154._w=thisActor.rgba.a*1000;
+    thisActor.gp1._w=thisActor.rgba.a*1000;
 }
 
 void func_80192A80_6F9D10(){
@@ -243,12 +243,12 @@ void func_80192C34_6F9EC4(uint16_t x, uint16_t index,uint32_t q){
     thisActor.pos.x=0;
     thisActor.pos.y=0;
     thisActor.pos.z=0;
-    thisActor.unk_0x154._w=q;
+    thisActor.gp1._w=q;
 }
 
 #ifdef NON_MATCHING
 void func_80192CAC_6F9F3C(uint16_t index){
-    thisActor.unk_0x154._w+=2;
+    thisActor.gp1._w+=2;
 }
 #else
 extern void func_80192CAC_6F9F3C(uint16_t index);
@@ -597,18 +597,18 @@ void func_8019F21C_7064AC(uint16_t index){ //marina becomes human
           D_801AA078_711308 = 0x3c;
           func_801933F8_6FA688(index,0x38,0x80c,0,0,0);
           gActors[56].rgba.A = 0;
-          thisActor.unk_0x15C._w = 0xff0000;
-          thisActor.unk_0x160._w = 0;
+          thisActor.gp3._w = 0xff0000;
+          thisActor.gp4._w = 0;
           func_80193454_6FA6E4(index,0x39,0,-0x16,0x3c,0);
           func_80193454_6FA6E4(index,0x3a,0,5,0x3c,0);
         }
       }
       break;
     case 0x1510:
-      thisActor.unk_0x15C._w = func_8019214C_6F93DC(thisActor.unk_0x15C._w,0,D_801AA070_711300);
-      thisActor.unk_0x160._w = func_8019214C_6F93DC(thisActor.unk_0x160._w,0xff0000,D_801AA070_711300);
-      gActors[87].rgba.a = thisActor.unk_0x15C._w;
-      gActors[56].rgba.a = thisActor.unk_0x160._w;
+      thisActor.gp3._w = func_8019214C_6F93DC(thisActor.gp3._w,0,D_801AA070_711300);
+      thisActor.gp4._w = func_8019214C_6F93DC(thisActor.gp4._w,0xff0000,D_801AA070_711300);
+      gActors[87].rgba.a = thisActor.gp3._w;
+      gActors[56].rgba.a = thisActor.gp4._w;
       if (D_801AA070_711300 == 0) {
         thisActor.actorState++;;
         func_80193950_6FABE0(0x23);
@@ -783,8 +783,8 @@ int16_t uVar2;
       gScreenPosCurrentY._hi = 0x15c;
       func_801933F8_6FA688(index,0x57,0,-0xf0,-0x2e,0);
       gActors[87].vel.x_w = 0xc000;
-      gPlayerManager.unk_0x20 = 0;
-      gPlayerManager.unk_0x24 = 0;
+      gPlayerManager.buttonHold = 0;
+      gPlayerManager.buttonPress = 0;
       func_801A0350_7075E0(index,0x38,0x730,300,8,0x180,0x3410);
       D_01ac39a = 0x430;
       D_01ac39c = 300;
@@ -830,8 +830,8 @@ int16_t uVar2;
           gActors[0].actorState = 0;
           u8_ARRAY_800be5f4 = 2;
           gActors[0].pos.x_w = gActors[87].pos.x_w;
-          gPlayerManager.unk_0x20 = 0;
-          gPlayerManager.unk_0x24 = 0;
+          gPlayerManager.buttonHold = 0;
+          gPlayerManager.buttonPress = 0;
           gActors[0].pos.y_w = gActors[87].pos.y_w;
         }
       }
@@ -885,8 +885,8 @@ int16_t uVar2;
       }
       else {
         if (func_801A4F68_70C1F8()) {
-          gPlayerManager.unk_0x20 = gButtonHold & (gButton_B|gButton_A);
-          gPlayerManager.unk_0x24 = gButtonPress & (gButton_B|gButton_A);
+          gPlayerManager.buttonHold = gButtonHold & (gButton_B|gButton_A);
+          gPlayerManager.buttonPress = gButtonPress & (gButton_B|gButton_A);
           if ((D_801AA080_711310 == 0) && ((gButtonHold != 0 || (gButtonPress != 0)))) {
             D_801AA080_711310 = 1;
           }
@@ -968,8 +968,8 @@ int16_t uVar2;
 
       if (func_8005DEFC() == 0) {
         thisActor.actorState++;
-        gPlayerManager.unk_0x20 = (uint)gButton_DDown;
-        gPlayerManager.unk_0x24 = gPlayerManager.unk_0x20;
+        gPlayerManager.buttonHold = (uint)gButton_DDown;
+        gPlayerManager.buttonPress = gPlayerManager.buttonHold;
         func_80193900_6FAB90(2,0xffffffb0,-16);
         func_801A9044_7102D4();
         return;
@@ -978,13 +978,13 @@ int16_t uVar2;
     case 0x1922:
       func_801A1EF8_709188(index,1);
       func_801A2308_709598(index,2);
-      gPlayerManager.unk_0x24 = 0;
-      gPlayerManager.unk_0x20 = (uint)gButton_DDown;
+      gPlayerManager.buttonPress = 0;
+      gPlayerManager.buttonHold = (uint)gButton_DDown;
       if (func_8005defc() == 0) {
         thisActor.actorState++;
         D_801AA078_711308 = 0x3c;
-        gPlayerManager.unk_0x20 = 0;
-        gPlayerManager.unk_0x24 = 0;
+        gPlayerManager.buttonHold = 0;
+        gPlayerManager.buttonPress = 0;
         func_801A9044_7102D4();
         return;
       }
@@ -994,8 +994,8 @@ int16_t uVar2;
       uVar2 = func_801A2308_709598(index,2);
       if (D_801AA070_711300 == 0) {
         thisActor.actorState++;
-        gPlayerManager.unk_0x20 =(gButton_DRight | gButton_DUp);
-        gPlayerManager.unk_0x24 = gPlayerManager.unk_0x20;
+        gPlayerManager.buttonHold =(gButton_DRight | gButton_DUp);
+        gPlayerManager.buttonPress = gPlayerManager.buttonHold;
       }
       break;
     case 0x1924:
@@ -1003,8 +1003,8 @@ int16_t uVar2;
       func_801A2308_709598(index,2);
       thisActor.actorState++;
       D_801AA078_711308 = 0x78;
-      gPlayerManager.unk_0x20 = (gButton_DRight | gButton_DUp | gButton_B);
-      gPlayerManager.unk_0x24 =  gButton_B;
+      gPlayerManager.buttonHold = (gButton_DRight | gButton_DUp | gButton_B);
+      gPlayerManager.buttonPress =  gButton_B;
       break;
     case 0x1925:
       func_801A1EF8_709188(index,1);
@@ -1099,8 +1099,8 @@ extern void func_801A4FA4_70C234(uint16_t);
 //decrement yellow gem counter
 #ifdef NON_MATCHING
 uint32_t func_801A9044_7102D4(void){
-  if(gActors[53].unk_0x158._w!=0){
-    gActors[53].unk_0x158._w--;
+  if(gActors[53].gp2._w!=0){
+    gActors[53].gp2._w--;
     return 0;
 
   }
@@ -1116,7 +1116,7 @@ extern uint32_t func_801A9044_7102D4(void);
 //increment the counter
 void func_801A907C_71030C(void){
   uint16_t index=53;
-  thisActor.unk_0x158._w++;
+  thisActor.gp2._w++;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9098_710328.s")

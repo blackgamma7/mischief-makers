@@ -3,14 +3,14 @@
 #include "common.h"
 
 int32_t DebugText_Count;
-TextTransform DebugText_TransformArray[40];
+TextTransform gDebugTexts[40];
 int32_t DebugText_Time;
 
 
 void DebugText_Reset(void) {
     int16_t index;
     for (index = 0; index < 40; index++) {
-        DebugText_TransformArray[index].Active = 0;
+        gDebugTexts[index].Active = 0;
     }
 }
 #ifdef NON_MATCHING
@@ -18,17 +18,17 @@ void DebugText_SetData(uint8_t* TXT, int posX, int posY, uint8_t R, uint8_t G, u
     uint8_t c;
     uint16_t i;
     if(DebugText_Count<41){
-        DebugText_TransformArray[DebugText_Count].Active=1;
-        DebugText_TransformArray[DebugText_Count].posX=posX;
-        DebugText_TransformArray[DebugText_Count].posY=posY;
-        DebugText_TransformArray[DebugText_Count].color.r=R;
-        DebugText_TransformArray[DebugText_Count].color.g=G;
-        DebugText_TransformArray[DebugText_Count].color.b=B;
-        DebugText_TransformArray[DebugText_Count].color.a=A;
-        DebugText_TransformArray[DebugText_Count].scaleX=scaleX;
-        DebugText_TransformArray[DebugText_Count].scaleY=scaleY;
+        gDebugTexts[DebugText_Count].Active=1;
+        gDebugTexts[DebugText_Count].posX=posX;
+        gDebugTexts[DebugText_Count].posY=posY;
+        gDebugTexts[DebugText_Count].color.r=R;
+        gDebugTexts[DebugText_Count].color.g=G;
+        gDebugTexts[DebugText_Count].color.b=B;
+        gDebugTexts[DebugText_Count].color.a=A;
+        gDebugTexts[DebugText_Count].scaleX=scaleX;
+        gDebugTexts[DebugText_Count].scaleY=scaleY;
         for(i=0;i<80;i++){
-            DebugText_TransformArray[DebugText_Count].text[i]=*TXT;
+            gDebugTexts[DebugText_Count].text[i]=*TXT;
             c=*TXT++;
             if(c==0)break;
         }
@@ -123,7 +123,7 @@ void DebugText_Tick(void){
     Sprite_SetColor(gDebugBorW._lo,gDebugBorW._lo,gDebugBorW._lo,0xFF);
     Sprite_SetScale(1.0,1.0);
     Sprite_SetTransparent(1);
-    T=DebugText_TransformArray;
+    T=gDebugTexts;
     do{
         if(T->Active){
             Sprite_SetSize(strlen(T->text)+1,1);
@@ -133,7 +133,7 @@ void DebugText_Tick(void){
             Sprite_Update(&G,T->text);
         }
         T++;
-    } while (T!=&DebugText_TransformArray[40]);
+    } while (T!=&gDebugTexts[40]);
     DebugText_Count=0;
     Sprite_Finish(&G);
     gDListHead=G;

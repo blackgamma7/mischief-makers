@@ -92,9 +92,9 @@ uint16_t func_801A91C0_787D90(uint16_t x){
     if(index){
         ACTORINIT(index,0x1f05);
         thisActor.flag=2;
-        thisActor.unk_0x150._w=x;
-        if(Rand()&1) thisActor.unk_0x158._w=72;
-        else thisActor.unk_0x158._w=4;
+        thisActor.gp0._w=x;
+        if(Rand()&1) thisActor.gp2._w=72;
+        else thisActor.gp2._w=4;
         func_801A8C4C_78781C(x,index);
     }
     return index;

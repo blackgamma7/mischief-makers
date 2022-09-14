@@ -58,7 +58,7 @@ extern uint32_t gSoundDMAlength; //used as siezeof in Sound_Init
 extern uint32_t gSound_currentBuffer;
 extern uint32_t gSound_OutputRateI;
 extern uint32_t D_8016E720;
-extern OSIoMesg D_8016E748[9];
+extern OSIoMesg gSoundOsIOmesgs[9];
 
 extern char* BGMNames[33];    // BGM titles left in data.
 extern char** D_800BEA4C[32];   // instrument names, and variations.
@@ -70,7 +70,7 @@ extern char* gSfxSampleLabels[224];
 extern uint16_t D_800C26DC[293];
 extern uint8_t gSFX_2ByteArray[294][2]; // table of volume and length(?) of SFX.
 extern int32_t Sound_AI_LEN_Rsh2; //AI_LEN >>2
-extern u8 D_800C2E00[325][8]; //{volume, pan, keyBase, AtkTime, AtkVol, DecayTime, DecayVol, ReleaeTime}
+extern u8 gSFXSampleData[325][8]; //{volume, pan, keyBase, AtkTime, AtkVol, DecayTime, DecayVol, ReleaeTime}
 extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;

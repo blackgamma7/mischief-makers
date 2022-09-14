@@ -97,7 +97,7 @@ void func_801A8604_780F64(){
     gActors[143].flag=2;
     gActors[143].graphic=0x2D0;
     gActors[143].pos.z=0xE0;
-    gActors[143].unk_0x154._w=4;
+    gActors[143].gp1._w=4;
     gActors[143].scaleX=20.0;
     gActors[143].scaleY=20.0;
 }
@@ -108,8 +108,8 @@ void func_801A866C_780FCC(uint16_t x){
     gActors[143].flag=0xb;
     gActors[143].palletteP=&gPalletteWhite;
     gActors[143].rgba.a=255;
-    gActors[143].unk_0x150._w=0;
-    gActors[143].unk_0x154._w=x;
+    gActors[143].gp0._w=0;
+    gActors[143].gp1._w=x;
     Actor_Shade(143,0);
 }
 
@@ -119,8 +119,8 @@ void func_801A86D4_781034(uint16_t x){
     gActors[143].flag=0xb;
     gActors[143].palletteP=&gPalletteWhite;
     gActors[143].rgba.a=0;
-    gActors[143].unk_0x150._w=0;
-    gActors[143].unk_0x154._w=x;
+    gActors[143].gp0._w=0;
+    gActors[143].gp1._w=x;
     Actor_Shade(143,0);
 }
 void func_801A8738_781098(void) {}
@@ -139,7 +139,7 @@ void func_801A8740_7810A0(void) {}
 
 #ifdef NON_MATCHING
 void func_801AA240_782BA0(uint16_t index,int16_t x,int16_t y,uint16_t i){
-    uint16_t index2=func_80031284(i,x,y,1);
+    uint16_t index2=ActorSpawn_ParticleImage_144_192(i,x,y,1);
     if(index2){
         gActors[index2].flag2=0x8110;
         gActors[index2].unk_0x148=0.0;

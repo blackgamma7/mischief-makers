@@ -1,6 +1,6 @@
 #include "common.h"
 #define TeranActor gActors[48]
-#define JumpCount unk_0x160._w
+#define JumpCount gp4._w
 #define JumpDelay unk_0x164._w
 
 #define ACTORTYPE_TERANPLAYER 0X1D02
@@ -89,9 +89,9 @@ void func_801A77AC_77639C(uint16_t index) {
             thisActor.actorState = 0x130;
             thisActor.flag &= ~(ACTOR_FLAG_UNK7 | ACTOR_FLAG_UNK9 | ACTOR_FLAG_UNK15);
             thisActor.unk_0x120 = ((float)thisActor.vel.x_w * 1.5);
-            thisActor.unk_0x158._w = 0x6000;
-            thisActor.unk_0x15C = 0;
-            thisActor.unk_0x160._w = 0;
+            thisActor.gp2._w = 0x6000;
+            thisActor.gp3._w = 0;
+            thisActor.gp4._w = 0;
             thisActor.unk_0x164._w = -1;
             thisActor.unk_0x11C = 196608.0f;
             thisActor.unk_0x124 = 0.0f;
@@ -112,7 +112,7 @@ void func_801A78DC_7764CC(uint16_t index) {
         }
         else {
             thisActor.actorState = 0x3B0;
-            thisActor.unk_0x158._w = 0;
+            thisActor.gp2._w = 0;
             thisActor.unk_0x118 = -1.0f;
             thisActor.unk_0x11C = 0.0f;
             func_801A7620_776210(index);
@@ -172,12 +172,12 @@ void func_801A8008_776BF8(uint16_t other){
         thisActor.flag2=0xA01;
         thisActor.flag=0xA;
         thisActor.palletteP=&D_800D8668;
-        thisActor.unk_0x150._w=0x100000;
+        thisActor.gp0._w=0x100000;
         thisActor.scaleX=0.8; //.rodata
         thisActor.scaleY=0.8;
-        thisActor.unk_0x158._w=0x20000;
-        thisActor.unk_0x15C=20;
-        thisActor.unk_0x154._w=actorp->JumpCount;
+        thisActor.gp2._w=0x20000;
+        thisActor.gp3._w=20;
+        thisActor.gp1._w=actorp->JumpCount;
     }
 }
 #else
@@ -191,7 +191,7 @@ void func_801A8108_776CF8(uint16_t index){
         thisActor.actorState=0x131;
         thisActor.unk_0x124=1.0;
         thisActor.vel.y_w=0x40000;
-        thisActor.unk_0x158._w=0;
+        thisActor.gp2._w=0;
         thisActor.JumpCount++;
         thisActor.JumpDelay=8;
         SFX_ActorPanX(0x118,index);
@@ -333,9 +333,9 @@ extern void func_801ADE80_77CA70(uint16_t index);
 #endif
 
 void func_801ADEC8_77CAB8(uint16_t index){
-    thisActor.pos.x_w=gActors[thisActor.unk_0x150._w].pos.x_w+thisActor.unk_0x184._w;
-    thisActor.pos.y_w=gActors[thisActor.unk_0x150._w].pos.y_w+thisActor.unk_0x188._w;
-    thisActor.pos.z_w=gActors[thisActor.unk_0x150._w].pos.z_w+thisActor.unk_0x178._w;
+    thisActor.pos.x_w=gActors[thisActor.gp0._w].pos.x_w+thisActor.unk_0x184._w;
+    thisActor.pos.y_w=gActors[thisActor.gp0._w].pos.y_w+thisActor.unk_0x188._w;
+    thisActor.pos.z_w=gActors[thisActor.gp0._w].pos.z_w+thisActor.unk_0x178._w;
 }
 
 void func_801ADF50_77CB40(uint16_t x){}

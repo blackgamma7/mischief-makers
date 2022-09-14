@@ -54,8 +54,8 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
             Text_SpawnIcon(index, &gGraphicList_800E13DC, 0, 0xA0, 0x403);
             thisActor.flag2 |= 0x200;
             thisActor.unk_0x18C._w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
-            thisActor.unk_0x154._w = 0xC0;
-            thisActor.unk_0x158._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
+            thisActor.gp1._w = 0xC0;
+            thisActor.gp2._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;
         }
 
         D_80178130 = 0x180;

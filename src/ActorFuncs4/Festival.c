@@ -133,7 +133,7 @@ void func_801B466C_7AABEC(uint16_t index, uint16_t* p){
     if(thisActor.graphicTime==0){
         thisActor.graphicList=p;
         thisActor.graphicTime=1;
-        thisActor.unk_0x154._w=0;
+        thisActor.gp1._w=0;
         thisActor.vel.x_w=0;
     }
 }

@@ -159,6 +159,7 @@ segments:
       - [0xAB440, asm, io/siacs]
       - [0xAB520, asm, io/sirawdma]
       - [0xAB610, asm, libc/bcopy]
+      - [0xAB970, asm, io/spsetstat]
       - [0xAB990, asm, io/spsetpc]
       - [0xAB9D0, asm, io/sprawdma]
       - [0xABB00, asm, io/sp]
@@ -238,7 +239,8 @@ segments:
       #- [0xC4508, bin] # sprite.c data
       - [0xC5AE0, .data,decodeA] # decompress keys(?)
       - [0xC5B20, bin] # gamesave.c data
-      - [0xC5FC0, bin] # misc. to discern later.
+      - [0xC5FC0, bin] # render.c
+      - [0xC8850, bin] # 11820.c
       - [0xC88D0,.data,134E0] #a function table
       - [0xC8910,bin,gameover]
       - [0xC8B20,bin,156F0]
@@ -421,6 +423,9 @@ segments:
 
   - [0x4B9990,bin,SoundBank]
   - [0x4CB120,bin]
+  - [0x6413B0,bin,SoundList]
+  - [0x641E20,bin]
+
 #call lists and code segments loaded per scene by RomCopy_Funcs
   - type: code 
     start: 0x67DBA0

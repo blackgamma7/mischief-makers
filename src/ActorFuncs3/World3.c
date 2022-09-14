@@ -21,7 +21,7 @@ void func_801A7240_770710(uint16_t index){
         case 0x21:
         {
           if ((gViptoActorFlags & 0x30000)&&((func_80029B00(0x80,0x80,-0x80)) && ((gSceneFrames & 0xf) == 0)))
-            actorp->unk_0x150._w |= 0x8000;
+            actorp->gp0._w |= 0x8000;
           if (gSceneFrames & 0x100)
             actorp->unk_0x184._w = actorp->unk_0x174 - 0x50;
           else

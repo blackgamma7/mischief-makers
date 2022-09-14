@@ -13,7 +13,7 @@ uint16_t func_800600F0(uint16_t i){
         thisActor.unk_0xDE=3;
         thisActor.unk_0xDF=0;
         thisActor.pos.z_w=gActors[i].pos.z_w;
-        thisActor.unk_0x150._w=gActors[i].actorState_b[1];
+        thisActor.gp0._w=gActors[i].actorState_b[1];
         thisActor.unk_0x110=0.0;
     }
     return index;

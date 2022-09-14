@@ -62,7 +62,7 @@ void Reset_InitB(void){ //~96%matching
 #endif
 // This function is called when the user soft-resets the game
 void start_game(void) {
-    if (gGameSubState != 0) {
+    if (gGameSubState != 0) { //fake match? seems like case-switch.
         if (gGameSubState != 1) {
             return;
         }
@@ -110,15 +110,15 @@ void ClearActorsAndGems(void){
         gActors[i].flag=0;
         gActors[i].graphicList=NULL;
     }
-    for(i=0;i<64;i++){
-        gStaticGems[i].Active=0;
+    for(i=0;i<ARRAYLENGTH(gStaticGems);i++){
+        gStaticGems[i].flags=0;
     }
 }
 
 void ClearPortraits(void){
     uint16_t i;
-    for(i=0;i<66;i++){
-        gPortraits[i].Active=0;
+    for(i=0;i<ARRAYLENGTH(gPortraits);i++){
+        gPortraits[i].flags=0;
     }
 }
 

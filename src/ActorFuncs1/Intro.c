@@ -41,11 +41,11 @@ void func_80192224_6D28A4(uint16_t other,uint16_t index,uint16_t g,int16_t posX,
     thisActor.pos.x=gActors[other].pos.x+posX;
     thisActor.pos.y=gActors[other].pos.y+posY;
     thisActor.pos.z=gActors[other].pos.z+posZ;
-    thisActor.unk_0x158._w=posX<<16;
+    thisActor.gp2._w=posX<<16;
     
-    thisActor.unk_0x15C=posX<<16;
-    thisActor.unk_0x154._w=other;
-    thisActor.unk_0x160._w=posZ;
+    thisActor.gp3._w=posX<<16;
+    thisActor.gp1._w=other;
+    thisActor.gp4._w=posZ;
 }
 #else
 extern void func_80192224_6D28A4(uint16_t other,uint16_t index,uint16_t g,int16_t posX,int16_t posY,int16_t posZ);
@@ -151,8 +151,8 @@ void func_80192A98_6D3118(uint16_t x){
 #ifdef NON_MATCHING
 void func_801960BC_6D673C(uint16_t index, IntroStruct2* p,uint16_t i){
     IntroStruct2* j=&p[i];
-    thisActor.unk_0x158._w=j->actorField0x158;
-    thisActor.unk_0x15C=j->actorField0x15C;
+    thisActor.gp2._w=j->actorField0x158;
+    thisActor.gp3._w=j->actorField0x15C;
     thisActor.rotateZ=j->rotateZ;
 }
 #else
@@ -161,8 +161,8 @@ void func_801960BC_6D673C(uint16_t index, IntroStruct2* p,uint16_t i){
 
 void func_8019611C_6D679C(uint16_t index, IntroStruct2* p,uint16_t i,float* t){
     IntroStruct2* j=&p[i];
-    LERPI(thisActor.unk_0x158._w,j->actorField0x158,t);
-    LERPI(thisActor.unk_0x15C,j->actorField0x15C,t);
+    LERPI(thisActor.gp2._w,j->actorField0x158,t);
+    LERPI(thisActor.gp3._w,j->actorField0x15C,t);
     LERPF(thisActor.rotateZ,j->rotateZ,t);
 }
 
@@ -413,9 +413,9 @@ l__80197430:
       if (cVar11 != 2) {
         return;
       }
-      thisActor.unk_0x154 = func_80192698_6D2D18(thisActor.unk_0x154,0x1f0000,&thisActor.unk_0x114);
-      thisActor.unk_0x158 = thisActor.unk_0x154/0x10000;
-      FUN_8002b82c(&DAT_8033a2b8,&DAT_80199930,0x8f,thisActor.unk_0x158,thisActor.unk_0x158,thisActor.unk_0x158);
+      thisActor.gp1 = func_80192698_6D2D18(thisActor.gp1,0x1f0000,&thisActor.unk_0x114);
+      thisActor.gp2 = thisActor.gp1/0x10000;
+      FUN_8002b82c(&DAT_8033a2b8,&DAT_80199930,0x8f,thisActor.gp2,thisActor.gp2,thisActor.gp2);
       if (0.0 < thisActor.unk_0x114--) {
         return;
       }
@@ -427,7 +427,7 @@ l__80197430:
       thisActor.actorState_b[0]++;
       thisActor.flag2 |= 0x200;
       thisActor.palletteP = 0x80199930;
-      thisActor.unk_0x154 = 0;
+      thisActor.gp1 = 0;
       thisActor.unk_0x114 = 180.0;
     }
     break;
@@ -513,11 +513,11 @@ l__80197430:
       thisActor.scaleX = 1.0;
       thisActor.scaleY = 1.0;
       thisActor.unk_0x12C = 1.0;
-      thisActor.unk_0x17C = PTR_ARRAY_800d74a0[thisActor.unk_0x158 + 0x10];
+      thisActor.unk_0x17C = PTR_ARRAY_800d74a0[thisActor.gp2 + 0x10];
       break;
     case 1:
       thisActor.rotateY += 43.0; //spin the letters around
-      if (thisActor.unk_0x150-- < 1) {
+      if (thisActor.gp0-- < 1) {
         thisActor.actorState_b[0]++;
         thisActor.rotateY = 0.0;
         if (index == 0x68) gActors[50].actorState_b[0]++;
@@ -534,7 +534,7 @@ l__80197430:
       thisActor.scaleX = 1.0;
       thisActor.scaleY = 1.0;
       thisActor.unk_0x12C = 1.0;
-      thisActor.unk_0x17C = PTR_ARRAY_800d74a0[thisActor.unk_0x158 + 0x10];
+      thisActor.unk_0x17C = PTR_ARRAY_800d74a0[thisActor.gp2 + 0x10];
     }
     else if (cVar11 == 1) {
       thisActor.actorState_b[0]++;

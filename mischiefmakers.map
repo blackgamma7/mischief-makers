@@ -2336,7 +2336,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800011f0                RomCopy_A
                 0x0000000080001264                RomCopy_RecvMesg
                 0x0000000080001290                RomCopy_B
-                0x00000000800012f0                func_800012F0
+                0x00000000800012f0                PauseGame_Check
                 0x000000008000147c                func_8000147C
                 0x0000000080001670                GameState_Tick
                 0x000000008000178c                Rand
@@ -3070,13 +3070,13 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080030bb8                func_80030BB8
                 0x0000000080030d9c                func_80030D9C
                 0x0000000080030e58                func_80030E58
-                0x0000000080030f94                func_80030F94
-                0x00000000800310a4                func_800310A4
+                0x0000000080030f94                ActorSpawn_Particle
+                0x00000000800310a4                ActorSpawn_ParticleImage
                 0x000000008003119c                func_8003119C
                 0x00000000800311ec                func_800311EC
-                0x000000008003123c                func_8003123C
+                0x000000008003123c                ActorSpawn_Particle_144_192
                 0x0000000080031284                func_80031284
-                0x00000000800312cc                func_800312CC
+                0x00000000800312cc                ActorSpawn_Particle_pos32_16_45
                 0x0000000080031324                func_80031324
                 0x000000008003137c                func_8003137C
                 0x00000000800313cc                func_800313CC
@@ -4270,7 +4270,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008007ccd0                ActorTick_3
  build/src/7D8E0.c.o(.text)
  .text          0x000000008007cce0     0x2d00 build/src/7D8E0.c.o
-                0x000000008007cce0                func_8007CCE0
+                0x000000008007cce0                ParseToBase10
                 0x000000008007cd68                func_8007CD68
                 0x000000008007ce24                func_8007CE24
                 0x000000008007ceb8                func_8007CEB8
@@ -12045,11 +12045,11 @@ LOAD build/assets/trailer.bin.o
                 0x00000000801a08d8                func_801A08D8_742868
                 0x00000000801a08e0                _73D090_TEXT_END = .
                 0x00000000801a08e0                _73D090_DATA_START = .
-                0x00000000801a08e0                ActorFuncs2_WorminUp_bin = .
+                0x00000000801a08e0                ActorFuncfixed32orminUp_bin = .
  build/assets/ActorFuncs2/WorminUp.bin.o(.data)
  .data          0x00000000801a08e0      0x430 build/assets/ActorFuncs2/WorminUp.bin.o
-                0x00000000801a08e0                _binary_assets_ActorFuncs2_WorminUp_bin_start
-                0x00000000801a0d10                _binary_assets_ActorFuncs2_WorminUp_bin_end
+                0x00000000801a08e0                _binary_assets_ActorFuncfixed32orminUp_bin_start
+                0x00000000801a0d10                _binary_assets_ActorFuncfixed32orminUp_bin_end
                 0x00000000801a0d10                _73D090_DATA_END = .
                 0x00000000801a0d10                _73D090_BSS_START = .
                 0x00000000801a0d10                _73D090_BSS_END = .
@@ -16870,7 +16870,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c4e5c                gSprite = 0x800c4e5c
                 0x0000000080182018                DebugText_Time = 0x80182018
                 0x0000000080180fd0                DebugText_Count = 0x80180fd0
-                0x0000000080180fd8                DebugText_TransformArray = 0x80180fd8
+                0x0000000080180fd8                gDebugTexts = 0x80180fd8
                 0x000000008016e820                gSpriteBitmaps = 0x8016e820
                 0x00000000800ef508                gSFXCurrentIndex = 0x800ef508
                 0x0000000080137d80                gALHeap = 0x80137d80
@@ -17009,8 +17009,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d23fc                gClanpotNumberGraphicIndecies = 0x800d23fc
                 0x0000000080124670                D_80124670 = 0x80124670
                 0x0000000080126670                D_80126670 = 0x80126670
-                0x000000008012ac38                D_8012AC38 = 0x8012ac38
-                0x000000008012a678                D_8012A678 = 0x8012a678
+                0x000000008012ac38                gPiManmsgQ = 0x8012ac38
+                0x000000008012a678                gPiManmsgs = 0x8012a678
                 0x0000000080129670                D_80129670 = 0x80129670
                 0x0000000080128670                D_80128670 = 0x80128670
                 0x00000000800ef4f4                D_800EF4F4 = 0x800ef4f4
@@ -17060,7 +17060,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800c26dc                D_800C26DC = 0x800c26dc
                 0x00000000800c2280                D_800C2280 = 0x800c2280
                 0x000000008010cde8                D_8010CDE8 = 0x8010cde8
-                0x000000008016e748                D_8016E748 = 0x8016e748
+                0x000000008016e748                gSoundOsIOmesgs = 0x8016e748
                 0x00000000801378c8                D_801378C8 = 0x801378c8
                 0x0000000080137794                D_80137794 = 0x80137794
                 0x0000000080108de0                D_80108DE0 = 0x80108de0
@@ -17232,10 +17232,10 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d2908                D_800D2908 = 0x800d2908
                 0x00000000801370d2                D_801370D2 = 0x801370d2
                 0x00000000801370d4                D_801370D4 = 0x801370d4
-                0x00000000801370d0                D_801370D0 = 0x801370d0
-                0x00000000801370d8                D_801370D8 = 0x801370d8
-                0x00000000801371d8                D_801371D8 = 0x801371d8
-                0x00000000801372d8                D_801372D8 = 0x801372d8
+                0x00000000801370d0                gAfterImageIndex = 0x801370d0
+                0x00000000801370d8                gAfterImageImage = 0x801370d8
+                0x00000000801371d8                gAfterImageX = 0x801371d8
+                0x00000000801372d8                gAfterImageY = 0x801372d8
                 0x00000000800c7f20                D_800C7F20 = 0x800c7f20
                 0x00000000800c7f60                D_800C7F60 = 0x800c7f60
                 0x00000000800c7fa0                D_800C7FA0 = 0x800c7fa0
@@ -17454,7 +17454,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800eb948                D_800EB948 = 0x800eb948
                 0x00000000800eb950                D_800EB950 = 0x800eb950
                 0x00000000800eb954                D_800EB954 = 0x800eb954
-                0x00000000800d2294                D_800D2294 = 0x800d2294
+                0x00000000800d2294                gNoteGraphicIndecies = 0x800d2294
                 0x00000000800eb958                D_800EB958 = 0x800eb958
                 0x00000000800eb960                D_800EB960 = 0x800eb960
                 0x00000000800eb964                D_800EB964 = 0x800eb964
@@ -17504,7 +17504,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800ebae8                D_800EBAE8 = 0x800ebae8
                 0x00000000800d2504                D_800D2504 = 0x800d2504
                 0x00000000800d25bc                D_800D25BC = 0x800d25bc
-                0x00000000800d2690                D_800D2690 = 0x800d2690
+                0x00000000800d2690                gItemSpawnLookup = 0x800d2690
                 0x00000000800ebaec                D_800EBAEC = 0x800ebaec
                 0x00000000800ebaf0                D_800EBAF0 = 0x800ebaf0
                 0x00000000800ebaf4                D_800EBAF4 = 0x800ebaf4

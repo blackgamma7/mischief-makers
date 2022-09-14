@@ -109,11 +109,11 @@ void Actor_Spawn(uint16_t index) {
     thisActor.unk_0x16C._w = 0;
     thisActor.unk_0x168._w = 0;
     thisActor.unk_0x164._w = 0;
-    thisActor.unk_0x160._w = 0;
-    thisActor.unk_0x15C = 0;
-    thisActor.unk_0x158._w = 0;
-    thisActor.unk_0x154._w = 0;
-    thisActor.unk_0x150._w = 0;
+    thisActor.gp4._w = 0;
+    thisActor.gp3._w = 0;
+    thisActor.gp2._w = 0;
+    thisActor.gp1._w = 0;
+    thisActor.gp0._w = 0;
     thisActor.pos2.z_w = 0;
     thisActor.unk_0x108 = 0;
     thisActor.pos2.x_w = 0;

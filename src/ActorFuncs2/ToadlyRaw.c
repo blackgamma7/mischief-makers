@@ -155,7 +155,7 @@ uint16_t func_801A2894_75BD34(uint16_t index,int16_t x, int16_t y, uint16_t stat
 #ifdef NON_MATCHING
 void func_801A2F34_75C3D4(uint16_t index, int16_t x,int16_t y,int16_t z,float scale){
     Actor* actorp=&thisActor;
-    uint16_t other = func_8003123C(&gGraphicListDefault,actorp->pos.x+x,actorp->pos.y+y,1);
+    uint16_t other = ActorSpawn_Particle_144_192(&gGraphicListDefault,actorp->pos.x+x,actorp->pos.y+y,1);
     if(other){
         gActors[other].flag2=0x19;
         gActors[other].flag=ACTOR_FLAG_ENABLED;
@@ -166,7 +166,7 @@ void func_801A2F34_75C3D4(uint16_t index, int16_t x,int16_t y,int16_t z,float sc
         gActors[other].scaleY=scale;
         gActors[other].rotateZ=(float)(rand()&0xFF);
         gActors[other].rgba.a=255;
-        gActors[other].unk_0x154._w=-10;
+        gActors[other].gp1._w=-10;
         gActors[other].unk_0x114=0.015;//rodata
         gActors[other].unk_0x110=0.03;//rodata
     }

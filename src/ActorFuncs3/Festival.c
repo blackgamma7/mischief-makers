@@ -216,7 +216,7 @@ void func_801AC3C0_7926B0(uint16_t index, uint16_t x){
   thisActor.flag=ACTOR_FLAG_ACTIVE|ACTOR_FLAG_UNK3;
   thisActor.pos.z = 0x80;
   thisActor.unk_0x164._w = 0x40;
-  thisActor.unk_0x150._w = x;
+  thisActor.gp0._w = x;
 }
 #else
 extern void func_801AC3C0_7926B0(uint16_t index, uint16_t x);
@@ -245,24 +245,24 @@ extern void func_801AC3C0_7926B0(uint16_t index, uint16_t x);
 //tally points earned.
 #ifdef NON_MATCHING
 void func_801AD37C_79366C(uint16_t index,uint16_t instant){
-    if(thisActor.unk_0x160._w==0){
-        gFestivalPointsWhite+=thisActor.unk_0x154._w;
-        gFestivalPointsRed+=thisActor.unk_0x158._w;
-        thisActor.unk_0x160._w=1;
+    if(thisActor.gp4._w==0){
+        gFestivalPointsWhite+=thisActor.gp1._w;
+        gFestivalPointsRed+=thisActor.gp2._w;
+        thisActor.gp4._w=1;
     }
     if(instant){
-        gActors[62].unk_0x158._w=gFestivalPointsWhite;
-        gActors[64].unk_0x158._w=gFestivalPointsRed;
+        gActors[62].gp2._w=gFestivalPointsWhite;
+        gActors[64].gp2._w=gFestivalPointsRed;
     }
     else{
-        MODi(gActors[62].unk_0x158._w,gFestivalPointsWhite,1);
-        MODi(gActors[64].unk_0x158._w,gFestivalPointsRed,1);
-        if (((thisActor.unk_0x170._w != gActors[62].unk_0x158._w) || (thisActor.unk_0x174 != gActors[64].unk_0x158._w))
+        MODi(gActors[62].gp2._w,gFestivalPointsWhite,1);
+        MODi(gActors[64].gp2._w,gFestivalPointsRed,1);
+        if (((thisActor.unk_0x170._w != gActors[62].gp2._w) || (thisActor.unk_0x174 != gActors[64].gp2._w))
           && ((gSceneFrames & 3) == 0)){
             SFX_Play_1(0x139);
             }
-        thisActor.unk_0x170._w=gActors[62].unk_0x158._w;
-        thisActor.unk_0x174=gActors[64].unk_0x158._w;
+        thisActor.unk_0x170._w=gActors[62].gp2._w;
+        thisActor.unk_0x174=gActors[64].gp2._w;
     }
 }
 #else

@@ -373,8 +373,8 @@ void AttractMode_Tick(void) {
         GamePlay_Load();
         gGameState = GAMESTATE_ATTRACT;
         gGameSubState = 1;
-        HealthFace.Active = 0;
-        HealthBar.Active = 0;
+        HealthFace.flags = 0;
+        HealthBar.flags = 0;
         PauseGame_SpawnBars();
         D_80103944 = 0;
         D_801037AA = 0;

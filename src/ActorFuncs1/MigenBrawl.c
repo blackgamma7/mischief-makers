@@ -55,7 +55,7 @@ void func_80192100_67DC20(uint16_t x){}
 
 void func_80192108_67DC28(uint16_t x){
     Actor* actorp;
-    uint16_t index=func_8003123C(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
+    uint16_t index=ActorSpawn_Particle_144_192(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
     if(index){
         actorp =&thisActor;
         actorp->flag2=1;
@@ -252,11 +252,11 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x1000:
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x21);
-      thisActor.unk_0x150 = 0x50;
+      thisActor.gp0 = 0x50;
       SFX_Play_1(roar dying);
       func_80003F24(0x81,0x78);
     case 0x1001:
-      if (--thisActor.unk_0x150 < 0) {
+      if (--thisActor.gp0 < 0) {
         thisActor.actorState++;
       }
       func_80194818_680338();
@@ -274,7 +274,7 @@ void func_80194F8C_680AAC(uint16_t index){
       if ((gSceneFrames & 7) == 0) {
         func_800339AC(0,MigenJrHeadActor.pos.y,MigenJrHeadActor.pos.z);
       }
-      if (++thisActor.unk_0x150 == 0xb4) {
+      if (++thisActor.gp0 == 0xb4) {
         ACTORINIT(100,ACTORTYPE_MIGENTHEO);
         gActors[100].actorState = 0x10;
       }
@@ -299,7 +299,7 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x1004:
       goto lab_80195034_caseD_1004;
     case 0x1005:
-      if (--thisActor.unk_0x150 == 0) {
+      if (--thisActor.gp0 == 0) {
         D_800BE6D8 = 0x80;
         gActors[94].flag = 0;
         gActors[95].flag = 0;
@@ -309,7 +309,7 @@ void func_80194F8C_680AAC(uint16_t index){
       gScreenPosTargetY._hi+= 2;
       if (0x23b < gScreenPosCurrentY._hi) {
         thisActor.actorState++;
-        thisActor.unk_0x150 = 300;
+        thisActor.gp0 = 300;
         gScreenPosTargetY._hi = 0x23c;
       }
       gScreenPosCurrentY._hi = gScreenPosTargetY._hi;
@@ -322,10 +322,10 @@ void func_80194F8C_680AAC(uint16_t index){
       gActors[77].flag3 = 0;
       return;
     case 0x1006:
-      if ((--thisActor.unk_0x150 == 0xf0) && (YellowGem_NoHit(index))) {
+      if ((--thisActor.gp0 == 0xf0) && (YellowGem_NoHit(index))) {
         gNoHit = 0xffff;
       }
-      if (thisActor.unk_0x150) {
+      if (thisActor.gp0) {
         MigenJrActor.flag3 = 0;
         gActors[49].flag3 = 0;
         gActors[55].flag3 = 0;
@@ -758,30 +758,30 @@ lab_80195064_caseD_421:
     gActors[67].unk_0x180 = -0xa00000;
     gActors[63].pos.z_w = -0x300000;
     func_80193DF0_67F910(index,0);
-    thisActor.unk_0x150 = 0;
-    thisActor.unk_0x154 = 0;
-    thisActor.unk_0x158 = 0x27b;
+    thisActor.gp0 = 0;
+    thisActor.gp1 = 0;
+    thisActor.gp2 = 0x27b;
     SFX_ActorPanX(0xab,0x3f);
   case 0x13:
     gActors[63].flag2|= 0x10;
-    gActors[63].rgba.B = thisActor.unk_0x158 / 5;
-    gActors[63].rgba.G = thisActor.unk_0x158 / 5;
-    thisActor.unk_0x154++;
-    if (thisActor.unk_0x158 != 0) thisActor.unk_0x158--;
-    if ((thisActor.unk_0x154 & 1)) {
+    gActors[63].rgba.B = thisActor.gp2 / 5;
+    gActors[63].rgba.G = thisActor.gp2 / 5;
+    thisActor.gp1++;
+    if (thisActor.gp2 != 0) thisActor.gp2--;
+    if ((thisActor.gp1 & 1)) {
       CameraShake(2,2);
     }
-    if ((thisActor.unk_0x154 & 0x40) == 0) {
-      MODi(thisActor.unk_0x150,-0x4000,0x1000); 
+    if ((thisActor.gp1 & 0x40) == 0) {
+      MODi(thisActor.gp0,-0x4000,0x1000); 
     }
     else {
-      MODi(thisActor.unk_0x150,0x40000,0x10000);
+      MODi(thisActor.gp0,0x40000,0x10000);
     }
-    MODi(gActors[67].unk_0x180,-0x100000,thisActor.unk_0x150);
+    MODi(gActors[67].unk_0x180,-0x100000,thisActor.gp0);
     func_80193F9C_67FABC(index);
     if (gActors[67].unk_0x180 == -0x100000) {
       thisActor.actorState++;
-      thisActor.unk_0x150 = 0x3c;
+      thisActor.gp0 = 0x3c;
       SFX_ActorPanX(0x93,0x3f);
       D_800be6cc = 0xffffff40;
       D_800be6d8 = 0xffffff40;
@@ -789,16 +789,16 @@ lab_80195064_caseD_421:
     }
     break;
   case 0x14:
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x18);
-      thisActor.unk_0x150 = 0x1f;
+      thisActor.gp0 = 0x1f;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x15:
     if ((gActors[77].unk_0x16C & 1)) {
-      iVar9 = ++thisActor.unk_0x150;
+      iVar9 = ++thisActor.gp0;
       if (iVar9 < 0x23) {
         if (iVar9 == 0x20) {
           ActorSpawn_JPNSpeechBox(0x4e,&D_8019b090,0,0x20,0x1e);
@@ -812,47 +812,47 @@ lab_80195064_caseD_421:
       }
       else {
         thisActor.actorState++;
-        thisActor.unk_0x150 = 0x1e;
+        thisActor.gp0 = 0x1e;
         func_80193DF0_67F910(index,0x19);
       }
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x16:
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0ac,0,0x20,0x37);
       func_80081790(0x4d,&D_8019d42c);
       gActors[77].unk_0x138 = 0.0;
-      thisActor.unk_0x150 = 0x41;
+      thisActor.gp0 = 0x41;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x17:
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x62,&D_8019b0c8,-0x18,0x10,0x32); //migen sr. responds
-      thisActor.unk_0x150 = 0x50;
+      thisActor.gp0 = 0x50;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x18:
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0d8,0,0x1a,0x41);
-      thisActor.unk_0x150 = 0xf0;
+      thisActor.gp0 = 0xf0;
     }
     func_80193F9C_67FABC(index);
     func_80193CC4_67F7E4(index,0x19);
     break;
   case 0x19:
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0e4,0,0x10,0x34);
       SFX_Play_1(Roar deep);
       CameraShake(-8,0x1e);
       func_80193DF0_67F910(index,0x16);
-      thisActor.unk_0x150 = 0x41;
+      thisActor.gp0 = 0x41;
     }
     func_80193F9C_67FABC(index);
     break;
@@ -862,13 +862,13 @@ lab_80195064_caseD_421:
       thisActor.actorState++;
       gActors[100].unk_0x188|= 0x8000;
       func_80081790(0x4d,&D_8019d338);
-      thisActor.unk_0x150 = 0xb4;
+      thisActor.gp0 = 0xb4;
     }
     func_80193CC4_67F7E4(index,0x17);
     break;
   case 0x1b: //"Help me, Marin-"
     func_80193F9C_67FABC(index);
-    if (--thisActor.unk_0x150 < 0) {
+    if (--thisActor.gp0 < 0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1a);
       SFX_Play_1(SFX_THEO_HELP2);
@@ -885,12 +885,12 @@ lab_80195064_caseD_421:
     if (gActors[77].field55_0x11c < 0.0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1b);
-      thisActor.unk_0x150 = 3;
+      thisActor.gp0 = 3;
     }
     break;
   case 0x1d:
     func_80193F9C_67FABC(index);
-    if ((((uint)gActors[77].unk_0x16C & 1) != 0) &&(--thisActor.unk_0x150 < 0)) {
+    if ((((uint)gActors[77].unk_0x16C & 1) != 0) &&(--thisActor.gp0 < 0)) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1c);
       gActors[63].unk_0x138 = 0.0;
@@ -1260,7 +1260,7 @@ lab_80196b3c:
     func_80193DF0_67F910(index,0x13);
     gActors[65].unk_0x180++;
     gActors[66].unk_0x180 = (uint)(0 < gPlayerActor.pos.x);
-    thisActor.unk_0x150 = (Rand() & 1) + u16_800be668 / 0x1e + 1;
+    thisActor.gp0 = (Rand() & 1) + u16_800be668 / 0x1e + 1;
     ActorSpawn_JPNSpeechBox(0x4e,&D_8019b150,0,0x20,0x32);
     func_80193600_67F120(0x37);
     D_8019E580 = 4;
@@ -1294,7 +1294,7 @@ lab_80196b3c:
       }
       if ((gActors[55].flag3 & 1) != 0) {
         SFX_ActorPanX(0x2c,0x31);
-        if (0 < --thisActor.unk_0x150) {
+        if (0 < --thisActor.gp0) {
           gActors[55].flag &= ~0x1200;
           func_80193DF0_67F910(index,0x14);
           ActorSpawn_JPNSpeechBox(0x4e,&D_8019b15c,0,0x20,0x16);
@@ -1623,13 +1623,13 @@ lab_80197004:
     break;
   case 0xb0:
     thisActor.actorState++;
-    thisActor.unk_0x150 = 1;
+    thisActor.gp0 = 1;
     func_80193DF0_67F910(index,0x1b);
     gActors[63].unk_0x120 = 1.0;
   case 0xb1: //"Thank you for healing me, father!"
     func_80194818_680338();
     func_80193F9C_67FABC(index);
-    if ((gActors[77].unk_0x16C & 1) && (--thisActor.unk_0x150 < 0)) {
+    if ((gActors[77].unk_0x16C & 1) && (--thisActor.gp0 < 0)) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1c);
       SFX_ActorPanX(Roar deep,0x4d);
@@ -1700,7 +1700,7 @@ lab_80195034_caseD_1004:
   thisActor.actorState++;
   D_800be5f4 = 0x11;
   SFX_ActorPanX(dash,0);
-  thisActor.unk_0x150 = 10;
+  thisActor.gp0 = 10;
   gActors[97].flag = 0x2002;
   D_800be6e8 = 1;
   ACTORINIT(100,ACTORTYPE_MIGENTHEO);
@@ -1731,7 +1731,7 @@ lab_80195064_caseD_419:
     thisActor.unk_0x114 = 1.0;
     thisActor.field52_0x110 = 26.0;
     gActors[65].unk_0x180 |= 1;
-    uVar11 = func_8003123C(&D_8019db74,0,0,0);
+    uVar11 = ActorSpawn_Particle_144_192(&D_8019db74,0,0,0);
     if (uVar11) {
       gActors[uVar11].unk_0x130 = 80.0;
       gActors[uVar11].flag2 = |= 0x10;
@@ -1741,8 +1741,8 @@ lab_80195064_caseD_419:
       gActors[uVar11].rgba.R = 0x7f;
       gActors[uVar11].unk_0x148 = 26.0;
       thisActor.unk_0x118 = uVar11;
-      thisActor.unk_0x150 = 0x38000;
-      thisActor.unk_0x154 = 0xffe60000;
+      thisActor.gp0 = 0x38000;
+      thisActor.gp1 = 0xffe60000;
     }
   }
   if (thisActor.unk_0x114 == 0.0) goto lab_80197a84;
@@ -1779,15 +1779,15 @@ lab_80197830:
     else {
       gActors[uVar10].rgba.A = 0xfe;
     }
-    iVar12 = thisActor.unk_0x150 + -0x4800;
-    iVar9 = thisActor.unk_0x154 + iVar12;
-    thisActor.unk_0x150 = iVar12;
-    thisActor.unk_0x154 = iVar9;
+    iVar12 = thisActor.gp0 + -0x4800;
+    iVar9 = thisActor.gp1 + iVar12;
+    thisActor.gp0 = iVar12;
+    thisActor.gp1 = iVar9;
     if (iVar9 < 0) {
       iVar9 = iVar9 + 0xffff;
     }
     gActors[uVar10].unk_0x138 = (float)(iVar9 >> 0x10);
-    if ((int)thisActor.unk_0x150 < 0) gActors[uVar10].rgba.R+=8;
+    if ((int)thisActor.gp0 < 0) gActors[uVar10].rgba.R+=8;
     else MODi(gActors[uVar10].rgba.R,0,0x10);
     gActors[uVar10].rgba.G = gActors[uVar10].rgba.R;
     gActors[uVar10].rgba.B = gActors[uVar10].rgba.R;

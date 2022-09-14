@@ -156,11 +156,11 @@ typedef struct {
     /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
     /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
     /* 0x0EC */ vec3Fixed vel; //position delta
-    /* 0x0F8 */ s2_w speedX; //actual velocity?
-    /* 0x0FC */ s2_w speedY; 
+    /* 0x0F8 */ fixed32 speedX; //actual velocity?
+    /* 0x0FC */ fixed32 speedY; 
     /* 0x100 */ uint32_t unk_0x100; //zeroed by Actor_Spawn, never used(speed z?)
     /* 0x104 */ vec3Fixed pos2; //origin? teleport?
-    /* 0x110 */ float unk_0x110;
+    /* 0x110 */ float unk_0x110; //sometimes timer, sometimes another GP var
     /* 0x114 */ float unk_0x114; 
     /* 0x118 */ float unk_0x118; 
     /* 0x11C */ float unk_0x11C;
@@ -177,12 +177,13 @@ typedef struct {
     /* 0x144 */ float unk_0x144;
     /* 0x148 */ float unk_0x148;
     /* 0x14C */ float unk_0x14C;
-    /* 0x150 */ word_u unk_0x150;
-    /* 0x154 */ word_u unk_0x154;
-    /* 0x158 */ s2_w unk_0x158;
-    /* 0x15C */ int32_t unk_0x15C;
-    /* 0x160 */ s2_w unk_0x160;
-    /* 0x164 */ s2_w unk_0x164;
+    //these are most commonly used for feilds that vary greatly between actor types
+    /* 0x150 */ word_u gp0;
+    /* 0x154 */ word_u gp1;
+    /* 0x158 */ fixed32 gp2;
+    /* 0x15C */ word_u gp3;
+    /* 0x160 */ fixed32 gp4;
+    /* 0x164 */ fixed32 unk_0x164;
     /* 0x168 */ word_u unk_0x168;
     /* 0x168 */ word_u unk_0x16C;
     /* 0x170 */ word_u unk_0x170;
@@ -230,18 +231,21 @@ typedef union{
 #define ACTORTYPE_ZERO 0X00
 #define ACTORTYPE_DIZZYSTAR 0X06
 #define ACTORTYPE_GEM 0X08
+#define ACTORTYPE_PARTICLE 0X09
+#define ACTORTYPE_3DICON 0X15
 #define ACTORTYPE_MARINA 0X16
 #define ACTORTYPE_CLANPOT 0X18
 #define ACTORTYPE_GRAPHICONLY 0X1D
 #define ACTORTYPE_PORTRAIT 0X27
 #define ACTORTYPE_MARINAAFTERIMAGE 0x2e
+#define ACTORTYPE_WARPSTAR 0x32
 #define ACTORTYPE_TEXTBUBBLE 0X35 //used in Japan version. all others, used by the coach in "the day before".
 #define ACTORTYPE_FLOWER 0X43
 #define ACTORTYPE_CLANBOMB 0X45
 #define ACTORTYPE_DIGGINGSPOT 0X57
+#define ACTORTYPE_AREACLEAR 0X6B
 #define ACTORTYPE_MARINAOHNO 0X70
 #define ACTORTYPE_CROSSHAIR 0X71
-#define ACTORTYPE_AREACLEAR 0X74
 #define ACTORTYPE_STAGECLEAR 0X74
 #define ACTORTYPE_LEVELCLEAR 0X75
 #define ACTORTYPE_CLANPOTMENU 0X79

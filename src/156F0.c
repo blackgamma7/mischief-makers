@@ -87,7 +87,7 @@ void func_800153A8(uint16_t index){
 void Actors_PhysicsTick(void) {
     uint16_t index;
 
-    if ((gPlayerManager.unk_0x78 & 0x10) == 0) {
+    if ((gPlayerManager.flags & 0x10) == 0) {
         for (index = 0; index < ACTOR_COUNT1; index++) {
             if ((thisActor.flag & ACTOR_FLAG_ACTIVE)) {
                 Actor_PhysicsTick(index);

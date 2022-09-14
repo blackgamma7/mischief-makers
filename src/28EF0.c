@@ -5,8 +5,8 @@
 
 void func_800282F0(int16_t x,int16_t y){
     ActorSpawn_Marina();
-    gPlayerManager.unk_0x20._w=0;
-    gPlayerManager.unk_0x24._w=0;
+    gPlayerManager.buttonHold._w=0;
+    gPlayerManager.buttonPress._w=0;
     gPlayerActor.pos.x=x;
     gPlayerActor.pos.y=y;
     gPlayerPosXMirror._hi=gScreenPosCurrentX._hi+x;
@@ -19,7 +19,7 @@ void func_800282F0(int16_t x,int16_t y){
 void func_80028380(void) {
     gPlayerActor.flag = 0;
     gIsPlayerInactive = 1;
-    gPlayerManager.unk_0x78 = 0;
+    gPlayerManager.flags = 0;
     if (gPlayerActor.health < 0) gPlayerActor.health = 0;
 }
 #ifdef NON_MATCHING
@@ -88,7 +88,7 @@ void Actor_ZeroFlag_192_199(void) {
 }
 void Portraits_Reset(){
     uint16_t i;
-    for(i=0;i<64;i++) gPortraits[i].Active = 0;
+    for(i=0;i<64;i++) gPortraits[i].flags = 0;
 }
 
 void func_80028704(void) {
@@ -681,12 +681,14 @@ void memcpy16(uint16_t* x, uint16_t* y, uint16_t z) {
 
 
 void func_8002C510(uint16_t index) {
-    if (thisActor.flag & 0x80) Actor_HitboxASet(index, thisActor.unk_0x158._w + 6);
-    else Actor_HitboxASet(index, thisActor.unk_0x158._w - 8);
-    Actor_HitboxBSet(index, thisActor.unk_0x158._lo); // that's why we'll call it a union.
+    if (thisActor.flag & ACTOR_FLAG_UNK7) Actor_HitboxASet(index, thisActor.gp2._w + 6);
+    else Actor_HitboxASet(index, thisActor.gp2._w - 8);
+    Actor_HitboxBSet(index, thisActor.gp2._lo); // that's why we'll call it a union.
 }
+
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002C5C4.s")
-void func_8002C6DC(uint16_t x){}
+
+void ActorTick_30(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002C6E4.s")
 
@@ -728,7 +730,7 @@ void ActorTick_1(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002E89C.s")
 
-const float D_800EB904 = 0.8;
+const float D_800EB904 = 0.8; //dirty hack, 
 
 void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
     float temp;
@@ -768,8 +770,7 @@ void func_8002ED34(uint16_t index, int16_t x, int16_t y, int32_t z) {}
 
 #ifdef NON_MATCHING
 void func_8002ED48(uint16_t index, int16_t x, int16_t y) {
-    thisActor.actorType = 0x2603;
-    Actor_Spawn(index);
+    ACTORINIT(index,0x2603);
     thisActor.health = 10;
     thisActor.pos.x = x;
     thisActor.pos.y = y;
@@ -791,7 +792,7 @@ uint16_t Gem_ActorSpawn(uint16_t index,uint16_t flags, uint16_t x){
         gActors[gemIndex].pos.x=thisActor.pos.x;
         gActors[gemIndex].pos.y=thisActor.pos.y;
         if(flags&GEMFLAG_BOUNCE) gActors[gemIndex].vel.y_w=0x40000;
-        if(flags&GEMFLAG_FINITE) gActors[gemIndex].unk_0x150._w=120;
+        if(flags&GEMFLAG_FINITE) gActors[gemIndex].gp0._w=120;
         SFX_ActorPanX(SFX_GEM_APPEAR,index);
     }
     return gemIndex;
@@ -805,7 +806,7 @@ uint16_t func_8002F154(uint16_t index,uint16_t flags, uint16_t x){
 uint16_t YellowGem_NoHit(uint16_t index){
     uint16_t gemIndex=0;
     if((-1<gNoHit)&&(YellowGem_GetFlag(gCurrentStage)==0)){
-        func_8003FE4C(1.0,gPlayerActor.pos.x,gPlayerActor.pos.y+0x30,2);
+        func_8003FE4C(1.0,gPlayerActor.pos.x,gPlayerActor.pos.y+0x30,2); 
         gemIndex=Gem_ActorSpawn(index,GEMFLAG_YELLOW|GEMFLAG_BOUNCE|GEMFLAG_FINITE,0);
         if(gemIndex){
             gActors[gemIndex].actorType=0x3D;
@@ -839,53 +840,39 @@ void GemCollision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int1
         gRedGems++;
         RedGem_Clamp();
         func_8003FB20(arg0, 0, 1.0, arg3, (int32_t)arg4, (int32_t)((gPlayerActorIndex * 0x198) + 0x800F0000)->unk - A60);
-        if (arg1 != 0) {
-            SFX_GemX(0x57, arg0);
-            return;
-        }
-        SFX_ActorPanX(0x57, arg0);
-        return;
+        if (arg1) SFX_GemX(0x57, arg0);
+        else SFX_ActorPanX(0x57, arg0);
     }
     if (arg2 == &Data_BlueGem) {
-        temp_v1 = gPlayerActorIndex;
-        if (temp_v1)
-            gActors[temp_v1_2].health += 0x1E;
+        if (gPlayerActorIndex)
+            gActors[gPlayerActorIndex].health += 30;
         else
-            Actor_AddHP(0, 0x1E);
+            Actor_AddHP(0, 30);
         func_800337F4(arg3, arg4, 4, 0x132);
-        if (arg1 != 0) {
-            SFX_GemX(0x95, arg0);
-            return;
-        }
-        SFX_ActorPanX(0x95, arg0);
-        return;
+        if (arg1) SFX_GemX(0x95, arg0);
+        else SFX_ActorPanX(0x95, arg0);
     }
-    if (arg2 == &Data_YellowGem) {
+    else if (arg2 == &Data_YellowGem) {
         YellowGem_setFlag();
-        temp_v1_2 = gPlayerActorIndex;
-        if (temp_v1_2)
-            gActors[temp_v1_2].health += 0x1f4;
+        if (gPlayerActorIndex)
+            gActors[gPlayerActorIndex].health += 500;
         else
-            Actor_AddHP(0, 0x1F4);
+            Actor_AddHP(0, 500);
         func_8003F9CC(2.5, arg3, arg4, 0);
-        if (arg1 != 0) {
-            SFX_GemX(0x3B, arg0);
-            return;
-        }
-        SFX_ActorPanX(0x3B, arg0);
-        return;
+        if (arg1) SFX_GemX(0x3B, arg0);
+        else SFX_ActorPanX(0x3B, arg0);
     }
-    func_8003F8B0(1.0, arg3, arg4, ((gPlayerActorIndex * 0x198) + 0x800F0000)->unk - A60);
-    temp_v1_3 = gPlayerActorIndex;
-    if (temp_v1_3)
-        gActors[temp_v1_3].health += 0x12c;
+    else{ //green gem as catch-all
+      func_8003F8B0(1.0, arg3, arg4, ((gPlayerActorIndex * 0x198) + 0x800F0000)->unk - A60);
+    if (gPlayerActorIndex)
+        gActors[gPlayerActorIndex].health += 300;
     else
-        Actor_AddHP(0, 0x12C);
-    if (arg1 != 0) {
+        Actor_AddHP(0, 300);
+    if (arg1) {
         SFX_GemX(0x125, arg0);
-        return;
     }
     SFX_ActorPanX(0x125, arg0);
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/GemCollision.s")
@@ -953,7 +940,7 @@ void func_80030B84(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80030E58.s")
 
-uint16_t func_80030F94(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
+uint16_t ActorSpawn_Particle(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
     uint16_t index = i & 0x7fff;
     if(index){
         ACTORINIT(index,9);
@@ -980,7 +967,7 @@ uint16_t func_80030F94(uint16_t i, void* p, int32_t x, int32_t y, uint32_t z){
 }
 
 
-uint16_t func_800310A4(uint16_t i, uint16_t c, uint32_t x, uint32_t y, uint32_t z){
+uint16_t ActorSpawn_ParticleImage(uint16_t i, uint16_t c, uint32_t x, uint32_t y, uint32_t z){
     uint16_t index = i & 0x7fff; 
     if(index){
         ACTORINIT(index,9);
@@ -1006,35 +993,35 @@ uint16_t func_800310A4(uint16_t i, uint16_t c, uint32_t x, uint32_t y, uint32_t 
 
 
 uint16_t func_8003119C(void* p, int32_t x, int32_t y, int32_t z) {
-    return func_80030F94(Actor_GetInactive(16, 45), p, x, y, z);
+    return ActorSpawn_Particle(Actor_GetInactive(16, 45), p, x, y, z);
 }
 
 uint16_t func_800311EC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(Actor_GetInactive(16, 45), arg0, arg1, arg2, arg3);
+    return ActorSpawn_ParticleImage(Actor_GetInactive(16, 45), arg0, arg1, arg2, arg3);
 }
 
-uint16_t func_8003123C(void* p, int32_t x, int32_t y, int32_t z) {
-    return func_80030F94(Actor_GetInactive_144_192(), p, x, y, z);
+uint16_t ActorSpawn_Particle_144_192(void* p, int32_t x, int32_t y, int32_t z) {
+    return ActorSpawn_Particle(Actor_GetInactive_144_192(), p, x, y, z);
 }
 
 uint16_t func_80031284(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(Actor_GetInactive_144_192(), arg0, arg1, arg2, arg3);
+    return ActorSpawn_ParticleImage(Actor_GetInactive_144_192(), arg0, arg1, arg2, arg3);
 }
 
-uint16_t func_800312CC(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_80030F94(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
+uint16_t ActorSpawn_Particle_pos32_16_45(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+    return ActorSpawn_Particle(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_80031324(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
+    return ActorSpawn_ParticleImage(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_8003137C(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_80030F94(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
+    return ActorSpawn_Particle(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 uint16_t func_800313CC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
-    return func_800310A4(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
+    return ActorSpawn_ParticleImage(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003141C.s")
@@ -1107,11 +1094,11 @@ void func_800338F4(int16_t arg0, int16_t arg1, int16_t arg2) {
     }
 }
 
-uint16_t D_800D2294[4] = { 0x136, 0x138, 0x13A, 0x13A };
+uint16_t gNoteGraphicIndecies[4] = { 0x136, 0x138, 0x13A, 0x13A };
 //spawn notes while idling
 void ActorMarina_Idle_SpawnNotes(int16_t arg0, int16_t arg1, int16_t arg2) {
     if ((gSceneFrames & 0x0F) == 0) {
-        func_800337F4(arg0, arg1, arg2, D_800D2294[RNG(3)]);
+        func_800337F4(arg0, arg1, arg2, gNoteGraphicIndecies[RNG(3)]);
     }
 }
 
@@ -1124,10 +1111,10 @@ void func_800339AC(int16_t arg0, int16_t arg1, int16_t arg2) {}
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_Type5.s")
 
 void ActorTick_Type5(uint16_t index){
-    if(--thisActor.unk_0x154._w == 0) thisActor.flag=0;
-    thisActor.vel.x_w+=thisActor.unk_0x158._w;
-    thisActor.vel.y_w+=thisActor.unk_0x15C;
-    thisActor.unk_0x150._w = func_8002B5A0(thisActor.unk_0x150._h[1],thisActor.unk_0x168._h[1],thisActor.unk_0x164._lo,thisActor.unk_0x160._lo);
+    if(--thisActor.gp1._w == 0) thisActor.flag=0;
+    thisActor.vel.x_w+=thisActor.gp2._w;
+    thisActor.vel.y_w+=thisActor.gp3._w;
+    thisActor.gp0._w = func_8002B5A0(thisActor.gp0._h[1],thisActor.unk_0x168._h[1],thisActor.unk_0x164._lo,thisActor.gp4._lo);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033E7C.s")
@@ -1323,7 +1310,7 @@ void func_80038C94(uint16_t index){
 void func_80039838(uint16_t index){
     thisActor.actorState--;
     thisActor.unk_0x164._w=13;
-    thisActor.unk_0x150._w &= ~0xf0000;
+    thisActor.gp0._w &= ~0xf0000;
 }
 
 
@@ -1341,7 +1328,7 @@ int32_t func_80039970(uint16_t arg0, uint16_t index) {
     Actor* actorp = &thisActor;
     switch (actorp->actorType) {                             
     case ACTORTYPE_GEM:
-        actorp->unk_0x150._w = 0x78;
+        actorp->gp0._w = 0x78;
         actorp->vel.y_w = 0x40000;
         return SFX_ActorPanX(SFX_GEM_APPEAR, arg0);
     case 50:
@@ -1389,17 +1376,17 @@ void func_8003A9B8(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003C328.s")
 
 uint16_t func_8003D518(uint16_t a,void* p,int32_t x,int32_t y,int32_t z){
-    if(a==0) return func_80030F94(Actor_GetInactive(0x10,0x2d), p, x, y, z);
-    else return func_80030F94(Actor_GetInactive(0x90,0xc0), p, x, y, z);
+    if(a==0) return ActorSpawn_Particle(Actor_GetInactive(0x10,0x2d), p, x, y, z);
+    else return ActorSpawn_Particle(Actor_GetInactive(0x90,0xc0), p, x, y, z);
 }
 
 uint16_t func_8003D5A0(uint16_t a,uint16_t p,int32_t x,int32_t y,int32_t z){
-    if(a==0) return func_800310A4(Actor_GetInactive(0x10,0x2d), p, x, y, z);
-    else return func_800310A4(Actor_GetInactive(0x90,0xc0), p, x, y, z);
+    if(a==0) return ActorSpawn_ParticleImage(Actor_GetInactive(0x10,0x2d), p, x, y, z);
+    else return ActorSpawn_ParticleImage(Actor_GetInactive(0x90,0xc0), p, x, y, z);
 }
 #ifdef NON_MATCHING
-u32 ActorSpawn_AreaClear(u16 x){
-    ACTORINIT(0xc0,0x6B);
+uint16_t ActorSpawn_AreaClear(u16 x){
+    ACTORINIT(0xc0,ACTORTYPE_AREACLEAR);
     gActors[0xC0].flag = ACTOR_FLAG_ACTIVE;
     gActors[0xC0].unk_0x110=180.0f;
     gActors[0xC0].unk_0x188._w=x;
@@ -1447,9 +1434,9 @@ uint16_t func_8003D68C(u16 flag2,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003E52C.s")
 //crosshair functions.
 void Crosshair_CopyCoords(uint16_t index){
-    thisActor.pos.x_w = gActors[thisActor.unk_0x150._hu[1]].pos.x_w;
-    thisActor.pos.y_w = gActors[thisActor.unk_0x150._hu[1]].pos.y_w;
-    thisActor.pos.z_w = gActors[thisActor.unk_0x150._hu[1]].pos.z_w + 0x200000;
+    thisActor.pos.x_w = gActors[thisActor.gp0._hu[1]].pos.x_w;
+    thisActor.pos.y_w = gActors[thisActor.gp0._hu[1]].pos.y_w;
+    thisActor.pos.z_w = gActors[thisActor.gp0._hu[1]].pos.z_w + 0x200000;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_Crosshair.s")
@@ -1483,7 +1470,7 @@ void Crosshair_CopyCoords(uint16_t index){
 const double D_800EBC68=0.15000000000000002;
 const double D_800EBC70=-0.013499999999999998;
 uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
-    uint16_t index = func_80031284(0x132U, x, y, z + 1);
+    uint16_t index = ActorSpawn_ParticleImage_144_192(0x132U, x, y, z + 1);
     if (index) {
         thisActor.flag2 = 1;
         thisActor.scaleX = scale;
@@ -1491,14 +1478,14 @@ uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
         thisActor.unk_0x110 = (scale * D_800EBC68);
         thisActor.unk_0x114 = (scale * D_800EBC68);
         thisActor.vel.y_w = 0x20000;
-        thisActor.unk_0x15C = -0x2000;
+        thisActor.gp3._w = -0x2000;
         thisActor.unk_0x118 = (scale * D_800EBC70);
         thisActor.unk_0x11C = (scale * D_800EBC70);
         thisActor.unk_0x17C._p= func_80030A24;
         thisActor.unk_0x148 = 24.0;
         Actor_Shade(index, 0x40U);
         thisActor.pos2.x_w = -4;
-        thisActor.unk_0x154._w = -4;
+        thisActor.gp1._w = -4;
         thisActor.vel.z_w = 0x20000;
     }
     return index;
@@ -1506,22 +1493,29 @@ uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003F8B0.s")
 #endif
-
+//this was the yellow gem particle effect.
 void func_8003F9CC(float f, uint16_t a, uint16_t b, uint32_t c) {}
 //generate a puff of smoke
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003F9E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FB20.s")
-
+//generates an expanding ring
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FD0C.s")
+//above ring is white
+void func_8003FE4C(float f, int16_t x, int16_t y, uint32_t z){
+   func_8003FD0C(f,x,y,z,0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FE4C.s")
+void func_8003FE90(float f, int16_t x, int16_t y, uint32_t z){
+   func_8003FD0C(f,x,y,z,1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FE90.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FED8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FF20.s")
+void func_8003FED8(float f, int16_t x, int16_t y, uint32_t z){
+   func_8003FD0C(f,x,y,z,2);
+}
+void func_8003FF20(float f, int16_t x, int16_t y, uint32_t z){
+   func_8003FD0C(f,x,y,z,3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003FF68.s")
 
@@ -1531,18 +1525,19 @@ void func_8003F9CC(float f, uint16_t a, uint16_t b, uint32_t c) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800404AC.s")
 
-#ifdef NON_MATCHING
+//#ifdef NON_MATCHING
 void func_80040564(uint16_t index) {
-    if (thisActor.actorState == 0) {
-        thisActor.flag = 0x9183;
-    }
-    else if (thisActor.actorState != 1) {
-        return;
+    switch(thisActor.actorState){
+      case 0: {
+          thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK7|ACTOR_FLAG_UNK8|ACTOR_FLAG_UNK12|ACTOR_FLAG_UNK15;
+          break;
+      }
+      case 1: break;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80040564.s")
-#endif
+//#else
+//#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80040564.s")
+//#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800405C0.s")
 
@@ -1680,7 +1675,7 @@ void func_80042360(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800423A0.s")
 
 void func_800427E0(uint16_t index){
-    uint16_t other = thisActor.unk_0x154._hu[1];
+    uint16_t other = thisActor.gp1._hu[1];
     if(gActors[other].actorType==12){
         gActors[other].pos.x=thisActor.pos.x;
         gActors[other].pos.y=thisActor.pos.y;
@@ -1735,7 +1730,7 @@ void func_80042B94(uint16_t index){
 void func_80042C10(uint16_t index){
   if ((thisActor.flag3 & 0x200) == 0) thisActor.flag3&=~0x200600;
   else if (thisActor.actorLink == 0) {
-    if (thisActor.unk_0x150._w == 0) func_8002ED34(index,thisActor.speedX._lo,thisActor.speedY._lo,0);
+    if (thisActor.gp0._w == 0) func_8002ED34(index,thisActor.speedX._lo,thisActor.speedY._lo,0);
     thisActor.actorLink = 0;
     thisActor.flag3|= 0x200;
   }

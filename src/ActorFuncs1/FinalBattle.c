@@ -7,7 +7,7 @@ uint16_t D_801A6F22; //set, but never read
 uint16_t D_801A6F24;
 int16_t D_801A6F26;
 int16_t D_801A6F28; //delay between attacks
-s2_w D_801A6F2C;
+fixed32 D_801A6F2C;
 uint32_t D_801A6F30; //sometimes temp storage for bosses's actorState
 uint32_t D_801A6F34; //unused(?), but implied by spacing
 uint32_t D_801A6F38;
@@ -303,8 +303,8 @@ void func_8019D970_6C8640(uint16_t x){
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=255;
-    gActors[193].unk_0x150._w=0;
-    gActors[193].unk_0x154._w=x;
+    gActors[193].gp0._w=0;
+    gActors[193].gp1._w=x;
     Actor_Shade(193,0);
 }
 
@@ -314,8 +314,8 @@ void func_8019D9D8_6C86A8(uint16_t x){
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
-    gActors[193].unk_0x150._w=0;
-    gActors[193].unk_0x154._w=x;
+    gActors[193].gp0._w=0;
+    gActors[193].gp1._w=x;
     Actor_Shade(193,0);
 }
 
@@ -325,14 +325,14 @@ void func_8019DA3C_6C870C(uint16_t x, uint16_t y){
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
-    gActors[193].unk_0x150._w=0;
-    gActors[193].unk_0x154._w=y;
-    gActors[193].unk_0x158._w=x;
+    gActors[193].gp0._w=0;
+    gActors[193].gp1._w=y;
+    gActors[193].gp2._w=x;
     Actor_Shade(193,0);
 }
 
 uint32_t func_8019DAAC_6C877C(uint16_t x){
-    if((gActors[193].rgba.a==255)&&(x<gActors[193].unk_0x150._w)) return 1;
+    if((gActors[193].rgba.a==255)&&(x<gActors[193].gp0._w)) return 1;
     return 0;
 }
 //aim camera while holding fist?

@@ -22,7 +22,7 @@ enum {
     GAMESTATE_UNKNOWN2 // level select (best times?)
 };
 
-// these structs seem weird, name will be awkward until we understand their purposes
+//32=bit fixed number, used mainly for positioning.
 typedef struct {
     union {
         struct {
@@ -31,7 +31,7 @@ typedef struct {
         };
         /* 0x00 */ int32_t _w;
     };
-} s2_w; /* sizeof = 0x04 */ // short[2], word
+} fixed32; /* sizeof = 0x04 */ // short[2], word
 
 //strongly suspect this union type is what Treasure used, especially in the later part of the actor scruct.
 typedef struct {
@@ -107,17 +107,14 @@ typedef struct {
 //UI objects? last 2 are the health gauge and its portrait
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2]; //one for each FB
-    /* 0x80 */ uint16_t Active;
-    /* 0x82 */ uint16_t unk_0x82;
-    /* 0x84 */ int16_t posX;
-    /* 0x86 */ int16_t unk_0x86; //align?
-    /* 0x88 */ int16_t posY; 
-    /* 0x8A */ int16_t unk_0x8A; //align? these 2 may be unions.
+    /* 0x80 */ uint16_t flags;
+    /* 0x82 */ uint16_t graphic;
+    /* 0x84 */ vec2Fixed pos;
     /* 0x8C */ float scaleX;
     /* 0x90 */ float scaleY;
     /* 0x94 */ int8_t alpha;
     /* 0x95 */ int8_t unk_0x95[3]; //this is Definitely align.
-    /* 0x98 */ void* texture;
+    /* 0x98 */ void* palette;
     /* 0x9C */ int32_t unk_0x9C; //unused?
 } Portrait;/* sizeof 0xA0 */
 #define HealthBar gPortraits[64]
@@ -145,8 +142,8 @@ typedef struct {
     /* 0x12 */ int8_t unk_0x12; //shake timer?
     /* 0x13 */ uint8_t unk_0x13;
     /* 0x14 */ uint8_t unk_0x14[12];
-    /* 0x20 */ s2_w unk_0x20; //unused button history?
-    /* 0x24 */ s2_w unk_0x24; //unused button history?
+    /* 0x20 */ fixed32 buttonHold; 
+    /* 0x24 */ fixed32 buttonPress;
     /* 0x28 */ uint8_t unk_0x28[24]; //unused?
     /* 0x40 */ union{
         uint32_t unk_0x40_w;
@@ -165,18 +162,18 @@ typedef struct {
     /* 0x5C */ uint32_t DebugValD; //need to see if anything sets them in the rom funcs.
     /* 0x60 */ uint32_t unk_0x60;
     /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.flag3
-    /* 0x68 */ uint32_t unk_0x68; //gPlayerActor.speedX._w
-    /* 0x6C */ uint32_t unk_0x6C; //gPlayerActor.speedY._w
-    /* 0x70 */ int16_t unk_0x70;
+    /* 0x68 */ uint32_t actorSpeedX; //gPlayerActor.speedX._w
+    /* 0x6C */ uint32_t actorSpeedY; //gPlayerActor.speedY._w
+    /* 0x70 */ uint16_t playerLink; //gPlayerActor.actorLink
     /* 0x72 */ int16_t unk_0x72;
     /* 0x74 */ uint32_t unk_0x74;
-    /* 0x78 */ uint32_t unk_0x78;
+    /* 0x78 */ uint32_t flags;
     /* 0x7C */ uint32_t unk_0x7C; //player actor time?
 } playerManager; /* sizeof = 0x80 */
 
 // Dunno what to call this, contains a dlist and the 0x180 byte preamble
 typedef struct {
-    /* 0x0000 */ uint8_t unk_0x00[0x180];
+    /* 0x0000 */ Mtx mtxs[6]; //{ortho,?,lookat,ortho,?,?}
     /* 0x0180 */ Gfx dlist[3072];
 } Gfx_Data; /* sizeof = 0x6180 */
 

@@ -49,12 +49,12 @@ void func_800122B0(void) {
 }
 //lock player and camera in x.
 void ActorMarina_ScreenXLock(void) {
-    int32_t temp = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
-    if (temp < -0x90) {
+    int32_t x = gPlayerPosXMirror._hi - gScreenPosCurrentX._hi;
+    if (x < -0x90) {
         gPlayerPosXMirror._hi = gScreenPosCurrentX._hi - 0x90;
         gPlayerActorp->pos.x = -0x90;
     }
-    else if (temp >= 0x91) {
+    else if (x >= 0x91) {
         gPlayerPosXMirror._hi = gScreenPosCurrentX._hi + 0x90;
         gPlayerActorp->pos.x = 0x90;
     }
@@ -68,7 +68,7 @@ void ActorMarina_ScreenYLock(void) {
 }
 #ifdef NON_MATCHING
 void ActorMarina_ScreenXScroll(void){ //~90% matching
-  s32 cap; //s2_w
+  s32 cap; //fixed32
   
   if (gCameraScrollFlags == 0) func_80046498();
   else if (gCameraScrollFlags != 0x8000) {

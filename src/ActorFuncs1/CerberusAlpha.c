@@ -5,7 +5,7 @@
 #define ACTORTYPE_LUNAR 0XF03
 
 //.data (incomplete)
-int16_t D_801A3D30_69BD30=0;
+int16_t D_801A3D30_69BD30=0; //something to do with roataion.
 uint16_t D_801A3D34_69BD34=0;
 int32_t D_801A3D38_69BD38=0; //missle cooldown?
 
@@ -121,8 +121,8 @@ void func_80193DB4_68BDB4(uint16_t index){
     thisActor.flag2=0x109;
     thisActor.flag=0xB;
     thisActor.graphic=200;
-    thisActor.unk_0x150._w=gActors[72].pos.x_w;
-    thisActor.unk_0x154._w=gActors[72].pos.y_w;
+    thisActor.gp0._w=gActors[72].pos.x_w;
+    thisActor.gp1._w=gActors[72].pos.y_w;
     gActors[144].rgba.r=0xC0;
     func_800283BC(0x99,index); //laser blast noise
   }

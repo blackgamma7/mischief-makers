@@ -64,7 +64,7 @@ void func_801B1180_7B4860(uint16_t x){
 void func_801B11A8_7B4888(uint16_t x){
   func_8007CD68(106,0,0,0x48,0,2,99);
   gActors[106].pos.z=8;
-  gActors[106].unk_0x158._w=0x3B;
+  gActors[106].gp2._w=0x3B;
 }
 #else
 extern void func_801B11A8_7B4888(uint16_t x);
@@ -78,7 +78,7 @@ extern void func_801B11A8_7B4888(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival3/func_801B1548_7B4C28.s")
 
 void func_801B1694_7B4D74(uint16_t index){
-    if(thisActor.unk_0x154._w<gActors[110].unk_0x158._w)thisActor.unk_0x154._w=gActors[110].unk_0x158._w;
+    if(thisActor.gp1._w<gActors[110].gp2._w)thisActor.gp1._w=gActors[110].gp2._w;
 }
 
 void func_801B16E8_7B4DC8(uint16_t x){
@@ -140,7 +140,7 @@ uint32_t func_801B2DF8_7B64D8(uint16_t index){
     thisActor.flag = 0x20003;
     thisActor.vel.x_w = 0;
     thisActor.vel.y_w = 0;
-    thisActor.unk_0x154._w = 0;
+    thisActor.gp1._w = 0;
     return 1;
   }
   return 0;

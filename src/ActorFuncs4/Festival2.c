@@ -61,7 +61,7 @@ void func_801B195C_7AD87C(uint16_t x){
 
 void func_801B1974_7AD894(uint16_t i){
     uint16_t index;
-    switch(gActors[i].unk_0x15C){
+    switch(gActors[i].gp3._w){
       case 0:
       index=0x6B;break;
       case 1:
@@ -76,7 +76,7 @@ void func_801B1974_7AD894(uint16_t i){
 
 void func_801B1A18_7AD938(uint16_t i){
     uint16_t index;
-    switch(gActors[i].unk_0x15C){
+    switch(gActors[i].gp3._w){
       case 0:
       index=0x6B;break;
       case 1:
@@ -190,7 +190,7 @@ void func_801B4600_7B0520(uint16_t x){
     gActors[112].pos.x=560-gScreenPosCurrentX._hi;
     gActors[112].pos.y=480-gScreenPosCurrentY._hi;
     gActors[112].pos.z=-2;
-    gActors[112].unk_0x150._w=64;
+    gActors[112].gp0._w=64;
     gActors[112].unk_0x174=(uint32_t)D_801B75A8_7B34C8;
 }
 #else

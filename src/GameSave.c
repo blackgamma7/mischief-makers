@@ -188,6 +188,7 @@ void func_80006B1C(uint16_t i) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/GameSave/func_80006CC8.s")
 
+//squish/spin effect for the file select/ name entry cursor.
 void func_80006DF4(uint16_t index) {
     uint32_t temp = index; // int promotion magic??
     gActors[temp].rotateX += 8.0f;
@@ -339,7 +340,7 @@ void FileSelect_Tick(void){
       gEnvColorsBlue[1] = 0x60;
       gEnvColorsAlpha[1] = 0xff;
       gSaveSlotIndex = 0;
-      gActors[2].unk_0x158 = 0;
+      gActors[2].gp2 = 0;
       gGameSubState++;
       break;
     case 1: //pick save slot, or pick to erase
@@ -740,7 +741,7 @@ void FileSelect_Tick(void){
         }
       }
       Text_Print2Digits((ushort)gActors[183].unk_0xA0,(ushort)GameSave_SelectedAge,-0x20,0xfff0,0
-                        ,u16_ARRAY_ARRAY_800d1788[3]);
+                        ,gTextPalettes[3]);
       if (gActors[187].unk_0xA0 == 0) {
         uVar5 = gSceneFramesReal & 1;
         if ((false) && ((gSceneFramesReal & 1))) {

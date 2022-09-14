@@ -45,8 +45,8 @@ extern uint16_t gButton_LTrig;
 extern uint16_t gButton_RTrig;
 extern int8_t gJoyX;
 extern int8_t gJoyY;
-extern s2_w gPlayerPosXMirror;
-extern s2_w gPlayerPosYMirror;
+extern fixed32 gPlayerPosXMirror;
+extern fixed32 gPlayerPosYMirror;
 extern int32_t gPlayerVelXMirror;
 extern int32_t gPlayerVelYMirror;
 extern uint16_t gCurrentFramebufferIndex;
@@ -119,14 +119,16 @@ extern uint16_t gSceneFramesReal; //like gStageTime and gStageTimeReal, the latt
 extern uint16_t D_800BE4EC;
 extern uint16_t gButtonMask;
 extern uint16_t gCameraScrollFlags;
-extern s2_w gScreenPosTargetX; // these few seem to be screen position related
-extern s2_w gScreenPosTargetY;
-extern s2_w gScreenPosCurrentX;
-extern s2_w gScreenPosCurrentY;
-extern s2_w gScreenPosNextX;
-extern s2_w gScreenPosNextY;
-extern s2_w D_800BE568;
-extern s2_w D_800BE56C;
+extern fixed32 gScreenPosTargetX; // these few seem to be screen position related
+extern fixed32 gScreenPosTargetY;
+extern fixed32 gScreenPosCurrentX;
+extern fixed32 gScreenPosCurrentY;
+extern fixed32 gScreenPosNextX;
+extern fixed32 gScreenPosNextY;
+extern fixed32 D_800BE568; //scene X bounday?
+extern fixed32 D_800BE56C;
+extern fixed32 D_800BE570; //scene Y boundary?
+extern fixed32 D_800BE574;
 extern int16_t D_800BE578;
 extern int16_t D_800BE57C;
 extern int16_t D_800BE580;
@@ -169,7 +171,7 @@ extern uint16_t D_800BE6A8;
  * 3 unknown (func_80021660 is just jr ra)
  * 4 unknown
  * 5 unknown
- * 6 Force pause (see func_800012F0)
+ * 6 Force pause (see PauseGame_Check)
  * 7 pause does not open menu.
  * 8 Draw some debug info
  * 9 unknown (func_80021658 is just jr ra)
@@ -211,7 +213,7 @@ extern double gSpriteScaleY;
 extern uint16_t gNameEntrySpace[11];
 extern uint8_t gSaveSlotIndex;
 extern uint32_t D_800C4FC0[];
-extern s2_w D_800C500C;
+extern fixed32 D_800C500C;
 extern uint8_t D_800C5010[];
 extern uint16_t gNameEntryRow0HIRA[18];
 extern uint16_t gNameEntryRow1HIRA[18];
@@ -304,8 +306,15 @@ extern uint32_t D_800CFB40; //offset subtracted from some romcopy's (0x02000000)
 extern uint32_t D_800CFB44[88][2]; //another romcopy lookup uses D_800CFB40's offset.
 extern uint32_t D_800CFE04[88][12];
 extern void* D_800D0E84[88][6];
-extern int16_t D_800D16C4;
-extern uint16_t D_800D16D0[92]; //ASCII graphic indecies - loads from D_800D16D0[x-0x20]
+extern int16_t D_800D16C4; //may relate to lifebar position.
+
+extern uint16_t gASCIIAlphaIndecies[92]; //ASCII graphic indecies - starts at 0x20 (space char)
+extern uint16_t gTextPalettes[8][4];
+#ifndef VER_JPN
+extern uint8_t gEngTextKerning[52]; //for the letters in the US version that are kerned.
+#endif
+extern uint16_t D_800D17FC[4]; //palette used in Text_PrintAlphaAt2()
+
 extern ClanpotItem gClanpotItems[32]; //stacked in reverse order for some reason.
 extern int32_t D_800D2504[2][2];
 extern int32_t D_800D2514[7][6];
@@ -381,6 +390,7 @@ extern UNK_TYPE D_800D8CF0;
 extern UNK_TYPE D_800D8D68;
 extern UNK_TYPE D_800D8DE0;
 extern UNK_TYPE D_800D9B54;
+extern uint16_t D_800D9B64[];
 extern UNK_TYPE D_800D9B7C;
 extern UNK_TYPE D_800D9AE4;
 extern UNK_TYPE D_800D9284;
@@ -554,10 +564,11 @@ extern uint16_t g3DHitbox1BY0[144];
 extern uint16_t D_8011D730[144];
 extern uint16_t g3DHitbox1BY1[144];
 extern uint16_t gInputHistoryHold[64];
-extern uint32_t D_80126670; // initial thread stack head
-extern UNK_TYPE D_80128670;
-extern UNK_TYPE D_80129670;
-extern OSMesg D_8012A678[8];
+extern u64 idleThreadStack[2048];
+extern u64 mainThreadStack[1024];
+extern u64 rmonThreadStack[512];
+extern u64 unkThreadStack[512]; //unused thread? fits gap in ram.
+extern OSMesg gPiManmsgs[8];
 extern OSThread idleThread;
 extern OSThread mainThread;
 extern OSThread rmonThread;
@@ -566,7 +577,7 @@ extern OSMesgQueue D_8012ABC0;
 extern OSMesgQueue D_8012ABD8;
 extern OSMesgQueue D_8012ABF0;
 extern OSMesgQueue D_8012AC08;
-extern OSMesgQueue D_8012AC38[2];
+extern OSMesgQueue gPiManmsgQ[2];
 extern OSMesg D_8012AC68;
 extern OSMesg D_8012AC6C;
 extern OSMesg D_8012AC70;
@@ -584,7 +595,7 @@ extern uint32_t gPlayerControllerIndex;
 extern uint16_t gButtonCur;
 extern uint32_t gPlayTime;
 extern uint16_t gMarinaButtonHold;
-extern uint16_t D_801370CE;
+extern uint16_t gMarinaButtonPress;
 extern uint16_t D_801373D8;
 extern playerManager gPlayerManager;
 extern UNK_TYPE D_80137458;

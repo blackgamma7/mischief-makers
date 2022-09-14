@@ -287,10 +287,10 @@ void func_8019DA80_745630(uint16_t index){
         gActors[j].pos.x_w=thisActor.pos.x_w;
         gActors[j].pos.y_w=thisActor.pos.y_w;
         gActors[j].pos.z=thisActor.pos.z-1;
-        gActors[j].unk_0x154._w=i<<7;
-        gActors[j].unk_0x158._w=i*10;
-        if(gActors[index+6].unk_0x180._w<0x200) gActors[j].unk_0x15C=1;
-        else gActors[j].unk_0x15C=-1;
+        gActors[j].gp1._w=i<<7;
+        gActors[j].gp2._w=i*10;
+        if(gActors[index+6].unk_0x180._w<0x200) gActors[j].gp3=._w1;
+        else gActors[j].gp3._w=-1;
     }
 }
 
@@ -357,7 +357,7 @@ void func_8019E1E8_745D98(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_801A0650_748200.s")
 
 void func_801A0740_7482F0(uint16_t index){
-    thisActor.pos.x=thisActor.unk_0x160._w-gScreenPosCurrentX._hi;
+    thisActor.pos.x=thisActor.gp4._w-gScreenPosCurrentX._hi;
     thisActor.pos.y=thisActor.unk_0x164._w-gScreenPosCurrentY._hi;
 }
 

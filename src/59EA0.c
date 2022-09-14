@@ -84,7 +84,7 @@ uint16_t ActorSpawn_MarinaAfterImage(uint16_t other){
     thisActor.pos.x_w = parent->pos.x;
     thisActor.pos.y_w = parent->pos.y;
     thisActor.pos.z_w = parent->pos.z + -0x18000;
-    thisActor.unk_0x150._w = 0xf;
+    thisActor.gp0._w = 0xf;
     thisActor.flag2 |= 0x10;
     thisActor.rgba.r = 0x7f;
     thisActor.rgba.g = 0x7f;

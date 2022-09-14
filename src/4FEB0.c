@@ -75,13 +75,13 @@ void func_80051324(u16 index) { //like, ~95% correct.
     }
     else {
         if (thisActor.actorState_b[0] == 0) {
-            thisActor.unk_0x150._w = 0x10;
+            thisActor.gp0._w = 0x10;
             thisActor.speedX._w = thisActor.vel.x_w;
             thisActor.speedY._w = thisActor.vel.y_w;
             if (thisActor.actorState_b[1] == 0x13) {
-                thisActor.unk_0x150._w = 0x20;
+                thisActor.gp0._w = 0x20;
             }
-            thisActor.unk_0x158._w = 0;
+            thisActor.gp2._w = 0;
             thisActor.actorState_b[0] = 1;
             switch (gPlayerManager.unk_0x10) {
             case 0:
@@ -90,8 +90,8 @@ void func_80051324(u16 index) { //like, ~95% correct.
                 } else {
                     thisActor.vel.y_w = ActorMarina_VelByScale(0x1C);
                 }
-                thisActor.unk_0x150._w = 0x18;
-                thisActor.unk_0x158._w = ActorMarina_VelByScale(0x13) * D_800EBDD0; //0.358d
+                thisActor.gp0._w = 0x18;
+                thisActor.gp2._w = ActorMarina_VelByScale(0x13) * D_800EBDD0; //0.358d
                 thisActor.unk_0x170._w = 0x55;
                 
                 break;
@@ -152,7 +152,7 @@ void func_80051324(u16 index) { //like, ~95% correct.
             thisActor.unk_0x17C._b[1] = 2;
             thisActor.flag |=0x2000;
             thisActor.unk_0x182 = (u8) temp_v0_4;
-            thisActor.unk_0x15C = (s32) temp_v0_4;
+            thisActor.gp3._w = (s32) temp_v0_4;
             if (thisActor.actorState_b[1] == 0x13) {
                 thisActor.unk_0x12C._bu[2] |= 0x40;
                 thisActor.vel.x_w = thisActor.speedX._w;
@@ -162,30 +162,30 @@ void func_80051324(u16 index) { //like, ~95% correct.
             goto block_74;
         }
         if (thisActor.actorState_b[1] == 0x12) {
-            MODi(thisActor.vel.y_w, -0x60000, thisActor.unk_0x158._w);
+            MODi(thisActor.vel.y_w, -0x60000, thisActor.gp2._w);
             if (ABS(thisActor.vel.x_w)>ActorMarina_VelByScale(0x1C)) MODi(thisActor.vel.x_w, 0, 0x2000);
-            MODi(thisActor.unk_0x158._w, ActorMarina_VelByScale(0x13), ActorMarina_VelByScale(0x13) / 16);
+            MODi(thisActor.gp2._w, ActorMarina_VelByScale(0x13), ActorMarina_VelByScale(0x13) / 16);
             if ((ActorMarina_Getfield172h(index) != 0x28) && (ActorMarina_Getfield172h(index) != 0x29) && (func_8005D418(index) != 0)) {
                 if (thisActor.unk_0x140 == 0) {
                     thisActor.unk_0x170._w = 0x29;
                 } else thisActor.unk_0x170._w = 0x28;
             }
-            if (thisActor.unk_0x150._w < 4.0) {
+            if (thisActor.gp0._w < 4.0) {
                 thisActor.unk_0x12C._hu[0] |= 4;
             }
-            if (thisActor.unk_0x15C == 0) {
+            if (thisActor.gp3._w == 0) {
                 MODi(thisActor.vel.x_w, 0, ActorMarina_VelByScale(0) / 2);
                 thisActor.unk_0x12C._hu[0] |= 8;
                 goto block_63;
             }
-            if ((thisActor.unk_0x15C != 8) && (thisActor.unk_0x150._w >= 9) && (ABS(thisActor.vel.x_w) >= 0x28000)) {
+            if ((thisActor.gp3 != 8) && (thisActor.gp0._w >= 9) && (ABS(thisActor.vel.x_w) >= 0x28000)) {
                 if (ABS(thisActor.hitboxAX0) < ABS(thisActor.hitboxAX1)) {
                     phi_a0 = (thisActor.hitboxAX1 + thisActor.pos.x + 1);
                 } else {
                     phi_a0 = (thisActor.hitboxAX0 + thisActor.pos.x - 1);
                 }
                 if ((func_80012AB4(phi_a0, thisActor.pos.y) & 0x80)) {
-                    thisActor.unk_0x150._w += 0x10;
+                    thisActor.gp0._w += 0x10;
                     thisActor.actorState_b[0] = 3;
                     thisActor.actorState_b[1] = 0x13;
                     thisActor.vel.x_w *= 0.75;
@@ -210,13 +210,13 @@ block_63:
                 } else {
                     MODi(thisActor.vel.y_w, 0, phi_a3 * 2);
                 }
-                if ((f64) thisActor.unk_0x150._w < 12.0) {
+                if ((f64) thisActor.gp0._w < 12.0) {
                     thisActor.unk_0x12C._hu[0] |= 4;
                 } else {
                     thisActor.unk_0x12C._bu[2] |= 0x40;
                 }
             }
-            if (--thisActor.unk_0x150._w == 0) {
+            if (--thisActor.gp0._w == 0) {
                 thisActor.flag &= ~0x80;
                 thisActor.actorState_b[0] = 2;
                 thisActor.actorState_b[1] = 0x1A;
@@ -287,6 +287,7 @@ void ActorMarina_GrabNoop(uint16_t x,uint16_t y){}
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_8005544C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_800554AC.s")
+
 void ActorMarina_GrabNoop2(uint16_t x,uint16_t y){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB0/func_80055538.s")
@@ -390,7 +391,7 @@ void func_80058E44(uint16_t index,uint16_t x){
 void func_80058EB0(uint16_t index,uint16_t x){
     if((thisActor.flag<<6)<0) func_8004F514(index,thisActor.actorLink);
     func_80058924(index);
-    thisActor.unk_0x150._w=thisActor.flag&=~0x1501;
+    thisActor.gp0._w=thisActor.flag&=~0x1501;
     thisActor.actorState_b[0]=4,thisActor.actorState_b[1]=1;
 }
 #else

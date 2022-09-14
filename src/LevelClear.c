@@ -104,7 +104,7 @@ void func_8009705C(uint16_t index) { //marina in her first victory pose
     thisActor.pos.y = 0xFFFC;
     thisActor.pos.z = 0x80;
     thisActor.unk_0x114 = D_800ED508;
-    thisActor.unk_0x154._w = 0x6000;
+    thisActor.gp1._w = 0x6000;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/LevelClear/func_8009705C.s")

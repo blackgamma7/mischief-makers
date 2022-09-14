@@ -123,6 +123,16 @@
 //used for the "FIGHT" and "Go to next area" prompts
 //numbering suggests this is the oringinal english alphabet.
 
+#define ALPHA_BOLD_0 0x0000
+#define ALPHA_BOLD_1 0x0001
+#define ALPHA_BOLD_2 0x0002
+#define ALPHA_BOLD_3 0x0003
+#define ALPHA_BOLD_4 0x0004
+#define ALPHA_BOLD_5 0x0005
+#define ALPHA_BOLD_6 0x0006
+#define ALPHA_BOLD_7 0x0007
+#define ALPHA_BOLD_8 0x0008
+#define ALPHA_BOLD_9 0x0009
 
 #define ALPHA_UPPER_A 0x000A
 #define ALPHA_UPPER_B 0x000B

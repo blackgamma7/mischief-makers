@@ -814,7 +814,7 @@ void TitleScreen_Tick(void) {
 
             if (gActors[51].rgba.a == 7) {
                 gActors[51].flag = 0;
-                gActors[51].unk_0x154._w = 0x10040;
+                gActors[51].gp1._w = 0x10040;
 #ifdef VER_JPN
                 SFX_Play_1(0x48); //subtitle go "woosh"
 #endif                
@@ -827,10 +827,10 @@ void TitleScreen_Tick(void) {
             break;
         }
         case 26: {
-            gActors[51].unk_0x154._w--;
+            gActors[51].gp1._w--;
             Title_MoveSubtitle();
 
-            if (gActors[51].unk_0x154._w == 0x10000) {
+            if (gActors[51].gp1._w == 0x10000) {
                 SFX_Play_1(SFX_MARINA_TITLE);
             }
 

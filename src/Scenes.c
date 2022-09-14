@@ -59,8 +59,8 @@ void CameraTick_MagmaRafts(void) {
 }
 
 void CameraInit_scene02(void){
-    HealthBar.Active=0;
-    HealthFace.Active=0;
+    HealthBar.flags=0;
+    HealthFace.flags=0;
     gIsPlayerInactive=1;
 }
 
@@ -68,8 +68,8 @@ void CameraTick_scene02(void) {}
 void CameraInit_Scene03(void){
     D_800BE57C=0;
     D_800BE584=0;
-    HealthBar.Active=0;
-    HealthFace.Active=0;
+    HealthBar.flags=0;
+    HealthFace.flags=0;
     gIsPlayerInactive=1;
 }
 
@@ -78,8 +78,8 @@ void CameraInit_Scene03(void){
 void CameraInit_Scene04(void){
     D_800BE57C=2;
     D_800BE584=-12;
-    HealthBar.Active=0;
-    HealthFace.Active=0;
+    HealthBar.flags=0;
+    HealthFace.flags=0;
     gIsPlayerInactive=1;
 }
 
@@ -238,8 +238,8 @@ void func_800245B4(void){
     D_800BE580 = -0xc;
     D_800BE57C = 2;
     D_800BE584 = -0xc;
-    HealthBar.Active=0;
-    HealthFace.Active=0;
+    HealthBar.flags=0;
+    HealthFace.flags=0;
 }
 
 void func_800245F0(void) {}

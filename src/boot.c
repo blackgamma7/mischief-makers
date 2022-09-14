@@ -162,7 +162,7 @@ void Framebuffer_Clear(void) {
 
     cfb[1] = t7;
     osViSwapBuffer((void*)0x803DA800);
-    osViBlack((uint8_t)0U);
+    osViBlack(false);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/Framebuffer_Clear.s")
@@ -170,7 +170,7 @@ void Framebuffer_Clear(void) {
 
 void mainproc(int32_t arg0) {
     osInitialize();
-    osCreateThread(&idleThread, 1, Thread_IdleProc, NULL, &D_80126670, 0xA);
+    osCreateThread(&idleThread, 1, Thread_IdleProc, NULL, ARRAYEND(idleThreadStack), 0xA);
     osStartThread(&idleThread);
 }
 
@@ -196,10 +196,10 @@ void Thread_IdleProc(void* arg0) {
         gOSViModep = &osViModeTable[OS_VI_NTSC_LAN1];
     }
 #endif
-    osCreatePiManager(OS_PRIORITY_PIMGR, &D_8012AC38, &D_8012A678, 8);
-    osCreateThread(&rmonThread, 0, rmonMain, NULL, &D_80129670, OS_PRIORITY_RMON);
+    osCreatePiManager(OS_PRIORITY_PIMGR, &gPiManmsgQ, &gPiManmsgs, 8);
+    osCreateThread(&rmonThread, 0, rmonMain, NULL, ARRAYEND(rmonThreadStack), OS_PRIORITY_RMON);
     osStartThread(&rmonThread);
-    osCreateThread(&mainThread, 3, Thread_MainProc, arg0, &D_80128670, 10);
+    osCreateThread(&mainThread, 3, Thread_MainProc, arg0, ARRAYEND(mainThreadStack), 10);
     osStartThread(&mainThread);
     osSetThreadPri(0, 0);
 
@@ -213,7 +213,7 @@ void func_80000A84(uint16_t buffer_index) {
     uint16_t* framebuffer;
 
     gGFXTaskp = &gGFXTasks[buffer_index];
-    D_800EF4F4 = gDListTail[buffer_index].unk_0x00;
+    D_800EF4F4 = gDListTail[buffer_index].mtxs;
     gDListHead = D_800EF4F4 + 48;
 
     // that's right, these were hardcoded
@@ -395,7 +395,7 @@ int32_t RomCopy_B(int32_t devaddr, void* vaddr, uint32_t nbytes) {
     return osPiStartDma(&mb, 0, 0, devaddr, vaddr, nbytes, &gDMAMsgQ);
 }
 
-void func_800012F0(void) {
+void PauseGame_Check(void) {
     if (gGameState == GAMESTATE_GAMEPLAY) {
         if ((gDebugBitfeild & 0x200) && gGamePaused == 0) {
             gGamePaused = 1;
@@ -442,7 +442,7 @@ void func_8000147C(void) {
         gPlayTime++;
     }
 
-    func_800012F0();
+    PauseGame_Check();
     GameState_Tick();
     MarinaGraphics_Load();
     func_80009940();

@@ -2,7 +2,7 @@
 #include "common.h"
 
 //parses ints to base 10 equivalent
-#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CCE0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/ParseToBase10.s")
 
 #ifdef NON_MATCHING
 void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,uint16_t j,uint32_t q){
@@ -10,9 +10,9 @@ void func_8007CD68(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i,u
     thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
     thisActor.pos.x=x;
     thisActor.pos.y=y;
-    thisActor.unk_0x150._w=i;
-    thisActor.unk_0x154._w=arg1;
-    thisActor.unk_0x15C=q;
+    thisActor.gp0._w=i;
+    thisActor.gp1._w=arg1;
+    thisActor.gp3._w=q;
     thisActor.unk_0x14C=j;
 }
 #else
@@ -23,8 +23,8 @@ void func_8007CE24(uint16_t index,uint16_t arg1,int16_t x,int16_t y,uint16_t i){
     thisActor.flag|=ACTOR_FLAG_UNK3|ACTOR_FLAG_ACTIVE;
     thisActor.pos.x=x;
     thisActor.pos.y=y;
-    thisActor.unk_0x150._w=i;
-    thisActor.unk_0x154._w=arg1;
+    thisActor.gp0._w=i;
+    thisActor.gp1._w=arg1;
 }
 //spawn dialouge portait?
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007CEB8.s")
@@ -43,15 +43,15 @@ uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,in
         thisActor.unk_0x114=z&0x7FFF;
         thisActor.unk_0x118=z&0x8000;
         thisActor.pos.z_w=0x80000;
-        thisActor.unk_0x158._w=x;
+        thisActor.gp2._w=x;
         thisActor.pos.x=x;
-        thisActor.unk_0x15C._w=y;
+        thisActor.gp3._w=y;
         thisActor.pos.y=y;
         thisActor.scaleX=0.0;
         thisActor.scaleY=0.0;
         thisActor.scaleX=0.0;
-        thisActor.unk_0x150._w=txt;
-        thisActor.unk_0x154._w=i;
+        thisActor.gp0._w=txt;
+        thisActor.gp1._w=i;
     }
     return index;
     #else

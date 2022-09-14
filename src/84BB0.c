@@ -40,11 +40,13 @@ uint32_t func_800846A8(uint16_t index){
 void func_8008486C(uint16_t x) {
     func_800846A8(x), func_80084734(x);
 }
+
 #ifdef NON_MATCHING
+
 void func_800848A0(uint16_t index){
     if(thisActor.flag3&0x200){
         thisActor.actorState=2;
-        thisActor.flag= 0x20003;
+        thisActor.flag= ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK17;
         thisActor.vel.x_w=0;
         thisActor.vel.y_w=0;
         SFX_ActorPanX(0x2f,index);
@@ -53,6 +55,7 @@ void func_800848A0(uint16_t index){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_800848A0.s")
 #endif
+
 #ifdef NON_MATCHING
 void func_80084924(uint16_t index){
   thisActor.hitboxBX1 = 4;
@@ -61,7 +64,9 @@ void func_80084924(uint16_t index){
   thisActor.hitboxBX0 = -4;
 }
 #else
+
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084924.s")
+
 #endif
 //flower "tick"
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80084974.s")
@@ -185,8 +190,34 @@ void func_80085F08(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80086B74.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/ActorTick_Clanbomb.s")
-
+//spawns a "digit" graphic
+#ifdef NON_MATCHING
+void func_80087568(uint16_t other, uint16_t g, int32_t posx,int32_t posy,int32_t posz){
+    Actor* actorp;
+    uint16_t index=Actor_GetInactive(0x90,0xc0);
+    if(index){
+        actorp = &gActors[other];
+        ACTORINIT(index,0x34);
+        thisActor.flag2=0xA01;
+        thisActor.graphic=g;
+        thisActor.scaleX=actorp->scaleX;
+        thisActor.rgba.r=255;
+        thisActor.rgba.g=255;
+        thisActor.rgba.b=255;
+        thisActor.scaleY=actorp->scaleY;
+        thisActor.unk_0x188._w=0; 
+        thisActor.palletteP=D_800D9B64;
+        thisActor.rgba.a=actorp->rgba.a;
+        thisActor.pos.x_w=posx;
+        thisActor.pos.y_w=posy;
+        thisActor.pos.z_w=posz;
+        if(other<index) thisActor.unk_0x148=1.0;
+        else thisActor.unk_0x148=0.0;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087568.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80087698.s")
 
@@ -209,8 +240,8 @@ void func_80085F08(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088408.s")
 
 void func_80088518(uint16_t index){
-    thisActor.unk_0x15C=0x3000;
-    thisActor.vel.x_w=thisActor.unk_0x160._w;
+    thisActor.gp3._w=0x3000;
+    thisActor.vel.x_w=thisActor.gp4._w;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008855C.s")
@@ -234,21 +265,21 @@ void func_800887F0(uint16_t index){
 #ifdef NON_MATCHING
 void func_80088A54(uint16_t index){
   uint8_t c;
-  if (thisActor.unk_0x158._w != 0) {
+  if (thisActor.gp2._w != 0) {
     thisActor.flag2&= ~0x10;
     return;
   }
   thisActor.flag2|= 0x10;
-  if (0x2000000 < thisActor.unk_0x15C) {
+  if (0x2000000 < thisActor.gp3._w) {
     thisActor.rgba.r = 0;
     thisActor.rgba.g = 0;
     thisActor.rgba.b = 0;
     return;
   }
-  if (0x1000000 < thisActor.unk_0x15C) {
-    thisActor.unk_0x15C = 0x2000000 - thisActor.unk_0x15C;
+  if (0x1000000 < thisActor.gp3._w) {
+    thisActor.gp3._w = 0x2000000 - thisActor.gp3._w;
   }
-  c = (thisActor.unk_0x15C >> 0x11);
+  c = (thisActor.gp3._w >> 0x11);
   thisActor.rgba.r = c;
   thisActor.rgba.g = c;
   thisActor.rgba.b = c;
@@ -269,12 +300,12 @@ void func_80088A54(uint16_t index){
 
 void func_800891EC(u16 index) {
     Actor* actorp;
-    uint16_t other = func_8003123C(&gGraphicListDefault, thisActor.pos.x, thisActor.pos.y + 0xC, thisActor.pos.z + 1);
+    uint16_t other = ActorSpawn_Particle_144_192(&gGraphicListDefault, thisActor.pos.x, thisActor.pos.y + 0xC, thisActor.pos.z + 1);
     if (other) {
         actorp = &gActors[other];
         actorp->graphic = 0x16E;
         actorp->vel.x_w = -0x200;
-        actorp->unk_0x154._w = -4;
+        actorp->gp1._w = -4;
     }
 }
 

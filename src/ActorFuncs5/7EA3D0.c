@@ -42,7 +42,7 @@ void func_801B9900_7EA3D0(void){
       InitPlayerPosition(D_801B9BC0_7EA690,0);
       LoadOverlayActors(D_801B9BD0_7EA6A0);
       D_800BE5F4 = 7;
-      gPlayerManager.unk_0x78|= 1;
+      gPlayerManager.flags|= 1;
       D_800BE4EC = 1;
     }
   else if (D_800D28E8 == 0x1001) {
@@ -56,7 +56,7 @@ void func_801B9900_7EA3D0(void){
     InitPlayerPosition(D_801B9BC0_7EA690,0);
     LoadOverlayActors(D_801B9BD0_7EA6A0);
     D_800BE5F4._w = 7;
-    gPlayerManager.unk_0x78|=1;
+    gPlayerManager.flags|=1;
   }
   else if (D_800D28E8 == 0x8000) func_80046188(D_801B9BC0_7EA690,D_801B9C28_7EA6F8);
   else if (D_800D28E8 == 0x8001) {
