@@ -992,11 +992,11 @@ uint16_t ActorSpawn_ParticleImage(uint16_t i, uint16_t c, uint32_t x, uint32_t y
 }
 
 
-uint16_t func_8003119C(void* p, int32_t x, int32_t y, int32_t z) {
+uint16_t ActorSpawn_Particle_16_45(void* p, int32_t x, int32_t y, int32_t z) {
     return ActorSpawn_Particle(Actor_GetInactive(16, 45), p, x, y, z);
 }
 
-uint16_t func_800311EC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+uint16_t ActorSpawn_ParticleImage_16_45(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
     return ActorSpawn_ParticleImage(Actor_GetInactive(16, 45), arg0, arg1, arg2, arg3);
 }
 
@@ -1004,7 +1004,7 @@ uint16_t ActorSpawn_Particle_144_192(void* p, int32_t x, int32_t y, int32_t z) {
     return ActorSpawn_Particle(Actor_GetInactive_144_192(), p, x, y, z);
 }
 
-uint16_t func_80031284(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+uint16_t ActorSpawn_ParticleImage_144_192(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
     return ActorSpawn_ParticleImage(Actor_GetInactive_144_192(), arg0, arg1, arg2, arg3);
 }
 
@@ -1012,19 +1012,19 @@ uint16_t ActorSpawn_Particle_pos32_16_45(uint32_t arg0, uint32_t arg1, uint32_t 
     return ActorSpawn_Particle(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
-uint16_t func_80031324(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+uint16_t ActorSpawn_ParticleImage_pos32_16_45(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
     return ActorSpawn_ParticleImage(Actor_GetInactive(16, 45) | 0x8000, arg0, arg1, arg2, arg3);
 }
 
-uint16_t func_8003137C(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+uint16_t ActorSpawn_Particle_pos32_144_192(uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
     return ActorSpawn_Particle(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
-uint16_t func_800313CC(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
+uint16_t ActorSpawn_ParticleImage_pos32_144_192(uint16_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) {
     return ActorSpawn_ParticleImage(Actor_GetInactive_144_192() | 0x8000, arg0, arg1, arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003141C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorTick_Particle.s")
 
 uint16_t func_80031CAC(uint16_t arg0, int32_t x, int32_t y, int32_t z) {
     uint16_t index = Actor_GetInactive_144_192();
@@ -1426,8 +1426,8 @@ uint16_t func_8003D68C(u16 flag2,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/AreaClear_State0.s")
 //"Escaped from trouble!" "Go to the Next Area!"
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorTick_AreaClear.s")
-//rapid explosion effect?
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003DF78.s")
+//rapid explosion effect
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/BouncingExplosion.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003E230.s")
 

@@ -11,7 +11,7 @@ ActorFunc gActorFuncTable[]={
   /*0x06*/  ActorTick_DizzyStar,
   /*0x07*/  ActorTick_7, //turns transparent by a rate set by unk_0x18C
   /*0x08*/  ActorTick_Gem,
-  /*0x09*/  func_8003141C,
+  /*0x09*/  ActorTick_Particle,
   /*0x0A*/  func_80042338, //NOOP
   /*0x0B*/  func_80042B94, 
   /*0x0C*/  func_80042C10, 

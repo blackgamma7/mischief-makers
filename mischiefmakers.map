@@ -3073,9 +3073,9 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080030f94                ActorSpawn_Particle
                 0x00000000800310a4                ActorSpawn_ParticleImage
                 0x000000008003119c                func_8003119C
-                0x00000000800311ec                func_800311EC
+                0x00000000800311ec                ActorSpawn_Particle_16_45
                 0x000000008003123c                ActorSpawn_Particle_144_192
-                0x0000000080031284                func_80031284
+                0x0000000080031284                ActorSpawn_ParticleImage_144_192
                 0x00000000800312cc                ActorSpawn_Particle_pos32_16_45
                 0x0000000080031324                func_80031324
                 0x000000008003137c                func_8003137C

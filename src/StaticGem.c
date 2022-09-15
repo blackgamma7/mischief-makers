@@ -3,7 +3,7 @@
 //funcs for the gems that hang in the air like coins
 
 void func_80044360(void) {
-    gStaticGems[gStaticGemIndex].Active = 10;
+    gStaticGems[gStaticGemIndex].flags = 10;
     gStaticGems[gStaticGemIndex].texture = NULL;
 }
 
@@ -22,7 +22,7 @@ void func_80044360(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/StaticGem/func_80044884.s")
 
 void func_8004495C(void) {
-    gStaticGems[gStaticGemIndex].Active = D_800D3770[D_800D37A4];
+    gStaticGems[gStaticGemIndex].flags = D_800D3770[D_800D37A4];
     gStaticGems[gStaticGemIndex].texture = 0x80203440;
 }
 

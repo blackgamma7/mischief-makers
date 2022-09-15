@@ -11,15 +11,12 @@
 #include "function_symbols.h"
 #include "actor.h"
 
-//There are to many unused params in matching funcs to keep track.
-#pragma warn -par
-
 //macros for common func patterns. save on typing.
 #define MODi(x,y,z) x=ModInRange_i(x,y,z)
 #define MODf(x,y,z) x=ModInRange_f(x,y,z)
 
 //in case you're too lazy for GPACK_RGBA5551
-#define COL16(r,g,b) r<<11+g<<6+b<<1+1 //used by Text_ConvertColor
+#define COL16(r,g,b) (r<<11)+(g<<6)+(b<<1)+1 //used by Text_ConvertColor
 #define COL16_BLANK GPACK_RGBA5551(0,0,0,0)
 #define COL16_BLACK GPACK_RGBA5551(0,0,0,1)
 #define COL16_WHITE GPACK_RGBA5551(255,255,255,1)

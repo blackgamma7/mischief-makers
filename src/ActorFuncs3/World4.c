@@ -278,7 +278,7 @@ uint32_t func_801AAA3C_77962C(uint16_t x){
 
 
 void func_801ABAC8_77A6B8(uint16_t x, float f1,float f2){
-    func_8003DF78(0,x,f1,f2);
+    BouncingExplosion(0,x,f1,f2);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World4/func_801ABB00_77A6F0.s")

@@ -123,7 +123,7 @@ typedef struct {
 //likely the gem objects.
 typedef struct {
     /* 0x00 */ Mtx translateMtxs[2]; //one for each FB
-    /* 0x80 */ uint16_t Active;
+    /* 0x80 */ uint16_t flags;
     /* 0x82 */ uint16_t unk_0x82; //may be align
     /* 0x84 */ vec2Fixed pos;
     /* 0x8C */ void* texture;

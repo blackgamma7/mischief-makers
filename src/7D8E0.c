@@ -115,7 +115,7 @@ void func_8007D520(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007EA14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007EE14.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/ActorSpeechBox_PassText.s")
 //regalloc?
 #ifdef NON_MATCHING
 uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,float scaley){

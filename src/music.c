@@ -147,7 +147,7 @@ void Sound_StartTask(void) {
     osSpTaskStartGo(Sound_OSTaskp);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002A2C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/Sound_RomCopy.s")
 
 void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
     osWritebackDCacheAll();
@@ -158,7 +158,7 @@ void Sound_DMA(uint32_t devaddr, void* vaddr, uint32_t nbytes) {
 #pragma GLOBAL_ASM("asm/nonmatchings/music/BGM_Play.s")
 
 #ifdef NON_MATCHING
-void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 arg4, uint8_t state, uint16_t arg6, uint16_t arg7) {
+void SFX_Set(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 arg4, uint8_t state, uint16_t arg6, uint16_t arg7) {
     gSFX_ChannelStates[chan] = state;
     D_80108DE0[chan] = arg6;
     gSFXCurrentIndex[chan] = SFX_ID;
@@ -167,12 +167,11 @@ void func_80002F48(uint8_t chan, void* player, int16_t SFX_ID, int16_t arg3, s8 
     D_801069D8[chan] = arg4;
     if ((-1 < arg3) && (arg3 < 257)) {
         gSFX_Volumes[chan] = gSFX_2ByteArray[SFX_ID][0] * arg3;
-        return;
     }
-    gSFX_Volumes[chan] = gSFX_2ByteArray[SFX_ID][0] << 8;
+    else gSFX_Volumes[chan] = gSFX_2ByteArray[SFX_ID][0] << 8;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/music/func_80002F48.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Set.s")
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/music/SFX_Play_0.s")
