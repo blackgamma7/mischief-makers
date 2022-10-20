@@ -529,7 +529,7 @@ void func_8002B25C(uint16_t index, int16_t y) {
 #ifdef NON_MATCHING
 void func_8002B2D0(uint16_t index){
     int8_t c;
-    thisActor.flag2&= ~0x10;
+    thisActor.gFlag&= ~ACTOR_GFLAG_4;
     c= ((-gSceneFrames & 0xf)<<3);
     thisActor.rgba.r = thisActor.rgba.g = thisActor.rgba.b = c;
 }
@@ -576,7 +576,7 @@ void func_8002B400(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002B4D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002B5A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/RGB16_Add.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002B6E8.s")
 
@@ -599,14 +599,14 @@ void func_8002B7F4(uint16_t*p0,uint16_t*p1){
 }
 
 #ifdef NON_MATCHING
-void func_8002B82C(uint16_t* arg0, int16_t* arg1, int16_t arg2, int16_t arg3, int16_t arg4, int16_t arg5) {
+void RGB16_AddN(uint16_t* arg0, int16_t* arg1, int16_t arg2, int16_t arg3, int16_t arg4, int16_t arg5) {
     uint16_t index;
     for (index = arg2; 0 < index; index--) {
-        *arg1++ = func_8002B5A0(*arg0++, arg3, arg4, arg5);
+        *arg1++ = RGB16_Add(*arg0++, arg3, arg4, arg5);
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002B82C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/RGB16_AddN.s")
 #endif
 
 int32_t func_8002B8F0(uint16_t index, uint16_t dmg) {
@@ -737,9 +737,9 @@ void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
 
     ACTORINIT(index,0x2602);
     temp = D_800EB904;
-    thisActor.flag2 = 9;
+    thisActor.gFlag = 9;
     thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY;
-    thisActor.graphic = 0x24A;
+    thisActor.graphic = GINDEX_SHURIKEN;
     thisActor.unk_0xCE = 5;
     thisActor.unk_0xDF = 0;
     thisActor.unk_0xDA = 4;
@@ -890,7 +890,7 @@ void GemCollision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int1
 
 void func_80030964(uint16_t index){
     ActorTick_Gem(index);
-    thisActor.flag2|=0x100;
+    thisActor.gFlag|=0x100;
 }
 void func_800309C0(uint16_t index){
     if(thisActor.actorState==0){
@@ -1066,7 +1066,7 @@ void ActorTick_34h(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800327B4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80032900.s")
-
+//seems to be used for putting on hats
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80032E60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800330A4.s")
@@ -1075,6 +1075,7 @@ void ActorTick_34h(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800333A0.s")
 //actor type 7: copies an actor's transform, graphic, flags, and uses 0x18C as a fade delta.
+//thus far, only used in func_801946CC_715BFC
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_7.s")
 
 void ActorTick_7(uint16_t index){
@@ -1102,7 +1103,7 @@ void ActorMarina_Idle_SpawnNotes(int16_t arg0, int16_t arg1, int16_t arg2) {
     }
 }
 
-void func_800339AC(int16_t arg0, int16_t arg1, int16_t arg2) {}
+void func_800339AC(int16_t x, int16_t y, int16_t z) {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800339BC.s")
 
@@ -1114,7 +1115,7 @@ void ActorTick_Type5(uint16_t index){
     if(--thisActor.gp1._w == 0) thisActor.flag=0;
     thisActor.vel.x_w+=thisActor.gp2._w;
     thisActor.vel.y_w+=thisActor.gp3._w;
-    thisActor.gp0._w = func_8002B5A0(thisActor.gp0._h[1],thisActor.unk_0x168._h[1],thisActor.unk_0x164._lo,thisActor.gp4._lo);
+    thisActor.gp0._w = RGB16_Add(thisActor.gp0._h[1],thisActor.gp6._h[1],thisActor.gp5._lo,thisActor.gp4._lo);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80033E7C.s")
@@ -1144,8 +1145,8 @@ void func_800349C0(uint16_t index,uint16_t x){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80034A0C.s")
 void func_80034D14(uint16_t index){
-    thisActor.scaleX=thisActor.unk_0x168._w /1000.0f;
-    thisActor.scaleY=thisActor.unk_0x16C._w /1000.0f;
+    thisActor.scaleX=thisActor.gp6._w /1000.0f;
+    thisActor.scaleY=thisActor.gp7._w /1000.0f;
 }
 //when called, u16[]* should casted as ClanpotItem*
 #ifdef NON_MATCHING
@@ -1309,7 +1310,7 @@ void func_80038C94(uint16_t index){
 
 void func_80039838(uint16_t index){
     thisActor.actorState--;
-    thisActor.unk_0x164._w=13;
+    thisActor.gp5._w=13;
     thisActor.gp0._w &= ~0xf0000;
 }
 
@@ -1397,11 +1398,11 @@ uint16_t ActorSpawn_AreaClear(u16 x){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorSpawn_AreaClear.s")
 #endif
 #ifdef NON_MATCHING
-uint16_t func_8003D68C(u16 flag2,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,int32_t posy,int32_t posz,u8 r,u8 g,u8 b){
+uint16_t func_8003D68C(u16 gFlag,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,int32_t posy,int32_t posz,u8 r,u8 g,u8 b){
   uint16_t index = Actor_GetInactive_144_192();
   if (index) {
     ACTORINIT(index,0x34);
-    thisActor.flag2 = flag2 & ~0x2000;
+    thisActor.gFlag = gFlag & ~0x2000;
     thisActor.flag = 0xb;
     thisActor.graphic = 0x8000;
     thisActor.pos.x_w = posx;
@@ -1414,7 +1415,7 @@ uint16_t func_8003D68C(u16 flag2,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
     thisActor.rgba.r = r;
     thisActor.rgba.g = g;
     thisActor.rgba.b = b;
-    if (flag2 & 0x2000) thisActor.unk_0x148 = 1.0;
+    if (gFlag & 0x2000) thisActor.unk_0x148 = 1.0;
     else thisActor.unk_0x148 = 0.0;
   }
   return index;
@@ -1455,7 +1456,7 @@ void Crosshair_CopyCoords(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003EF98.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003F05C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ParticleSpawn_Explosion.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8003F138.s")
 
@@ -1472,7 +1473,7 @@ const double D_800EBC70=-0.013499999999999998;
 uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
     uint16_t index = ActorSpawn_ParticleImage_144_192(0x132U, x, y, z + 1);
     if (index) {
-        thisActor.flag2 = 1;
+        thisActor.gFlag = 1;
         thisActor.scaleX = scale;
         thisActor.scaleY = scale;
         thisActor.unk_0x110 = (scale * D_800EBC68);
@@ -1481,7 +1482,7 @@ uint16_t func_8003F8B0(float scale, int16_t x, int16_t y, int16_t z) {
         thisActor.gp3._w = -0x2000;
         thisActor.unk_0x118 = (scale * D_800EBC70);
         thisActor.unk_0x11C = (scale * D_800EBC70);
-        thisActor.unk_0x17C._p= func_80030A24;
+        thisActor.colorFunc= func_80030A24;
         thisActor.unk_0x148 = 24.0;
         Actor_Shade(index, 0x40U);
         thisActor.pos2.x_w = -4;
@@ -1594,7 +1595,7 @@ int32_t func_80040A64(void) {
 //start of Warp Gate/Star actor functions
 //Init func - actor does not have "spawn" and is loaded from overlay code.
 void WarpStar_Init(uint16_t index) {
-    thisActor.flag2 = 0x205;
+    thisActor.gFlag = 0x205;
     thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_UNK12;
     thisActor.graphic = 0x1a8;
     thisActor.unk_0xDF = 0x40;
@@ -1690,7 +1691,7 @@ void func_800427E0(uint16_t index){
 
 void func_800429A4(uint16_t index){
     thisActor.actorState++;
-    thisActor.flag2=0;
+    thisActor.gFlag=0;
     thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.graphic=0x1CE;
     thisActor.rgba.r=128;

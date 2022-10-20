@@ -37,7 +37,7 @@ uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,in
     uint16_t index= Actor_GetInactive(140,144);
     if(index){
         ACTORINIT(index,ACTORTYPE_TEXTBUBBLE);
-        thisActor.flag2=0x901;
+        thisActor.gFlag=(ACTOR_GFLAG_B|ACTOR_GFLAG_8|ACTOR_GFLAG_0);
         thisActor.flag=2;
         thisActor.rgba.a=0;
         thisActor.unk_0x114=z&0x7FFF;
@@ -61,12 +61,12 @@ uint16_t ActorSpawn_JPNSpeechBox(uint16_t i,uint16_t* txt,int16_t x,int16_t y,in
 //US(?) Version of above. used by the Sprint coach in "the Day Before"
 #pragma GLOBAL_ASM("asm/nonmatchings/7D8E0/func_8007D0F4.s")
 
-uint16_t func_8007D1E8(uint16_t i,uint16_t* p,int16_t x,int16_t y,uint16_t z,void* r){
-    uint16_t index = ActorSpawn_JPNSpeechBox(i,p,x,y,z);
+uint16_t func_8007D1E8(uint16_t i,uint16_t* txt,int16_t x,int16_t y,uint16_t z,void* p){
+    uint16_t index = ActorSpawn_JPNSpeechBox(i,txt,x,y,z);
     if(index){
-        thisActor.flag2|= 0x200;
-        thisActor.flag2&= ~0x0100;
-        if(r) thisActor.palletteP=r;
+        thisActor.gFlag|= ACTOR_GFLAG_RGB16;
+        thisActor.gFlag&= ~ACTOR_GFLAG_8;
+        if(p) thisActor.palletteP=p;
         else thisActor.palletteP=&D_800D9AE4;
     }
     return index;
@@ -79,8 +79,8 @@ uint16_t func_8007D290(uint16_t i){
     if(index){
         ACTORINIT(index,0x34);
         actorp=&gActors[i];
-        if(actorp->unk_0x18C) thisActor.flag2=0xA00;
-        else thisActor.flag2=0x800;
+        if(actorp->unk_0x18C) thisActor.gFlag=ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
+        else thisActor.gFlag=ACTOR_GFLAG_B;
         thisActor.flag=ACTOR_FLAG_ENABLED;
         thisActor.pos.z_w=actorp->pos.z_w+1;
         thisActor.unk_0x18C=actorp->unk_0x18C;
@@ -122,9 +122,9 @@ uint16_t func_8007EE70(uint32_t i,int32_t x,int32_t y,int32_t z,float scalex,flo
     uint16_t index = Actor_GetInactive_144_192();
     if(index){
         ACTORINIT(index,0x34);
-        thisActor.flag2=i&0xDFFF;
+        thisActor.gFlag=i&0xDFFF;
         thisActor.flag=ACTOR_FLAG_ENABLED;
-        thisActor.graphic=0x2D0;
+        thisActor.graphic=GINDEX_SOLIDSQARE;
         thisActor.rgba.a=0xC0;
         thisActor.pos.x_w=x;
         thisActor.pos.y_w=y;

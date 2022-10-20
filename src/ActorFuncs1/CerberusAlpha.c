@@ -37,8 +37,8 @@ extern int32_t func_8019226C_68A26C(uint16_t SFX_ID, uint16_t index);
 void func_801922A0_68A2A0(uint16_t x){
     ACTORINIT(193,0xF0A);
     gActors[193].flag=0xB;
-    gActors[193].flag2=0xB11;
-    gActors[193].graphic=0x2D0;
+    gActors[193].gFlag=0xB11;
+    gActors[193].graphic=GINDEX_SOLIDSQARE;
     gActors[193].pos.x=0;
     gActors[193].pos.y=0;
     gActors[193].pos.x=128;
@@ -100,7 +100,7 @@ void func_801932C4_68B2C4(uint16_t x){
 void func_801932FC_68B2FC(){
   ACTORINIT(72,0);
   gActors[72].flag=2;
-  gActors[72].flag2=0x319;
+  gActors[72].gFlag=0x319;
   
   gActors[72].graphic=0x164;
   gActors[72].palletteP=gPalletteWhite;
@@ -118,7 +118,7 @@ extern void func_80193584_68B584(uint16_t);
 void func_80193DB4_68BDB4(uint16_t index){
   if(thisActor.actorState==0){
     thisActor.actorState++;
-    thisActor.flag2=0x109;
+    thisActor.gFlag=0x109;
     thisActor.flag=0xB;
     thisActor.graphic=200;
     thisActor.gp0._w=gActors[72].pos.x_w;
@@ -529,7 +529,7 @@ void func_801A330C_69B30C(uint16_t x){}
 
 void func_801A3314_69B314(uint16_t x){
   ACTORINIT(120,0XF13);
-  gActors[120].flag2=0x108;
+  gActors[120].gFlag=0x108;
   gActors[120].flag=0x1023;
   gActors[120].graphic=0x1812;
   gActors[120].pos.x=0x40;

@@ -5,7 +5,7 @@
 void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[64].actorType = ACTORTYPE_GRAPHICONLY;
   Actor_Spawn(0x40);
-  gActors[64].flag2 = 0x911;
+  gActors[64].gFlag = 0x911;
   gActors[64].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
   gActors[64].graphic = 0x1820;
   gActors[64].rgba.a = 0x80;
@@ -16,7 +16,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[65].actorType = ACTORTYPE_GRAPHICONLY;
   gActors[64].scaleY = 0.75;
   Actor_Spawn(65);
-  gActors[65].flag2 = 0xb13;
+  gActors[65].gFlag = 0xb13;
   gActors[65].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
   gActors[65].graphic = 0xea;
   gActors[65].rgba.a = 0xc0;
@@ -33,7 +33,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[65].scaleY = 4.0;
   gActors[65].rotateX = 120.0;
   Actor_Spawn(0x42);
-  gActors[66].flag2 = 0x901;
+  gActors[66].gFlag = 0x901;
   gActors[66].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
   gActors[66].graphic = 0x168;
   gActors[66].rgba.a = 0x50;
@@ -47,7 +47,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[66].scaleY = 2.0;
   gActors[66].rotateX = 120.0;
   Actor_Spawn(0x43);
-  gActors[67].flag2 = 0xb11;
+  gActors[67].gFlag = 0xb11;
   gActors[67].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
   gActors[67].graphic = 0xe6;
   gActors[67].rgba.a = 0x60;
@@ -64,7 +64,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[67].scaleY = 8.0;
   gActors[67].rotateX = 120.0;
   Actor_Spawn(0x44);
-  gActors[68].flag2 = 0x800;
+  gActors[68].gFlag = 0x800;
   gActors[68].flag = ACTOR_FLAG_ENABLED;
   gActors[68].graphic = 0x2000;
   gActors[68].rgba.a = 0xa6;
@@ -74,7 +74,7 @@ void LevelClear_SpawnPlanetBG(void){ //spawns the "planet orbit" background
   gActors[68].unk_0x188._w = -0xA0;
   gActors[69].actorType = ACTORTYPE_GRAPHICONLY;
   Actor_Spawn(69);
-  gActors[69].flag2 = 0x801;
+  gActors[69].gFlag = 0x801;
   gActors[69].flag = ACTOR_FLAG_ENABLED;
   gActors[69].graphic = 0x2004;
   gActors[69].rgba.a = 0x70;
@@ -96,7 +96,7 @@ const float D_800ED508=0.8f; //rodata
 void func_8009705C(uint16_t index) { //marina in her first victory pose
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x1000;
-    thisActor.flag2 = 0x100;
+    thisActor.gFlag = 0x100;
     thisActor.flag = 11;
     thisActor.graphic = 0x800;
     thisActor.rgba.a = 0;
@@ -113,7 +113,7 @@ void func_8009705C(uint16_t index) { //marina in her first victory pose
 void func_80097108(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x2000;
-    thisActor.flag2 = 0x110;
+    thisActor.gFlag = 0x110;
     thisActor.flag = 11;
     thisActor.graphic = 0x1000;
     thisActor.rgba.a = 0;
@@ -125,7 +125,7 @@ void func_80097108(uint16_t index) {
 void func_800971A0(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x100;
-    thisActor.flag2 = 0x900;
+    thisActor.gFlag = 0x900;
     thisActor.flag = 11;
     thisActor.graphic = 0x2800;
     thisActor.rgba.a = 0;
@@ -140,9 +140,9 @@ void func_800971A0(uint16_t index) {
 #ifdef NON_MATCHING
 void LevelClear_WhiteScreen(void) {
     ACTORINIT(80,ACTORTYPE_LEVELCLEAR);
-    gActors[80].flag2 = 0x900;
+    gActors[80].gFlag = 0x900;
     gActors[80].flag = ACTOR_FLAG_ENABLED;
-    gActors[80].graphic = 0x2d0;
+    gActors[80].graphic = GINDEX_SOLIDSQARE;
     gActors[80].scaleX = 20.0;
     gActors[80].scaleY = 20.0;
     gActors[80].palletteP = gPalletteWhite;
@@ -158,7 +158,7 @@ void LevelClear_WhiteScreen(void) {
 void func_80097384(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0xC000;
-    thisActor.flag2 = 0x900;
+    thisActor.gFlag = 0x900;
     thisActor.flag = 11;
     thisActor.graphic = 0xCE;
     thisActor.rgba.a = 0;
@@ -184,14 +184,14 @@ void LevelClear_SkipScene(void) {
         Actor_ZeroFlag_192_199();
         Portraits_Reset();
         ACTORINIT(193,0x34);
-        gActors[193].flag2 = 0x911;
+        gActors[193].gFlag = 0x911;
         gActors[193].flag = 11;
         gActors[193].rgba.b = 0x40;
         gActors[193].unk_0x148 = 30.0;
         gActors[193].pos.x = 0;
         gActors[193].pos.y = 0;
         gActors[193].pos.z = 0xc0;
-        gActors[193].graphic = 0x2d0;
+        gActors[193].graphic = GINDEX_SOLIDSQARE;
         gActors[193].scaleX = 20.0;
         gActors[193].scaleY = 20.0;
         func_8005DFC8(0);

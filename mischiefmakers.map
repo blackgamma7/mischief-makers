@@ -2702,7 +2702,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008001fa78                func_8001FA78
                 0x000000008001fca0                func_8001FCA0
                 0x000000008001feb0                func_8001FEB0
-                0x000000008001ff28                func_8001FF28
+                0x000000008001ff28                DebugFunc_8000h
                 0x000000008001ff30                func_8001FF30
                 0x000000008001ff50                func_8001FF50
                 0x000000008001ffa0                func_8001FFA0
@@ -2728,10 +2728,10 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080021098                AttractMode_PlayInput
                 0x0000000080021270                AttractMode_Tick
                 0x0000000080021620                DebugText_BorW
-                0x0000000080021658                func_80021658
-                0x0000000080021660                func_80021660
+                0x0000000080021658                DebugFunc_40h
+                0x0000000080021660                DebugFunc_1000h
                 0x0000000080021668                func_80021668
-                0x000000008002167c                func_8002167C
+                0x000000008002167c                DebugFunc_1h
  build/src/Letterbox.c.o(.text)
  .text          0x0000000080021690      0xde0 build/src/Letterbox.c.o
                 0x0000000080021690                Gfx_DrawRectange
@@ -2845,7 +2845,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080025c38                InitScene
  build/src/RomCopy.c.o(.text)
  .text          0x0000000080025e00     0x1570 build/src/RomCopy.c.o
-                0x0000000080025e00                func_80025E00
+                0x0000000080025e00                RomCopy_BaseGraphics
                 0x0000000080025e6c                func_80025E6C
                 0x0000000080025ec4                RomCopy_ActorFuncs
                 0x0000000080025f70                RomCopy_ActorFuncs2
@@ -2990,11 +2990,11 @@ LOAD build/assets/trailer.bin.o
                 0x000000008002b330                func_8002B330
                 0x000000008002b400                func_8002B400
                 0x000000008002b4d0                func_8002B4D0
-                0x000000008002b5a0                func_8002B5A0
+                0x000000008002b5a0                RGB16_Add
                 0x000000008002b6e8                func_8002B6E8
                 0x000000008002b7b8                func_8002B7B8
                 0x000000008002b7f4                func_8002B7F4
-                0x000000008002b82c                func_8002B82C
+                0x000000008002b82c                RGB16_AddN
                 0x000000008002b8f0                func_8002B8F0
                 0x000000008002b954                func_8002B954
                 0x000000008002b9d8                func_8002B9D8
@@ -3226,7 +3226,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008003edf4                func_8003EDF4
                 0x000000008003eec0                func_8003EEC0
                 0x000000008003ef98                func_8003EF98
-                0x000000008003f05c                func_8003F05C
+                0x000000008003f05c                ParticleSpawn_Explosion
                 0x000000008003f138                func_8003F138
                 0x000000008003f248                func_8003F248
                 0x000000008003f360                func_8003F360
@@ -3358,7 +3358,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800456dc                func_800456DC
                 0x000000008004571c                func_8004571C
                 0x0000000080045758                func_80045758
-                0x00000000800457c8                func_800457C8
+                0x00000000800457c8                ColorCycle_Tick
                 0x000000008004586c                L8004586C_4646C
                 0x00000000800458c4                L800458C4_464C4
                 0x000000008004591c                L8004591C_4651C
@@ -3476,7 +3476,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008004e1e4                ActorMarina_TPAppear
                 0x000000008004e4e0                ActorMarina_TPVanish
                 0x000000008004e6fc                ActorMarina_DebugGraphicLists
-                0x000000008004eae4                func_8004EAE4
+                0x000000008004eae4                ActorMarina_DebugGraphic
                 0x000000008004ec60                ActorMarina_DebugMove
                 0x000000008004ed10                ActorTick_Marina
  build/src/4FEB0.c.o(.text)
@@ -3989,7 +3989,7 @@ LOAD build/assets/trailer.bin.o
                 0x000000008006bd08                func_8006BD08
                 0x000000008006bef4                func_8006BEF4
                 0x000000008006c0f4                func_8006C0F4
-                0x000000008006c1a4                func_8006C1A4
+                0x000000008006c1a4                Actor2_Noop
                 0x000000008006c1ac                func_8006C1AC
                 0x000000008006c5a4                func_8006C5A4
                 0x000000008006c6f0                func_8006C6F0
@@ -16855,7 +16855,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080137d70                gAIBuffers = 0x80137d70
                 0x00000000800e9770                osClockRate = 0x800e9770
                 0x00000000800c9700                gActorInit = 0x800c9700
-                0x00000000800c3858                AlFX_params = 0x800c3858
+                0x00000000800c3858                gAlFX_params = 0x800c3858
                 0x00000000800c5004                GameSave_SelectedAge = 0x800c5004
                 0x000000008012a848                mainThread = 0x8012a848
                 0x000000008012a9f8                rmonThread = 0x8012a9f8
@@ -16918,8 +16918,8 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800cbf58                gLetterboxMode = 0x800cbf58
                 0x00000000800d2954                TeranFlag = 0x800d2954
                 0x00000000800d2958                gNoHit = 0x800d2958
-                0x00000000800d8a98                gSpriteData_GreenGem = 0x800d8a98
-                0x00000000800e13dc                gGraphicList_800E13DC = 0x800e13dc
+                0x00000000800d8a98                gPaletteGemGreen = 0x800d8a98
+                0x00000000800e13dc                gGraphicListGem = 0x800e13dc
                 0x00000000800c8c04                gWorldStageCount = 0x800c8c04
                 0x00000000800ccfdc                gSceneBGMs = 0x800ccfdc
                 0x00000000800cc42c                Scene_CameraInits = 0x800cc42c
@@ -17755,7 +17755,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800d3d20                D_800D3D20 = 0x800d3d20
                 0x00000000800ebd60                D_800EBD60 = 0x800ebd60
                 0x00000000801373d8                D_801373D8 = 0x801373d8
-                0x00000000800d5794                D_800D5794 = 0x800d5794
+                0x00000000800d5794                gMarinaVelocities = 0x800d5794
                 0x00000000800d4184                D_800D4184 = 0x800d4184
                 0x0000000080137460                D_80137460 = 0x80137460
                 0x00000000800d54ec                D_800D54EC = 0x800d54ec

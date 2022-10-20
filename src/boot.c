@@ -479,19 +479,19 @@ void func_8000147C(void) {
     func_80009BE0();
 
     if ((gDebugBitfeild & 1)) {
-        func_8002167C();
+        DebugFunc_1h();
     }
 
     if ((gDebugBitfeild & 0x8000)) {
-        func_8001FF28();
+        DebugFunc_8000h();
     }
 
     if ((gDebugBitfeild & 0x40)) {
-        func_80021658();
+        DebugFunc_40h();
     }
 
     if ((gDebugBitfeild & 0x1020) == 0x1000) {
-        func_80021660();
+        DebugFunc_1000h();
     }
 
     DebugText_BorW();
@@ -552,7 +552,7 @@ void GameState_Tick(void) {
             Worldmap_Tick(); // transition
             break;
         }
-        case GAMESTATE_UNKNOWN2: {
+        case GAMESTATE_RECORDS: {
             func_8001D654(); // level select (best times?)
             break;
         }

@@ -116,7 +116,7 @@ uint16_t D_800D17FC[4]={ //palette set in Text_PrintAlphaAt2()
 };
 void Text_SpawnAt(uint16_t index, uint16_t pos_x, uint16_t pos_y, uint16_t pos_z) {
     ACTORINIT(index,ACTORTYPE_ZERO);
-    thisActor.flag2 |= 0x800;
+    thisActor.gFlag |= 0x800;
     thisActor.unk_0x188._w = 0;
     thisActor.pos.x = pos_x;
     thisActor.pos.y = pos_y;
@@ -138,7 +138,7 @@ void Text_SpawnLetter(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t po
 
     if ((r | g | b)) {
         actor->rgba.r = r;
-        actor->flag2 |= 0x10;
+        actor->gFlag |= 0x10;
         actor->rgba.g = g;
         actor->rgba.b = b;
     }
@@ -165,7 +165,7 @@ void func_80027644(uint16_t index, uint16_t arg1, uint16_t pos_x, uint16_t pos_y
 
     Text_SpawnAt2(index, arg1, pos_x, pos_y, pos_z);
     actor = &thisActor;
-    actor->flag2 |= 0x200;
+    actor->gFlag |= 0x200;
     actor->flag |= ACTOR_FLAG_UNK3;
     actor->palletteP = arg5;
 }
@@ -257,7 +257,7 @@ uint16_t Text_PrintAlphaAtColor(uint16_t index,uint16_t *TXT,uint16_t pos_x,uint
             thisActor.graphic = ALPHAINDEX(*TXT);
                 if ((r | g | b)) {
                     thisActor.rgba.r = r;
-                    thisActor.flag2 |= 0x10;
+                    thisActor.gFlag |= 0x10;
                     thisActor.rgba.g = g;
                     thisActor.rgba.b = b;
                 }

@@ -25,7 +25,7 @@ segments:
       - [0x01000, hasm, entrypoint]
       - [0x01050, c, boot]
       - [0x023D0, c, music]
-      - [0x04F80, c, sprite]
+      - [0x04F80, c, sprite] #used by DebugText
       - [0x05510, c,decodeA]
       - [0x05A70, c, GameSave]
       - [0x0A540, c,render]
@@ -236,7 +236,7 @@ segments:
       #- [0xBF5E4, bin] # BGM instrument settings
       #- [0xC192C, bin] # SFX names? might be for base sounds. also seqp_bank indecies.
       #- [0xC32DC, bin] # more music.c data
-      #- [0xC4508, bin] # sprite.c data
+      - [0xC4500, bin,sprite]
       - [0xC5AE0, .data,decodeA] # decompress keys(?)
       - [0xC5B20, bin] # gamesave.c data
       - [0xC5FC0, bin] # render.c
@@ -339,14 +339,13 @@ segments:
       - [0xEF610, bin]
       - [0xEF880, bin] # "RSP SW Version:" ...
       
-  - type: code
+  - name: "noopOverlay"
+    type: code
     start: 0xF00D0
     vram: 0x80388000
-    symbol_name_format: $VRAM_$ROM
     subsegments:
       - [0xF00D0,c,noop] # a few NOOPs the game SHOULD load in. some are the Unknown Gamestate ticks.
-  # romcopied and decompressed in func_80026220, same as noop.c
-  - [0xF0100,bin] 
+  - [0xF0100,bin] # romcopied and decompressed in func_80026220, same as noop.c
   - [0xF01C0,bin]
   - [0x1017D0,bin]
   - [0x10A250,bin]
@@ -361,7 +360,7 @@ segments:
   - [0x1D18F0,bin]
   - [0x1E51F0,bin]
 
-  - [0x1E6900,bin] # loaded and decompressed by func_80025E00
+  - [0x1E6900,bin] # loaded and decompressed by RomCopy_BaseGraphics
   - [0x214B40,bin] # loaded by func_80025E6C to 0x80296000. Used in intro sequence somehow.
   - [0x248F40,bin]
   - [0x3fab30,bin] # loaded by func_800197A0
@@ -427,13 +426,14 @@ segments:
   - [0x641E20,bin]
 
 #call lists and code segments loaded per scene by RomCopy_Funcs
-  - type: code 
+  - name: "MigenBrawlCode"
+    type: code 
     start: 0x67DBA0
     vram: 0x80192000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x67DBA0, data]
-  - type: code
+      - [0x67DBA0, data,ActorFuncs1/MigenBrawlTable]
+    type: code
     start: 0x67DC20
     vram: 0x80192100
     symbol_name_format: $VRAM_$ROM
@@ -441,13 +441,14 @@ segments:
       - [0x67DC20, c,ActorFuncs1/MigenBrawl]
       - [0x686BB0,bin,ActorFuncs1/MigenBrawl]
       - [0x689880,.rodata,ActorFuncs1/MigenBrawl]
-  - type: code 
+  - name: "CerberusAlphaCode"
+    type: code 
     start: 0x68A090
     vram: 0x80192000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x68A090, data]
-  - type: code
+      - [0x68A090, data,ActorFuncs1/CerberusAlphaTable]
+    type: code
     start: 0x68A100
     vram: 0x80192100
     symbol_name_format: $VRAM_$ROM
@@ -455,13 +456,14 @@ segments:
       - [0x68A100, c,ActorFuncs1/CerberusAlpha]
       - [0x69BD30,bin,ActorFuncs1/CerberusAlpha] 
       - [0x69F550,.rodata,ActorFuncs1/CerberusAlpha] 
-  - type: code 
+  - name: "SasquatchBetaCode"
+    type: code 
     start: 0x6A00C0
     vram: 0x80192000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x6A00C0, data]
-  - type: code
+      - [0x6A00C0, data,ActorFuncs1/SasquatchBetaTable]
+    type: code
     start: 0x6A0100
     vram: 0x80192100
     symbol_name_format: $VRAM_$ROM
@@ -576,16 +578,17 @@ segments:
     subsegments:
       - [0x6F3DD0, c,ActorFuncs1/DemoWorld5]
       - [0x6F7800,bin,ActorFuncs1/DemoWorld5]
-  - type: code
+  - name: "DemoFinalCode"  
+    type: code
     start: 0x6F7B20
     vram: 0x80192000
-    symbol_name_format: $VRAM_$ROM
+    overlay: true
     subsegments:
-      - [0x6F7B20, bin]
-  - type: code
+      - [0x6F7B20, bin,ActorFuncs1/DemoFinalTable]
+    type: code
     start: 0x6F7B30
     vram: 0x80192100
-    symbol_name_format: $VRAM_$ROM
+    overlay: true
     subsegments:
       - [0x6F7B30, c,ActorFuncs1/DemoFinal]
       - [0x6F91F0,bin,ActorFuncs1/DemoFinal]
@@ -594,7 +597,7 @@ segments:
     vram: 0x80192000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x6F9330, bin]
+      - [0x6F9330, bin,ActorFuncs1/EndingTable]
   - type: code
     start: 0x6F9390
     vram: 0x80192100
@@ -608,7 +611,7 @@ segments:
     vram: 0x80192000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x713600, bin]
+      - [0x713600, bin,ActorFuncs1/GeneralTable]
   - type: code
     start: 0x713630
     vram: 0x80192100
@@ -624,7 +627,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x719700, bin]
+      - [0x719700, bin,ActorFuncs2/MercoTable]
   - type: code
     start: 0x719720 
     vram: 0x8019b100
@@ -638,7 +641,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x722A30, bin]
+      - [0x722A30, bin,ActorFuncs2/LunarTable]
   - type: code
     start: 0x722A50
     vram: 0x8019b100
@@ -652,7 +655,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x72B120, bin] 
+      - [0x72B120, bin,ActorFuncs2/TaurusTable] 
   - type: code
     start: 0x72B140
     vram: 0x8019b100
@@ -666,7 +669,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x731DD0, bin]
+      - [0x731DD0, bin,ActorFuncs2/GeneralTable]
   - type: code
     start: 0x731E60
     vram: 0x8019b100
@@ -679,7 +682,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x73D070, bin]
+      - [0x73D070, bin,ActorFuncs2/WorminUpTable]
   - type: code
     start: 0x73D090
     vram: 0x8019b100
@@ -693,7 +696,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x742CA0, bin]
+      - [0x742CA0, bin,ActorFuncs2/FlameeTable]
   - type: code
     start: 0x742CB0
     vram: 0x8019b100
@@ -707,7 +710,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x749C90, bin]
+      - [0x749C90, bin,ActorFuncs2/ChillyDogTable]
   - type: code
     start: 0x749CB0
     vram: 0x8019b100
@@ -721,7 +724,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x753860, bin]
+      - [0x753860, bin,ActorFuncs2/FestivalTable]
   - type: code
     start: 0x753880
     vram: 0x8019b100
@@ -735,7 +738,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x754570, bin]
+      - [0x754570, bin,ActorFuncs2/ToadlyRawTable]
   - type: code
     start: 0x7545A0
     vram: 0x8019b100
@@ -749,7 +752,7 @@ segments:
     vram: 0x8019b000
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x75D630, bin]
+      - [0x75D630, bin,ActorFuncs2/MoleyCowTable]
   - type: code
     start: 0x75D660
     vram: 0x8019b100
@@ -765,7 +768,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x766080, bin]
+      - [0x766080, bin,ActorFuncs3/World1Table]
   - type: code
     start: 0x766110
     vram: 0x801A6900
@@ -779,7 +782,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x76F390, bin]
+      - [0x76F390, bin,ActorFuncs3/World2Table]
   - type: code
     start: 0x76F3A0
     vram: 0x801A6900
@@ -792,7 +795,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x76FD60, bin]
+      - [0x76FD60, bin,ActorFuncs3/World3Table]
   - type: code
     start: 0x76FDD0
     vram: 0x801A6900
@@ -806,7 +809,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x774DA0, bin]
+      - [0x774DA0, bin,ActorFuncs3/UnusedTable]
   - type: code
     start: 0x774DB0
     vram: 0x801A6900
@@ -819,7 +822,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x775460, bin]
+      - [0x775460, bin,ActorFuncs3/World4Table]
   - type: code
     start: 0x7754F0
     vram: 0x801A6900
@@ -832,7 +835,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x77F240, bin]
+      - [0x77F240, bin,ActorFuncs3/World4BTable]
   - type: code
     start: 0x77F260
     vram: 0x801A6900
@@ -845,7 +848,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7854B0, bin]
+      - [0x7854B0, bin,ActorFuncs3/World5Table]
   - type: code
     start: 0x7854D0
     vram: 0x801A6900
@@ -858,7 +861,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x78B430, bin]
+      - [0x78B430, bin,ActorFuncs3/World5BTable]
   - type: code
     start: 0x78B440
     vram: 0x801A6900
@@ -871,7 +874,7 @@ segments:
     vram: 0x801A6800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x78CB60, bin]
+      - [0x78CB60, bin,ActorFuncs3/FestivalTable]
   - type: code
     start: 0x78CBF0
     vram: 0x801A6900
@@ -886,7 +889,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7969B0, bin]
+      - [0x7969B0, bin,ActorFuncs4/World1TTable]
   - type: code
     start: 0x7969D0
     vram: 0x801B0900
@@ -899,7 +902,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7986D0, bin]
+      - [0x7986D0, bin,ActorFuncs4/World2Table]
   - type: code
     start: 0x798740
     vram: 0x801B0900
@@ -912,7 +915,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7A13D0, bin]
+      - [0x7A13D0, bin,ActorFuncs4/World3Table]
   - type: code
     start: 0x7A1410
     vram: 0x801B0900
@@ -925,7 +928,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7A6E60, bin]
+      - [0x7A6E60, bin,ActorFuncs4/FestivalTable]
   - type: code
     start: 0x7A6E80
     vram: 0x801B0900
@@ -939,7 +942,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7AC7F0, bin]
+      - [0x7AC7F0, bin,ActorFuncs4/Festival2Table]
   - type: code
     start: 0x7AC820
     vram: 0x801B0900
@@ -953,7 +956,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7B3FC0, bin]
+      - [0x7B3FC0, bin,ActorFuncs4/Festival3Table]
   - type: code
     start: 0x7B3FE0
     vram: 0x801B0900
@@ -967,7 +970,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7B8760, bin]
+      - [0x7B8760, bin,ActorFuncs4/World4Table]
   - type: code
     start: 0x7B87B0
     vram: 0x801B0900
@@ -981,7 +984,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7BC840, bin]
+      - [0x7BC840, bin,ActorFuncs4/Festival4Table]
   - type: code
     start: 0x7BC850
     vram: 0x801B0900
@@ -994,7 +997,7 @@ segments:
     vram: 0x801B0800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-      - [0x7BC840, bin]
+      - [0x7BC840, bin,ActorFuncs4/World5Table]
   - type: code
     start: 0x7C0B20
     vram: 0x801B0900
@@ -1008,7 +1011,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7C6AB0, data]
+     - [0x7C6AB0, data,ActorFuncs5/World1Table]
   - type: code
     start: 0x7C6AE0
     vram: 0x801B9900
@@ -1022,7 +1025,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7CE060, data]
+     - [0x7CE060, data,ActorFuncs5/World2Table]
   - type: code
     start: 0x7CE090
     vram: 0x801B9900
@@ -1036,7 +1039,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7D40C0, data]
+     - [0x7D40C0, data,ActorFuncs5/World3Table]
   - type: code
     start: 0x7D40F0
     vram: 0x801B9900
@@ -1049,7 +1052,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7DAAA0, data]
+     - [0x7DAAA0, data,ActorFuncs5/FestivalTable]
   - type: code
     start: 0x7DAB00
     vram: 0x801B9900
@@ -1063,7 +1066,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7DC7A0, data]
+     - [0x7DC7A0, data,ActorFuncs5/7DC7D0Table]
   - type: code
     start: 0x7DC7D0
     vram: 0x801B9900
@@ -1076,7 +1079,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7E2A30, data]
+     - [0x7E2A30, data,ActorFuncs5/7E2A60Table]
   - type: code
     start: 0x7E2A60
     vram: 0x801B9900
@@ -1103,7 +1106,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7E7EB0, data]
+     - [0x7E7EB0, data,ActorFuncs5/7E7ED0Table]
   - type: code
     start: 0x7E7ED0
     vram: 0x801B9900
@@ -1116,7 +1119,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-     - [0x7EA3C0, data]
+     - [0x7EA3C0, data,ActorFuncs5/7EA3D0Table]
   - type: code
     start: 0x7EA3D0
     vram: 0x801B9900
@@ -1129,7 +1132,7 @@ segments:
     vram: 0x801B9800
     symbol_name_format: $VRAM_$ROM
     subsegments:
-    - [0x7EA710, data]
+    - [0x7EA710, data,ActorFuncs5/World4Table]
   - type: code
     start: 0x7EA730
     vram: 0x801B9900

@@ -27,7 +27,12 @@ extern float func_80192430_713960(float f);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192640_713B70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192950_713E80.s")
+void func_80192950_713E80(uint16_t index){
+    IFFACINGLEFT(index) thisActor.rotateZ+=28.0;
+    else thisActor.rotateZ-=28.0;
+
+}
+///#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_80192950_713E80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/General/func_801929C8_713EF8.s")
 
@@ -121,9 +126,9 @@ void func_80196DE8_718318(uint16_t index){
 void func_80197B84_7190B4(uint16_t index){
     if(thisActor.actorState==0){
         thisActor.actorState++;
-        thisActor.flag2=0x100;
+        thisActor.gFlag=0x100;
         thisActor.flag=ACTOR_FLAG_ENABLED;
-        thisActor.graphic=0x168;
+        thisActor.graphic=GINDEX_BLASTB;
         Actor_Shade(index,127);
         thisActor.rgba.a=0xA0;
         thisActor.vel.z_w=0xC0000;

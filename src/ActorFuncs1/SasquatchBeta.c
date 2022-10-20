@@ -54,7 +54,7 @@ void func_80193394_6A1394(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80194000_6A2000.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_801940B0_6A20B0.s")
-
+//transformed behavior?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80194218_6A2218.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80194524_6A2524.s")
@@ -72,14 +72,26 @@ void func_80193394_6A1394(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80195018_6A3018.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80195040_6A3040.s")
-
+//these 3 seem unused, see if c-down is pressed.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_801966E0_6A46E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80196794_6A4794.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_80196808_6A4808.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_8019687C_6A487C.s")
+void func_8019687C_6A487C(uint16_t x){
+  ACTORINIT(51,0X1404);
+  gActors[51].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
+  gActors[51].graphic = GINDEX_SOLIDSQARE;
+  gActors[51].pos.x = 0;
+  gActors[51].pos.y = 0;
+  gActors[51].pos.z = 0x80;
+  gActors[51].gFlag = ACTOR_GFLAG_0|ACTOR_GFLAG_4|ACTOR_GFLAG_8|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
+  gActors[51].scaleX = 20.0;
+  gActors[51].scaleY = 20.0;
+  gActors[51].palletteP = gPalletteWhite;
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/SasquatchBeta/func_8019687C_6A487C.s")
 
 void func_801968F8_6A48F8(uint16_t x){
     gActors[51].flag=0;

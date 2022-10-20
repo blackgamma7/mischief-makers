@@ -63,7 +63,7 @@ ActorFunc gActorFuncTable[]={
   /*0x3A*/  func_8005EE24,
   /*0x3B*/  func_80040564,
   /*0x3C*/  func_800601FC,
-  /*0x3D*/  func_80030964, //"child" of Gem actor, adds flag2|=0x100
+  /*0x3D*/  func_80030964, //"child" of Gem actor, adds gFlag|=0x100
   /*0x3E*/  func_8003AC30,
   /*0x3F*/  func_8003B8CC, //clanball?
   /*0x40*/  func_8003BE3C,
@@ -498,13 +498,13 @@ void Intro_Tick(void) {
             D_800F4310 = &D_800C9080;
             *(&D_800F42E4) = -0x1F; // volatile?
 
-            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, -0x1F, -0x1F, -0x1F);
+            RGB16_AddN(0x803524C8, &D_800C9080, 0xFF, -0x1F, -0x1F, -0x1F);
 
             gGameSubState++;
             break;
         }
         case 1: {
-            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
+            RGB16_AddN(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
             if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F42E4++ == 0) {
@@ -521,7 +521,7 @@ void Intro_Tick(void) {
             break;
         }
         case 3: {
-            func_8002B82C(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
+            RGB16_AddN(0x803524C8, &D_800C9080, 0xFF, D_800F42E4, D_800F42E4, D_800F42E4);
 
             if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F42E4-- + 0x1F) == 0) {
@@ -537,7 +537,7 @@ void Intro_Tick(void) {
                     D_800F4310 = (uint32_t)&D_800C8FA0;
                     D_800F42E4 = -0x1F;
 
-                    func_8002B82C(0x80342040, &D_800C8FA0, 0xF, -0x1F, -0x1F, -0x1F);
+                    RGB16_AddN(0x80342040, &D_800C8FA0, 0xF, -0x1F, -0x1F, -0x1F);
 
                     gGameSubState = 10;
                 }
@@ -545,7 +545,7 @@ void Intro_Tick(void) {
             break;
         }
         case 10: {
-            func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
+            RGB16_AddN(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
             if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4++ == 0) {
@@ -562,7 +562,7 @@ void Intro_Tick(void) {
             break;
         }
         case 12: {
-            func_8002B82C(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
+            RGB16_AddN(0x80342040, &D_800C8FA0, 0xF, D_800F42E4, D_800F42E4, D_800F42E4);
 
             if ((gSceneFramesReal & 1)) {
                 if (D_800F42E4-- + 0x1F) {
@@ -580,7 +580,7 @@ void Intro_Tick(void) {
                     D_800F44A8 = &D_800C8FC0;
                     *(&D_800F447C) = -0x1F;
 
-                    func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, -0x1F, -0x1F, -0x1F);
+                    RGB16_AddN(0x80343B68, &D_800C8FC0, 0x5F, -0x1F, -0x1F, -0x1F);
 
                     gGameSubState++;
                 }
@@ -588,7 +588,7 @@ void Intro_Tick(void) {
             break;
         }
         case 13: {
-            func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
+            RGB16_AddN(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
             if ((gSceneFramesReal & 1) != 0) {
                 if (D_800F447C++ == 0) {
@@ -605,7 +605,7 @@ void Intro_Tick(void) {
             break;
         }
         case 15: {
-            func_8002B82C(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
+            RGB16_AddN(0x80343B68, &D_800C8FC0, 0x5F, D_800F447C, D_800F447C, D_800F447C);
 
             if ((gSceneFramesReal & 1) != 0) {
                 if ((D_800F447C-- + 0x1F) == 0) {
@@ -671,7 +671,7 @@ void ActorSpawn_TitleWhiteFade(uint16_t index) {
     actor->pos.x = -2;
     actor->pos.y = 4;
     actor->graphic = 0x2D0;
-    actor->flag2 |= 0x801;
+    actor->gFlag |= 0x801;
     actor->pos.z = 0x100;
     actor->unk_0x188._w = 0;
     actor->rgba.a = 0xFF;
@@ -750,7 +750,7 @@ void TitleScreen_Tick(void) {
         // OK
         case 23: {
             func_80025BFC();
-            func_8002B82C(0x803DA400, 0x80380200, 0xFF, 2, 0, 0);
+            RGB16_AddN(0x803DA400, 0x80380200, 0xFF, 2, 0, 0);
             D_800BE578 = 2;
             D_800BE580 = -0xC;
             D_801376A0 = 0x80380200;
@@ -768,16 +768,16 @@ void TitleScreen_Tick(void) {
             D_801781A0[0] = 0;
 
             Text_SpawnAt2(16, 0x800, 0x70, 0xFF68, 0);
-            gActors[16].flag2 |= 0x100;
+            gActors[16].gFlag |= 0x100;
             gActors[16].rgba.a = 0x80;
 
             Text_SpawnAt2(17, 0x1000, 0xFF88, 0xFF68, 0);
-            gActors[17].flag2 |= 0x100;
+            gActors[17].gFlag |= 0x100;
             gActors[17].rgba.a = 0x80;
 
             gActors[48].actorType = 0;
             actor2_Spawn(48);
-            gActors[48].flag2 |= 0x200;
+            gActors[48].gFlag |= 0x200;
             gActors[48].flag |= (ACTOR_FLAG_UNK28 | ACTOR_FLAG_UNK29); // 0x30000000;
             gActors[48].unk_0x17C._p = 0x80343C28;
             gActors[48].unk_0x180 = 0x80349728;
@@ -793,7 +793,7 @@ void TitleScreen_Tick(void) {
 #ifdef VER_JPN
             //Spawn the subtitle
             ACTORINIT(52,0);
-            gActors[52].flag2|= 0x200;
+            gActors[52].gFlag|= 0x200;
             gActors[52].pos.y= 0x4a;
             gActors[52].pos.x= 0x120;
             gGameSubState++;
@@ -858,7 +858,7 @@ void TitleScreen_Tick(void) {
             //start attract mode when BGM timer finishes or B is pressed
             if ((D_80137DA0 >= 0x1141 || (gButtonPress & gButton_B) != 0) && (buttonPress & gButton_Start) == 0) {
                 func_80003F24(1, 0x20);
-                gActors[51].flag2 |= 0x10;
+                gActors[51].gFlag |= 0x10;
                 gActors[51].flag = ACTOR_FLAG_ENABLED;
                 gActors[51].rgba.b = 0x7F;
                 gActors[51].rgba.g = 0x7F;

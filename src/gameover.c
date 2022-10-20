@@ -5,9 +5,9 @@
 void Continue_DrawRedGem(uint16_t index, uint16_t arg1, uint16_t arg2) {
     Actor* actor;
 
-    Text_SpawnIcon(index, &gGraphicList_800E13DC, arg1, arg2, 0x403);
+    Text_SpawnIcon(index, &gGraphicListGem, arg1, arg2, 0x403);
     actor = &thisActor;
-    actor->flag2 |= 0x200;
+    actor->gFlag |= 0x200;
     actor->palletteP = gSpriteData_RedGem;
 }
 
@@ -24,7 +24,7 @@ void GameOver(void) {
     Text_PrintAlphaAtColorScale(0x33, D_800C7E14, 0xFFA0, 0x50, 0x403, 0, 0x40, 0x40, 1.0f, 1.0f);
     Text_SpawnAt2(48, 0x262, 0xFFFE, 3, 0x402);
 
-    actor->flag2 |= 0x100F;
+    actor->gFlag |= (ACTOR_GFLAG_0|ACTOR_GFLAG_ROTX|ACTOR_GFLAG_ROTY|ACTOR_GFLAG_ROTZ|ACTOR_GFLAG_C);
     actor->scaleX = 6.0f;
     actor->unk_0x12C._f = 6.0f;
     actor->rotateX = 90.0f;
@@ -51,8 +51,8 @@ void GamePlay_Continue_PayGems(uint16_t arg0) {
         }
 
         for (index = 0x41; index < 0x4B; index++) {
-            Text_SpawnIcon(index, &gGraphicList_800E13DC, 0, 0xA0, 0x403);
-            thisActor.flag2 |= 0x200;
+            Text_SpawnIcon(index, &gGraphicListGem, 0, 0xA0, 0x403);
+            thisActor.gFlag |= ACTOR_GFLAG_RGB16;
             thisActor.unk_0x18C._w = (uint32_t)gSpriteData_RedGem; //mismatch otherwise.
             thisActor.gp1._w = 0xC0;
             thisActor.gp2._w = (int32_t)((index * 0x3FF) + 0xFFFEFC41) / 10;

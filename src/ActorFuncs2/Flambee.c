@@ -15,9 +15,9 @@ extern uint16_t D_801A20F4,D_801A20F6; //shake counts - Head and stinger
 
 void func_8019B100_742CB0(uint16_t x){
     ACTORINIT(48,ACTORTYPE_GRAPHICONLY);
-    gActors[48].flag2 = 0xa01;
+    gActors[48].gFlag = ACTOR_GFLAG_0|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
     gActors[48].flag=ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
-    gActors[48].graphic = 0x2d0;
+    gActors[48].graphic = GINDEX_SOLIDSQARE;
     gActors[48].pos.x = 0;
     gActors[48].pos.y = 0;
     gActors[48].pos.z = -0x10;
@@ -358,7 +358,7 @@ void func_8019E1E8_745D98(uint16_t index){
 
 void func_801A0740_7482F0(uint16_t index){
     thisActor.pos.x=thisActor.gp4._w-gScreenPosCurrentX._hi;
-    thisActor.pos.y=thisActor.unk_0x164._w-gScreenPosCurrentY._hi;
+    thisActor.pos.y=thisActor.gp5._w-gScreenPosCurrentY._hi;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/Flambee/func_801A079C_74834C.s")

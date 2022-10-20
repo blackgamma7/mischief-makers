@@ -31,7 +31,7 @@ uint16_t D_801A6F64;
 
 void func_80192100_6BCDD0(uint16_t index){
     ACTORINIT(index,0x21);
-    thisActor.flag2=0x118;
+    thisActor.gFlag=0x118;
     thisActor.flag=ACTOR_FLAG_ENABLED;
 }
 
@@ -299,7 +299,7 @@ void func_801992A4_6C3F74(void) {}
 
 void func_8019D970_6C8640(uint16_t x){
     gActors[193].actorState=1;
-    gActors[193].flag2=0xb11;
+    gActors[193].gFlag=0xb11;
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=255;
@@ -310,7 +310,7 @@ void func_8019D970_6C8640(uint16_t x){
 
 void func_8019D9D8_6C86A8(uint16_t x){
     gActors[193].actorState=2;
-    gActors[193].flag2=0xb11;
+    gActors[193].gFlag=0xb11;
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
@@ -321,7 +321,7 @@ void func_8019D9D8_6C86A8(uint16_t x){
 
 void func_8019DA3C_6C870C(uint16_t x, uint16_t y){
     gActors[193].actorState=3;
-    gActors[193].flag2=0xb11;
+    gActors[193].gFlag=0xb11;
     gActors[193].flag=11;
     gActors[193].palletteP=&gPalletteWhite;
     gActors[193].rgba.a=0;
@@ -351,7 +351,7 @@ extern void func_8019DAF0_6C87C0(uint16_t i1,uint16_t i2,uint16_t i3,uint16_t i4
 
 void func_8019DBEC_6C88BC(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.flag2=0x111;
+    thisActor.gFlag=0x111;
     thisActor.flag=11;
     thisActor.pos.x=0;
     thisActor.pos.y=0;
@@ -363,15 +363,15 @@ void func_8019DBEC_6C88BC(uint16_t index){
 }
 
 void func_8019DC88_6C8958(){
-    gActors[122].flag2=0x111;
-    gActors[123].flag2=0x111;
+    gActors[122].gFlag=0x111;
+    gActors[123].gFlag=0x111;
     gActors[122].flag|=ACTOR_FLAG_DRAW;
     gActors[123].flag|=ACTOR_FLAG_DRAW;
 }
 
 void func_8019DCB8_6C8988(){
-    gActors[122].flag2=0;
-    gActors[123].flag2=0;
+    gActors[122].gFlag=0;
+    gActors[123].gFlag=0;
     gActors[122].flag&=~ACTOR_FLAG_DRAW;
     gActors[123].flag&=~ACTOR_FLAG_DRAW;
 }
@@ -380,7 +380,7 @@ void func_8019DCB8_6C8988(){
 
 void func_8019DF44_6C8C14(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.flag2=0x108;
+    thisActor.gFlag=0x108;
     thisActor.flag=ACTOR_FLAG_ENABLED;
 }
 void func_8019DFB0_6C8C80(uint16_t x){
@@ -414,7 +414,7 @@ void func_8019E004_6C8CD4(uint16_t x){
 
 void func_8019EB80_6C9850(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.flag2=0x8100;
+    thisActor.gFlag=0x8100;
     thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.pos.z=0xA0;
     thisActor.graphicTime=1;

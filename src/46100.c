@@ -21,12 +21,12 @@ int16_t func_800456DC(void) {
 }
 
 int16_t func_8004571C(void) {
-    return func_8002B5A0(0x8001, 0, 0, func_800456DC());
+    return RGB16_Add(0x8001, 0, 0, func_800456DC());
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/46100/func_80045758.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/46100/func_800457C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/46100/ColorCycle_Tick.s")
 
 void func_80045D84(int32_t arg0, int32_t arg1) {
     D_800D28E4 = 100;

@@ -115,8 +115,8 @@ void func_80085350(uint16_t index){
 
 #ifdef NON_MATCHING
 void Actor_Clanbomb_TickFuse(uint16_t index,uint16_t time){
- thisActor.unk_0x168._w-=time;
- if(thisActor.unk_0x168._w<1) func_800859C4(index);
+ thisActor.gp6._w-=time;
+ if(thisActor.gp6._w<1) func_800859C4(index);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/Actor_Clanbomb_TickFuse.s")
@@ -129,7 +129,7 @@ void func_800859C4(uint16_t index){
   thisActor.vel.x_w = 0;
   thisActor.vel.y_w = 0;
   thisActor.actorState = 4;
-  thisActor.unk_0x168._w = 0;
+  thisActor.gp6._w = 0;
   SFX_ActorPanX(0x43,index);
 }
 
@@ -198,7 +198,7 @@ void func_80087568(uint16_t other, uint16_t g, int32_t posx,int32_t posy,int32_t
     if(index){
         actorp = &gActors[other];
         ACTORINIT(index,0x34);
-        thisActor.flag2=0xA01;
+        thisActor.gFlag=0xA01;
         thisActor.graphic=g;
         thisActor.scaleX=actorp->scaleX;
         thisActor.rgba.r=255;
@@ -247,7 +247,7 @@ void func_80088518(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008855C.s")
 
 void func_800886E0(uint16_t index){
-    thisActor.flag2|=0x800;
+    thisActor.gFlag|=0x800;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_80088720.s")
@@ -266,10 +266,10 @@ void func_800887F0(uint16_t index){
 void func_80088A54(uint16_t index){
   uint8_t c;
   if (thisActor.gp2._w != 0) {
-    thisActor.flag2&= ~0x10;
+    thisActor.gFlag&= ~0x10;
     return;
   }
-  thisActor.flag2|= 0x10;
+  thisActor.gFlag|= 0x10;
   if (0x2000000 < thisActor.gp3._w) {
     thisActor.rgba.r = 0;
     thisActor.rgba.g = 0;
@@ -356,8 +356,8 @@ extern uint32_t* D_800E4440[6]; //common loot pools for digging spots.
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008B654.s")
 void func_8008B7CC(uint16_t index){
-    if(((thisActor.unk_0x164._w&gSceneFrames)==0)&&(thisActor.unk_0x16C._w==0))
-      thisActor.unk_0x16C._w=1;
+    if(((thisActor.gp5._w&gSceneFrames)==0)&&(thisActor.gp7._w==0))
+      thisActor.gp7._w=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/84BB0/func_8008B830.s")

@@ -122,7 +122,7 @@ void Knockback_Get(uint16_t index0, uint16_t index1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1F1E0/func_8001FEB0.s")
 
-void func_8001FF28(void) {}
+void DebugFunc_8000h(void) {}
 
 void func_8001FF30(void) {
     gPlayerActorp->flag3 &= 0x80600;
@@ -289,7 +289,7 @@ void GamePlay_Tick(void) {
     uint32_t time;
 
     time = osGetTime();
-    func_800457C8(); // this function dmas sprite data for things like gems
+    ColorCycle_Tick(); // this function dmas sprite data for things like gems
     gTickDelta = osGetTime() - time;
 
     if (gGamePaused) {
@@ -403,10 +403,10 @@ void DebugText_BorW(void) {
     }
 }
 
-void func_80021658(void) {}
+void DebugFunc_40h(void) {}
 
-void func_80021660(void) {}
+void DebugFunc_1000h(void) {}
 
 void func_80021668(int32_t arg0, int32_t arg1, int32_t arg2, int32_t arg3) {}
 
-void func_8002167C(void) {}
+void DebugFunc_1h(void) {}

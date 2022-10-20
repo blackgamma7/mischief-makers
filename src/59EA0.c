@@ -8,7 +8,7 @@ uint16_t func_800592A0(uint16_t other, int32_t* pos){
     if(index){
         ACTORINIT(index,9);
         otherp=&gActors[other];
-        thisActor.flag2|=otherp->flag2&0x160;
+        thisActor.gFlag|=otherp->gFlag&0x160;
         thisActor.flag|=otherp->flag&0x28|0x8000;
         thisActor.rgba.a=0xFE;
         thisActor.pos.x_w=pos[0]<<16;
@@ -78,14 +78,14 @@ uint16_t ActorSpawn_MarinaAfterImage(uint16_t other){
   if (index) {
     ACTORINIT(index,ACTORTYPE_MARINAAFTERIMAGE);
     parent= &gActors[other];
-    thisActor.flag2 |= parent->flag2 & 0x160 | 0x800;
+    thisActor.gFlag |= parent->gFlag & 0x160 | 0x800;
     thisActor.flag |= parent->flag & (ACTOR_FLAG_UNK3|ACTOR_FLAG_FLIPPED) | (ACTOR_FLAG_UNK19|ACTOR_FLAG_UNK27);
     thisActor.graphic = (D_800BE6A4 + gCurrentFramebufferIndex) * 2 + 2;
     thisActor.pos.x_w = parent->pos.x;
     thisActor.pos.y_w = parent->pos.y;
     thisActor.pos.z_w = parent->pos.z + -0x18000;
     thisActor.gp0._w = 0xf;
-    thisActor.flag2 |= 0x10;
+    thisActor.gFlag |= 0x10;
     thisActor.rgba.r = 0x7f;
     thisActor.rgba.g = 0x7f;
     thisActor.unk_0x14C = other;

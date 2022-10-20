@@ -22,7 +22,7 @@ uint16_t func_801B0F08_7ACE28(uint16_t x){
  uint16_t index=Actor_GetInactive(0x60,0x70);
  if(index){
    ACTORINIT(index,0x1A07);
-   thisActor.flag2=0x801;
+   thisActor.gFlag=0x801;
    thisActor.flag=ACTOR_FLAG_ACTIVE|ACTOR_FLAG_UNK3;
  }
  return index;
@@ -198,15 +198,15 @@ void func_801B4600_7B0520(uint16_t x);
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4600_7B0520.s")
 #endif
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B469C_7B05BC.s")
-
+//memcpy, but len is u16.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B47DC_7B06FC.s")
-
+//sum of 3 nums = ?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4818_7B0738.s")
-
+//product of 2 = ?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B49B8_7B08D8.s")
-
+//sum of 2 = ?
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4B80_7B0AA0.s")
-
+//picks the math question.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4CB0_7B0BD0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival2/func_801B4DF8_7B0D18.s")

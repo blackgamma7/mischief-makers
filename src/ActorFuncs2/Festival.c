@@ -4,7 +4,7 @@
 void func_8019B100_753880(uint16_t index){
 
   MODi(thisActor.vel.x_w,0,(int)(float)(gActors[index + 1].unk_0x12C._f * 2048.0));
-  if ((thisActor.unk_0x16C._w & 1)) {
+  if ((thisActor.gp7._w & 1)) {
     thisActor.vel.x_w = gActors[index + 1].unk_0x130 * gActors[index + 1].unk_0x12C._f * 81920.0;
   }
   return;

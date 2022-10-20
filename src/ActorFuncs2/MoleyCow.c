@@ -5,7 +5,7 @@ extern func_801A165C_763BBC(uint16_t index,int16_t x,int16_t y,uint16_t moleInde
 #define ACTORTYPE_DIZZYSTAR 0x1102
 //has its own "actorinit" struct, it seems.
 struct MoleStruct{
-/*0x00*/    uint16_t actorFeild_0x94;
+/*0x00*/    uint16_t gFlag;
 /*0x02*/    uint16_t unk_0x2; //align
 /*0x04*/    uint32_t flag;
 /*0x08*/    float actorFeild_0x148;
@@ -30,18 +30,18 @@ struct MoleStruct{
 /*0x50*/    RGBA32 color;
 /*0x54*/    int32_t actorFeild_0x154;
 /*0x58*/    uint32_t actorFeild_0x164;
-/*0x5C*/    void* actorFeild_0xE8;
+/*0x5C*/    void* graphicIndex;
 }; //sizeof 0x60
 struct MoleStruct D_801A3050_7655B0[13];
 
-struct DizzyStar{ //properties for concussion "stars"
+struct MoleDizzyStar{ //properties for concussion "stars"
     /*0x00*/    float scaleX;
     /*0x04*/    float scaleY;
     /*0x08*/    RGBA32 color;
     /*0x0C*/    uint16_t graphic;
     /*0x0E*/    uint16_t align;
 }; //sizeof 0x10
-struct DizzyStar D_801A2EAC_76540C[16];
+struct MoleDizzyStar D_801A2EAC_76540C[16];
 uint16_t D_801A2EA0_765400[3]={0,0,0}; //actor indecies for "dizzy stars"
 
 float D_801A2FAC_76550C[4][2]={{0.1,0.1},{0.2,0.2},{0.4,0.4},{0.8,0.8}};
@@ -53,16 +53,16 @@ func_8019B100_75D660(uint16_t x){}
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019B248_75D7A8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019B288_75D7E8.s")
-//spawn DizzyStars.
+//spawn MoleDizzyStars.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/MoleyCow/func_8019B308_75D868.s")
 
-//kill DizzyStars
+//kill MoleDizzyStars
 #ifdef NON_MATCHING
 void func_8019B514_75DA74(uint16_t x){
     int16_t i;
     for(i=0;i++;i<3){
         gActors[D_801A2EA0_765400[i]].flag=0;
-        gActors[D_801A2EA0_765400[i]].flag2=0;
+        gActors[D_801A2EA0_765400[i]].gFlag=0;
     }
 }
 #else

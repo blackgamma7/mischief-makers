@@ -19,7 +19,7 @@ enum {
     GAMESTATE_FILESELECT,
     GAMESTATE_TRANSITION,
     GAMESTATE_NONE,
-    GAMESTATE_UNKNOWN2 // level select (best times?)
+    GAMESTATE_RECORDS
 };
 
 //32=bit fixed number, used mainly for positioning.
@@ -131,7 +131,7 @@ typedef struct {
 
 //seems to handle some of the player actor data.
 typedef struct {
-    /* 0x00 */ int32_t unk_0x00[2];
+    /* 0x00 */ int32_t pos[2];
     /* 0x08 */ int16_t unk_0x8;
     /* 0x0A */ int8_t unk_0xA;
     /* 0x0B */ int8_t unk_0xB;
@@ -161,7 +161,7 @@ typedef struct {
     /* 0x58 */ uint32_t DebugValC; //same with these 2 vaules.
     /* 0x5C */ uint32_t DebugValD; //need to see if anything sets them in the rom funcs.
     /* 0x60 */ uint32_t unk_0x60;
-    /* 0x64 */ uint32_t unk_0x64; //gPlayerActor.flag3
+    /* 0x64 */ uint32_t flag3; //gPlayerActor.flag3
     /* 0x68 */ uint32_t actorSpeedX; //gPlayerActor.speedX._w
     /* 0x6C */ uint32_t actorSpeedY; //gPlayerActor.speedY._w
     /* 0x70 */ uint16_t playerLink; //gPlayerActor.actorLink
@@ -174,7 +174,7 @@ typedef struct {
 // Dunno what to call this, contains a dlist and the 0x180 byte preamble
 typedef struct {
     /* 0x0000 */ Mtx mtxs[6]; //{ortho,?,lookat,ortho,?,?}
-    /* 0x0180 */ Gfx dlist[3072];
+    /* 0x0180 */ Gfx dlist[0xC00];
 } Gfx_Data; /* sizeof = 0x6180 */
 
 //inventory of stage's clanpot. item stored from last index upward. gClanpotItems may be a {ClanpotItem[32],u16[160]} union.

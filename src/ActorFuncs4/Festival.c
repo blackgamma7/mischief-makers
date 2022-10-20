@@ -38,9 +38,9 @@ void func_801B0DA0_7A7320(uint16_t x){
 #ifdef NON_MATCHING
 void func_801B13F8_7A7978(uint16_t x){
     ACTORINIT(105,ACTORTYPE_GRAPHICONLY);
-    gActors[105].flag2 = 0x851;
+    gActors[105].gFlag = 0x851;
     gActors[105].flag = 0xb;
-    gActors[105].graphic = 0x2d0;    
+    gActors[105].graphic = GINDEX_SOLIDSQARE;    
     gActors[105].rgba.b = 0xba;
     gActors[105].rgba.a = 0xb2;
     gActors[105].pos.x = 0x37;

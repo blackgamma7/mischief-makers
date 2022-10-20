@@ -39,7 +39,7 @@ uint16_t ActorTick_Marina_SetFacing(uint16_t index) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_80048C28.s")
 
-int32_t D_800D5794[32] = {
+int32_t gMarinaVelocities[32] = {
     0x4000,  0x20000, 0x20000, 0x10000, 0x8000,  0x38000, 0x38000, 0x38000, 0x28000, 0x2666,
     0x50000, 0x50000, 0x50000, 0x50000, 0x50000, 0x30000, 0x30000, 0x30000, 0x28000, 0x6000,
     0x28000, 0x28000, 0x28000, 0x20000, 0x38000, 0x38000, 0x38000, 0x28000, 0x30000, 0x30000,
@@ -47,7 +47,7 @@ int32_t D_800D5794[32] = {
 };
 
 int32_t ActorMarina_VelByScale(int32_t arg0) {
-    return D_800D5794[arg0] * gPlayerActorScale;
+    return gMarinaVelocities[arg0] * gPlayerActorScale;
 }
 
 int32_t func_80048CE4() {
@@ -257,7 +257,7 @@ void ActorMarina_Walk(uint16_t index) {
     }
 
     MODi(actor->vel.x_w, vel, ABS(vel) / 8);
-    func_8005D370(index, ACTORTYPE_GRAPHICONLY);
+    func_8005D370(index, 29);
 
     if (actor->unk_0x170._b[0] == 0 && (actor->unk_0x170._b[1] == 2 || actor->unk_0x170._b[1] == 8)) {
         SFX_Play_1(0x53U);
@@ -427,7 +427,7 @@ void func_8004E1DC(int32_t arg0) {}
 //gPlayerActor.actorState 59
 #ifdef NON_MATCHING
 // Needs reordering
-void func_8004EAE4(uint16_t index) {
+void ActorMarina_DebugGraphic(uint16_t index) {
     int16_t phi_a3;
 
     thisActor.unk_0x12C._bu[2] |= 0x40;
@@ -468,7 +468,7 @@ void func_8004EAE4(uint16_t index) {
     thisActor.gp0._w++;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/func_8004EAE4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/ActorMarina/ActorMarina_DebugGraphic.s")
 #endif
 //gPlayerActor.actorState 3Ch -  Debug move
 void ActorMarina_DebugMove(uint16_t index) {
@@ -513,7 +513,7 @@ void ActorTick_Marina(uint16_t index) {
         }
 
         D_800BE5E4 = 0;
-        thisActor.flag2 &= 0xF781;
+        thisActor.gFlag &= 0xF781;
         thisActor.rgba.r = thisActor.rgba.g = thisActor.rgba.b = 0; // whitespace memes
         D_800BE5E0 = D_800BE5E4;
         gPlayerManager.playerLink = 0;
@@ -654,7 +654,7 @@ void ActorTick_Marina(uint16_t index) {
             gPlayerManager.actorSpeedY = thisActor.speedY._w;
         }
 
-        gPlayerManager.unk_0x64 = thisActor.flag3;
+        gPlayerManager.flag3 = thisActor.flag3;
         thisActor.flag3 &= ~0x200600;
         gPlayerManager.unk_0x7C++;
 

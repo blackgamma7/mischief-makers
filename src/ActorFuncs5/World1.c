@@ -11,7 +11,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs5/World1/func_801BA38C_7C756C.s")
 
 void func_801BA694_7C7874(){
-  gActors[140].flag2 |= 0x10;
+  gActors[140].gFlag |= 0x10;
   gActors[140].rgba.b = 0x58,gActors[140].rgba.g = 0x70,gActors[140].rgba.r = 0x30;
 }
 

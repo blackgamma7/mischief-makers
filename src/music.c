@@ -78,7 +78,7 @@ uint8_t i;
   ALGlobals_ALsynConfig.dmaproc = Audio_DmaNew;
   ALGlobals_ALsynConfig.fxType = AL_FX_CUSTOM;
   ALGlobals_ALsynConfig.heap = &gALHeap;
-  ALGlobals_ALsynConfig.params = AlFX_params;
+  ALGlobals_ALsynConfig.params = gAlFX_params;
   alInit(&gALGlobals,&ALGlobals_ALsynConfig);
   Sound_ALSeqPConfig.maxVoices = 0x1e;
   Sound_ALSeqPConfig.maxEvents = 0x40;

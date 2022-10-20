@@ -10,6 +10,7 @@
 #include "data_symbols.h"
 #include "function_symbols.h"
 #include "actor.h"
+#include "GraphicIndecies.h"
 
 //macros for common func patterns. save on typing.
 #define MODi(x,y,z) x=ModInRange_i(x,y,z)

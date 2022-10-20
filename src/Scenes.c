@@ -487,7 +487,7 @@ void LoadSceneFiles(void) {
     func_80026874(gCurrentScene);
     func_80026C9C(gCurrentScene);
     func_8002729C(gCurrentScene);
-    func_80025E00();
+    RomCopy_BaseGraphics();
 }
 
 void func_80025BFC(void) {

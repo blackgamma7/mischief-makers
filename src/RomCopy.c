@@ -2,13 +2,13 @@
 #include "common.h"
 
 #ifdef NON_MATCHING
-void func_80025E00(void){
+void RomCopy_BaseGraphics(void){
     D_801376DC=&D_80200400;
     RomCopy_A(0x1E6900,&D_80267CD0,0X2E240);
     D_801376E0=&D_80200400+DecompressA(&D_80267CD0,&D_80200400);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/func_80025E00.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/RomCopy/RomCopy_BaseGraphics.s")
 #endif
 
 #ifdef NON_MATCHING

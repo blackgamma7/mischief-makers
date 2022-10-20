@@ -22,7 +22,7 @@ extern IntroStruct2 D_80199070_6D96F0[50];
 
 void func_80192100_6D2780(uint16_t other,uint16_t index,uint16_t t,uint16_t g,int16_t posX,int16_t posY,int16_t posZ){
   ACTORINIT(index,t);
-  thisActor.flag2 = 0x900;
+  thisActor.gFlag = 0x900;
   thisActor.flag = ACTOR_FLAG_ENABLED;
   thisActor.unk_0x188._w = 0;
   thisActor.graphic = g;
@@ -62,13 +62,13 @@ void func_80192350_6D29D0(uint16_t other,uint16_t index,uint16_t g,int16_t posX,
 
 void func_801923AC_6D2A2C(uint16_t other,uint16_t index,uint16_t g,int16_t posX,int16_t posY,int16_t posZ){
     func_80192100_6D2780(other,index,0x2B06,g,posX,posY,posZ);
-    thisActor.flag2|=9;
+    thisActor.gFlag|=9;
 }
 
 void func_80192438_6D2AB8(uint16_t other,uint16_t index,uint16_t g,int16_t posX,int16_t posY,int16_t posZ){
     func_80192224_6D28A4(other,index,g,posX,posY,posZ);
     thisActor.actorType=0x2B07;
-    thisActor.flag2|=9;
+    thisActor.gFlag|=9;
 }
 void func_801924CC_6D2B4C(uint16_t other,uint16_t index,int16_t posX,int16_t posY,int16_t posZ){
     func_80192100_6D2780(other,index,0x2B08,0,posX,posY,posZ);
@@ -219,7 +219,7 @@ l__8019732c:
       else {
         fVar17 = FLOOR(fVar17);
       }
-      thisActor.unk_0x168 = (undefined *)(int)fVar17;
+      thisActor.gp6 = (undefined *)(int)fVar17;
       if (false) {
         fVar16 = ROUND(fVar18);
       }
@@ -247,16 +247,16 @@ l__80197430:
       thisActor.pos.x-=0xcd;
       thisActor.pos.y-=0x128;
       thisActor.rgba.a = 0;
-      thisActor.unk_0x16C = (undefined *)(int)fVar17;
+      thisActor.gp7 = (undefined *)(int)fVar17;
       thisActor.unk_0x170=thisActor.unk_0x11C*0x10000;
     }
     else if (thisActor.actorState_b[0] != 1) {
       return;
     }
-    thisActor.pos.x_w +=thisActor.unk_0x168;
+    thisActor.pos.x_w +=thisActor.gp6;
     thisActor.pos.y_w += thisActor.unk_0x170;
-    thisActor.unk_0x168 -=thisActor.field71_0x164;
-    thisActor.unk_0x170 -= thisActor.unk_0x16C;
+    thisActor.gp6 -=thisActor.field71_0x164;
+    thisActor.unk_0x170 -= thisActor.gp7;
     thisActor.rgba.a = func_80192698_6D2D18(thisActor.rgba.a,0xff,&thisActor.unk_0x114);
     if (thisActor.unk_0x114-- <= 0.0) {
       thisActor.actorState_b[0]++;
@@ -270,7 +270,7 @@ l__80197430:
       switch(thisActor.actorState_b[0]) {
       case 0:
         thisActor.actorState_b[0]++;
-        thisActor.flag2 = 9;
+        thisActor.gFlag = 9;
         thisActor.flag = ACTOR_FLAG_ACTIVE;
         thisActor.rgba.a = 0;
         thisActor.unk_0x114 = 60.0;
@@ -360,7 +360,7 @@ l__80197430:
   case 8:
     if (thisActor.actorState_b[0] == 0) {
       thisActor.actorState_b[0] = 1;
-      thisActor.flag2 |= 9;
+      thisActor.gFlag |= 9;
       thisActor.scaleX = 0.5;
       thisActor.scaleY = 0.5;
       thisActor.unk_0x114 = 20.0;
@@ -425,7 +425,7 @@ l__80197430:
     }
     if (thisActor.unk_0x114-- <= 0.0) {
       thisActor.actorState_b[0]++;
-      thisActor.flag2 |= 0x200;
+      thisActor.gFlag |= 0x200;
       thisActor.palletteP = 0x80199930;
       thisActor.gp1 = 0;
       thisActor.unk_0x114 = 180.0;
@@ -435,14 +435,14 @@ l__80197430:
     if (thisActor.actorState_b[0] == 0) {
       thisActor.actorState_b[0] = 1;
       thisActor.unk_0x114 = 26.0;
-      thisActor.unk_0x16C = (undefined *)(int)func_801927F8_6D2E78(index,183.0,0x3c);
-      thisActor.unk_0x168 = (undefined *)(int)thisActor.unk_0x11C * 65536.0;
+      thisActor.gp7 = (undefined *)(int)func_801927F8_6D2E78(index,183.0,0x3c);
+      thisActor.gp6 = (undefined *)(int)thisActor.unk_0x11C * 65536.0;
     }
     else if (thisActor.actorState_b[0] != 1) {
       return;
     }
-    thisActor.pos.x_w = thisActor.unk_0x168 + thisActor.pos.x_w;
-    thisActor.unk_0x168 -=thisActor.unk_0x16C;
+    thisActor.pos.x_w = thisActor.gp6 + thisActor.pos.x_w;
+    thisActor.gp6 -=thisActor.gp7;
     if (thisActor.unk_0x114-- <= 0.0) {
       thisActor.actorState_b[0]++;
       gActors[53].actorState._b[0] = gActors[53].actorState._b[0] + 1;
@@ -476,7 +476,7 @@ l__80197430:
     if (0.0 < thisActor.unk_0x114--) return;
     thisActor.actorState_b[0]++;
     thisActor.unk_0x114 = 120.0;
-    thisActor.flag2 = 9;
+    thisActor.gFlag = 9;
     thisActor.unk_0x118 = 50000.0;
     switch(thisActor.graphic){
         case 0x100a: thisActor.unk_0x178 = 2;break;
@@ -509,7 +509,7 @@ l__80197430:
     switch(thisActor.actorState_b[0]){
     case 0:
       thisActor.actorState_b[0] = 1;
-      thisActor.flag2 = 0x3005;
+      thisActor.gFlag = 0x3005;
       thisActor.scaleX = 1.0;
       thisActor.scaleY = 1.0;
       thisActor.unk_0x12C = 1.0;
@@ -528,7 +528,7 @@ l__80197430:
     cVar11 = thisActor.actorState_b[0];
     if (cVar11 == 0) {
       thisActor.actorState = 1;
-      thisActor.flag2 = 0x3005;
+      thisActor.gFlag = 0x3005;
       thisActor.flag &=~1; //the letters are invisible.
       cVar11 = 1;
       thisActor.scaleX = 1.0;

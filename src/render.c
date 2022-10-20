@@ -7,6 +7,7 @@
  * Most of the functions are setting up Display Lists
  */
 
+//seems to populate lists of actor indecies based on z position and a flag set by "snowstorm Maze"
 #pragma GLOBAL_ASM("asm/nonmatchings/render/func_80009940.s")
 
 void func_80009BE0(void) {}

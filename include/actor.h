@@ -39,6 +39,24 @@ enum {
     ACTOR_FLAG_UNK31 = (1 << 31)
 };
 
+enum{
+    ACTOR_GFLAG_0 = (1 << 0), //scale/rotate effected by feild 0x120 (player only?)
+    ACTOR_GFLAG_ROTX = (1 << 1), //effected by rotateX
+    ACTOR_GFLAG_ROTY = (1 << 2), //effected by rotateY
+    ACTOR_GFLAG_ROTZ = (1 << 3), //effected by rotateZ
+    ACTOR_GFLAG_4 = (1 << 4), //changes "G_SETCOMBINE" used?
+    ACTOR_GFLAG_5 = (1 << 5), //unused?
+    ACTOR_GFLAG_6 = (1 << 6), //changes if effected by perspective?
+    ACTOR_GFLAG_7 = (1 << 7), //unused?
+    ACTOR_GFLAG_8 = (1 << 8), //effects z positioning?
+    ACTOR_GFLAG_RGB16 = (1 << 9), //use &feild0x18C as a palette?
+    ACTOR_GFLAG_A = (1 << 10), //effects animation
+    ACTOR_GFLAG_B = (1 << 11), //seems to effect translate mtx.
+    ACTOR_GFLAG_C = (1 << 12),//use feild 0x12C as z scale.
+    ACTOR_GFLAG_D = (1 << 13), //3d objects? 
+    ACTOR_GFLAG_E = (1 << 14), //unused?
+    ACTOR_GFLAG_F = (1 << 15), //a change in blending?
+};
 // Common combined flags
 #define ACTOR_FLAG_ENABLED (ACTOR_FLAG_DRAW | ACTOR_FLAG_ACTIVE)
 
@@ -109,7 +127,7 @@ typedef struct {
     /* 0x084 */ uint16_t graphic;
     /* 0x086 */ uint16_t unk_0x86; //align.
     /* 0x088 */ vec3Fixed pos; //fixed point, relative to screen center
-    /* 0x094 */ uint16_t flag2;
+    /* 0x094 */ uint16_t gFlag;
     /* 0x096 */ uint16_t unk_0x96; //align.
     /* 0x098 */ int32_t flag3;
     /* 0x09C */ RGBA32 rgba;
@@ -154,7 +172,10 @@ typedef struct {
     /* 0x0E2 */ int16_t healthDelta; 
     /* 0x0E4 */ int16_t attackDmg;
     /* 0x0E6 */ int16_t graphicTime; //change graphic when 0
-    /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
+    union {
+        /* 0x0E8 */ uint16_t* graphicList; //indecies of {graphic,graphicTime}
+        /* 0x0E8 */ uint16_t** graphicLists; //some actors, like Marina, use an array
+    };
     /* 0x0EC */ vec3Fixed vel; //position delta
     /* 0x0F8 */ fixed32 speedX; //actual velocity?
     /* 0x0FC */ fixed32 speedY; 
@@ -183,13 +204,17 @@ typedef struct {
     /* 0x158 */ fixed32 gp2;
     /* 0x15C */ word_u gp3;
     /* 0x160 */ fixed32 gp4;
-    /* 0x164 */ fixed32 unk_0x164;
-    /* 0x168 */ word_u unk_0x168;
-    /* 0x168 */ word_u unk_0x16C;
+    /* 0x164 */ fixed32 gp5;
+    /* 0x168 */ word_u gp6;
+    /* 0x168 */ word_u gp7;
     /* 0x170 */ word_u unk_0x170;
     /* 0x174 */ uint32_t unk_0x174;
     /* 0x178 */ word_u unk_0x178;
-    /* 0x17C */ word_u unk_0x17C; 
+    union{
+      /* 0x17C */ word_u unk_0x17C; 
+      /* 0x17C */ ActorFunc colorFunc; 
+      /* 0x17C */ Gfx* dList; // used by 3d objects
+    };
     /* 0x180 */ word_u unk_0x180; 
     /* 0x184 */ word_u unk_0x184; 
     /* 0x188 */ word_u unk_0x188;

@@ -43,7 +43,7 @@ void func_80081720(uint16_t index, int16_t* p, uint32_t flag){
 #endif
 void func_80081790(uint16_t index, void*p){
     thisActor.unk_0x174=(uint32_t)p;
-    thisActor.unk_0x16C._w=0;
+    thisActor.gp7._w=0;
     thisActor.unk_0x124=0.0;
     thisActor.unk_0x11C=0.0;
 }
@@ -51,7 +51,7 @@ void func_80081790(uint16_t index, void*p){
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800817D8.s")
 #ifdef NON_MATCHING
 void func_800818C0(uint16_t x,uint16_t y, uint16_t z){
-    gActors[x+y].scaleY=((gActors[x+y].gp1._w/0x10000)+z)*(gActors[x].unk_0x168._f/0x10000/z);
+    gActors[x+y].scaleY=((gActors[x+y].gp1._w/0x10000)+z)*(gActors[x].gp6._f/0x10000/z);
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/80D90/func_800818C0.s")

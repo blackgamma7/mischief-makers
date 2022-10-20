@@ -136,7 +136,7 @@ uint16_t func_801A2894_75BD34(uint16_t index,int16_t x, int16_t y, uint16_t stat
     other=Actor_GetInactive(0x90,0xc0);
     if(other){
         ACTORINIT(other,0x1306);
-        gActors[other].flag2=9;
+        gActors[other].gFlag=9;
         flag=0x20;
         if(thisActor.flag&0x20) flag=0;
         gActors[other].flag=flag+2;
@@ -157,7 +157,7 @@ void func_801A2F34_75C3D4(uint16_t index, int16_t x,int16_t y,int16_t z,float sc
     Actor* actorp=&thisActor;
     uint16_t other = ActorSpawn_Particle_144_192(&gGraphicListDefault,actorp->pos.x+x,actorp->pos.y+y,1);
     if(other){
-        gActors[other].flag2=0x19;
+        gActors[other].gFlag=0x19;
         gActors[other].flag=ACTOR_FLAG_ENABLED;
         gActors[other].graphic=0x188;
         gActors[other].unk_0x148=20.0;

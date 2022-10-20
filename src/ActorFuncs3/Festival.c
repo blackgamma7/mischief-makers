@@ -212,10 +212,10 @@ extern void func_801AC360_792650(uint16_t x);
 #ifdef NON_MATCHING
 void func_801AC3C0_7926B0(uint16_t index, uint16_t x){
   ACTORINIT(index,0x1A07);
-  thisActor.flag2=0x800;
+  thisActor.gFlag=0x800;
   thisActor.flag=ACTOR_FLAG_ACTIVE|ACTOR_FLAG_UNK3;
   thisActor.pos.z = 0x80;
-  thisActor.unk_0x164._w = 0x40;
+  thisActor.gp5._w = 0x40;
   thisActor.gp0._w = x;
 }
 #else

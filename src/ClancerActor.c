@@ -424,7 +424,7 @@ void func_8006BC90(uint16_t other, uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ClancerActor/func_8006C0F4.s")
 
-void func_8006C1A4(uint16_t x){}
+void Actor2_Noop(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ClancerActor/func_8006C1AC.s")
 
@@ -688,7 +688,7 @@ void ActorTick_Clancer(uint16_t index) {
 }
 
 void ActorTick_2(uint16_t index){
-    func_8006C1A4(index); //noop func
+    Actor2_Noop(index); //noop func
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ClancerActor/func_80073320.s")
@@ -864,7 +864,7 @@ void func_80079760(u16 index) {
     func_80078F54(index);
     IFFACINGLEFT(index) x = 0x2000000;
     else x = 0;
-    thisActor.unk_0x168._w = func_800298D0(x, thisActor.unk_0x168._w, 0x180000);
+    thisActor.gp6._w = func_800298D0(x, thisActor.gp6._w, 0x180000);
     MODi(thisActor.vel.x_w, 0, thisActor.gp2._w + 0x80);
     MODi(thisActor.vel.y_w, 0, thisActor.gp3._w + 0x80);
 }

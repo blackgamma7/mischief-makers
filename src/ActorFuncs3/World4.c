@@ -1,7 +1,7 @@
 #include "common.h"
 #define TeranActor gActors[48]
 #define JumpCount gp4._w
-#define JumpDelay unk_0x164._w
+#define JumpDelay gp5._w
 
 #define ACTORTYPE_TERANPLAYER 0X1D02
 #define ACTORTYPE_TERANCOUNT 0X1D04
@@ -92,7 +92,7 @@ void func_801A77AC_77639C(uint16_t index) {
             thisActor.gp2._w = 0x6000;
             thisActor.gp3._w = 0;
             thisActor.gp4._w = 0;
-            thisActor.unk_0x164._w = -1;
+            thisActor.gp5._w = -1;
             thisActor.unk_0x11C = 196608.0f;
             thisActor.unk_0x124 = 0.0f;
             func_801A7620_776210(index);
@@ -166,10 +166,10 @@ void func_801A8008_776BF8(uint16_t other){
     if(index){
         ACTORINIT(index,ACTORTYPE_TERANCOUNT);
         actorp=&gActors[other];
-        thisActor.graphic=0x13c;
+        thisActor.graphic=GINDEX_QUESTIONBUBBLE;
         thisActor.pos.x=actorp->pos.x;
         thisActor.pos.z=actorp->pos.z+16;
-        thisActor.flag2=0xA01;
+        thisActor.gFlag=0xA01;
         thisActor.flag=0xA;
         thisActor.palletteP=&D_800D8668;
         thisActor.gp0._w=0x100000;
@@ -380,7 +380,7 @@ void func_801AF6AC_77E29C(uint16_t x){}
 
 func_801AF6B4_77E2A4(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.flag2=0x1817;
+    thisActor.gFlag=0x1817;
     thisActor.graphic=0x262;
     thisActor.pos.x=0;
     thisActor.pos.y=0;

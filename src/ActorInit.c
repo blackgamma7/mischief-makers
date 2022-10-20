@@ -42,7 +42,7 @@ void Actor_Spawn(uint16_t index) {
         thisActor.health = gActorInit[thisActor.actorType].health;
         thisActor.attackDmg = gActorInit[thisActor.actorType].unk_0xA;
         thisActor.flag = gActorInitFlags[thisActor.actorType]; // ((thisActor.actorType * 4) + 0x800D0000)->unk - 0x6228;
-        thisActor.graphicList = D_800C9FCC[thisActor.actorType];
+        thisActor.graphicList = gActorInitGraphics[thisActor.actorType];
     }
     else {
         // OK
@@ -106,9 +106,9 @@ void Actor_Spawn(uint16_t index) {
     thisActor.unk_0x178._w = 0;
     thisActor.unk_0x174 = 0;
     thisActor.unk_0x170._w = 0;
-    thisActor.unk_0x16C._w = 0;
-    thisActor.unk_0x168._w = 0;
-    thisActor.unk_0x164._w = 0;
+    thisActor.gp7._w = 0;
+    thisActor.gp6._w = 0;
+    thisActor.gp5._w = 0;
     thisActor.gp4._w = 0;
     thisActor.gp3._w = 0;
     thisActor.gp2._w = 0;
@@ -133,7 +133,7 @@ void Actor_Spawn(uint16_t index) {
     // something produces a float to u32 here
 
     thisActor.flag3 = phi_a0;
-    thisActor.flag2 = phi_a0;
+    thisActor.gFlag = phi_a0;
     thisActor.pos.z_w = phi_a0;
     thisActor.pos.y_1 = phi_a0;
     thisActor.pos.x_1 = phi_a0;

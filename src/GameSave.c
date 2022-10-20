@@ -143,8 +143,8 @@ void GameSave_Erase(void) {
 }
 
 void func_80005860(uint16_t index, uint16_t pos_x, uint16_t pos_y, int32_t arg3) {
-    Text_SpawnIcon(index, &gGraphicList_800E13DC, pos_x, pos_y, 0);
-    thisActor.flag2 |= 0x200;
+    Text_SpawnIcon(index, &gGraphicListGem, pos_x, pos_y, 0);
+    thisActor.gFlag |= 0x200;
     thisActor.palletteP = arg3;
 }
 

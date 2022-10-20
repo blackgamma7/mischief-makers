@@ -75,6 +75,6 @@ extern UNK_TYPE D_800C3830;
 extern UNK_TYPE D_800C3834;
 extern UNK_TYPE D_800C3838;
 extern int16_t D_800C383C[];
-extern int32_t gALFX_Params[44];
+extern int32_t gALFX_Params[42];
 #endif
 

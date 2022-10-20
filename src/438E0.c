@@ -90,29 +90,29 @@ void func_80042DBC(uint16_t* arg0, uint16_t arg1, int32_t* arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80042E28.s")
 
 void func_80042E84(s16 x0,s16 y0,s16 z0,s16 x1,s16 y1,s16 z1,s16 x2,s16 y2,s16 z2){
-  func_8002B82C(0x803da200,0x80380000,0xff,x0,y0,z0);
-  func_8002B82C(0x803da400,0x80380200,0xff,x1,y1,z1);
-  func_8002B82C(0x803da600,0x80380400,0xff,x2,y2,z2);
+  RGB16_AddN(0x803da200,0x80380000,0xff,x0,y0,z0);
+  RGB16_AddN(0x803da400,0x80380200,0xff,x1,y1,z1);
+  RGB16_AddN(0x803da600,0x80380400,0xff,x2,y2,z2);
 }
 
 void func_80042F2C(int16_t arg0, int16_t arg1, int16_t arg2) {
     func_80043234();
-    func_8002B82C(&D_800DE348, &D_800DE348, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DE508, &D_800DE508, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DE6C8, &D_800DE6C8, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DE888, &D_800DE888, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DEA48, &D_800DEA48, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DEF88, &D_800DEF88, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DEC08, &D_800DEC08, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DEDC8, &D_800DEDC8, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DF308, &D_800DF308, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DF4C8, &D_800DF4C8, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DF688, &D_800DF688, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DF148, &D_800DF148, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DDA88, &D_800DDA88, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DDE08, &D_800DDE08, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DDC48, &D_800DDC48, 0xDF, arg0,arg1,arg2);
-    func_8002B82C(&D_800DDFC8, &D_800DDFC8, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DE348, &D_800DE348, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DE508, &D_800DE508, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DE6C8, &D_800DE6C8, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DE888, &D_800DE888, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DEA48, &D_800DEA48, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DEF88, &D_800DEF88, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DEC08, &D_800DEC08, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DEDC8, &D_800DEDC8, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DF308, &D_800DF308, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DF4C8, &D_800DF4C8, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DF688, &D_800DF688, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DF148, &D_800DF148, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DDA88, &D_800DDA88, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DDE08, &D_800DDE08, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DDC48, &D_800DDC48, 0xDF, arg0,arg1,arg2);
+    RGB16_AddN(&D_800DDFC8, &D_800DDFC8, 0xDF, arg0,arg1,arg2);
 }
 
 
@@ -126,35 +126,35 @@ void func_8004320C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/438E0/func_80043234.s")
 
 void func_80043478(void) {
-    func_8002B82C(&D_800DD47C, &D_800DD47C, 0xFF, 4, 2, 2);
-    func_8002B82C(&D_800DD67C, &D_800DD67C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DD87C, &D_800DD87C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DCC7C, &D_800DCC7C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DC67C, &D_800DC67C, 0xFF, 2, 4, 2);
-    func_8002B82C(&D_800DC27C, &D_800DC27C, 0xFF, 2, 2, 4);
-    func_8002B82C(&D_800DC47C, &D_800DC47C, 0xFF, 4, 2, 2);
-    func_8002B82C(&D_800DC87C, &D_800DC87C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DCA7C, &D_800DCA7C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DC07C, &D_800DC07C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DB07C, &D_800DB07C, 0xFF, 7, 2, 2);
-    func_8002B82C(&D_800DB27C, &D_800DB27C, 0xFF, 7, 2, 2);
-    func_8002B82C(&D_800DB47C, &D_800DB47C, 0xFF, 1, 1, 1);
-    func_8002B82C(&D_800DB67C, &D_800DB67C, 0xFF, 2, 2, 2);
-    func_8002B82C(&D_800DB87C, &D_800DB87C, 0xFF, 1, 2, 5);
-    func_8002B82C(&D_800DBA7C, &D_800DBA7C, 0xFF, 3, 2, 3);
-    func_8002B82C(&D_800DBC7C, &D_800DBC7C, 0xFF, 4, 3, 2);
-    func_8002B82C(&D_800DFE48, &D_800DFE48, 0xFF, 2, 6, 2);
-    func_8002B82C(&D_800E0248, &D_800E0248, 0xFF, 8, 2, 2);
-    func_8002B82C(&D_800E0448, &D_800E0448, 0xFF, 3, 3, 7);
-    func_8002B82C(&D_800E0048, &D_800E0048, 0xFF, 3, 3, 3);
-    func_8002B82C(&D_800DFA48, &D_800DFA48, 0xE0, 2, 6, 2);
-    func_8002B82C(&D_800DFC48, &D_800DFC48, 0xE0, 8, 2, 2);
-    func_8002B82C(&D_800DF848, &D_800DF848, 0xE0, 4, 2, 4);
-    func_8002B82C(&D_800D9B7C, &D_800D9B7C, 0x7A, 1, 4, 1);
-    func_8002B82C(&D_800D9E7C, &D_800D9E7C, 0x7A, 4, -1, 1);
-    func_8002B82C(&D_800D9C7C, &D_800D9C7C, 0x7A, 1, 1, 3);
-    func_8002B82C(&D_800D9F7C, &D_800D9F7C, 0x7A, 1, 1, 1);
-    func_8002B82C(&D_800D9D7C, &D_800D9D7C, 0x7A, 1, 2, 3);
+    RGB16_AddN(&D_800DD47C, &D_800DD47C, 0xFF, 4, 2, 2);
+    RGB16_AddN(&D_800DD67C, &D_800DD67C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DD87C, &D_800DD87C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DCC7C, &D_800DCC7C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DC67C, &D_800DC67C, 0xFF, 2, 4, 2);
+    RGB16_AddN(&D_800DC27C, &D_800DC27C, 0xFF, 2, 2, 4);
+    RGB16_AddN(&D_800DC47C, &D_800DC47C, 0xFF, 4, 2, 2);
+    RGB16_AddN(&D_800DC87C, &D_800DC87C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DCA7C, &D_800DCA7C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DC07C, &D_800DC07C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DB07C, &D_800DB07C, 0xFF, 7, 2, 2);
+    RGB16_AddN(&D_800DB27C, &D_800DB27C, 0xFF, 7, 2, 2);
+    RGB16_AddN(&D_800DB47C, &D_800DB47C, 0xFF, 1, 1, 1);
+    RGB16_AddN(&D_800DB67C, &D_800DB67C, 0xFF, 2, 2, 2);
+    RGB16_AddN(&D_800DB87C, &D_800DB87C, 0xFF, 1, 2, 5);
+    RGB16_AddN(&D_800DBA7C, &D_800DBA7C, 0xFF, 3, 2, 3);
+    RGB16_AddN(&D_800DBC7C, &D_800DBC7C, 0xFF, 4, 3, 2);
+    RGB16_AddN(&D_800DFE48, &D_800DFE48, 0xFF, 2, 6, 2);
+    RGB16_AddN(&D_800E0248, &D_800E0248, 0xFF, 8, 2, 2);
+    RGB16_AddN(&D_800E0448, &D_800E0448, 0xFF, 3, 3, 7);
+    RGB16_AddN(&D_800E0048, &D_800E0048, 0xFF, 3, 3, 3);
+    RGB16_AddN(&D_800DFA48, &D_800DFA48, 0xE0, 2, 6, 2);
+    RGB16_AddN(&D_800DFC48, &D_800DFC48, 0xE0, 8, 2, 2);
+    RGB16_AddN(&D_800DF848, &D_800DF848, 0xE0, 4, 2, 4);
+    RGB16_AddN(&D_800D9B7C, &D_800D9B7C, 0x7A, 1, 4, 1);
+    RGB16_AddN(&D_800D9E7C, &D_800D9E7C, 0x7A, 4, -1, 1);
+    RGB16_AddN(&D_800D9C7C, &D_800D9C7C, 0x7A, 1, 1, 3);
+    RGB16_AddN(&D_800D9F7C, &D_800D9F7C, 0x7A, 1, 1, 1);
+    RGB16_AddN(&D_800D9D7C, &D_800D9D7C, 0x7A, 1, 2, 3);
 }
 
 void func_80043918(void) {

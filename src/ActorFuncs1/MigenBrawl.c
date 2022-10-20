@@ -58,7 +58,7 @@ void func_80192108_67DC28(uint16_t x){
     uint16_t index=ActorSpawn_Particle_144_192(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
     if(index){
         actorp =&thisActor;
-        actorp->flag2=1;
+        actorp->gFlag=1;
         actorp->scaleX=1.5;
         actorp->scaleY=1.5;
         actorp->unk_0x148=60;
@@ -149,7 +149,7 @@ void func_80193694_67F1B4(uint16_t index){
 
 void func_80193728_67F248(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.flag2|=1;
+    thisActor.gFlag|=1;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80193790_67F2B0.s")
@@ -173,14 +173,14 @@ void func_80193728_67F248(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80193ED8_67F9F8.s")
 
 void func_80193F44_67FA64(uint16_t x,uint16_t c){
-    gActors[63].flag2|=0x10;
+    gActors[63].gFlag|=ACTOR_GFLAG_4;
     gActors[63].rgba.r=c;
     gActors[63].rgba.g=c;
     gActors[63].rgba.b=c;
 }
 
 void func_80193F70_67FA90(uint16_t x,uint16_t c){
-    gActors[63].flag2&=~0x10;
+    gActors[63].gFlag&=~ACTOR_GFLAG_4;
     gActors[63].rgba.r=c;
     gActors[63].rgba.g=c;
     gActors[63].rgba.b=c;
@@ -227,7 +227,7 @@ void func_80194EE4_680A04(){
 
 void func_80194F48_680A68(){
     if(gActors[55].flag&0x200){
-        gActors[55].flag2&=~0x10;
+        gActors[55].gFlag&=~ACTOR_GFLAG_4;
         Actor_Shade(55,47);
     }
 }
@@ -252,11 +252,11 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x1000:
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x21);
-      thisActor.gp0 = 0x50;
+      thisActor.gp0._w  = 0x50;
       SFX_Play_1(roar dying);
       func_80003F24(0x81,0x78);
     case 0x1001:
-      if (--thisActor.gp0 < 0) {
+      if (--thisActor.gp0._w  < 0) {
         thisActor.actorState++;
       }
       func_80194818_680338();
@@ -271,15 +271,15 @@ void func_80194F8C_680AAC(uint16_t index){
       gActors[77].flag3 = 0;
       return;
     case 0x1002:
-      if ((gSceneFrames & 7) == 0) {
+      if ((gSceneFrames & 7) == 0) { //noop.
         func_800339AC(0,MigenJrHeadActor.pos.y,MigenJrHeadActor.pos.z);
       }
-      if (++thisActor.gp0 == 0xb4) {
+      if (++thisActor.gp0._w  == 0xb4) {
         ACTORINIT(100,ACTORTYPE_MIGENTHEO);
         gActors[100].actorState = 0x10;
       }
-      MODi((int)gActors[63].field74_0x168,3000,0xf);
-      if (gActors[63].field74_0x168 == (undefined *)0xbb8) {
+      MODi(gActors[63].gp6._w,3000,0xf);
+      if (gActors[63].gp6._w == 0xbb8) {
         thisActor.actorState++;
         func_80193DF0_67F910(index,0);
       }
@@ -299,7 +299,7 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x1004:
       goto lab_80195034_caseD_1004;
     case 0x1005:
-      if (--thisActor.gp0 == 0) {
+      if (--thisActor.gp0._w  == 0) {
         D_800BE6D8 = 0x80;
         gActors[94].flag = 0;
         gActors[95].flag = 0;
@@ -309,7 +309,7 @@ void func_80194F8C_680AAC(uint16_t index){
       gScreenPosTargetY._hi+= 2;
       if (0x23b < gScreenPosCurrentY._hi) {
         thisActor.actorState++;
-        thisActor.gp0 = 300;
+        thisActor.gp0._w  = 300;
         gScreenPosTargetY._hi = 0x23c;
       }
       gScreenPosCurrentY._hi = gScreenPosTargetY._hi;
@@ -322,7 +322,7 @@ void func_80194F8C_680AAC(uint16_t index){
       gActors[77].flag3 = 0;
       return;
     case 0x1006:
-      if ((--thisActor.gp0 == 0xf0) && (YellowGem_NoHit(index))) {
+      if ((--thisActor.gp0._w  == 0xf0) && (YellowGem_NoHit(index))) {
         gNoHit = 0xffff;
       }
       if (thisActor.gp0) {
@@ -512,7 +512,7 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x411:
       func_80193F9C_67FABC(index);
       func_80193CC4_67F7E4(index,0);
-      if (((uint)gActors[49].unk_0x16C & 1) == 0) {
+      if (((uint)gActors[49].gp7 & 1) == 0) {
         MigenJrActor.flag3 = 0;
         gActors[49].flag3 = 0;
         gActors[55].flag3 = 0;
@@ -542,7 +542,7 @@ void func_80194F8C_680AAC(uint16_t index){
     case 0x415:
       func_80193F9C_67FABC(index);
       func_80193CC4_67F7E4(index,0);
-      if (((uint)gActors[49].unk_0x16C & 1) == 0) {
+      if (((uint)gActors[49].gp7 & 1) == 0) {
         MigenJrActor.flag3 = 0;
         gActors[49].flag3 = 0;
         gActors[55].flag3 = 0;
@@ -586,7 +586,7 @@ void func_80194F8C_680AAC(uint16_t index){
       MODi(gActors[69].unk_0x180,0,0x3000);
       func_80193F9C_67FABC(index);
       func_80193CC4_67F7E4(index,0);
-      if (((uint)gActors[49].unk_0x16C & 1) != 0) {
+      if (((uint)gActors[49].gp7 & 1) != 0) {
         gActors[55].flag &= 0xffffff7f;
       }
       thisActor.unk_0x110-=1.0;
@@ -642,7 +642,7 @@ lab_801949b8:
 lab_80195064_caseD_421:
       func_80193F9C_67FABC(index);
       uVar10 = 0x31;
-      if (((uint)gActors[49].unk_0x16C & 1) != 0) {
+      if (((uint)gActors[49].gp7 & 1) != 0) {
         if (gActors[49].unk_0x138 == 0.0) {
           SFX_ActorPanX(0x61,0x4d);
         }
@@ -758,12 +758,12 @@ lab_80195064_caseD_421:
     gActors[67].unk_0x180 = -0xa00000;
     gActors[63].pos.z_w = -0x300000;
     func_80193DF0_67F910(index,0);
-    thisActor.gp0 = 0;
+    thisActor.gp0._w  = 0;
     thisActor.gp1 = 0;
     thisActor.gp2 = 0x27b;
     SFX_ActorPanX(0xab,0x3f);
   case 0x13:
-    gActors[63].flag2|= 0x10;
+    gActors[63].gFlag|= ACTOR_GFLAG_4;
     gActors[63].rgba.B = thisActor.gp2 / 5;
     gActors[63].rgba.G = thisActor.gp2 / 5;
     thisActor.gp1++;
@@ -781,7 +781,7 @@ lab_80195064_caseD_421:
     func_80193F9C_67FABC(index);
     if (gActors[67].unk_0x180 == -0x100000) {
       thisActor.actorState++;
-      thisActor.gp0 = 0x3c;
+      thisActor.gp0._w  = 0x3c;
       SFX_ActorPanX(0x93,0x3f);
       D_800be6cc = 0xffffff40;
       D_800be6d8 = 0xffffff40;
@@ -789,15 +789,15 @@ lab_80195064_caseD_421:
     }
     break;
   case 0x14:
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x18);
-      thisActor.gp0 = 0x1f;
+      thisActor.gp0._w  = 0x1f;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x15:
-    if ((gActors[77].unk_0x16C & 1)) {
+    if ((gActors[77].gp7 & 1)) {
       iVar9 = ++thisActor.gp0;
       if (iVar9 < 0x23) {
         if (iVar9 == 0x20) {
@@ -812,63 +812,63 @@ lab_80195064_caseD_421:
       }
       else {
         thisActor.actorState++;
-        thisActor.gp0 = 0x1e;
+        thisActor.gp0._w  = 0x1e;
         func_80193DF0_67F910(index,0x19);
       }
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x16:
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0ac,0,0x20,0x37);
       func_80081790(0x4d,&D_8019d42c);
       gActors[77].unk_0x138 = 0.0;
-      thisActor.gp0 = 0x41;
+      thisActor.gp0._w  = 0x41;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x17:
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x62,&D_8019b0c8,-0x18,0x10,0x32); //migen sr. responds
-      thisActor.gp0 = 0x50;
+      thisActor.gp0._w  = 0x50;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x18:
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0d8,0,0x1a,0x41);
-      thisActor.gp0 = 0xf0;
+      thisActor.gp0._w  = 0xf0;
     }
     func_80193F9C_67FABC(index);
     func_80193CC4_67F7E4(index,0x19);
     break;
   case 0x19:
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       ActorSpawn_JPNSpeechBox(0x4e,&D_8019b0e4,0,0x10,0x34);
       SFX_Play_1(Roar deep);
       CameraShake(-8,0x1e);
       func_80193DF0_67F910(index,0x16);
-      thisActor.gp0 = 0x41;
+      thisActor.gp0._w  = 0x41;
     }
     func_80193F9C_67FABC(index);
     break;
   case 0x1a:
     func_80193F9C_67FABC(index);
-    if (((uint)gActors[49].unk_0x16C & 1) != 0) {
+    if (((uint)gActors[49].gp7 & 1) != 0) {
       thisActor.actorState++;
       gActors[100].unk_0x188|= 0x8000;
       func_80081790(0x4d,&D_8019d338);
-      thisActor.gp0 = 0xb4;
+      thisActor.gp0._w  = 0xb4;
     }
     func_80193CC4_67F7E4(index,0x17);
     break;
   case 0x1b: //"Help me, Marin-"
     func_80193F9C_67FABC(index);
-    if (--thisActor.gp0 < 0) {
+    if (--thisActor.gp0._w  < 0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1a);
       SFX_Play_1(SFX_THEO_HELP2);
@@ -877,7 +877,7 @@ lab_80195064_caseD_421:
     break;
   case 0x1c: //NOM
     func_80193F9C_67FABC(index);
-    if (((uint)gActors[77].unk_0x16C & 1) != 0) {
+    if (((uint)gActors[77].gp7 & 1) != 0) {
       gActors[100].flag = 0;
       SFX_Stop(SFX_THEO_HELP2);
       SFX_Play_1(0x2d);
@@ -885,23 +885,23 @@ lab_80195064_caseD_421:
     if (gActors[77].field55_0x11c < 0.0) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1b);
-      thisActor.gp0 = 3;
+      thisActor.gp0._w  = 3;
     }
     break;
   case 0x1d:
     func_80193F9C_67FABC(index);
-    if ((((uint)gActors[77].unk_0x16C & 1) != 0) &&(--thisActor.gp0 < 0)) {
+    if ((((uint)gActors[77].gp7 & 1) != 0) &&(--thisActor.gp0._w  < 0)) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1c);
       gActors[63].unk_0x138 = 0.0;
     }
-    if (((uint)gActors[77].unk_0x16C & 2) != 0) {
+    if (((uint)gActors[77].gp7 & 2) != 0) {
       SFX_Play_1(jump);
     }
     break;
   case 0x1e:
     func_80193F9C_67FABC(index);
-    if (((uint)gActors[77].unk_0x16C & 1) != 0) {
+    if (((uint)gActors[77].gp7 & 1) != 0) {
       SFX_Play_1(0x91);
     }
     if (gActors[77].field55_0x11c < 0.0) {
@@ -1070,12 +1070,12 @@ lab_80196b3c:
       func_80193F44_67FA64(index,uVar10);
     }
     else {
-      gActors[63].flag2 &= ~0x10;
+      gActors[63].gFlag &= ~0x10;
       gActors[63].rgba.R = 0x30;
       gActors[63].rgba.G = 0x28;
       gActors[63].rgba.B = 0x20;
     }
-    if (((uint)gActors[77].unk_0x16C & 0x80) != 0) {
+    if (((uint)gActors[77].gp7 & 0x80) != 0) {
       thisActor.actorState++;
       func_801928A8_67E3C8(index);
       func_8019487C_68039C(index,0);
@@ -1121,13 +1121,13 @@ lab_80196b3c:
     func_80193F9C_67FABC(index);
     func_8019487C_68039C(0);
     func_801949B8_6804D8(index);
-    if ((gActors[77].unk_0x16C & 0x80)) {
+    if ((gActors[77].gp7 & 0x80)) {
       SFX_ActorPanX(0x43,0x4d);
       func_801928A8_67E3C8(index);
       func_80192E68_67E988(index,0);
       CameraShake(-8,10);
     }
-    if (((gActors[77].unk_0x16C & 1)) &&(0.0 <= --thisActor.field52_0x110)) {
+    if (((gActors[77].gp7 & 1)) &&(0.0 <= --thisActor.field52_0x110)) {
       thisActor.actorState = 0x4d;
       func_80193DF0_67F910(index,0x20);
     }
@@ -1148,7 +1148,7 @@ lab_80196b3c:
   case 0x53:
     func_80193F9C_67FABC(index);
     func_8019487C_68039C(0);
-    if (gActors[77].unk_0x16C & 0x80) {
+    if (gActors[77].gp7 & 0x80) {
       SFX_ActorPanX(0x43,0x4d);
       func_801928A8_67E3C8(index);
       func_80192E68_67E988(index,1);
@@ -1188,7 +1188,7 @@ lab_80196b3c:
     if (func_80194D3C_68085C(index) == 0) {
       func_8019487C_68039C(0x2c0000);
       func_8019487C_68039C();
-      if ((gActors[49].unk_0x16C & 2)) {
+      if ((gActors[49].gp7 & 2)) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 75;
         gActors[55].unk_0xDB = 8;
@@ -1197,7 +1197,7 @@ lab_80196b3c:
         gActors[55].speedY._w = 0x28000;
         SFX_ActorPanX(0x98,0x31);
       }
-      if (((uint)gActors[49].unk_0x16C & 1)) {
+      if (gActors[49].gp7 & 1) {
         CameraShake(-8,0x1e);
         gActors[55].flag &= ~0x1200;
         SFX_ActorPanX(0x45,0x4d);
@@ -1260,7 +1260,7 @@ lab_80196b3c:
     func_80193DF0_67F910(index,0x13);
     gActors[65].unk_0x180++;
     gActors[66].unk_0x180 = (uint)(0 < gPlayerActor.pos.x);
-    thisActor.gp0 = (Rand() & 1) + u16_800be668 / 0x1e + 1;
+    thisActor.gp0._w  = (Rand() & 1) + u16_800be668 / 0x1e + 1;
     ActorSpawn_JPNSpeechBox(0x4e,&D_8019b150,0,0x20,0x32);
     func_80193600_67F120(0x37);
     D_8019E580 = 4;
@@ -1283,7 +1283,7 @@ lab_80196b3c:
     if (func_80194D3C_68085C(index) == 0) {
       func_8019487C_68039C(0x2c0000);
       func_8019487C_68039C();
-      if (((uint)gActors[49].unk_0x16C & 1) != 0) {
+      if (((uint)gActors[49].gp7 & 1) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
         gActors[55].unk_0xDB = 4;
@@ -1331,7 +1331,7 @@ lab_80196b3c:
     func_80194934_680454(index);
     if ((gActors[55].flag3 & 0x200) == 0) {
       func_8019487C_68039C();
-      if (((uint)gActors[49].unk_0x16C & 2) != 0) {
+      if (((uint)gActors[49].gp7 & 2) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
         gActors[55].unk_0xDB = 7;
@@ -1341,7 +1341,7 @@ lab_80196b3c:
         SFX_ActorPanX(0x98,0x31);
         gActors[63].unk_0x120 = 1.0;
       }
-      if ((gActors[49].unk_0x16C & 1)) {
+      if ((gActors[49].gp7 & 1)) {
         gActors[55].flag &= ~0x1200;
       }
       if (gActors[49].field55_0x11c < 0.0) {
@@ -1398,7 +1398,7 @@ lab_80196b3c:
         func_8019487C_68039C(0x2c0000);
       }
       func_80194F48_680A68();
-      if (((uint)gActors[49].unk_0x16C & 2) != 0) {
+      if (((uint)gActors[49].gp7 & 2) != 0) {
         gActors[55].flag |= 0x1200;
         gActors[55].dmg = 0x32;
         gActors[55].unk_0xDA = 4;
@@ -1407,7 +1407,7 @@ lab_80196b3c:
         gActors[55].speedY._w = 0x28000;
         SFX_ActorPanX(0x98,0x31);
       }
-      if (((uint)gActors[49].unk_0x16C & 1) == 0) {
+      if (((uint)gActors[49].gp7 & 1) == 0) {
         if (gActors[49].field55_0x11c < 0.0) {
           thisActor.actorState = 0x30;
           gActors[55].flag &= ~0x1200;
@@ -1623,13 +1623,13 @@ lab_80197004:
     break;
   case 0xb0:
     thisActor.actorState++;
-    thisActor.gp0 = 1;
+    thisActor.gp0._w  = 1;
     func_80193DF0_67F910(index,0x1b);
     gActors[63].unk_0x120 = 1.0;
   case 0xb1: //"Thank you for healing me, father!"
     func_80194818_680338();
     func_80193F9C_67FABC(index);
-    if ((gActors[77].unk_0x16C & 1) && (--thisActor.gp0 < 0)) {
+    if ((gActors[77].gp7 & 1) && (--thisActor.gp0._w  < 0)) {
       thisActor.actorState++;
       func_80193DF0_67F910(index,0x1c);
       SFX_ActorPanX(Roar deep,0x4d);
@@ -1638,12 +1638,12 @@ lab_80197004:
       gActors[63].rgba.G = 0x80;
       gActors[63].rgba.B = 0x80;
     }
-    if (((uint)gActors[77].unk_0x16C & 2) != 0) {
+    if (((uint)gActors[77].gp7 & 2) != 0) {
       SFX_Play_1(jump);
     }
     break;
   case 0xb2:
-    if (((uint)gActors[77].unk_0x16C & 1) != 0) {
+    if (((uint)gActors[77].gp7 & 1) != 0) {
       SFX_Play_1(0x91);
     }
     func_80193F9C_67FABC(index);
@@ -1687,7 +1687,7 @@ lab_80195034_caseD_1004:
     gActors[77].flag3 = 0;
     return;
   }
-  if ((gPlayerManager.field31_0x64 & 0x20) == 0) {
+  if ((gPlayerManager.flag3 & 0x20) == 0) {
     MigenJrActor.flag3 = 0;
     gActors[49].flag3 = 0;
     gActors[55].flag3 = 0;
@@ -1700,7 +1700,7 @@ lab_80195034_caseD_1004:
   thisActor.actorState++;
   D_800be5f4 = 0x11;
   SFX_ActorPanX(dash,0);
-  thisActor.gp0 = 10;
+  thisActor.gp0._w  = 10;
   gActors[97].flag = 0x2002;
   D_800be6e8 = 1;
   ACTORINIT(100,ACTORTYPE_MIGENTHEO);
@@ -1720,7 +1720,7 @@ lab_80195064_caseD_418:
 lab_80195064_caseD_419:
   func_80193F9C_67FABC(index);
   uVar10 = 0x31;
-  if ((gActors[49].unk_0x16C & 1)) {
+  if ((gActors[49].gp7 & 1)) {
     func_80081790(0x4d,&D_8019d480);
     thisActor.health-=100; //stop hitting yourself!
     gActors[63].rgba.R = 0x80;
@@ -1734,14 +1734,14 @@ lab_80195064_caseD_419:
     uVar11 = ActorSpawn_Particle_144_192(&D_8019db74,0,0,0);
     if (uVar11) {
       gActors[uVar11].unk_0x130 = 80.0;
-      gActors[uVar11].flag2 = |= 0x10;
+      gActors[uVar11].gFlag = |= 0x10;
       gActors[uVar11].unk_0x14C = MigenJrHeadActor.actorType;
       gActors[uVar11].unk_0x134 = 0.0;
       gActors[uVar11].unk_0x13C = 0.0;
       gActors[uVar11].rgba.R = 0x7f;
       gActors[uVar11].unk_0x148 = 26.0;
       thisActor.unk_0x118 = uVar11;
-      thisActor.gp0 = 0x38000;
+      thisActor.gp0._w  = 0x38000;
       thisActor.gp1 = 0xffe60000;
     }
   }
@@ -1779,15 +1779,15 @@ lab_80197830:
     else {
       gActors[uVar10].rgba.A = 0xfe;
     }
-    iVar12 = thisActor.gp0 + -0x4800;
+    iVar12 = thisActor.gp0._w  + -0x4800;
     iVar9 = thisActor.gp1 + iVar12;
-    thisActor.gp0 = iVar12;
+    thisActor.gp0._w  = iVar12;
     thisActor.gp1 = iVar9;
     if (iVar9 < 0) {
       iVar9 = iVar9 + 0xffff;
     }
     gActors[uVar10].unk_0x138 = (float)(iVar9 >> 0x10);
-    if ((int)thisActor.gp0 < 0) gActors[uVar10].rgba.R+=8;
+    if ((int)thisActor.gp0._w  < 0) gActors[uVar10].rgba.R+=8;
     else MODi(gActors[uVar10].rgba.R,0,0x10);
     gActors[uVar10].rgba.G = gActors[uVar10].rgba.R;
     gActors[uVar10].rgba.B = gActors[uVar10].rgba.R;
@@ -1849,7 +1849,25 @@ uint16_t func_8019882C_68434C(void) {
     return Actor_GetInactive(0x67, 0x68);
 }
 //migen Sr. energy ball spawn
+#ifdef NON_MATCHING
+uint16_t func_80198850_684370(uint16_t other){
+  Actor* actorp;
+  uint16_t index=func_8019882C_68434C();
+  if(index){
+    ACTORINIT(index,0x606);
+    actorp=&gActors[other];
+    thisActor.gFlag=2;
+    thisActor.pos.x=actorp->pos.x;
+    thisActor.pos.y=actorp->pos.y;
+    thisActor.pos.z=actorp->pos.z+1;
+    thisActor.gp7._w=func_800294E0(gPlayerActor.pos.x_w-thisActor.pos.x_w,gPlayerActor.pos.x_w-thisActor.pos.y_w)<<16;
+    thisActor.gp1._w=0x1ffcc;
+    }
+  return index
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_80198850_684370.s")
+#endif
 //migen Sr. energy ball behavior
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/MigenBrawl/func_8019893C_68445C.s")
 
@@ -1880,11 +1898,11 @@ void func_80199DA8_6858C8(uint16_t index){
   switch(thisActor.actorState) {
     case 0:
     thisActor.actorState++;
-    thisActor.flag2 = 0x201;
+    thisActor.gFlag = 0x201;
     thisActor.flag = ACTOR_FLAG_ENABLED;
     thisActor.graphicTime = 1;
     thisActor.graphicList = &D_800E164C;
-    thisActor.palletteP = &gSpriteData_GreenGem;
+    thisActor.palletteP = gPaletteGemGreen;
     thisActor.scaleX = 4.0;
     Actor_Shade(index,0x7f);
     SFX_ActorPanX(SFX_GEM_APPEAR,index);

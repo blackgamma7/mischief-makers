@@ -79,7 +79,7 @@ void func_801A837C_77184C(uint16_t x){}
 void func_801A8384_771854(uint16_t x){}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A838C_77185C.s")
-
+//generates the surfing missle's fire
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A85E0_771AB0.s")
 //surfing missle
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World3/func_801A88C8_771D98.s")

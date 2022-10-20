@@ -111,9 +111,9 @@ extern func_80192374_6F9604(uint16_t x, uint16_t* p, uint8_t r, uint8_t g, uint8
 
 #ifdef NON_MATCHING
 void func_80192490_6F9720(uint16_t index) { //decomp.me says yes, compiler says no.
-    thisActor.flag2 = 0xA41;
+    thisActor.gFlag = 0xA41;
     thisActor.flag = 0xB;
-    thisActor.graphic = 0x2D0;
+    thisActor.graphic = GINDEX_SOLIDSQARE;
     thisActor.rgba.a = 0xFF;
     thisActor.rgba.r = 0;
     thisActor.rgba.g = 0;
@@ -131,7 +131,7 @@ extern void func_80192490_6F9720(uint16_t index);
 #endif
 
 void func_80192520_6F97B0(uint16_t index) {
-    thisActor.flag2 = 0x850;
+    thisActor.gFlag = 0x850;
     thisActor.flag = 0xB;
     thisActor.graphic = 0x2802;
     thisActor.rgba.r = 0x7F;
@@ -553,10 +553,6 @@ uint16_t func_80197D60_6FEFF0(void){
 
 #ifdef NON_MATCHING
 void func_8019F21C_7064AC(uint16_t index){ //marina becomes human
-  int16_t sVar1;
-  uint32_t uVar2;
-  int32_t iVar4;
-  
 
   if (true) { //not sure where ghidra got that... need to find when .rodata issue is fixed.
     switch(thisActor.actorState) {
@@ -583,8 +579,7 @@ void func_8019F21C_7064AC(uint16_t index){ //marina becomes human
       }
       break;
     case 0x1502:
-      sVar3 = func_8005DEFC();
-      if ((sVar3 == 0) && (D_801AA070_711300 == 0)) {
+      if ((func_8005DEFC() == 0) && (D_801AA070_711300 == 0)) {
         func_801A9044_7102D4();
         if (D_01ac398 < 0x35) {
           thisActor.actorState = 0x1520;
@@ -789,7 +784,7 @@ int16_t uVar2;
       D_01ac39a = 0x430;
       D_01ac39c = 300;
       gActors[56].unk_0x170 = 0xa0;
-      gActors[56].unk_0x16C._w = 1;
+      gActors[56].gp7._w = 1;
       func_80192A08_6F9C98(0x3c);
       return;
     case 0x1901:
@@ -911,7 +906,7 @@ int16_t uVar2;
         D_801AA078_711308 = 0x90;
         gActors[56].actorState = 0x3b0;
         gActors[56].unk_0x170 = CONCAT22(gActors[56].unk_0x170._hi,0x3c0);
-        gActors[56].unk_0x16C._w = 1;
+        gActors[56].gp7._w = 1;
         gActors[56].field54_0x118 = 10.0;
         gActors[56].field55_0x11c = 2.0;
         func_801A9044_7102D4();

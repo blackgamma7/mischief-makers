@@ -67,7 +67,7 @@ extern int32_t gActorInitFlags[125];
 extern uint16_t gAttractModeIndex;
 extern uint16_t Alpha_NotYet[];              //"Not Yet"
 extern uint16_t Alpha_GotIt[];               //"Got it"
-extern ActorFunc gActorFuncTable_Marina[]; // TODO: Investigate
+extern ActorFunc gActorFuncTable_Marina[64]; // TODO: Investigate
 extern ActorFunc gActorFuncTable_Clancer[74]; // TODO: Investigate
 extern int16_t D_800E24EC[10];
 extern int16_t D_800E2500[10];
@@ -165,22 +165,22 @@ extern uint16_t D_800BE678;
 extern uint16_t D_800BE6A4;
 extern uint16_t D_800BE6A8;
 /* a set of flags with the following properties for each bit (hi-to-lo):
- * 0 unknown (func_8001FF28 is just jr ra)
+ * 0 unknown (DebugFunc_8000h is just jr ra)
  * 1 Draw SFX Channel data
  * 2
- * 3 unknown (func_80021660 is just jr ra)
+ * 3 unknown (DebugFunc_1000h is just jr ra)
  * 4 unknown
  * 5 unknown
  * 6 Force pause (see PauseGame_Check)
  * 7 pause does not open menu.
  * 8 Draw some debug info
- * 9 unknown (func_80021658 is just jr ra)
+ * 9 unknown (DebugFunc_40h is just jr ra)
  * A unknown
  * B unknown
  * C unknown
  * D Ortho / perspective view
  * E L and R change gameplay speed (60 / gDebugThrottle fps)
- * F unknown (func_8002167C is just jr ra)
+ * F unknown (DebugFunc_1h is just jr ra)
  */
 extern uint16_t gDebugBitfeild;
 extern float D_800BE6B0;    // 90.0f, never used.
@@ -234,7 +234,7 @@ extern uint16_t gNameEntryRow2ENG[18]; // Japan version had 3 character sets to 
 extern uint16_t gNameEntryRow3ENG[18]; // one is still readable, but the other seems lost.
 extern uint16_t gNameEntryRow4ENG[18];
 extern UNK_TYPE D_800C71A0;
-extern u16 D_800C7E14[16]; //"G......AME......OV...E...R"
+extern uint16_t D_800C7E14[16]; //"G......AME......OV...E...R"
 extern const char*D_800C81E4[22]; //used by stage select in building menu.
 extern uint16_t D_800C823C[];
 extern uint16_t gStageScenes[64]; //holds the scene indecies for each stage.
@@ -254,7 +254,7 @@ extern char D_800C8F74[]; // @1997 TREASURE/ENIX
 extern char D_800C8F88[]; // LICENCED TO NINTENDO
 extern uint32_t D_800C8FA0;
 extern uint32_t D_800C8FC0;
-extern UNK_TYPE D_800C9080;
+extern Gfx D_800C9080[];
 extern uint16_t gSoundTest_SFXEntries[294];
 extern char D_800C94CC[4]; //"BGM"
 extern char D_800C94D0[5]; //"S.E."
@@ -263,7 +263,7 @@ extern char* D_800C9680[5]; //'rank' letters
 extern int16_t D_800C9694[5];
 extern ActorInit gActorInit[];
 extern int32_t gActorInitFlags[125];
-extern uint32_t D_800C9FCC[];
+extern uint16_t* gActorInitGraphics[];
 extern uint16_t gIsPlayerInactive;
 extern uint16_t gAttractModeTimer;
 extern uint16_t gAttractModeInputHoldIndex;
@@ -345,12 +345,12 @@ extern int16_t D_800D296C;
 extern int16_t D_800D2970;
 extern int16_t D_800D2974;
 extern uint16_t D_800D2978[];
-extern int16_t D_800D36DC[16];
-extern int16_t D_800D36FC[16];
+extern uint16_t D_800D36DC[16];
+extern uint16_t D_800D36FC[16];
 extern uint16_t D_800D3770[];
 extern uint16_t D_800D3888[24];
-extern int16_t D_800D38B8[140][2];//coords for "scene transition" portaits.
-extern int16_t D_800D3AE8[70]; //indecies for "scene transition" portaits.
+extern int16_t gExitPortraitPositions[140][2];//coords for "scene transition" portaits.
+extern int16_t gExitPortraitGraphics[70]; //indecies for "scene transition" portaits.
 extern int16_t D_800D3B74;
 extern uint16_t* D_800D8088[8]; //japan-only text for actor 0x56
 extern uint16_t D_800D80A8[8]; //SFX Arrays for same actor
@@ -371,7 +371,7 @@ extern int8_t D_800D4080[5][4];
 extern int8_t (*D_800D4094[6])[4];
 extern uint32_t D_800D4184[82]; // pointer array?
 extern uint16_t D_800D46A8[18];
-extern int32_t D_800D5794[32]; //table for Marina's movement speeds.
+extern int32_t gMarinaVelocities[32]; //table for Marina's movement speeds.
 extern int32_t D_800D57E0;
 extern uint16_t gSpeaker_ActorLink;
 extern uint16_t D_800D5824;
@@ -382,7 +382,7 @@ extern UNK_TYPE D_800D8840;
 extern UNK_TYPE D_800D8930;
 extern UNK_TYPE D_800D89A8;
 extern UNK_TYPE D_800D8A20;
-extern UNK_TYPE gSpriteData_GreenGem;
+extern UNK_TYPE gPaletteGemGreen;
 extern UNK_TYPE D_800D8B10;
 extern UNK_TYPE D_800D8B88;
 extern UNK_TYPE D_800D8C00;
@@ -510,7 +510,7 @@ extern uint16_t D_800E223C[];
 extern uint16_t D_800E2250[];
 extern uint16_t D_800E2274[];
 extern UNK_TYPE D_800E1DEC;
-extern UNK_TYPE gGraphicList_800E13DC;
+extern UNK_TYPE gGraphicListGem;
 extern UNK_TYPE D_800E1C00;
 extern UNK_TYPE D_800E1C2C;
 extern UNK_TYPE D_800E1F64;
@@ -627,9 +627,9 @@ extern uint16_t D_80171B1C;
 extern uint16_t D_80171B1E;
 extern uint16_t D_80171B20;
 extern uint16_t D_80171B22;
-extern UNK_TYPE D_80171B30;
-extern UNK_TYPE D_80171C30;
-extern UNK_TYPE D_80171F10;
+extern uint16_t D_80171B30[128];
+extern uint16_t D_80171C30[128];
+extern uint16_t D_80171F10[240];
 extern Mtx* D_801780F0;
 extern Mtx* D_801780F4;
 extern UNK_POINTER* D_80178104;
