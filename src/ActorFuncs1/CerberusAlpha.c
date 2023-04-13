@@ -549,7 +549,7 @@ uint32_t func_801A35FC_69B5FC(){
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A363C_69B63C.s")
 
 int32_t func_801A37E8_69B7E8(uint16_t index){
-  return func_800294E0 (LunarActor.pos.x - thisActor.pos.x,LunarActor.pos.y - thisActor.pos.y) <<16;
+  return atan2 (LunarActor.pos.x - thisActor.pos.x,LunarActor.pos.y - thisActor.pos.y) <<16;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/CerberusAlpha/func_801A3858_69B858.s")

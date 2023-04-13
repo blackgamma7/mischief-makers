@@ -1113,7 +1113,7 @@ void CalculateFestivalTime(void){
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/CalculateFestivalTime.s")
 #endif
-
+//start of "world Map" functions
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_800197A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/gameStates/func_8001983C.s")

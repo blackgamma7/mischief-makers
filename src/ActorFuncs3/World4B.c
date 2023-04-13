@@ -20,7 +20,7 @@ void func_801A6908_77F268(uint16_t index){
 
 void func_801A69B0_77F310(uint16_t index){
     ACTORINIT(index,ACTORTYPE_GRAPHICONLY);
-    thisActor.gFlag=0x100;
+    thisActor.gFlag=ACTOR_GFLAG_8;
     thisActor.flag=ACTOR_FLAG_ENABLED;
     thisActor.graphic=0x2004;
     thisActor.rgba.a=0xF8;

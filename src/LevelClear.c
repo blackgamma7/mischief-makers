@@ -97,7 +97,7 @@ void func_8009705C(uint16_t index) { //marina in her first victory pose
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x1000;
     thisActor.gFlag = 0x100;
-    thisActor.flag = 11;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0x800;
     thisActor.rgba.a = 0;
     thisActor.pos.x = 0xFFDF;
@@ -114,7 +114,7 @@ void func_80097108(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x2000;
     thisActor.gFlag = 0x110;
-    thisActor.flag = 11;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0x1000;
     thisActor.rgba.a = 0;
     thisActor.pos.x = 0x1e;
@@ -126,7 +126,7 @@ void func_800971A0(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0x100;
     thisActor.gFlag = 0x900;
-    thisActor.flag = 11;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0x2800;
     thisActor.rgba.a = 0;
     thisActor.pos.x = 0x0;
@@ -159,7 +159,7 @@ void func_80097384(uint16_t index) {
     ACTORINIT(index,ACTORTYPE_LEVELCLEAR);
     thisActor.actorState = 0xC000;
     thisActor.gFlag = 0x900;
-    thisActor.flag = 11;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0xCE;
     thisActor.rgba.a = 0;
     thisActor.pos.x = 0x0;
@@ -185,7 +185,7 @@ void LevelClear_SkipScene(void) {
         Portraits_Reset();
         ACTORINIT(193,0x34);
         gActors[193].gFlag = 0x911;
-        gActors[193].flag = 11;
+        gActors[193].flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
         gActors[193].rgba.b = 0x40;
         gActors[193].unk_0x148 = 30.0;
         gActors[193].pos.x = 0;

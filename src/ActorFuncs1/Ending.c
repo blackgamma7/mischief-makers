@@ -54,7 +54,7 @@ char* D_801AA6E8_711978[]={
 #define CREDITSTRING(xx) 0x8200|xx //load string from index xx
 uint16_t D_801AA87C_711B0C[408];
 /*
-void* D_801AABAC_711E3C[16]={
+uint16_t* D_801AABAC_711E3C[16]={
   0x8022D4C8,0x8022D4C8,0x8022D4C8,0x8022D4C8,
   0x8022D4C8,0x8022D528,0x8022D548,0x8022D568,
   0x8022D4C8,D_800D84E8,D_800D8508,D_800D8528,
@@ -111,8 +111,8 @@ extern func_80192374_6F9604(uint16_t x, uint16_t* p, uint8_t r, uint8_t g, uint8
 
 #ifdef NON_MATCHING
 void func_80192490_6F9720(uint16_t index) { //decomp.me says yes, compiler says no.
-    thisActor.gFlag = 0xA41;
-    thisActor.flag = 0xB;
+    thisActor.gFlag = ACTOR_GFLAG_0|ACTOR_GFLAG_6|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = GINDEX_SOLIDSQARE;
     thisActor.rgba.a = 0xFF;
     thisActor.rgba.r = 0;
@@ -131,8 +131,8 @@ extern void func_80192490_6F9720(uint16_t index);
 #endif
 
 void func_80192520_6F97B0(uint16_t index) {
-    thisActor.gFlag = 0x850;
-    thisActor.flag = 0xB;
+    thisActor.gFlag = ACTOR_GFLAG_4|ACTOR_GFLAG_6|ACTOR_GFLAG_B;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0x2802;
     thisActor.rgba.r = 0x7F;
     thisActor.rgba.g = 0x7F;
@@ -193,8 +193,26 @@ uint32_t func_801927F4_6F9A84(){
     return func_80192684_6F9914(50);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192814_6F9AA4.s")
-
+#ifdef NON_MATCHING
+void func_80192930_6F9BC0(uint16_t index){
+  thisActor.gFlag = ACTOR_GFLAG_0|ACTOR_GFLAG_6|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
+  thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
+  thisActor.graphic = GINDEX_SOLIDSQARE;
+  thisActor.rgba.A = 0;
+  thisActor.rgba.R = 0xff;
+  thisActor.rgba.G = 0xff;
+  thisActor.rgba.B = 0xff;
+  thisActor.pos.x = 0;
+  thisActor.pos.y = 0;
+  thisActor.pos.z = 0x500;
+  thisActor.unk_0x188 = 0;
+  thisActor.unk_0x18C = gPalletteBlack;
+  thisActor.scaleX = 19.0;
+  thisActor.scaleY = 13.0;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_80192930_6F9BC0.s")
+#endif
 
 void func_801929C8_6F9C58(uint16_t x){
     uint16_t index=51;
@@ -1142,7 +1160,10 @@ void func_801A9754_7109E4(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A97E8_710A78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9818_710AA8.s")
+void func_801A9818_710AA8(uint16_t index){
+    func_80081790(index,&D_800E89D4);
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs1/Ending/func_801A9818_710AA8.s")
 
 void func_801A9848_710AD8(uint16_t index,float f){
     thisActor.unk_0x120=f;

@@ -34,7 +34,7 @@
 #define NEGSIN(x) gCosineLookup[x+COSPiOver2&COSLEN]//cos(x+pi/2)=-sin(x)
 //for overlay code and their tables. TODO: rename applicable subsegments before testing.
 #define SEGMENT_CODETABLE(name) \
-[(uint32_t)_##name##_Table##SegmentRomStart,(uint32_t)_##name##_Table##SegmentRomEnd, \
+[(uint32_t)_##name##Table##SegmentRomStart,(uint32_t)_##name##Table##SegmentRomEnd, \
  (uint32_t)_##name##SegmentRomStart,(uint32_t)_##name##SegmentRomStart]
 //many segment addresses have some "mask" that obfuscates their offset.
 #define SEGMENT_CODEMASK(name,mask)\

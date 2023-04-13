@@ -108,10 +108,10 @@ void func_80016D94(){
     x= gScreenPosNextX._w - gScreenPosCurrentX._w;
     y= gScreenPosNextY._w - gScreenPosCurrentY._w;
     for(index=1;index<ACTOR_COUNT1;index++){
-        if( (thisActor.flag & ACTOR_FLAG_ACTIVE) && ((thisActor.flag & 8)==0)){
+        if( (thisActor.flag & ACTOR_FLAG_ACTIVE) && ((thisActor.flag & ACTOR_FLAG_UNK3)==0)){
             thisActor.pos.x_w+=x;
             thisActor.pos.y_w+=y;
-            if((thisActor.flag & 4)&&
+            if((thisActor.flag & ACTOR_FLAG_ONSCREEN_ONLY)&&
             ((thisActor.pos.x<-0xd0||thisActor.pos.x>0xd0)||
             (thisActor.pos.y<-0xa0||thisActor.pos.y>0xa0)))
                 thisActor.flag=0;

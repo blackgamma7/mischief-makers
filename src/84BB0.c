@@ -198,7 +198,7 @@ void func_80087568(uint16_t other, uint16_t g, int32_t posx,int32_t posy,int32_t
     if(index){
         actorp = &gActors[other];
         ACTORINIT(index,0x34);
-        thisActor.gFlag=0xA01;
+        thisActor.gFlag=ACTOR_GFLAG_0|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
         thisActor.graphic=g;
         thisActor.scaleX=actorp->scaleX;
         thisActor.rgba.r=255;

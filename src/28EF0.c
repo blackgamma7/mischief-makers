@@ -186,23 +186,23 @@ void func_80029134(uint16_t index) {
 #endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800291AC.s")
-//seems to be for calculating theta given x/y coords. (atan2?)
-#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800294E0.s")
+//calculates "theta" based on position in gCosineLookup
+#pragma GLOBAL_ASM("asm/nonmatchings/28EF0/atan2.s")
 
 uint32_t func_800295D8(int32_t A, int32_t B) {
-    return func_800294E0(A,B) + 256 & 0x200;
+    return atan2(A,B) + (COSPiOver2) & (COSPiOver2*2);
 }
 
 uint32_t func_80029600(int32_t A, int32_t B) {
-    return func_800294E0(A,B) + 128 & 0x300;
+    return atan2(A,B) + (COSPiOver2/2) & (COSPiOver2*3);
 }
 
 uint32_t func_80029628(int32_t A, int32_t B) {
-    return func_800294E0(A,B) + 64 & 0x380;
+    return atan2(A,B) + (COSPiOver2/4) & 0x380;
 }
 
 uint32_t func_80029650(int32_t A, int32_t B) {
-    return func_800294E0(A,B) + 32 & 0x3C0;
+    return atan2(A,B) + (COSPiOver2/8) & 0x3C0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80029678.s")
@@ -581,7 +581,7 @@ void func_8002B400(uint16_t index) {
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002B6E8.s")
 
 void func_8002B7B8(uint16_t*p0,uint16_t*p1,uint16_t x){
-    u16 i = *p0;
+    uint16_t i = *p0;
     while(i!=256){
         p1[i]=x;
         p0+=2;
@@ -590,7 +590,7 @@ void func_8002B7B8(uint16_t*p0,uint16_t*p1,uint16_t x){
 }
 
 void func_8002B7F4(uint16_t*p0,uint16_t*p1){
-    u16 i = *p0;
+    uint16_t i = *p0;
     while(i!=256){
         p1[i]=p0[1];
         p0+=2;
@@ -731,13 +731,13 @@ void ActorTick_1(uint16_t index){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_8002E89C.s")
 
 const float D_800EB904 = 0.8; //dirty hack, 
-
-void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
+//spawns a shuriken?
+void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t vx, int32_t vy) {
     float temp;
 
     ACTORINIT(index,0x2602);
     temp = D_800EB904;
-    thisActor.gFlag = 9;
+    thisActor.gFlag = ACTOR_GFLAG_ROTZ|ACTOR_GFLAG_0;
     thisActor.flag = ACTOR_FLAG_ENABLED | ACTOR_FLAG_ONSCREEN_ONLY;
     thisActor.graphic = GINDEX_SHURIKEN;
     thisActor.unk_0xCE = 5;
@@ -754,8 +754,8 @@ void func_8002EBB8(uint16_t index, int16_t x, int16_t y, int32_t A, int32_t B) {
     thisActor.attackDmg = 30;
     thisActor.pos.x = x;
     thisActor.pos.y = y;
-    thisActor.vel.x_w = A;
-    thisActor.vel.y_w = B;
+    thisActor.vel.x_w = vx;
+    thisActor.vel.y_w = vy;
 }
 
 void func_8002ECAC(uint16_t index, int16_t x, int16_t y, int32_t vx, int32_t vy) {
@@ -888,10 +888,12 @@ void GemCollision(uint16_t arg0, uint16_t arg1, int32_t arg2, int16_t arg3, int1
 //behavoir for gem actor
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/ActorTick_Gem.s")
 
-void func_80030964(uint16_t index){
+void ActorTick_GemChild(uint16_t index){
     ActorTick_Gem(index);
     thisActor.gFlag|=0x100;
 }
+
+//actor 0x000e - a clancer doing a shake-shake?
 void func_800309C0(uint16_t index){
     if(thisActor.actorState==0){
         thisActor.actorState++;
@@ -1089,17 +1091,17 @@ void ActorTick_7(uint16_t index){
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_800337F4.s")
 
-void func_800338F4(int16_t arg0, int16_t arg1, int16_t arg2) {
+void func_800338F4(int16_t x, int16_t y, int16_t z) {
     if ((gSceneFrames & 0x0F) == 0) {
-        func_800337F4(arg0, arg1, arg2, 0x132);
+        func_800337F4(x, y, z, 0x132);
     }
 }
 
 uint16_t gNoteGraphicIndecies[4] = { 0x136, 0x138, 0x13A, 0x13A };
 //spawn notes while idling
-void ActorMarina_Idle_SpawnNotes(int16_t arg0, int16_t arg1, int16_t arg2) {
+void PartcleSpawn_FloatingNotes(int16_t x, int16_t y, int16_t z) {
     if ((gSceneFrames & 0x0F) == 0) {
-        func_800337F4(arg0, arg1, arg2, gNoteGraphicIndecies[RNG(3)]);
+        func_800337F4(x, y, z, gNoteGraphicIndecies[RNG(3)]);
     }
 }
 
@@ -1272,14 +1274,14 @@ void func_80038704(uint16_t x){
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038704.s")
 #endif
 
-#ifdef NON_MATCHING
+//#ifdef NON_MATCHING
 void func_80038794(uint16_t index){ //uses rodata.
-    if(gSceneFrames%20) MODf(thisActor,unk_0x148,.9,.02);
+    if(gSceneFrames&20) MODf(thisActor,unk_0x148,.9,.02);
     else MODf(thisActor,unk_0x148,1.1,.02);
-}
+}/*
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038794.s")
-#endif
+#endif*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/28EF0/func_80038868.s")
 
@@ -1328,7 +1330,7 @@ void func_800398F8(uint16_t other,uint16_t index){
 int32_t func_80039970(uint16_t arg0, uint16_t index) {
     Actor* actorp = &thisActor;
     switch (actorp->actorType) {                             
-    case ACTORTYPE_GEM:
+    case ACTORTYPE_GEM: //add the bounce and lifetime as well.
         actorp->gp0._w = 0x78;
         actorp->vel.y_w = 0x40000;
         return SFX_ActorPanX(SFX_GEM_APPEAR, arg0);
@@ -1402,8 +1404,8 @@ uint16_t func_8003D68C(u16 gFlag,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
   uint16_t index = Actor_GetInactive_144_192();
   if (index) {
     ACTORINIT(index,0x34);
-    thisActor.gFlag = gFlag & ~0x2000;
-    thisActor.flag = 0xb;
+    thisActor.gFlag = gFlag & ~ACTOR_GFLAG_D;
+    thisActor.flag = ACTOR_FLAG_ENABLED|ACTOR_FLAG_UNK3;
     thisActor.graphic = 0x8000;
     thisActor.pos.x_w = posx;
     thisActor.pos.y_w = posy;
@@ -1415,7 +1417,7 @@ uint16_t func_8003D68C(u16 gFlag,s16 BY0,s16 BY1,s16 BX0,s16 BX1,int32_t posx,in
     thisActor.rgba.r = r;
     thisActor.rgba.g = g;
     thisActor.rgba.b = b;
-    if (gFlag & 0x2000) thisActor.unk_0x148 = 1.0;
+    if (gFlag & ACTOR_GFLAG_D) thisActor.unk_0x148 = 1.0;
     else thisActor.unk_0x148 = 0.0;
   }
   return index;
@@ -1693,7 +1695,7 @@ void func_800429A4(uint16_t index){
     thisActor.actorState++;
     thisActor.gFlag=0;
     thisActor.flag=ACTOR_FLAG_ENABLED;
-    thisActor.graphic=0x1CE;
+    thisActor.graphic=0x1CE; //last frame of "poof" animation
     thisActor.rgba.r=128;
     thisActor.unk_0x110=30;
 }
@@ -1721,11 +1723,12 @@ void (*D_800D28B0[8])(uint16_t)={
     func_800429A4,func_80042360,func_80042A0C,func_80042AEC,func_80042B2C,
     NULL,NULL,NULL
 };
-
+//actor type 0x000B
 void func_80042B94(uint16_t index){
     D_800D28B0[thisActor.actorState](index);
     thisActor.flag3&=~0x200600;
 }
+
 //stack issue?
 #ifdef NON_MATCHING
 void func_80042C10(uint16_t index){

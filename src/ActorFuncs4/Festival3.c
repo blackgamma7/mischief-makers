@@ -1,4 +1,4 @@
-#include "common.h"
+#include "festival.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/Festival3/func_801B0900_7B3FE0.s")
 

@@ -2930,7 +2930,7 @@ LOAD build/assets/trailer.bin.o
                 0x0000000080029044                func_80029044
                 0x0000000080029134                func_80029134
                 0x00000000800291ac                func_800291AC
-                0x00000000800294e0                func_800294E0
+                0x00000000800294e0                atan2
                 0x00000000800295d8                func_800295D8
                 0x0000000080029600                func_80029600
                 0x0000000080029628                func_80029628
@@ -3098,7 +3098,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800336b8                ActorTick_DizzyStar
                 0x00000000800337f4                func_800337F4
                 0x00000000800338f4                func_800338F4
-                0x0000000080033948                ActorMarina_Idle_SpawnNotes
+                0x0000000080033948                PartcleSpawn_FloatingNotes
                 0x00000000800339ac                func_800339AC
                 0x00000000800339bc                func_800339BC
                 0x0000000080033b54                func_80033B54
@@ -17441,7 +17441,7 @@ LOAD build/assets/trailer.bin.o
                 0x00000000800eb8f8                D_800EB8F8 = 0x800eb8f8
                 0x00000000800eb900                D_800EB900 = 0x800eb900
                 0x00000000800eb904                D_800EB904 = 0x800eb904
-                0x00000000800e164c                D_800E164C = 0x800e164c
+                0x00000000800e164c                gGraphicListGem2 = 0x800e164c
                 0x00000000800eb908                D_800EB908 = 0x800eb908
                 0x00000000800d1958                D_800D1958 = 0x800d1958
                 0x00000000800eb910                D_800EB910 = 0x800eb910

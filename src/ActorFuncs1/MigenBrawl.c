@@ -53,6 +53,7 @@ int16_t D_8019E580; //punch timer?
 
 void func_80192100_67DC20(uint16_t x){}
 
+//spawn a "!" bubble above Migen Jr.'s head.
 void func_80192108_67DC28(uint16_t x){
     Actor* actorp;
     uint16_t index=ActorSpawn_Particle_144_192(&D_800E154C,gActors[79].pos.x,gActors[79].pos.y+32,gActors[79].pos.z+5);
@@ -1734,7 +1735,7 @@ lab_80195064_caseD_419:
     uVar11 = ActorSpawn_Particle_144_192(&D_8019db74,0,0,0);
     if (uVar11) {
       gActors[uVar11].unk_0x130 = 80.0;
-      gActors[uVar11].gFlag = |= 0x10;
+      gActors[uVar11].gFlag = |= ACTOR_GFLAG_4;
       gActors[uVar11].unk_0x14C = MigenJrHeadActor.actorType;
       gActors[uVar11].unk_0x134 = 0.0;
       gActors[uVar11].unk_0x13C = 0.0;
@@ -1860,7 +1861,7 @@ uint16_t func_80198850_684370(uint16_t other){
     thisActor.pos.x=actorp->pos.x;
     thisActor.pos.y=actorp->pos.y;
     thisActor.pos.z=actorp->pos.z+1;
-    thisActor.gp7._w=func_800294E0(gPlayerActor.pos.x_w-thisActor.pos.x_w,gPlayerActor.pos.x_w-thisActor.pos.y_w)<<16;
+    thisActor.gp7._w=atan2(gPlayerActor.pos.x_w-thisActor.pos.x_w,gPlayerActor.pos.x_w-thisActor.pos.y_w)<<16;
     thisActor.gp1._w=0x1ffcc;
     }
   return index
@@ -1898,10 +1899,10 @@ void func_80199DA8_6858C8(uint16_t index){
   switch(thisActor.actorState) {
     case 0:
     thisActor.actorState++;
-    thisActor.gFlag = 0x201;
+    thisActor.gFlag = (ACTOR_GFLAG_RGB16|ACTOR_GFLAG_0);
     thisActor.flag = ACTOR_FLAG_ENABLED;
     thisActor.graphicTime = 1;
-    thisActor.graphicList = &D_800E164C;
+    thisActor.graphicList = &gGraphicListGem2;
     thisActor.palletteP = gPaletteGemGreen;
     thisActor.scaleX = 4.0;
     Actor_Shade(index,0x7f);

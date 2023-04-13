@@ -437,7 +437,7 @@ void PauseGame_Check(void) {
 
 // main update
 void func_8000147C(void) {
-    gSceneFramesReal += 1;
+    gSceneFramesReal++;
     if (gPlayTime < 518399999) {
         gPlayTime++;
     }

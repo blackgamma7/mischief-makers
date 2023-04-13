@@ -60,8 +60,8 @@ uint16_t* InitCameraPosition(uint16_t* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/46100/InitPlayerPosition.s")
 
-void func_80046148(void) {
-    InitPlayerPosition();
+void func_80046148(void* x, void* y) {
+    InitPlayerPosition(x,y);
     gPlayerActorp->flag &= ~ACTOR_FLAG_DRAW;
     D_800BE5F4._w = 4;
 }

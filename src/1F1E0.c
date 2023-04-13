@@ -11,7 +11,7 @@ int32_t Knockback_NegSinDmg(uint16_t index0,uint16_t index1,int32_t x){
   
   dmg = sqrtf(gActors[index0].healthDelta);
   
-  theta = func_800294E0(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
+  theta = atan2(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
                        gActors[index0].pos.y_w - gActors[index1].pos.y_w );
   //mismatch here
   return (gCosineLookup[theta + 0x100 & 0x200] * dmg * (float)x * 2.0);
@@ -26,7 +26,7 @@ int32_t Knockback_SinDmg(uint16_t index0,uint16_t index1,int32_t x){
   
   dmg = sqrtf(gActors[index0].healthDelta);
   
-  theta = func_800294E0(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
+  theta = atan2(gActors[index0].pos.x_w - gActors[index1].pos.x_w ,
                        gActors[index0].pos.y_w - gActors[index1].pos.y_w );
   //mismatch here again
   return (float)(SIN(theta) * dmg * x * 2.0);

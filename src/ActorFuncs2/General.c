@@ -63,7 +63,7 @@ void func_8019C0A0_732E00(uint16_t index){
     thisActor.hitboxBX0=-16;
     thisActor.hitboxBX1=16;
 }
-
+//spawn mushroom cloud particle in front of actor
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019C0F4_732E54.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs2/General/func_8019C1C4_732F24.s")

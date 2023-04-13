@@ -169,9 +169,9 @@ void func_801A8008_776BF8(uint16_t other){
         thisActor.graphic=GINDEX_QUESTIONBUBBLE;
         thisActor.pos.x=actorp->pos.x;
         thisActor.pos.z=actorp->pos.z+16;
-        thisActor.gFlag=0xA01;
+        thisActor.gFlag=ACTOR_GFLAG_0|ACTOR_GFLAG_RGB16|ACTOR_GFLAG_B;
         thisActor.flag=0xA;
-        thisActor.palletteP=&D_800D8668;
+        thisActor.palletteP=D_800D8668;
         thisActor.gp0._w=0x100000;
         thisActor.scaleX=0.8; //.rodata
         thisActor.scaleY=0.8;

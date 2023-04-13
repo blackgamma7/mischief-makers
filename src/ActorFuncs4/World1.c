@@ -21,7 +21,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World1/func_801B182C_7978FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World1/func_801B1A28_797AF8.s")
-
+//spawns a 3d actor with a mushroom cloud particle.
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World1/func_801B1AD4_797BA4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs4/World1/func_801B1CA4_797D74.s")

@@ -1,6 +1,13 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A6900_766110.s")
+int16_t D_801AF420_76EC30[]={0xBFE,0xB30,0xBFE,0xABA};
+int16_t D_801AF428_76EC38[]={0x12E,0x17E,0x1CE,0x21E};
+
+void func_801A6900_766110(uint16_t index){
+ thisActor.unk_0x184._h[0]=D_801AF420_76EC30[thisActor.gp7._w];
+ thisActor.unk_0x184._h[1]=D_801AF428_76EC38[thisActor.gp7._w];
+}
+//#pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A6900_766110.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/ActorFuncs3/World1/func_801A695C_76616C.s")
 

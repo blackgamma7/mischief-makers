@@ -84,6 +84,7 @@ extern int16_t D_800E5E48[66];
 extern ActorFunc gActorFuncTable_800E5AC0[];
 extern uint16_t* D_800E574C[];
 extern UNK_TYPE D_800E8BEC;
+extern UNK_TYPE D_800E89D4;
 extern uint16_t LifeBar_Colors[]; //16-bit colors. may be structure.
 extern uint16_t gInputHistoryPress[64]; // buffer of controller inputs
 extern Gfx* gDListHead;
@@ -114,7 +115,7 @@ extern UNK_TYPE D_800BA9E0;
 extern UNK_TYPE D_800BAAB0;
 extern uint16_t g3DHitboxCount1;
 extern uint16_t g3DHitboxCount2;
-extern uint16_t gSceneFrames; //pair of frame counters. get modulo'd a lot for animations
+extern uint16_t gSceneFrames; //pair of frame counters. get AND'd a lot for animations
 extern uint16_t gSceneFramesReal; //like gStageTime and gStageTimeReal, the latter doesn't pause
 extern uint16_t D_800BE4EC;
 extern uint16_t gButtonMask;
@@ -356,7 +357,7 @@ extern uint16_t* D_800D8088[8]; //japan-only text for actor 0x56
 extern uint16_t D_800D80A8[8]; //SFX Arrays for same actor
 extern uint16_t D_800D81AC[];
 extern uint16_t D_800D81F8[];
-extern int16_t D_800D84E8[];
+extern uint16_t D_800D84E8[];
 extern uint16_t gPalletteWhite[16]; //RGBA5551 pallette for white screens.
 extern UNK_TYPE gPalletteBlack;
 extern uint16_t D_800D37A4;
@@ -375,7 +376,12 @@ extern int32_t gMarinaVelocities[32]; //table for Marina's movement speeds.
 extern int32_t D_800D57E0;
 extern uint16_t gSpeaker_ActorLink;
 extern uint16_t D_800D5824;
-extern UNK_TYPE D_800D8668;
+extern uint16_t D_800D85C8[16];
+extern uint16_t D_800D85E8[16];
+extern uint16_t D_800D8608[16];
+extern uint16_t D_800D8628[16];
+extern uint16_t D_800D8648[16];
+extern uint16_t D_800D8668[16];
 extern UNK_TYPE D_800D8750;
 extern UNK_TYPE D_800D87C8;
 extern UNK_TYPE D_800D8840;
@@ -502,7 +508,7 @@ extern UNK_TYPE D_800E0448;
 extern int16_t D_800E04A2;
 extern UNK_TYPE gGraphicListDefault;
 extern UNK_TYPE D_800E154C;
-extern uint16_t D_800E164C[18];
+extern uint16_t gGraphicListGem2[18];
 extern uint16_t D_800E1700[];
 extern uint16_t D_800E1750[];
 extern uint16_t D_800E1788[];
@@ -531,6 +537,7 @@ extern Gfx D_800E3A88[5];
 extern Gfx D_800E3AC8[10];
 extern Gfx D_800E3B60[13];
 extern float D_800E90E8[64];
+extern uint16_t D_800E9414[]
 extern UNK_TYPE D_800E9850;
 extern uint16_t D_800E9654[];
 extern UNK_TYPE D_800EA110;
